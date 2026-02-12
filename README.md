@@ -8,9 +8,11 @@ A minimal, cozy web app for pasting Chinese text, color-coding characters by HSK
 - `@supabase/supabase-js`
 - Local dictionary at `/data/hanzidb.json`
 
-## Auth Choice
+## Current Mode
 
-This project uses **Supabase Auth email magic links** (low friction, works with proper RLS via `auth.uid()`).
+The app is currently in **temporary local guest mode** (no sign-in screen), using `localStorage` for character state while you build UI/features.
+
+When you want to switch back to Supabase Auth + RLS, re-enable the auth-backed data flow in the page files.
 
 ## Setup
 

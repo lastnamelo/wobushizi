@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { AuthPanel } from "@/components/AuthPanel";
 import { Logo } from "@/components/Logo";
-import { ensureProfile, fetchAllCharacterStates } from "@/lib/db";
+import {
+  ensureLocalProfile,
+  fetchAllCharacterStatesLocal,
+  setCharacterStatusLocal
+} from "@/lib/localStore";
 import { getHanziData } from "@/lib/hanzidb";
-import { supabase } from "@/lib/supabaseClient";
 import { CharacterStatus, EnrichedCharacter, HanzidbEntry } from "@/lib/types";
-import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 const allRows = getHanziData();
 
@@ -28,7 +29,7 @@ function toDisplayRow(row: HanzidbEntry, status: CharacterStatus | "none"): Enri
 }
 
 export default function MasterPage() {
-  const { user, loading, error, signInWithEmail, signOut } = useSupabaseAuth();
+  const [loading, setLoading] = useState(true);
   const [stateMap, setStateMap] = useState<Map<string, CharacterStatus>>(new Map());
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "known" | "study" | "none">("all");
@@ -36,17 +37,20 @@ export default function MasterPage() {
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) return;
     (async () => {
-      await ensureProfile(supabase, user);
-      const states = await fetchAllCharacterStates(supabase, user.id);
+      await ensureLocalProfile();
+      const states = await fetchAllCharacterStatesLocal();
       const map = new Map<string, CharacterStatus>();
       for (const row of states) {
         map.set(row.character, row.status);
       }
       setStateMap(map);
-    })().catch((err: Error) => setMessage(err.message));
-  }, [user]);
+      setLoading(false);
+    })().catch((err: Error) => {
+      setMessage(err.message);
+      setLoading(false);
+    });
+  }, []);
 
   const visibleRows = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -73,22 +77,7 @@ export default function MasterPage() {
   }, [search, statusFilter, hskFilter, stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
-    if (!user) return;
-
-    const { error: upsertError } = await supabase.from("character_states").upsert(
-      {
-        user_id: user.id,
-        character,
-        status,
-        last_seen_at: new Date().toISOString()
-      },
-      { onConflict: "user_id,character" }
-    );
-
-    if (upsertError) {
-      setMessage(upsertError.message);
-      return;
-    }
+    await setCharacterStatusLocal(character, status);
 
     setStateMap((prev) => {
       const next = new Map(prev);
@@ -100,17 +89,15 @@ export default function MasterPage() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-6">
       <div className="mb-8 flex justify-end gap-2 text-sm">
+        <Link href="/about" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
+          About
+        </Link>
         <Link href="/" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
           Home
         </Link>
         <Link href="/bank" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
           Bank
         </Link>
-        {user ? (
-          <button className="rounded-lg border border-line px-3 py-1.5 hover:bg-white" onClick={signOut}>
-            Sign out
-          </button>
-        ) : null}
       </div>
 
       <Logo />
@@ -118,13 +105,7 @@ export default function MasterPage() {
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
-      {!loading && !user ? (
-        <div className="mt-8">
-          <AuthPanel loading={false} error={error} onSignIn={signInWithEmail} />
-        </div>
-      ) : null}
-
-      {!loading && user ? (
+      {!loading ? (
         <section className="mt-8 rounded-2xl border border-line bg-white p-4 shadow-card">
           <div className="mb-4 flex flex-wrap gap-2">
             <input

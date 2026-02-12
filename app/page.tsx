@@ -2,27 +2,23 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { AuthPanel } from "@/components/AuthPanel";
 import { Logo } from "@/components/Logo";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TextLoader } from "@/components/TextLoader";
 import { extractUniqueChineseChars } from "@/lib/cjk";
 import {
-  ensureProfile,
-  fetchCharacterStatesForChars,
-  fetchKnownCount
-} from "@/lib/db";
-import { getHanziMap } from "@/lib/hanzidb";
-import { supabase } from "@/lib/supabaseClient";
+  applyLogLocal,
+  ensureLocalProfile,
+  fetchCharacterStatesForCharsLocal,
+  fetchKnownCountLocal
+} from "@/lib/localStore";
+import { lookupHanziEntry } from "@/lib/hanzidb";
 import { EnrichedCharacter } from "@/lib/types";
-import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 type HomeMode = "input" | "review" | "result";
 
-const hanziMap = getHanziMap();
-
 function enrich(character: string): EnrichedCharacter {
-  const meta = hanziMap.get(character);
+  const meta = lookupHanziEntry(character);
   return {
     character,
     traditional_character:
@@ -36,7 +32,7 @@ function enrich(character: string): EnrichedCharacter {
 }
 
 export default function HomePage() {
-  const { user, loading, error, signInWithEmail, signOut } = useSupabaseAuth();
+  const [loading, setLoading] = useState(true);
   const [knownCount, setKnownCount] = useState(0);
   const [text, setText] = useState("");
   const [mode, setMode] = useState<HomeMode>("input");
@@ -51,22 +47,21 @@ export default function HomePage() {
   } | null>(null);
 
   useEffect(() => {
-    if (!user) return;
-
     (async () => {
-      await ensureProfile(supabase, user);
-      const count = await fetchKnownCount(supabase, user.id);
+      await ensureLocalProfile();
+      const count = await fetchKnownCountLocal();
       setKnownCount(count);
+      setLoading(false);
     })().catch((err: Error) => {
       setMessage(err.message);
+      setLoading(false);
     });
-  }, [user]);
+  }, []);
 
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
 
   async function handleLoad() {
     setMessage(null);
-    if (!user) return;
 
     try {
       const chars = extractUniqueChineseChars(text);
@@ -75,7 +70,7 @@ export default function HomePage() {
         return;
       }
 
-      const statesMap = await fetchCharacterStatesForChars(supabase, user.id, chars);
+      const statesMap = await fetchCharacterStatesForCharsLocal(chars);
       const known = new Set<string>();
 
       for (const ch of chars) {
@@ -84,8 +79,9 @@ export default function HomePage() {
         }
       }
 
-      // Default behavior: non-known unique characters are selected so logging is one click.
-      const defaults = new Set(chars.filter((ch) => !known.has(ch)));
+      // Default behavior: all unique characters are selected.
+      // Users can deselect any character (including previously-known ones) to move to study.
+      const defaults = new Set(chars);
 
       setUniqueChars(chars);
       setKnownSet(known);
@@ -109,78 +105,23 @@ export default function HomePage() {
   }
 
   async function handleLog() {
-    if (!user) return;
     setIsSaving(true);
     setMessage(null);
 
     try {
-      const now = new Date().toISOString();
-
-      const { data: eventData, error: eventError } = await supabase
-        .from("log_events")
-        .insert({ user_id: user.id, source_text: text })
-        .select("id")
-        .single();
-
-      if (eventError || !eventData) {
-        throw eventError ?? new Error("Failed to create log event");
-      }
-
-      const upsertRows = uniqueChars.map((character) => {
-        const alreadyKnown = knownSet.has(character);
-        const status = alreadyKnown || selectedSet.has(character) ? "known" : "study";
-        return {
-          user_id: user.id,
-          character,
-          status,
-          last_seen_at: now
-        };
-      });
-
-      // Client-side Supabase cannot open explicit SQL transactions, so we bind writes
-      // through one event id and consistent timestamps to keep event history coherent.
-      const { error: upsertError } = await supabase
-        .from("character_states")
-        .upsert(upsertRows, { onConflict: "user_id,character" });
-
-      if (upsertError) {
-        throw upsertError;
-      }
-
-      const items = uniqueChars.map((character) => {
-        const alreadyKnown = knownSet.has(character);
-        const selected = selectedSet.has(character);
-        const action = alreadyKnown
-          ? "skipped"
-          : selected
-            ? "logged_known"
-            : "queued_study";
-
-        return {
-          log_event_id: eventData.id,
-          user_id: user.id,
-          character,
-          action,
-          created_at: now
-        };
-      });
-
-      const { error: itemsError } = await supabase.from("log_event_items").insert(items);
-      if (itemsError) {
-        throw itemsError;
-      }
+      await applyLogLocal(text, uniqueChars, knownSet, selectedSet);
 
       const newKnown = uniqueChars
         .filter((ch) => !knownSet.has(ch) && selectedSet.has(ch))
         .map(enrich);
       const queuedStudy = uniqueChars
-        .filter((ch) => !knownSet.has(ch) && !selectedSet.has(ch))
+        .filter((ch) => !selectedSet.has(ch))
         .map(enrich);
 
       setResults({ newKnown, queuedStudy });
       setMode("result");
 
-      const count = await fetchKnownCount(supabase, user.id);
+      const count = await fetchKnownCountLocal();
       setKnownCount(count);
     } catch (err) {
       setMessage((err as Error).message);
@@ -192,30 +133,22 @@ export default function HomePage() {
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6">
       <div className="mb-8 flex justify-end gap-2 text-sm">
+        <Link href="/about" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
+          About
+        </Link>
         <Link href="/bank" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
           Bank
         </Link>
         <Link href="/master" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
           Master List
         </Link>
-        {user ? (
-          <button className="rounded-lg border border-line px-3 py-1.5 hover:bg-white" onClick={signOut}>
-            Sign out
-          </button>
-        ) : null}
       </div>
 
       <Logo />
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
-      {!loading && !user ? (
-        <div className="mt-8">
-          <AuthPanel loading={false} error={error} onSignIn={signInWithEmail} />
-        </div>
-      ) : null}
-
-      {!loading && user ? (
+      {!loading ? (
         <>
           <ProgressBar knownCount={knownCount} />
 
@@ -245,8 +178,12 @@ export default function HomePage() {
                   known={knownSet}
                   onToggle={toggleCharacter}
                 />
+                <HskLegend />
                 <p className="text-sm text-stone-600">
                   Selected for logging: {selectedCount} / {uniqueChars.length}
+                </p>
+                <p className="text-xs text-stone-500">
+                  Deselect any character you want in Study, including previously-known characters.
                 </p>
                 <div className="flex gap-2">
                   <button
@@ -341,6 +278,32 @@ function SimpleEventTable({ rows, empty }: { rows: EnrichedCharacter[]; empty: s
           ))}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+function HskLegend() {
+  const items = [
+    { label: "HSK 1", color: "text-amber-700" },
+    { label: "HSK 2", color: "text-emerald-700" },
+    { label: "HSK 3", color: "text-sky-700" },
+    { label: "HSK 4", color: "text-indigo-700" },
+    { label: "HSK 5", color: "text-rose-700" },
+    { label: "HSK 6", color: "text-orange-700" },
+    { label: "Unknown", color: "text-stone-500" }
+  ];
+
+  return (
+    <div className="rounded-xl border border-line bg-white p-3 shadow-card">
+      <p className="mb-2 text-xs text-stone-500">Color key</p>
+      <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+        {items.map((item) => (
+          <span key={item.label} className="inline-flex items-center gap-1.5 text-stone-700">
+            <span className={`text-xl leading-none ${item.color}`}>字</span>
+            <span>{item.label}</span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

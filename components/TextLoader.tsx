@@ -1,6 +1,6 @@
 "use client";
 
-import { getHanziMap, getHskColor } from "@/lib/hanzidb";
+import { getHskColor, lookupHanziEntry } from "@/lib/hanzidb";
 import { isChineseChar } from "@/lib/cjk";
 
 interface TextLoaderProps {
@@ -9,8 +9,6 @@ interface TextLoaderProps {
   known: Set<string>;
   onToggle: (character: string) => void;
 }
-
-const hanziMap = getHanziMap();
 
 export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps) {
   return (
@@ -21,7 +19,7 @@ export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps)
             return <span key={`${ch}-${idx}`}>{ch}</span>;
           }
 
-          const info = hanziMap.get(ch);
+          const info = lookupHanziEntry(ch);
           const colorClass = getHskColor((info?.hsk_level as number | null | undefined) ?? null);
           const isKnown = known.has(ch);
           const isSelected = selected.has(ch);
@@ -29,13 +27,11 @@ export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps)
           return (
             <span
               key={`${ch}-${idx}`}
-              onClick={() => {
-                if (!isKnown) onToggle(ch);
-              }}
+              onClick={() => onToggle(ch)}
               className={`inline-block rounded px-0.5 text-2xl transition ${colorClass} ${
-                isKnown ? "cursor-not-allowed opacity-85" : "cursor-pointer hover:bg-stone-200"
+                isKnown ? "cursor-pointer ring-1 ring-stone-300 hover:bg-stone-200" : "cursor-pointer hover:bg-stone-200"
               } ${isSelected ? "bg-stone-200" : "bg-transparent"}`}
-              title={isKnown ? "Already known" : "Toggle log selection"}
+              title={isKnown ? "Previously known (click to keep known or move to study)" : "Toggle log selection"}
             >
               {ch}
             </span>

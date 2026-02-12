@@ -4,10 +4,17 @@ import { HanzidbEntry } from "@/lib/types";
 const data = rawData as HanzidbEntry[];
 
 const byCharacter = new Map<string, HanzidbEntry>();
+const byAnyVariant = new Map<string, HanzidbEntry>();
 
 for (const row of data) {
   if (row?.character) {
     byCharacter.set(row.character, row);
+    byAnyVariant.set(row.character, row);
+  }
+
+  const traditional = typeof row?.traditional_character === "string" ? row.traditional_character.trim() : "";
+  if (traditional) {
+    byAnyVariant.set(traditional, row);
   }
 }
 
@@ -17,6 +24,10 @@ export function getHanziData(): HanzidbEntry[] {
 
 export function getHanziMap(): Map<string, HanzidbEntry> {
   return byCharacter;
+}
+
+export function lookupHanziEntry(character: string): HanzidbEntry | undefined {
+  return byAnyVariant.get(character);
 }
 
 export function getHskColor(level: number | null | undefined): string {
