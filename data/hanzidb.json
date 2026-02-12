@@ -1,0 +1,22 @@
+[
+  { "character": "我", "traditional_character": "", "pinyin": "wo3", "definition": "I; me", "hsk_level": 1 },
+  { "character": "不", "traditional_character": "", "pinyin": "bu4", "definition": "no; not", "hsk_level": 1 },
+  { "character": "识", "traditional_character": "識", "pinyin": "shi2", "definition": "to know", "hsk_level": 5 },
+  { "character": "字", "traditional_character": "", "pinyin": "zi4", "definition": "character; word", "hsk_level": 2 },
+  { "character": "汉", "traditional_character": "漢", "pinyin": "han4", "definition": "Han Chinese", "hsk_level": 2 },
+  { "character": "学", "traditional_character": "學", "pinyin": "xue2", "definition": "study; learn", "hsk_level": 1 },
+  { "character": "习", "traditional_character": "習", "pinyin": "xi2", "definition": "practice", "hsk_level": 1 },
+  { "character": "中", "traditional_character": "", "pinyin": "zhong1", "definition": "middle; China", "hsk_level": 1 },
+  { "character": "文", "traditional_character": "", "pinyin": "wen2", "definition": "language; script", "hsk_level": 1 },
+  { "character": "人", "traditional_character": "", "pinyin": "ren2", "definition": "person", "hsk_level": 1 },
+  { "character": "好", "traditional_character": "", "pinyin": "hao3", "definition": "good", "hsk_level": 1 },
+  { "character": "天", "traditional_character": "", "pinyin": "tian1", "definition": "sky; day", "hsk_level": 1 },
+  { "character": "气", "traditional_character": "氣", "pinyin": "qi4", "definition": "air; weather", "hsk_level": 2 },
+  { "character": "的", "traditional_character": "", "pinyin": "de", "definition": "possessive particle", "hsk_level": 1 },
+  { "character": "在", "traditional_character": "", "pinyin": "zai4", "definition": "at; in; to be located", "hsk_level": 1 },
+  { "character": "了", "traditional_character": "", "pinyin": "le", "definition": "completed action particle", "hsk_level": 1 },
+  { "character": "看", "traditional_character": "", "pinyin": "kan4", "definition": "to see", "hsk_level": 1 },
+  { "character": "说", "traditional_character": "說", "pinyin": "shuo1", "definition": "to speak", "hsk_level": 1 },
+  { "character": "听", "traditional_character": "聽", "pinyin": "ting1", "definition": "to listen", "hsk_level": 1 },
+  { "character": "读", "traditional_character": "讀", "pinyin": "du2", "definition": "to read", "hsk_level": 2 }
+]
