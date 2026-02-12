@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { CharacterTable } from "@/components/CharacterTable";
 import { Logo } from "@/components/Logo";
@@ -41,14 +41,13 @@ export default function BankPage() {
   const [knownCount, setKnownCount] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
 
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const initialTab = searchParams.get("tab") === "study" ? "study" : "character";
-  const [activeTab, setActiveTab] = useState<"character" | "study">(initialTab);
+  const [activeTab, setActiveTab] = useState<"character" | "study">("character");
 
   useEffect(() => {
-    setActiveTab(initialTab);
-  }, [initialTab]);
+    const tab = new URLSearchParams(window.location.search).get("tab");
+    setActiveTab(tab === "study" ? "study" : "character");
+  }, []);
 
   useEffect(() => {
     (async () => {
