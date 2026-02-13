@@ -158,7 +158,7 @@ export default function MasterPage() {
       <ProgressBar knownCount={knownCount} />
       <BankQuickNav active="master" />
       <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
-        You are in the mobile experience. For definitions and traditional characters, use the desktop page.
+        You are in the mobile experience. For definitions, traditional characters, more filters, please use the desktop view.
       </p>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
