@@ -31,10 +31,17 @@ export const TextLoader = memo(function TextLoader({ text, selected, known, onTo
             <span
               key={`${ch}-${idx}`}
               onClick={() => onToggle(ch)}
-              className={`inline-block rounded px-0.5 text-2xl transition cursor-pointer ${
-                isSelected ? "bg-slate-200" : "bg-transparent hover:bg-slate-100"
-              }`}
-              style={{ color: colorValue }}
+              className="inline-block cursor-pointer px-0.5 text-2xl transition"
+              style={{
+                color: colorValue,
+                backgroundColor: isSelected ? "#cad4d9" : "transparent"
+              }}
+              onMouseEnter={(e) => {
+                if (!isSelected) e.currentTarget.style.backgroundColor = "#f2f5f8";
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
+              }}
               title={pinyin || (isKnown ? "Previously known" : "No pinyin")}
             >
               {ch}

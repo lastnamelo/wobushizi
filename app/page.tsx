@@ -184,7 +184,7 @@ export default function HomePage() {
           <BankQuickNav active="home" />
           {mode === "review" && uniqueChars.length > 0 ? (
             <div className="mx-auto mt-8 max-w-4xl">
-              <p className="mb-3 text-left text-sm text-stone-700">
+              <p className="mb-3 text-left text-lg text-stone-700">
                 Deselect any character you do not recognize to add to study and select unhighlighted
                 characters you would like to move to known.
               </p>
@@ -243,7 +243,7 @@ export default function HomePage() {
 
             {mode === "result" && results ? (
               <div className="space-y-4">
-                <p className="text-xl text-stone-700">Log complete.</p>
+                <p className="text-lg text-stone-700">Log complete.</p>
                 <div className="mx-auto max-w-4xl">
                   <HskMiniPies stats={hskStats} />
                 </div>
@@ -268,7 +268,7 @@ export default function HomePage() {
                   </button>
                   <button
                     onClick={resetToFreshInput}
-                    className="rounded-xl border border-line px-5 py-2.5 text-sm hover:bg-white"
+                    className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700"
                   >
                     Load another text
                   </button>
@@ -303,6 +303,21 @@ function CharacterCloud({ rows, empty }: { rows: EnrichedCharacter[]; empty: str
       ))}
     </div>
   );
+}
+
+function pieSlicePath(percent: number): string {
+  const clamped = Math.max(0, Math.min(percent, 100));
+  if (clamped <= 0) return "";
+  if (clamped >= 100) {
+    // Full circle path split into two arcs for SVG compatibility.
+    return "M 12 12 m -10 0 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0";
+  }
+  const angle = (clamped / 100) * 360;
+  const rad = ((angle - 90) * Math.PI) / 180;
+  const x = 12 + 10 * Math.cos(rad);
+  const y = 12 + 10 * Math.sin(rad);
+  const largeArc = angle > 180 ? 1 : 0;
+  return `M 12 12 L 12 2 A 10 10 0 ${largeArc} 1 ${x} ${y} Z`;
 }
 
 function HskMiniPies({ stats }: { stats: HskCounts }) {
@@ -343,13 +358,17 @@ function HskMiniPies({ stats }: { stats: HskCounts }) {
               ? totalHskCounts.unknown
               : totalHskCounts[Number(entry.label.replace("HSK ", "")) as 1 | 2 | 3 | 4 | 5 | 6];
           return (
-            <div key={entry.label} className="flex items-center gap-2 text-xs text-stone-600">
-              <span
-                className="inline-block h-6 w-6 rounded-full border border-stone-300"
-                style={{
-                  background: `conic-gradient(${entry.color} ${pct}%, #e7e5e4 ${pct}% 100%)`
-                }}
-              />
+            <div key={entry.label} className="flex items-center gap-2 text-xs leading-none text-stone-600">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                className="block shrink-0 overflow-hidden rounded-full border border-stone-300"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" fill="#ddd6cc" />
+                {pct > 0 ? <path d={pieSlicePath(pct)} fill={entry.color} /> : null}
+              </svg>
               <span className="flex flex-col leading-tight" style={{ color: entry.color }}>
                 <span>{entry.label}</span>
                 <span>

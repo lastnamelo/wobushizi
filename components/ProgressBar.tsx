@@ -8,10 +8,10 @@ export function ProgressBar({ knownCount, target = 2500 }: ProgressBarProps) {
 
   return (
     <div className="mx-auto mt-2 w-full max-w-md">
-      <div className="h-2.5 w-full overflow-hidden rounded-full bg-stone-200">
+      <div className="h-2.5 w-full overflow-hidden rounded-full" style={{ backgroundColor: "#ddd6cc" }}>
         <div
-          className="h-full rounded-full bg-stone-500 transition-all"
-          style={{ width: `${ratio * 100}%` }}
+          className="h-full rounded-full transition-all"
+          style={{ width: `${ratio * 100}%`, backgroundColor: "#8c8378" }}
         />
       </div>
       <p className="mt-2 text-center text-sm text-stone-600">Known {knownCount} / {target}</p>
