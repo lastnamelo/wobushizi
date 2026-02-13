@@ -157,19 +157,22 @@ export default function MasterPage() {
       <Logo />
       <ProgressBar knownCount={knownCount} />
       <BankQuickNav active="master" />
+      <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
+        You are in the mobile experience. For definitions and traditional characters, use the desktop page.
+      </p>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
         <section className="mt-6 rounded-2xl border border-line bg-white p-4 shadow-card">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="mb-4 flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between">
             <h2 className="text-lg font-medium text-stone-800">Master List</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full items-center gap-2 md:w-auto md:flex-wrap">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search character / pinyin / trad-alt"
-                className="min-w-64 flex-1 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm outline-none focus:border-stone-400"
+                className="min-w-0 flex-1 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm outline-none focus:border-stone-400 md:min-w-64 md:flex-none"
               />
               <select
                 value={statusFilter}
@@ -184,7 +187,7 @@ export default function MasterPage() {
               <select
                 value={hskFilter}
                 onChange={(e) => setHskFilter(e.target.value)}
-                className="rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm"
+                className="shrink-0 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm"
               >
                 <option value="all">HSK: All</option>
                 <option value="1">HSK 1</option>
@@ -303,9 +306,6 @@ export default function MasterPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
-            You are in the mobile experience. For definitions and traditional characters, use the desktop page.
-          </p>
 
           <p className="mt-3 text-xs text-stone-500">Showing {visibleRows.length.toLocaleString()} characters.</p>
           {message ? <p className="mt-2 text-sm text-rose-700">{message}</p> : null}

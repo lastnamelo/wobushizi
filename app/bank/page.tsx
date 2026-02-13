@@ -113,6 +113,9 @@ export default function BankPage() {
           window.history.replaceState(null, "", `/bank?tab=${tab}`);
         }}
       />
+      <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
+        You are in the mobile experience. For definitions and traditional characters, use the desktop page.
+      </p>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 

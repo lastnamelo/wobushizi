@@ -189,7 +189,9 @@ export default function HomePage() {
                 Deselect any character you do not recognize to add to study and select unhighlighted
                 characters you would like to move to known.
               </p>
-              <HskMiniPies stats={hskStats} />
+              <div className="hidden md:block">
+                <HskMiniPies stats={hskStats} />
+              </div>
             </div>
           ) : null}
 
@@ -249,7 +251,7 @@ export default function HomePage() {
             {mode === "result" && results ? (
               <div className="space-y-4">
                 <p className="text-lg text-stone-700">Log complete.</p>
-                <div className="mx-auto max-w-4xl">
+                <div className="mx-auto hidden max-w-4xl md:block">
                   <HskMiniPies stats={hskStats} />
                 </div>
 

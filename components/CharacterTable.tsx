@@ -103,19 +103,19 @@ export function CharacterTable({
 
   return (
     <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+      <div className="mb-3 flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between">
         <h2 className="text-lg font-medium text-stone-800">{title}</h2>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex w-full items-center gap-2 md:w-auto md:flex-wrap">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search char / pinyin / trad-alt"
-            className="rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+            className="min-w-0 flex-1 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400 md:min-w-[16rem] md:flex-none"
           />
           <select
             value={hskFilter}
             onChange={(e) => setHskFilter(e.target.value)}
-            className="rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+            className="shrink-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
           >
             <option value="all">HSK: All</option>
             <option value="1">HSK 1</option>
@@ -245,9 +245,6 @@ export function CharacterTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
-        You are in the mobile experience. For definitions and traditional characters, use the desktop page.
-      </p>
     </section>
   );
 }
