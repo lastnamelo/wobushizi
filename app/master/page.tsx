@@ -43,6 +43,7 @@ export default function MasterPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "known" | "study" | "none">("all");
   const [hskFilter, setHskFilter] = useState<string>("all");
+  const [hasTradAltOnly, setHasTradAltOnly] = useState(false);
   const [sortBy, setSortBy] = useState<"frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character">(
     "frequency_rank_asc"
   );
@@ -73,6 +74,10 @@ export default function MasterPage() {
     const raw = allRows
       .filter((row) => {
         if (!row.character) return false;
+        const hasTradAlt =
+          Boolean(String(row.traditional_character ?? "").trim()) ||
+          Boolean(String(row.alternate_characters ?? "").trim());
+        if (hasTradAltOnly && !hasTradAlt) return false;
 
         const status = stateMap.get(row.character) ?? "none";
         const hsk = typeof row.hsk_level === "number" ? String(row.hsk_level) : "unknown";
@@ -130,7 +135,7 @@ export default function MasterPage() {
     }
 
     return [...deduped.values()];
-  }, [search, statusFilter, hskFilter, sortBy, stateMap]);
+  }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
     await setCharacterStatusLocal(character, status);
@@ -202,6 +207,15 @@ export default function MasterPage() {
                 <option value="hsk">Sort: HSK</option>
                 <option value="character">Sort: Character</option>
               </select>
+              <label className="flex items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm text-stone-700">
+                <input
+                  type="checkbox"
+                  checked={hasTradAltOnly}
+                  onChange={(e) => setHasTradAltOnly(e.target.checked)}
+                  className="h-4 w-4"
+                />
+                Has Trad/Alt
+              </label>
             </div>
           </div>
 
@@ -211,10 +225,10 @@ export default function MasterPage() {
                 <tr className="text-center text-stone-500">
                   <th className="border-b border-line bg-white py-2">字</th>
                   <th className="border-b border-line bg-white py-2">Pinyin</th>
-                  <th className="w-80 border-b border-line bg-white py-2">Definition</th>
+                  <th className="hidden w-80 border-b border-line bg-white py-2 md:table-cell">Definition</th>
                   <th className="border-b border-line bg-white py-2">HSK</th>
-                  <th className="border-b border-line bg-white py-2">Freq</th>
-                  <th className="w-36 border-b border-line bg-white py-2">Trad / Alt</th>
+                  <th className="hidden border-b border-line bg-white py-2 md:table-cell">Freq</th>
+                  <th className="hidden w-36 border-b border-line bg-white py-2 md:table-cell">Trad / Alt</th>
                   <th className="border-b border-line bg-white py-2">Action</th>
                 </tr>
               </thead>
@@ -229,9 +243,11 @@ export default function MasterPage() {
                   return (
                   <tr key={row.character} className="border-b border-stone-100 text-center">
                     <td className="py-2 text-lg">{row.character}</td>
-                    <td className="py-2">{pinyinDisplay || "-"}</td>
+                    <td className="max-w-40 truncate py-2 md:max-w-none" title={pinyinDisplay || "-"}>
+                      {pinyinDisplay || "-"}
+                    </td>
                     <td
-                      className="w-80 max-w-80 truncate py-2 text-left text-xs text-stone-700"
+                      className="hidden w-80 max-w-80 truncate py-2 text-left text-xs text-stone-700 md:table-cell"
                       title={row.definition || "-"}
                     >
                       {row.definition || "-"}
@@ -249,8 +265,8 @@ export default function MasterPage() {
                         );
                       })()}
                     </td>
-                    <td className="py-2">{row.frequency ?? "-"}</td>
-                    <td className="w-36 max-w-36 truncate py-2 text-lg">
+                    <td className="hidden py-2 md:table-cell">{row.frequency ?? "-"}</td>
+                    <td className="hidden w-36 max-w-36 truncate py-2 text-lg md:table-cell">
                       {(() => {
                         const variants = new Set<string>();
                         if (row.traditional_character) variants.add(row.traditional_character);
@@ -287,6 +303,9 @@ export default function MasterPage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
+            You are in the mobile experience. For definitions and traditional characters, use the desktop page.
+          </p>
 
           <p className="mt-3 text-xs text-stone-500">Showing {visibleRows.length.toLocaleString()} characters.</p>
           {message ? <p className="mt-2 text-sm text-rose-700">{message}</p> : null}

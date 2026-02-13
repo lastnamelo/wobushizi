@@ -19,6 +19,7 @@ import { EnrichedCharacter } from "@/lib/types";
 
 type HomeMode = "input" | "review" | "result";
 type HskCounts = { 1: number; 2: number; 3: number; 4: number; 5: number; 6: number; unknown: number };
+const MAX_INPUT_CHARS = 2000;
 
 const totalHskCounts: HskCounts = (() => {
   const counts: HskCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, unknown: 0 };
@@ -199,8 +200,12 @@ export default function HomePage() {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Paste Chinese text here..."
+                  maxLength={MAX_INPUT_CHARS}
                   className="h-60 w-full rounded-2xl border border-line bg-white p-5 text-lg leading-8 outline-none shadow-card focus:border-stone-400"
                 />
+                <p className="text-right text-xs text-stone-500">
+                  {text.length}/{MAX_INPUT_CHARS}
+                </p>
                 <div className="flex justify-end">
                   <button
                     onClick={handleLoad}

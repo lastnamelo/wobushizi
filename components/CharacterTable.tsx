@@ -22,6 +22,7 @@ export function CharacterTable({
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
+  const [hasTradAltOnly, setHasTradAltOnly] = useState(false);
   const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(
     "frequency_rank_asc"
   );
@@ -50,6 +51,11 @@ export function CharacterTable({
     const isLatinQuery = normalizedQ.length > 0 && /^[a-z]+$/.test(normalizedQ);
 
     const subset = [...dedupedRows.values()].filter((row) => {
+      const hasTradAlt =
+        Boolean(String(row.traditional_character ?? "").trim()) ||
+        Boolean(String(row.alternate_characters ?? "").trim());
+      if (hasTradAltOnly && !hasTradAlt) return false;
+
       if (hskFilter !== "all") {
         const rowHsk = row.hsk_level == null ? "unknown" : String(row.hsk_level);
         if (rowHsk !== hskFilter) return false;
@@ -93,7 +99,7 @@ export function CharacterTable({
       }
       return a.character.localeCompare(b.character, "zh-Hans-CN");
     });
-  }, [rows, search, sortBy, hskFilter]);
+  }, [rows, search, sortBy, hskFilter, hasTradAltOnly]);
 
   return (
     <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
@@ -132,6 +138,15 @@ export function CharacterTable({
             <option value="hsk">Sort: HSK</option>
             <option value="character">Sort: Character</option>
           </select>
+          <label className="flex items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm text-stone-700">
+            <input
+              type="checkbox"
+              checked={hasTradAltOnly}
+              onChange={(e) => setHasTradAltOnly(e.target.checked)}
+              className="h-4 w-4"
+            />
+            Has Trad/Alt
+          </label>
         </div>
       </div>
 
@@ -141,10 +156,10 @@ export function CharacterTable({
             <tr className="text-center text-stone-500">
               <th className="border-b border-line bg-white py-2">字</th>
               <th className="border-b border-line bg-white py-2">Pinyin</th>
-              <th className="w-80 border-b border-line bg-white py-2">Definition</th>
+              <th className="hidden w-80 border-b border-line bg-white py-2 md:table-cell">Definition</th>
               <th className="border-b border-line bg-white py-2">HSK</th>
-              <th className="border-b border-line bg-white py-2">Freq</th>
-              <th className="w-36 border-b border-line bg-white py-2">Trad / Alt</th>
+              <th className="hidden border-b border-line bg-white py-2 md:table-cell">Freq</th>
+              <th className="hidden w-36 border-b border-line bg-white py-2 md:table-cell">Trad / Alt</th>
               <th className="border-b border-line bg-white py-2">Action</th>
             </tr>
           </thead>
@@ -175,9 +190,11 @@ export function CharacterTable({
                 return (
                   <tr key={`${row.character}-${row.pinyin || ""}-${idx}`} className="border-b border-stone-100 text-center align-middle">
                     <td className="py-2 text-lg">{row.character}</td>
-                    <td className="py-2">{pinyinDisplay || "-"}</td>
+                    <td className="max-w-40 truncate py-2 md:max-w-none" title={pinyinDisplay || "-"}>
+                      {pinyinDisplay || "-"}
+                    </td>
                     <td
-                      className="w-80 max-w-80 truncate py-2 text-left text-xs text-stone-700"
+                      className="hidden w-80 max-w-80 truncate py-2 text-left text-xs text-stone-700 md:table-cell"
                       title={row.definition || "-"}
                     >
                       {row.definition || "-"}
@@ -195,8 +212,8 @@ export function CharacterTable({
                         );
                       })()}
                     </td>
-                    <td className="py-2">{row.frequency ?? "-"}</td>
-                    <td className="w-36 max-w-36 truncate py-2 text-lg" title={alt || "-"}>
+                    <td className="hidden py-2 md:table-cell">{row.frequency ?? "-"}</td>
+                    <td className="hidden w-36 max-w-36 truncate py-2 text-lg md:table-cell" title={alt || "-"}>
                       {alt || "-"}
                     </td>
                     <td className="py-2">
@@ -228,6 +245,9 @@ export function CharacterTable({
           </tbody>
         </table>
       </div>
+      <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
+        You are in the mobile experience. For definitions and traditional characters, use the desktop page.
+      </p>
     </section>
   );
 }

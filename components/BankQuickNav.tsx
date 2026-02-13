@@ -15,7 +15,7 @@ export function BankQuickNav({ active, onSelectBankTab }: BankQuickNavProps) {
 
   return (
     <div className="mt-4 flex justify-center">
-      <div className="inline-flex rounded-full border border-line bg-white p-1 text-sm">
+      <div className="flex max-w-full flex-wrap items-center justify-center content-center gap-1 rounded-2xl border border-line bg-white p-1 text-sm">
       {items.map((item) => (
         <Link
           key={item.key}
@@ -23,7 +23,7 @@ export function BankQuickNav({ active, onSelectBankTab }: BankQuickNavProps) {
           onClick={() => {
             if ((item.key === "character" || item.key === "study") && onSelectBankTab) onSelectBankTab(item.key);
           }}
-          className={`rounded-full px-3 py-1.5 transition ${
+          className={`inline-flex items-center justify-center rounded-full px-3 py-1.5 leading-none transition ${
             active === item.key
               ? "bg-stone-800 text-white"
               : "text-stone-700 hover:bg-slate-100"
