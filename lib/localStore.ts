@@ -5,6 +5,12 @@ const STATE_KEY = "wobushizi:character_states";
 const LOG_KEY = "wobushizi:log_events";
 
 type StoredState = Record<string, CharacterStateRow>;
+export interface LocalLogEvent {
+  id: string;
+  source_text: string;
+  created_at: string;
+  items: Array<{ character: string; action: string; created_at: string }>;
+}
 
 function readStates(): StoredState {
   if (typeof window === "undefined") return {};
@@ -99,7 +105,7 @@ export async function applyLogLocal(
 
   if (typeof window !== "undefined") {
     const raw = window.localStorage.getItem(LOG_KEY);
-    const logs = raw ? (JSON.parse(raw) as Array<Record<string, unknown>>) : [];
+    const logs = raw ? (JSON.parse(raw) as LocalLogEvent[]) : [];
     logs.push({
       id: crypto.randomUUID(),
       source_text: sourceText,
@@ -114,4 +120,22 @@ export async function applyLogLocal(
     });
     window.localStorage.setItem(LOG_KEY, JSON.stringify(logs));
   }
+}
+
+export async function fetchLogEventsLocal(): Promise<LocalLogEvent[]> {
+  if (typeof window === "undefined") return [];
+  const raw = window.localStorage.getItem(LOG_KEY);
+  if (!raw) return [];
+  try {
+    const rows = JSON.parse(raw) as LocalLogEvent[];
+    return rows.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+  } catch {
+    return [];
+  }
+}
+
+export async function resetLocalProgress(): Promise<void> {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(STATE_KEY);
+  window.localStorage.removeItem(LOG_KEY);
 }

@@ -56,8 +56,24 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Data Notes
 
 - Dictionary map is loaded from `/Users/lastnamelo/wobushizi.com/data/hanzidb.json`.
-- The included JSON is a small starter dataset. Replace with your full file as needed.
-- Code is resilient to extra fields and missing optional metadata.
+- Source CSV used for this build is preserved at `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`.
+- Variant alias overrides are in `/Users/lastnamelo/wobushizi.com/data/variant_overrides.json`.
+- Lookup supports simplified + traditional + alternate characters via `alternate_characters`.
+
+### Refreshing Data From CSV
+
+Recommended editable source:
+- `/Users/lastnamelo/wobushizi.com/data/hanzidb_editable.csv`
+
+Then run:
+
+```bash
+python3 /Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py \
+  --input /path/to/your.csv \
+  --output-json /Users/lastnamelo/wobushizi.com/data/hanzidb.json \
+  --output-csv /Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv \
+  --overrides /Users/lastnamelo/wobushizi.com/data/variant_overrides.json
+```
 
 ## Lazy Seeding Strategy
 

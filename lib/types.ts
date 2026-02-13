@@ -3,7 +3,9 @@ export type CharacterStatus = "known" | "study";
 export interface HanzidbEntry {
   character: string;
   traditional_character?: string;
+  alternate_characters?: string;
   pinyin?: string;
+  pinyin_alternates?: string;
   definition?: string;
   hsk_level?: number | null;
   [key: string]: unknown;
@@ -28,7 +30,9 @@ export interface EnrichedCharacter {
   character: string;
   status?: CharacterStatus;
   traditional_character?: string;
+  alternate_characters?: string;
   pinyin?: string;
+  pinyin_alternates?: string;
   hsk_level?: number | null;
   frequency?: number | null;
   definition?: string;

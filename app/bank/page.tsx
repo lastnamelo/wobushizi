@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterTable } from "@/components/CharacterTable";
 import { Logo } from "@/components/Logo";
-import { Tabs } from "@/components/Tabs";
+import { ProgressBar } from "@/components/ProgressBar";
+import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
   fetchCharacterStatesByStatusLocal,
@@ -19,15 +19,18 @@ function enrichRows(rows: CharacterStateRow[]): EnrichedCharacter[] {
   return rows.map((row) => {
     const meta = lookupHanziEntry(row.character);
     return {
-      character: row.character,
+      character: meta?.character ? String(meta.character) : row.character,
       status: row.status,
       traditional_character:
         meta?.traditional_character && meta.traditional_character !== row.character
           ? String(meta.traditional_character)
           : "",
+      alternate_characters: typeof meta?.alternate_characters === "string" ? meta.alternate_characters : "",
       pinyin: meta?.pinyin ? String(meta.pinyin) : "",
+      pinyin_alternates: typeof meta?.pinyin_alternates === "string" ? meta.pinyin_alternates : "",
       hsk_level: typeof meta?.hsk_level === "number" ? meta.hsk_level : null,
-      frequency: typeof meta?.frequency === "number" ? meta.frequency : null
+      frequency: typeof meta?.frequency === "number" ? meta.frequency : null,
+      definition: typeof meta?.definition === "string" ? meta.definition : ""
     };
   });
 }
@@ -40,13 +43,13 @@ export default function BankPage() {
   });
   const [knownCount, setKnownCount] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
-
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"character" | "study">("character");
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
-    setActiveTab(tab === "study" ? "study" : "character");
+    if (tab === "study") {
+      setActiveTab("study");
+    }
   }, []);
 
   useEffect(() => {
@@ -98,45 +101,29 @@ export default function BankPage() {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-6">
-      <div className="mb-8 flex justify-end gap-2 text-sm">
-        <Link href="/about" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          About
-        </Link>
-        <Link href="/" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          Home
-        </Link>
-        <Link href="/master" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          Master List
-        </Link>
-      </div>
+    <main className="relative mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-6">
+      <TopRightTextNav />
 
       <Logo />
-      <p className="mt-3 text-center text-sm text-stone-600">Known {knownCount} / 2500</p>
+      <ProgressBar knownCount={knownCount} />
+      <BankQuickNav
+        active={activeTab}
+        onSelectBankTab={(tab) => {
+          setActiveTab(tab);
+          window.history.replaceState(null, "", `/bank?tab=${tab}`);
+        }}
+      />
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <section className="mt-8 text-center">
-          <Tabs
-            current={activeTab}
-            options={[
-              { key: "character", label: "Character Bank" },
-              { key: "study", label: "Study Bank" }
-            ]}
-            onChange={(tab) => {
-              const next = tab === "study" ? "study" : "character";
-              setActiveTab(next);
-              router.replace(`/bank?tab=${next}`);
-            }}
-          />
-
+        <section className="mt-6 text-center">
           <CharacterTable
             title={activeTab === "character" ? "Character Bank (Known)" : "Study Bank"}
             rows={currentRows}
             emptyMessage={activeTab === "character" ? "No known characters yet." : "Study queue is empty."}
-            onSetKnown={activeTab === "study" ? (ch) => moveStatus(ch, "known") : undefined}
-            onSetStudy={activeTab === "character" ? (ch) => moveStatus(ch, "study") : undefined}
+            onSetKnown={(ch) => moveStatus(ch, "known")}
+            onSetStudy={(ch) => moveStatus(ch, "study")}
           />
 
           {message ? <p className="mt-3 text-sm text-rose-700">{message}</p> : null}

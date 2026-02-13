@@ -1,6 +1,8 @@
 "use client";
 
-import { getHskColor, lookupHanziEntry } from "@/lib/hanzidb";
+import { memo } from "react";
+import { lookupHanziEntry } from "@/lib/hanzidb";
+import { getHskColorValue } from "@/lib/hskStyles";
 import { isChineseChar } from "@/lib/cjk";
 
 interface TextLoaderProps {
@@ -10,7 +12,7 @@ interface TextLoaderProps {
   onToggle: (character: string) => void;
 }
 
-export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps) {
+export const TextLoader = memo(function TextLoader({ text, selected, known, onToggle }: TextLoaderProps) {
   return (
     <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
       <div className="whitespace-pre-wrap leading-9">
@@ -20,18 +22,20 @@ export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps)
           }
 
           const info = lookupHanziEntry(ch);
-          const colorClass = getHskColor((info?.hsk_level as number | null | undefined) ?? null);
+          const colorValue = getHskColorValue((info?.hsk_level as number | null | undefined) ?? null);
           const isKnown = known.has(ch);
           const isSelected = selected.has(ch);
+          const pinyin = typeof info?.pinyin === "string" ? info.pinyin : "";
 
           return (
             <span
               key={`${ch}-${idx}`}
               onClick={() => onToggle(ch)}
-              className={`inline-block rounded px-0.5 text-2xl transition ${colorClass} ${
-                isKnown ? "cursor-pointer ring-1 ring-stone-300 hover:bg-stone-200" : "cursor-pointer hover:bg-stone-200"
-              } ${isSelected ? "bg-stone-200" : "bg-transparent"}`}
-              title={isKnown ? "Previously known (click to keep known or move to study)" : "Toggle log selection"}
+              className={`inline-block rounded px-0.5 text-2xl transition cursor-pointer ${
+                isSelected ? "bg-slate-200" : "bg-transparent hover:bg-slate-100"
+              }`}
+              style={{ color: colorValue }}
+              title={pinyin || (isKnown ? "Previously known" : "No pinyin")}
             >
               {ch}
             </span>
@@ -40,4 +44,4 @@ export function TextLoader({ text, selected, known, onToggle }: TextLoaderProps)
       </div>
     </div>
   );
-}
+});

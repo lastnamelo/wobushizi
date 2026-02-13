@@ -1,24 +1,40 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { BankQuickNav } from "@/components/BankQuickNav";
 import { Logo } from "@/components/Logo";
+import { ProgressBar } from "@/components/ProgressBar";
+import { TopRightTextNav } from "@/components/TopRightTextNav";
+import { ensureLocalProfile, fetchKnownCountLocal, resetLocalProgress } from "@/lib/localStore";
 
 export default function AboutPage() {
+  const [knownCount, setKnownCount] = useState(0);
+  const [resetMsg, setResetMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      await ensureLocalProfile();
+      const count = await fetchKnownCountLocal();
+      setKnownCount(count);
+    })();
+  }, []);
+
+  async function handleReset() {
+    const ok = window.confirm("Reset all progress to 0? This will clear known/study and logs on this browser.");
+    if (!ok) return;
+
+    await resetLocalProgress();
+    setKnownCount(0);
+    setResetMsg("Progress reset to 0.");
+  }
+
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-4 py-10 sm:px-6">
-      <div className="mb-8 flex justify-end gap-2 text-sm">
-        <Link href="/" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          Home
-        </Link>
-        <Link href="/bank" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          Bank
-        </Link>
-        <Link href="/master" className="rounded-lg border border-line px-3 py-1.5 hover:bg-white">
-          Master List
-        </Link>
-      </div>
+    <main className="relative mx-auto min-h-screen max-w-3xl px-4 py-10 sm:px-6">
+      <TopRightTextNav />
 
       <Logo />
+      <ProgressBar knownCount={knownCount} />
+      <BankQuickNav active="home" />
 
       <section className="mx-auto mt-8 rounded-2xl border border-line bg-white p-6 shadow-card">
         <h1 className="text-xl font-medium text-stone-800">About 我不识字</h1>
@@ -27,10 +43,19 @@ export default function AboutPage() {
           currently recognize, and keep a lightweight known/study bank as you learn over time.
         </p>
         <p className="mt-3 leading-7 text-stone-700">
-          This current build runs in local demo mode. Character status is stored in your browser so you can
-          iterate quickly on design and interaction before enabling full Supabase persistence.
+          The current demo build stores data in your browser so you can iterate quickly. Supabase-backed
+          persistence can be toggled back on when you are ready.
         </p>
       </section>
+      <div className="mt-5 text-center">
+        <button
+          onClick={handleReset}
+          className="rounded-xl border border-line px-4 py-2 text-sm text-stone-700 hover:bg-stone-100"
+        >
+          Reset to 0
+        </button>
+        {resetMsg ? <p className="mt-2 text-sm text-stone-600">{resetMsg}</p> : null}
+      </div>
     </main>
   );
 }
