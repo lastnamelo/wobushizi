@@ -174,7 +174,7 @@ export default function MasterPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as "all" | "known" | "study" | "none")}
-                className="rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm"
+                className="hidden rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm md:block"
               >
                 <option value="all">Status: All</option>
                 <option value="known">Known</option>
@@ -200,14 +200,14 @@ export default function MasterPage() {
                 onChange={(e) =>
                   setSortBy(e.target.value as "frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character")
                 }
-                className="rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm"
+                className="hidden rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm md:block"
               >
                 <option value="frequency_rank_asc">Sort: Most frequent to least</option>
                 <option value="frequency_rank_desc">Sort: Least frequent to most</option>
                 <option value="hsk">Sort: HSK</option>
                 <option value="character">Sort: Character</option>
               </select>
-              <label className="flex items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm text-stone-700">
+              <label className="hidden items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-2 text-sm text-stone-700 md:flex">
                 <input
                   type="checkbox"
                   checked={hasTradAltOnly}

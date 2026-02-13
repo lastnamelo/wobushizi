@@ -24,6 +24,8 @@ export function BankQuickNav({ active, onSelectBankTab }: BankQuickNavProps) {
             if ((item.key === "character" || item.key === "study") && onSelectBankTab) onSelectBankTab(item.key);
           }}
           className={`inline-flex items-center justify-center rounded-full px-3 py-1.5 leading-none transition ${
+            item.key === "home" ? "hidden md:inline-flex " : ""
+          }${
             active === item.key
               ? "bg-stone-800 text-white"
               : "text-stone-700 hover:bg-slate-100"

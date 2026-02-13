@@ -131,14 +131,14 @@ export function CharacterTable({
             onChange={(e) =>
               setSortBy(e.target.value as "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc")
             }
-            className="rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+            className="hidden rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400 md:block"
           >
             <option value="frequency_rank_asc">Sort: Most frequent to least</option>
             <option value="frequency_rank_desc">Sort: Least frequent to most</option>
             <option value="hsk">Sort: HSK</option>
             <option value="character">Sort: Character</option>
           </select>
-          <label className="flex items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm text-stone-700">
+          <label className="hidden items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm text-stone-700 md:flex">
             <input
               type="checkbox"
               checked={hasTradAltOnly}
