@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { Logo } from "@/components/Logo";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -30,6 +31,7 @@ export default function AboutPage() {
 
   return (
     <main className="relative mx-auto min-h-screen max-w-3xl px-4 py-10 sm:px-6">
+      <AuthGate />
       <TopRightTextNav />
 
       <Logo />

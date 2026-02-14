@@ -2,14 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { Session, User } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabaseClient";
+import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 export function useSupabaseAuth() {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     let mounted = true;
 
     supabase.auth
@@ -41,6 +46,11 @@ export function useSupabaseAuth() {
   }, []);
 
   async function signInWithEmail(email: string) {
+    if (!isSupabaseConfigured || !supabase) {
+      const err = new Error("Supabase is not configured.");
+      setError(err.message);
+      throw err;
+    }
     setError(null);
     const { error: signInError } = await supabase.auth.signInWithOtp({
       email,
@@ -56,6 +66,7 @@ export function useSupabaseAuth() {
   }
 
   async function signOut() {
+    if (!isSupabaseConfigured || !supabase) return;
     setError(null);
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
@@ -65,6 +76,7 @@ export function useSupabaseAuth() {
   }
 
   return {
+    isSupabaseConfigured,
     user,
     loading,
     error,

@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useMemo, useState } from "react";
 import { BankQuickNav } from "@/components/BankQuickNav";
+import { AuthGate } from "@/components/AuthGate";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { Logo } from "@/components/Logo";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -142,7 +143,7 @@ export default function HomePage() {
     });
   }
 
-  async function handleLog() {
+  async function runLogFlow() {
     setIsSaving(true);
     setMessage(null);
 
@@ -176,8 +177,13 @@ export default function HomePage() {
     }
   }
 
+  async function handleLog() {
+    await runLogFlow();
+  }
+
   return (
     <main className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 md:py-4">
+      <AuthGate />
       <TopRightTextNav />
       <Logo />
 
@@ -301,6 +307,7 @@ export default function HomePage() {
 
             {message ? <p className="text-sm text-rose-700">{message}</p> : null}
           </section>
+
           <CharacterDetailModal
             character={detailState?.character ?? null}
             status={detailState?.status}

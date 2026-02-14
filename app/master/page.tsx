@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { Logo } from "@/components/Logo";
@@ -152,6 +153,7 @@ export default function MasterPage() {
 
   return (
     <main className="relative mx-auto flex h-screen max-w-7xl flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-6 md:h-auto md:min-h-screen md:overflow-visible md:py-4">
+      <AuthGate />
       <TopRightTextNav />
 
       <Logo />
