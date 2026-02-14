@@ -5,15 +5,11 @@ import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 export function AuthGate() {
   const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
-  const [skipGate, setSkipGate] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem("wobushizi:skip_auth_gate") === "1";
-  });
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [sentMsg, setSentMsg] = useState<string | null>(null);
 
-  if (!isSupabaseConfigured || user || skipGate) return null;
+  if (!isSupabaseConfigured || user) return null;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -52,18 +48,6 @@ export function AuthGate() {
             {busy ? "Sending..." : "Send magic link"}
           </button>
         </form>
-        <button
-          type="button"
-          onClick={() => {
-            if (typeof window !== "undefined") {
-              window.sessionStorage.setItem("wobushizi:skip_auth_gate", "1");
-            }
-            setSkipGate(true);
-          }}
-          className="mt-3 text-xs text-stone-600 underline hover:text-stone-800"
-        >
-          No thanks, just poking around
-        </button>
         {sentMsg ? <p className="mt-2 text-sm text-emerald-700">{sentMsg}</p> : null}
         {error ? <p className="mt-2 text-sm text-rose-700">{error}</p> : null}
       </div>
