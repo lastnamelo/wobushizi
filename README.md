@@ -56,23 +56,26 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Data Notes
 
 - Dictionary map is loaded from `/Users/lastnamelo/wobushizi.com/data/hanzidb.json`.
-- Source CSV used for this build is preserved at `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`.
-- Variant alias overrides are in `/Users/lastnamelo/wobushizi.com/data/variant_overrides.json`.
+- Single source-of-truth CSV is `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`.
 - Lookup supports simplified + traditional + alternate characters via `alternate_characters`.
 
 ### Refreshing Data From CSV
 
-Recommended editable source:
-- `/Users/lastnamelo/wobushizi.com/data/hanzidb_editable.csv`
+Canonical master CSV:
+- `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`
+
+Supported enrichment columns in the master CSV:
+- `pinyin_alternates` (pipe-separated)
+- `common_word_1`, `common_word_1_pinyin`, `common_word_1_definition`
+- `common_word_2`, `common_word_2_pinyin`, `common_word_2_definition`
 
 Then run:
 
 ```bash
 python3 /Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py \
-  --input /path/to/your.csv \
+  --input /Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv \
   --output-json /Users/lastnamelo/wobushizi.com/data/hanzidb.json \
-  --output-csv /Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv \
-  --overrides /Users/lastnamelo/wobushizi.com/data/variant_overrides.json
+  --output-csv /Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv
 ```
 
 ## Lazy Seeding Strategy

@@ -2,14 +2,14 @@
   {
     "character": "的",
     "pinyin": "de",
+    "pinyin_alternates": "dí|dì",
     "definition": "possessive, adjectival suffix",
     "hsk_level": 1,
     "frequency": 1,
     "radical": "白",
     "radical_code": 106.3,
     "stroke_count": 8,
-    "general_standard_num": 1155,
-    "pinyin_alternates": "dí|dì"
+    "general_standard_num": 1155
   },
   {
     "character": "一",
@@ -36,26 +36,26 @@
   {
     "character": "不",
     "pinyin": "bù",
+    "pinyin_alternates": "fǒu",
     "definition": "no, not; un-; negative prefix",
     "hsk_level": 1,
     "frequency": 4,
     "radical": "一",
     "radical_code": 1.3,
     "stroke_count": 4,
-    "general_standard_num": 91,
-    "pinyin_alternates": "fǒu"
+    "general_standard_num": 91
   },
   {
     "character": "了",
     "pinyin": "le",
+    "pinyin_alternates": "liǎo",
     "definition": "to finish; particle of completed action",
     "hsk_level": 1,
     "frequency": 5,
     "radical": "亅",
     "radical_code": 6.1,
     "stroke_count": 2,
-    "general_standard_num": 17,
-    "pinyin_alternates": "liǎo"
+    "general_standard_num": 17
   },
   {
     "character": "在",
@@ -82,14 +82,14 @@
   {
     "character": "有",
     "pinyin": "yǒu",
+    "pinyin_alternates": "yòu",
     "definition": "have, own, possess; exist",
     "hsk_level": 1,
     "frequency": 8,
     "radical": "月",
     "radical_code": 74.2,
     "stroke_count": 6,
-    "general_standard_num": 390,
-    "pinyin_alternates": "yòu"
+    "general_standard_num": 390
   },
   {
     "character": "我",
@@ -118,28 +118,28 @@
     "traditional_character": "這",
     "alternate_characters": "這",
     "pinyin": "zhè",
+    "pinyin_alternates": "zhèi",
     "definition": "this, the, here",
     "hsk_level": 1,
     "frequency": 11,
     "radical": "辵",
     "radical_code": 162.4,
     "stroke_count": 7,
-    "general_standard_num": 837,
-    "pinyin_alternates": "zhèi"
+    "general_standard_num": 837
   },
   {
     "character": "个",
     "traditional_character": "個",
     "alternate_characters": "個",
     "pinyin": "gè",
+    "pinyin_alternates": "gě",
     "definition": "numerary adjunct, piece; single",
     "hsk_level": 1,
     "frequency": 12,
     "radical": "丨",
     "radical_code": 2.2,
     "stroke_count": 3,
-    "general_standard_num": 45,
-    "pinyin_alternates": "gě"
+    "general_standard_num": 45
   },
   {
     "character": "们",
@@ -157,14 +157,14 @@
   {
     "character": "中",
     "pinyin": "zhōng",
+    "pinyin_alternates": "zhòng",
     "definition": "central; center, middle; in the midst of; hit (target); attain",
     "hsk_level": 1,
     "frequency": 14,
     "radical": "丨",
     "radical_code": 2.3,
     "stroke_count": 4,
-    "general_standard_num": 113,
-    "pinyin_alternates": "zhòng"
+    "general_standard_num": 113
   },
   {
     "character": "来",
@@ -182,52 +182,52 @@
   {
     "character": "上",
     "pinyin": "shàng",
+    "pinyin_alternates": "shǎng",
     "definition": "top; superior, highest; go up, send up",
     "hsk_level": 1,
     "frequency": 16,
     "radical": "一",
     "radical_code": 1.2,
     "stroke_count": 3,
-    "general_standard_num": 36,
-    "pinyin_alternates": "shǎng"
+    "general_standard_num": 36
   },
   {
     "character": "大",
     "pinyin": "dà",
+    "pinyin_alternates": "dài|tài",
     "definition": "big, great, vast, large, high",
     "hsk_level": 1,
     "frequency": 17,
     "radical": "大",
     "radical_code": 37,
     "stroke_count": 3,
-    "general_standard_num": 32,
-    "pinyin_alternates": "dài|tài"
+    "general_standard_num": 32
   },
   {
     "character": "为",
     "traditional_character": "爲",
     "alternate_characters": "為|爲",
     "pinyin": "wèi",
+    "pinyin_alternates": "wéi",
     "definition": "do, handle, govern, act; be",
     "hsk_level": 2,
     "frequency": 18,
     "radical": "丶",
     "radical_code": 3.3,
     "stroke_count": 4,
-    "general_standard_num": 165,
-    "pinyin_alternates": "wéi"
+    "general_standard_num": 165
   },
   {
     "character": "和",
     "pinyin": "hé",
+    "pinyin_alternates": "hè|huó|huò|hú",
     "definition": "harmony, peace; peaceful, calm",
     "hsk_level": 1,
     "frequency": 19,
     "radical": "口",
     "radical_code": 30.5,
     "stroke_count": 8,
-    "general_standard_num": 1131,
-    "pinyin_alternates": "hè|huó|huò|hú"
+    "general_standard_num": 1131
   },
   {
     "character": "国",
@@ -245,14 +245,14 @@
   {
     "character": "地",
     "pinyin": "de",
+    "pinyin_alternates": "dì",
     "definition": "earth; soil, ground; region",
     "hsk_level": 3,
     "frequency": 21,
     "radical": "土",
     "radical_code": 32.3,
     "stroke_count": 6,
-    "general_standard_num": 366,
-    "pinyin_alternates": "dì"
+    "general_standard_num": 366
   },
   {
     "character": "到",
@@ -281,14 +281,14 @@
     "traditional_character": "說",
     "alternate_characters": "說",
     "pinyin": "shuō",
+    "pinyin_alternates": "shuì|yuè",
     "definition": "speak, say, talk; scold, upbraid",
     "hsk_level": 1,
     "frequency": 24,
     "radical": "言",
     "radical_code": 149.7,
     "stroke_count": 9,
-    "general_standard_num": 1717,
-    "pinyin_alternates": "shuì|yuè"
+    "general_standard_num": 1717
   },
   {
     "character": "时",
@@ -306,14 +306,14 @@
   {
     "character": "要",
     "pinyin": "yào",
+    "pinyin_alternates": "yāo",
     "definition": "necessary, essential; necessity",
     "hsk_level": 2,
     "frequency": 26,
     "radical": "襾",
     "radical_code": 146.3,
     "stroke_count": 9,
-    "general_standard_num": 1441,
-    "pinyin_alternates": "yāo"
+    "general_standard_num": 1441
   },
   {
     "character": "就",
@@ -342,26 +342,26 @@
     "traditional_character": "會",
     "alternate_characters": "會",
     "pinyin": "huì",
+    "pinyin_alternates": "kuài",
     "definition": "assemble, meet together; meeting",
     "hsk_level": 1,
     "frequency": 29,
     "radical": "人",
     "radical_code": 9.4,
     "stroke_count": 6,
-    "general_standard_num": 486,
-    "pinyin_alternates": "kuài"
+    "general_standard_num": 486
   },
   {
     "character": "可",
     "pinyin": "kě",
+    "pinyin_alternates": "kè",
     "definition": "may, can, -able; possibly",
     "hsk_level": 2,
     "frequency": 30,
     "radical": "口",
     "radical_code": 30.2,
     "stroke_count": 5,
-    "general_standard_num": 212,
-    "pinyin_alternates": "kè"
+    "general_standard_num": 212
   },
   {
     "character": "也",
@@ -412,14 +412,14 @@
   {
     "character": "能",
     "pinyin": "néng",
+    "pinyin_alternates": "nài",
     "definition": "to be able; can, permitted to; ability",
     "hsk_level": 1,
     "frequency": 35,
     "radical": "肉",
     "radical_code": 130.6,
     "stroke_count": 10,
-    "general_standard_num": 2146,
-    "pinyin_alternates": "nài"
+    "general_standard_num": 2146
   },
   {
     "character": "而",
@@ -446,26 +446,26 @@
   {
     "character": "那",
     "pinyin": "nà",
+    "pinyin_alternates": "nǎ|nèi|nā",
     "definition": "that, that one, those",
     "hsk_level": 1,
     "frequency": 38,
     "radical": "邑",
     "radical_code": 163.4,
     "stroke_count": 6,
-    "general_standard_num": 564,
-    "pinyin_alternates": "nǎ|nèi|nā"
+    "general_standard_num": 564
   },
   {
     "character": "得",
     "pinyin": "dé",
+    "pinyin_alternates": "děi|de",
     "definition": "obtain, get, gain, acquire",
     "hsk_level": 2,
     "frequency": 39,
     "radical": "彳",
     "radical_code": 60.8,
     "stroke_count": 11,
-    "general_standard_num": 2341,
-    "pinyin_alternates": "děi|de"
+    "general_standard_num": 2341
   },
   {
     "character": "于",
@@ -483,14 +483,14 @@
   {
     "character": "着",
     "pinyin": "zhe",
+    "pinyin_alternates": "zhuó|zháo|zhāo",
     "definition": "make move, take action",
     "hsk_level": 2,
     "frequency": 41,
     "radical": "目",
     "radical_code": 109.6,
     "stroke_count": 11,
-    "general_standard_num": 2398,
-    "pinyin_alternates": "zhuó|zháo|zhāo"
+    "general_standard_num": 2398
   },
   {
     "character": "下",
@@ -540,28 +540,28 @@
     "traditional_character": "過",
     "alternate_characters": "過",
     "pinyin": "guò",
+    "pinyin_alternates": "guo|guō",
     "definition": "pass, pass through, go across",
     "hsk_level": 2,
     "frequency": 46,
     "radical": "辵",
     "radical_code": 162.3,
     "stroke_count": 6,
-    "general_standard_num": 379,
-    "pinyin_alternates": "guo|guō"
+    "general_standard_num": 379
   },
   {
     "character": "发",
     "traditional_character": "發",
     "alternate_characters": "發|髮",
     "pinyin": "fā",
+    "pinyin_alternates": "fà",
     "definition": "issue, dispatch, send out; hair",
     "hsk_level": 3,
     "frequency": 47,
     "radical": "又",
     "radical_code": 29.3,
     "stroke_count": 5,
-    "general_standard_num": 339,
-    "pinyin_alternates": "fà"
+    "general_standard_num": 339
   },
   {
     "character": "后",
@@ -625,14 +625,14 @@
   {
     "character": "行",
     "pinyin": "xíng",
+    "pinyin_alternates": "háng",
     "definition": "go; walk; move, travel; circulate",
     "hsk_level": 3,
     "frequency": 53,
     "radical": "行",
     "radical_code": 144,
     "stroke_count": 6,
-    "general_standard_num": 483,
-    "pinyin_alternates": "háng"
+    "general_standard_num": 483
   },
   {
     "character": "所",
@@ -659,28 +659,28 @@
   {
     "character": "家",
     "pinyin": "jiā",
+    "pinyin_alternates": "jia|jie",
     "definition": "house, home, residence; family",
     "hsk_level": 1,
     "frequency": 56,
     "radical": "宀",
     "radical_code": 40.7,
     "stroke_count": 10,
-    "general_standard_num": 2099,
-    "pinyin_alternates": "jia|jie"
+    "general_standard_num": 2099
   },
   {
     "character": "种",
     "traditional_character": "種",
     "alternate_characters": "種",
     "pinyin": "zhǒng",
+    "pinyin_alternates": "zhòng|chóng",
     "definition": "seed; race, breed; to plant",
     "hsk_level": 3,
     "frequency": 57,
     "radical": "禾",
     "radical_code": 115.4,
     "stroke_count": 9,
-    "general_standard_num": 1549,
-    "pinyin_alternates": "zhòng|chóng"
+    "general_standard_num": 1549
   },
   {
     "character": "事",
@@ -744,14 +744,14 @@
     "traditional_character": "麼",
     "alternate_characters": "麼",
     "pinyin": "me",
+    "pinyin_alternates": "mó|ma|yāo",
     "definition": "interrogative particle; repetition of a tune small; tender",
     "hsk_level": 1,
     "frequency": 63,
     "radical": "丿",
     "radical_code": 4.2,
     "stroke_count": 3,
-    "general_standard_num": 48,
-    "pinyin_alternates": "mó|ma|yāo"
+    "general_standard_num": 48
   },
   {
     "character": "去",
@@ -802,26 +802,26 @@
   {
     "character": "都",
     "pinyin": "dōu",
+    "pinyin_alternates": "dū",
     "definition": "metropolis, capital; all, the whole; elegant, refined",
     "hsk_level": 1,
     "frequency": 68,
     "radical": "邑",
     "radical_code": 163.9,
     "stroke_count": 10,
-    "general_standard_num": 1801,
-    "pinyin_alternates": "dū"
+    "general_standard_num": 1801
   },
   {
     "character": "同",
     "pinyin": "tóng",
+    "pinyin_alternates": "tòng",
     "definition": "same, similar; together with",
     "hsk_level": 1,
     "frequency": 69,
     "radical": "口",
     "radical_code": 30.3,
     "stroke_count": 6,
-    "general_standard_num": 427,
-    "pinyin_alternates": "tòng"
+    "general_standard_num": 427
   },
   {
     "character": "现",
@@ -841,28 +841,28 @@
     "traditional_character": "當",
     "alternate_characters": "當",
     "pinyin": "dāng",
+    "pinyin_alternates": "dàng",
     "definition": "bear, accept, undertake; just",
     "hsk_level": 3,
     "frequency": 71,
     "radical": "小",
     "radical_code": 42.3,
     "stroke_count": 6,
-    "general_standard_num": 418,
-    "pinyin_alternates": "dàng"
+    "general_standard_num": 418
   },
   {
     "character": "没",
     "traditional_character": "沒",
     "alternate_characters": "沒",
     "pinyin": "méi",
+    "pinyin_alternates": "mò",
     "definition": "not, have not, none; drown, sink",
     "hsk_level": 1,
     "frequency": 72,
     "radical": "水",
     "radical_code": 85.4,
     "stroke_count": 7,
-    "general_standard_num": 867,
-    "pinyin_alternates": "mò"
+    "general_standard_num": 867
   },
   {
     "character": "动",
@@ -903,14 +903,14 @@
   {
     "character": "看",
     "pinyin": "kàn",
+    "pinyin_alternates": "kān",
     "definition": "look, see; examine, scrutinize",
     "hsk_level": 1,
     "frequency": 76,
     "radical": "目",
     "radical_code": 109.4,
     "stroke_count": 9,
-    "general_standard_num": 1539,
-    "pinyin_alternates": "kān"
+    "general_standard_num": 1539
   },
   {
     "character": "定",
@@ -937,28 +937,28 @@
   {
     "character": "分",
     "pinyin": "fēn",
+    "pinyin_alternates": "fèn",
     "definition": "divide; small unit of time etc.",
     "hsk_level": 1,
     "frequency": 79,
     "radical": "刀",
     "radical_code": 18.2,
     "stroke_count": 4,
-    "general_standard_num": 146,
-    "pinyin_alternates": "fèn"
+    "general_standard_num": 146
   },
   {
     "character": "还",
     "traditional_character": "還",
     "alternate_characters": "還",
     "pinyin": "hái",
+    "pinyin_alternates": "huán",
     "definition": "still, yet, also, besides",
     "hsk_level": 2,
     "frequency": 80,
     "radical": "辵",
     "radical_code": 162.4,
     "stroke_count": 7,
-    "general_standard_num": 704,
-    "pinyin_alternates": "huán"
+    "general_standard_num": 704
   },
   {
     "character": "进",
@@ -976,14 +976,14 @@
   {
     "character": "好",
     "pinyin": "hǎo",
+    "pinyin_alternates": "hào",
     "definition": "good, excellent, fine; well",
     "hsk_level": 1,
     "frequency": 82,
     "radical": "女",
     "radical_code": 38.3,
     "stroke_count": 6,
-    "general_standard_num": 581,
-    "pinyin_alternates": "hào"
+    "general_standard_num": 581
   },
   {
     "character": "小",
@@ -1010,26 +1010,26 @@
   {
     "character": "其",
     "pinyin": "qí",
+    "pinyin_alternates": "jī",
     "definition": "his, her, its, their; that",
     "hsk_level": 3,
     "frequency": 85,
     "radical": "八",
     "radical_code": 12.6,
     "stroke_count": 8,
-    "general_standard_num": 996,
-    "pinyin_alternates": "jī"
+    "general_standard_num": 996
   },
   {
     "character": "些",
     "pinyin": "xiē",
+    "pinyin_alternates": "suò",
     "definition": "little, few; rather, somewhat",
     "hsk_level": 1,
     "frequency": 86,
     "radical": "二",
     "radical_code": 7.5,
     "stroke_count": 8,
-    "general_standard_num": 1069,
-    "pinyin_alternates": "suò"
+    "general_standard_num": 1069
   },
   {
     "character": "主",
@@ -1080,14 +1080,14 @@
   {
     "character": "她",
     "pinyin": "tā",
+    "pinyin_alternates": "jiě",
     "definition": "she, her",
     "hsk_level": 1,
     "frequency": 91,
     "radical": "女",
     "radical_code": 38.3,
     "stroke_count": 6,
-    "general_standard_num": 582,
-    "pinyin_alternates": "jiě"
+    "general_standard_num": 582
   },
   {
     "character": "本",
@@ -1150,28 +1150,28 @@
     "character": "只",
     "alternate_characters": "隻",
     "pinyin": "zhǐ",
+    "pinyin_alternates": "zhī",
     "definition": "only, just, simply",
     "hsk_level": 3,
     "frequency": 97,
     "radical": "口",
     "radical_code": 30.2,
     "stroke_count": 5,
-    "general_standard_num": 246,
-    "pinyin_alternates": "zhī"
+    "general_standard_num": 246
   },
   {
     "character": "从",
     "traditional_character": "從",
     "alternate_characters": "從",
     "pinyin": "cóng",
+    "pinyin_alternates": "zòng",
     "definition": "from, by, since, whence, through",
     "hsk_level": 2,
     "frequency": 98,
     "radical": "人",
     "radical_code": 9.2,
     "stroke_count": 4,
-    "general_standard_num": 142,
-    "pinyin_alternates": "zòng"
+    "general_standard_num": 142
   },
   {
     "character": "想",
@@ -1283,40 +1283,40 @@
     "traditional_character": "與",
     "alternate_characters": "與",
     "pinyin": "yǔ",
+    "pinyin_alternates": "yù|yú",
     "definition": "and; with; to; for; give, grant",
     "hsk_level": 4,
     "frequency": 108,
     "radical": "一",
     "radical_code": 1.3,
     "stroke_count": 3,
-    "general_standard_num": 34,
-    "pinyin_alternates": "yù|yú"
+    "general_standard_num": 34
   },
   {
     "character": "长",
     "traditional_character": "長",
     "alternate_characters": "長",
     "pinyin": "zhǎng",
+    "pinyin_alternates": "cháng",
     "definition": "long; length; excel in; leader",
     "hsk_level": 2,
     "frequency": 109,
     "radical": "長",
     "radical_code": 168,
     "stroke_count": 4,
-    "general_standard_num": 127,
-    "pinyin_alternates": "cháng"
+    "general_standard_num": 127
   },
   {
     "character": "把",
     "pinyin": "bǎ",
+    "pinyin_alternates": "bà",
     "definition": "hold, take; guard; regard as",
     "hsk_level": 3,
     "frequency": 110,
     "radical": "手",
     "radical_code": 64.4,
     "stroke_count": 7,
-    "general_standard_num": 655,
-    "pinyin_alternates": "bà"
+    "general_standard_num": 655
   },
   {
     "character": "机",
@@ -1455,14 +1455,14 @@
   {
     "character": "知",
     "pinyin": "zhī",
+    "pinyin_alternates": "zhì",
     "definition": "know, perceive, comprehend",
     "hsk_level": 2,
     "frequency": 123,
     "radical": "矢",
     "radical_code": 111.3,
     "stroke_count": 8,
-    "general_standard_num": 1122,
-    "pinyin_alternates": "zhì"
+    "general_standard_num": 1122
   },
   {
     "character": "全",
@@ -1526,14 +1526,14 @@
   {
     "character": "正",
     "pinyin": "zhèng",
+    "pinyin_alternates": "zhēng",
     "definition": "right, proper, correct",
     "hsk_level": 2,
     "frequency": 129,
     "radical": "止",
     "radical_code": 77.1,
     "stroke_count": 5,
-    "general_standard_num": 198,
-    "pinyin_alternates": "zhēng"
+    "general_standard_num": 198
   },
   {
     "character": "业",
@@ -1564,14 +1564,14 @@
     "traditional_character": "將",
     "alternate_characters": "將",
     "pinyin": "jiāng",
+    "pinyin_alternates": "jiàng",
     "definition": "will, going to, future; general",
     "hsk_level": 4,
     "frequency": 132,
     "radical": "爿",
     "radical_code": 90.6,
     "stroke_count": 9,
-    "general_standard_num": 1617,
-    "pinyin_alternates": "jiàng"
+    "general_standard_num": 1617
   },
   {
     "character": "两",
@@ -1602,14 +1602,14 @@
     "traditional_character": "間",
     "alternate_characters": "間",
     "pinyin": "jiān",
+    "pinyin_alternates": "jiàn",
     "definition": "midpoint, space; place, locality",
     "hsk_level": 2,
     "frequency": 135,
     "radical": "門",
     "radical_code": 169.4,
     "stroke_count": 7,
-    "general_standard_num": 847,
-    "pinyin_alternates": "jiàn"
+    "general_standard_num": 847
   },
   {
     "character": "由",
@@ -1660,27 +1660,27 @@
   {
     "character": "重",
     "pinyin": "zhòng",
+    "pinyin_alternates": "chóng",
     "definition": "heavy, weighty; double",
     "hsk_level": 3,
     "frequency": 140,
     "radical": "里",
     "radical_code": 166.2,
     "stroke_count": 9,
-    "general_standard_num": 1552,
-    "pinyin_alternates": "chóng"
+    "general_standard_num": 1552
   },
   {
     "character": "并",
     "traditional_character": "並",
     "alternate_characters": "並",
     "pinyin": "bìng",
+    "pinyin_alternates": "bīng",
     "hsk_level": 4,
     "frequency": 141,
     "radical": "干",
     "radical_code": 51.5,
     "stroke_count": 6,
-    "general_standard_num": 531,
-    "pinyin_alternates": "bīng"
+    "general_standard_num": 531
   },
   {
     "character": "物",
@@ -1709,14 +1709,14 @@
     "traditional_character": "應",
     "alternate_characters": "應",
     "pinyin": "yīng",
+    "pinyin_alternates": "yìng",
     "definition": "should, ought to, must",
     "hsk_level": 3,
     "frequency": 144,
     "radical": "广",
     "radical_code": 53.4,
     "stroke_count": 7,
-    "general_standard_num": 836,
-    "pinyin_alternates": "yìng"
+    "general_standard_num": 836
   },
   {
     "character": "战",
@@ -1747,14 +1747,14 @@
     "traditional_character": "頭",
     "alternate_characters": "頭",
     "pinyin": "tóu",
+    "pinyin_alternates": "tou",
     "definition": "head; top; chief, first; boss",
     "hsk_level": 3,
     "frequency": 147,
     "radical": "大",
     "radical_code": 37.2,
     "stroke_count": 5,
-    "general_standard_num": 310,
-    "pinyin_alternates": "tou"
+    "general_standard_num": 310
   },
   {
     "character": "文",
@@ -1772,14 +1772,14 @@
     "traditional_character": "體",
     "alternate_characters": "體",
     "pinyin": "tǐ",
+    "pinyin_alternates": "tī",
     "definition": "body; group, class, body, unit; inferior",
     "hsk_level": 2,
     "frequency": 149,
     "radical": "人",
     "radical_code": 9.5,
     "stroke_count": 7,
-    "general_standard_num": 770,
-    "pinyin_alternates": "tī"
+    "general_standard_num": 770
   },
   {
     "character": "政",
@@ -1806,39 +1806,39 @@
   {
     "character": "相",
     "pinyin": "xiāng",
+    "pinyin_alternates": "xiàng",
     "definition": "mutual, reciprocal, each other",
     "hsk_level": 3,
     "frequency": 152,
     "radical": "目",
     "radical_code": 109.4,
     "stroke_count": 9,
-    "general_standard_num": 1430,
-    "pinyin_alternates": "xiàng"
+    "general_standard_num": 1430
   },
   {
     "character": "见",
     "traditional_character": "見",
     "alternate_characters": "見",
     "pinyin": "jiàn",
+    "pinyin_alternates": "xiàn",
     "definition": "see, observe, behold; perceive",
     "hsk_level": 1,
     "frequency": 153,
     "radical": "見",
     "radical_code": 147,
     "stroke_count": 4,
-    "general_standard_num": 118,
-    "pinyin_alternates": "xiàn"
+    "general_standard_num": 118
   },
   {
     "character": "被",
     "pinyin": "bèi",
+    "pinyin_alternates": "pī",
     "hsk_level": 3,
     "frequency": 154,
     "radical": "衣",
     "radical_code": 145.5,
     "stroke_count": 10,
-    "general_standard_num": 2118,
-    "pinyin_alternates": "pī"
+    "general_standard_num": 2118
   },
   {
     "character": "利",
@@ -1854,14 +1854,14 @@
   {
     "character": "什",
     "pinyin": "shén",
+    "pinyin_alternates": "shí",
     "definition": "file of ten soldiers; mixed, miscellaneous",
     "hsk_level": 1,
     "frequency": 156,
     "radical": "人",
     "radical_code": 9.2,
     "stroke_count": 4,
-    "general_standard_num": 129,
-    "pinyin_alternates": "shí"
+    "general_standard_num": 129
   },
   {
     "character": "二",
@@ -2023,14 +2023,14 @@
   {
     "character": "合",
     "pinyin": "hé",
+    "pinyin_alternates": "gě",
     "definition": "combine, unite, join; gather",
     "hsk_level": 4,
     "frequency": 171,
     "radical": "口",
     "radical_code": 30.3,
     "stroke_count": 6,
-    "general_standard_num": 488,
-    "pinyin_alternates": "gě"
+    "general_standard_num": 488
   },
   {
     "character": "回",
@@ -2070,26 +2070,26 @@
     "traditional_character": "內",
     "alternate_characters": "內",
     "pinyin": "nèi",
+    "pinyin_alternates": "nà",
     "definition": "inside",
     "hsk_level": 4,
     "frequency": 175,
     "radical": "入",
     "radical_code": 11.2,
     "stroke_count": 4,
-    "general_standard_num": 116,
-    "pinyin_alternates": "nà"
+    "general_standard_num": 116
   },
   {
     "character": "信",
     "pinyin": "xìn",
+    "pinyin_alternates": "shēn",
     "definition": "trust, believe; letter",
     "hsk_level": 3,
     "frequency": 176,
     "radical": "人",
     "radical_code": 9.7,
     "stroke_count": 9,
-    "general_standard_num": 1570,
-    "pinyin_alternates": "shēn"
+    "general_standard_num": 1570
   },
   {
     "character": "表",
@@ -2105,14 +2105,14 @@
   {
     "character": "化",
     "pinyin": "huà",
+    "pinyin_alternates": "huā",
     "definition": "change, convert, reform; -ize",
     "hsk_level": 3,
     "frequency": 178,
     "radical": "匕",
     "radical_code": 21.2,
     "stroke_count": 4,
-    "general_standard_num": 132,
-    "pinyin_alternates": "huā"
+    "general_standard_num": 132
   },
   {
     "character": "老",
@@ -2130,14 +2130,14 @@
     "traditional_character": "給",
     "alternate_characters": "給",
     "pinyin": "gěi",
+    "pinyin_alternates": "jǐ",
     "definition": "give; by, for",
     "hsk_level": 2,
     "frequency": 180,
     "radical": "糸",
     "radical_code": 120.6,
     "stroke_count": 9,
-    "general_standard_num": 1758,
-    "pinyin_alternates": "jǐ"
+    "general_standard_num": 1758
   },
   {
     "character": "世",
@@ -2175,14 +2175,14 @@
   {
     "character": "度",
     "pinyin": "dù",
+    "pinyin_alternates": "duó",
     "definition": "degree, system; manner; to consider",
     "hsk_level": 4,
     "frequency": 184,
     "radical": "广",
     "radical_code": 53.6,
     "stroke_count": 9,
-    "general_standard_num": 1622,
-    "pinyin_alternates": "duó"
+    "general_standard_num": 1622
   },
   {
     "character": "门",
@@ -2200,14 +2200,14 @@
   {
     "character": "任",
     "pinyin": "rèn",
+    "pinyin_alternates": "rén",
     "definition": "trust to, rely on, appoint; to bear, duty, office; allow",
     "hsk_level": 4,
     "frequency": 186,
     "radical": "人",
     "radical_code": 9.4,
     "stroke_count": 6,
-    "general_standard_num": 467,
-    "pinyin_alternates": "rén"
+    "general_standard_num": 467
   },
   {
     "character": "常",
@@ -2256,14 +2256,14 @@
   {
     "character": "教",
     "pinyin": "jiào",
+    "pinyin_alternates": "jiāo",
     "definition": "teach, class",
     "hsk_level": 2,
     "frequency": 191,
     "radical": "攴",
     "radical_code": 66.7,
     "stroke_count": 11,
-    "general_standard_num": 2179,
-    "pinyin_alternates": "jiāo"
+    "general_standard_num": 2179
   },
   {
     "character": "儿",
@@ -2318,14 +2318,14 @@
   {
     "character": "提",
     "pinyin": "tí",
+    "pinyin_alternates": "dī|dǐ",
     "definition": "hold in hand; lift in hand",
     "hsk_level": 3,
     "frequency": 196,
     "radical": "手",
     "radical_code": 64.9,
     "stroke_count": 12,
-    "general_standard_num": 2520,
-    "pinyin_alternates": "dī|dǐ"
+    "general_standard_num": 2520
   },
   {
     "character": "立",
@@ -2365,26 +2365,26 @@
     "traditional_character": "員",
     "alternate_characters": "員",
     "pinyin": "yuán",
+    "pinyin_alternates": "yún|yùn",
     "definition": "member; personnel, staff member",
     "hsk_level": 2,
     "frequency": 200,
     "radical": "口",
     "radical_code": 30.4,
     "stroke_count": 7,
-    "general_standard_num": 737,
-    "pinyin_alternates": "yún|yùn"
+    "general_standard_num": 737
   },
   {
     "character": "解",
     "pinyin": "jiě",
+    "pinyin_alternates": "jiè|xiè",
     "definition": "loosen, unfasten, untie; explain",
     "hsk_level": 3,
     "frequency": 201,
     "radical": "角",
     "radical_code": 148.6,
     "stroke_count": 13,
-    "general_standard_num": 2981,
-    "pinyin_alternates": "jiè|xiè"
+    "general_standard_num": 2981
   },
   {
     "character": "水",
@@ -2424,28 +2424,28 @@
     "traditional_character": "論",
     "alternate_characters": "論",
     "pinyin": "lùn",
+    "pinyin_alternates": "lún",
     "definition": "debate; discuss; discourse",
     "hsk_level": 4,
     "frequency": 205,
     "radical": "言",
     "radical_code": 149.4,
     "stroke_count": 6,
-    "general_standard_num": 556,
-    "pinyin_alternates": "lún"
+    "general_standard_num": 556
   },
   {
     "character": "处",
     "traditional_character": "處",
     "alternate_characters": "處",
     "pinyin": "chù",
+    "pinyin_alternates": "chǔ",
     "definition": "place, locale; department",
     "hsk_level": 4,
     "frequency": 206,
     "radical": "夂",
     "radical_code": 34.2,
     "stroke_count": 5,
-    "general_standard_num": 294,
-    "pinyin_alternates": "chǔ"
+    "general_standard_num": 294
   },
   {
     "character": "走",
@@ -2474,14 +2474,14 @@
   {
     "character": "各",
     "pinyin": "gè",
+    "pinyin_alternates": "gě",
     "definition": "each, individually, every, all",
     "hsk_level": 4,
     "frequency": 209,
     "radical": "口",
     "radical_code": 30.3,
     "stroke_count": 6,
-    "general_standard_num": 506,
-    "pinyin_alternates": "gě"
+    "general_standard_num": 506
   },
   {
     "character": "入",
@@ -2499,14 +2499,14 @@
     "traditional_character": "幾",
     "alternate_characters": "幾",
     "pinyin": "jǐ",
+    "pinyin_alternates": "jī",
     "definition": "small table",
     "hsk_level": 1,
     "frequency": 211,
     "radical": "几",
     "radical_code": 16,
     "stroke_count": 2,
-    "general_standard_num": 14,
-    "pinyin_alternates": "jī"
+    "general_standard_num": 14
   },
   {
     "character": "口",
@@ -2537,14 +2537,14 @@
     "traditional_character": "條",
     "alternate_characters": "條",
     "pinyin": "tiáo",
+    "pinyin_alternates": "tiāo",
     "definition": "clause, condition; string, stripe",
     "hsk_level": 2,
     "frequency": 214,
     "radical": "木",
     "radical_code": 75.3,
     "stroke_count": 7,
-    "general_standard_num": 816,
-    "pinyin_alternates": "tiāo"
+    "general_standard_num": 816
   },
   {
     "character": "平",
@@ -2560,14 +2560,14 @@
   {
     "character": "系",
     "pinyin": "xì",
+    "pinyin_alternates": "jì",
     "definition": "system; line, link, connection",
     "hsk_level": 1,
     "frequency": 216,
     "radical": "糸",
     "radical_code": 120.1,
     "stroke_count": 7,
-    "general_standard_num": 825,
-    "pinyin_alternates": "jì"
+    "general_standard_num": 825
   },
   {
     "character": "气",
@@ -2622,52 +2622,52 @@
   {
     "character": "更",
     "pinyin": "gèng",
+    "pinyin_alternates": "gēng",
     "definition": "more, still further, much more",
     "hsk_level": 3,
     "frequency": 221,
     "radical": "曰",
     "radical_code": 73.3,
     "stroke_count": 7,
-    "general_standard_num": 693,
-    "pinyin_alternates": "gēng"
+    "general_standard_num": 693
   },
   {
     "character": "别",
     "traditional_character": "別",
     "alternate_characters": "別",
     "pinyin": "bié",
+    "pinyin_alternates": "biè",
     "definition": "separate, other; do not",
     "hsk_level": 2,
     "frequency": 222,
     "radical": "刀",
     "radical_code": 18.5,
     "stroke_count": 7,
-    "general_standard_num": 751,
-    "pinyin_alternates": "biè"
+    "general_standard_num": 751
   },
   {
     "character": "打",
     "pinyin": "dǎ",
+    "pinyin_alternates": "dá",
     "definition": "strike, hit, beat; fight; attack",
     "hsk_level": 1,
     "frequency": 223,
     "radical": "手",
     "radical_code": 64.2,
     "stroke_count": 5,
-    "general_standard_num": 196,
-    "pinyin_alternates": "dá"
+    "general_standard_num": 196
   },
   {
     "character": "女",
     "pinyin": "nǚ",
+    "pinyin_alternates": "rǔ",
     "definition": "woman, girl; feminine; rad. 38",
     "hsk_level": 1,
     "frequency": 224,
     "radical": "女",
     "radical_code": 38,
     "stroke_count": 3,
-    "general_standard_num": 67,
-    "pinyin_alternates": "rǔ"
+    "general_standard_num": 67
   },
   {
     "character": "变",
@@ -2720,14 +2720,14 @@
   {
     "character": "何",
     "pinyin": "hé",
+    "pinyin_alternates": "hē|hè",
     "definition": "what, why, where, which, how",
     "hsk_level": 4,
     "frequency": 229,
     "radical": "人",
     "radical_code": 9.5,
     "stroke_count": 7,
-    "general_standard_num": 771,
-    "pinyin_alternates": "hē|hè"
+    "general_standard_num": 771
   },
   {
     "character": "电",
@@ -2747,14 +2747,14 @@
     "traditional_character": "數",
     "alternate_characters": "數",
     "pinyin": "shù",
+    "pinyin_alternates": "shǔ|shuò",
     "definition": "number; several, count; fate",
     "hsk_level": 3,
     "frequency": 231,
     "radical": "攴",
     "radical_code": 66.9,
     "stroke_count": 13,
-    "general_standard_num": 2999,
-    "pinyin_alternates": "shǔ|shuò"
+    "general_standard_num": 2999
   },
   {
     "character": "安",
@@ -2770,14 +2770,14 @@
   {
     "character": "少",
     "pinyin": "shǎo",
+    "pinyin_alternates": "shào",
     "definition": "few, less, inadequate",
     "hsk_level": 1,
     "frequency": 233,
     "radical": "小",
     "radical_code": 42.1,
     "stroke_count": 4,
-    "general_standard_num": 110,
-    "pinyin_alternates": "shào"
+    "general_standard_num": 110
   },
   {
     "character": "报",
@@ -2808,14 +2808,14 @@
     "traditional_character": "結",
     "alternate_characters": "結",
     "pinyin": "jié",
+    "pinyin_alternates": "jiē",
     "definition": "knot, tie; join, connect",
     "hsk_level": 3,
     "frequency": 236,
     "radical": "糸",
     "radical_code": 120.6,
     "stroke_count": 9,
-    "general_standard_num": 1754,
-    "pinyin_alternates": "jiē"
+    "general_standard_num": 1754
   },
   {
     "character": "反",
@@ -2864,14 +2864,14 @@
   {
     "character": "量",
     "pinyin": "liàng",
+    "pinyin_alternates": "liáng",
     "definition": "measure, quantity, capacity",
     "hsk_level": 4,
     "frequency": 241,
     "radical": "里",
     "radical_code": 166.5,
     "stroke_count": 12,
-    "general_standard_num": 2616,
-    "pinyin_alternates": "liáng"
+    "general_standard_num": 2616
   },
   {
     "character": "再",
@@ -2957,14 +2957,14 @@
     "traditional_character": "場",
     "alternate_characters": "場",
     "pinyin": "chǎng",
+    "pinyin_alternates": "cháng",
     "definition": "open space, field, market",
     "hsk_level": 2,
     "frequency": 249,
     "radical": "土",
     "radical_code": 32.3,
     "stroke_count": 6,
-    "general_standard_num": 367,
-    "pinyin_alternates": "cháng"
+    "general_standard_num": 367
   },
   {
     "character": "件",
@@ -3004,14 +3004,14 @@
   {
     "character": "期",
     "pinyin": "qī",
+    "pinyin_alternates": "jī",
     "definition": "period of time; date; time limit",
     "hsk_level": 1,
     "frequency": 253,
     "radical": "月",
     "radical_code": 74.8,
     "stroke_count": 12,
-    "general_standard_num": 2542,
-    "pinyin_alternates": "jī"
+    "general_standard_num": 2542
   },
   {
     "character": "市",
@@ -3119,14 +3119,14 @@
     "traditional_character": "許",
     "alternate_characters": "許",
     "pinyin": "xǔ",
+    "pinyin_alternates": "hǔ",
     "definition": "allow, permit; promise; betroth",
     "hsk_level": 4,
     "frequency": 263,
     "radical": "言",
     "radical_code": 149.4,
     "stroke_count": 6,
-    "general_standard_num": 554,
-    "pinyin_alternates": "hǔ"
+    "general_standard_num": 554
   },
   {
     "character": "统",
@@ -3146,14 +3146,14 @@
     "traditional_character": "區",
     "alternate_characters": "區",
     "pinyin": "qū",
+    "pinyin_alternates": "ōu",
     "definition": "area, district, region, ward",
     "hsk_level": 4,
     "frequency": 265,
     "radical": "匸",
     "radical_code": 23.2,
     "stroke_count": 4,
-    "general_standard_num": 94,
-    "pinyin_alternates": "ōu"
+    "general_standard_num": 94
   },
   {
     "character": "保",
@@ -3215,26 +3215,26 @@
   {
     "character": "便",
     "pinyin": "biàn",
+    "pinyin_alternates": "pián",
     "definition": "convenience, ease; expedient",
     "hsk_level": 2,
     "frequency": 271,
     "radical": "人",
     "radical_code": 9.7,
     "stroke_count": 9,
-    "general_standard_num": 1556,
-    "pinyin_alternates": "pián"
+    "general_standard_num": 1556
   },
   {
     "character": "空",
     "pinyin": "kōng",
+    "pinyin_alternates": "kòng|kǒng",
     "definition": "empty, hollow, bare, deserted",
     "hsk_level": 3,
     "frequency": 272,
     "radical": "穴",
     "radical_code": 116.3,
     "stroke_count": 8,
-    "general_standard_num": 1282,
-    "pinyin_alternates": "kòng|kǒng"
+    "general_standard_num": 1282
   },
   {
     "character": "决",
@@ -3464,14 +3464,14 @@
     "traditional_character": "強",
     "alternate_characters": "強",
     "pinyin": "qiáng",
+    "pinyin_alternates": "qiǎng|jiàng",
     "definition": "strong, powerful, energetic",
     "hsk_level": 5,
     "frequency": 292,
     "radical": "弓",
     "radical_code": 57.9,
     "stroke_count": 12,
-    "general_standard_num": 2802,
-    "pinyin_alternates": "qiǎng|jiàng"
+    "general_standard_num": 2802
   },
   {
     "character": "即",
@@ -3500,26 +3500,26 @@
     "traditional_character": "難",
     "alternate_characters": "難",
     "pinyin": "nán",
+    "pinyin_alternates": "nàn|nuó",
     "definition": "difficult, arduous, hard; unable",
     "hsk_level": 3,
     "frequency": 295,
     "radical": "又",
     "radical_code": 29.8,
     "stroke_count": 10,
-    "general_standard_num": 2147,
-    "pinyin_alternates": "nàn|nuó"
+    "general_standard_num": 2147
   },
   {
     "character": "且",
     "pinyin": "qiě",
+    "pinyin_alternates": "jū",
     "definition": "moreover, also (post-subject); about to, will soon (pre-verb)",
     "hsk_level": 3,
     "frequency": 296,
     "radical": "一",
     "radical_code": 1.4,
     "stroke_count": 5,
-    "general_standard_num": 237,
-    "pinyin_alternates": "jū"
+    "general_standard_num": 237
   },
   {
     "character": "权",
@@ -3537,26 +3537,26 @@
   {
     "character": "思",
     "pinyin": "sī",
+    "pinyin_alternates": "sāi",
     "definition": "think, consider, ponder; final particle",
     "hsk_level": 2,
     "frequency": 298,
     "radical": "心",
     "radical_code": 61.5,
     "stroke_count": 9,
-    "general_standard_num": 1500,
-    "pinyin_alternates": "sāi"
+    "general_standard_num": 1500
   },
   {
     "character": "王",
     "pinyin": "wáng",
+    "pinyin_alternates": "wàng",
     "definition": "king, ruler; royal; surname",
     "hsk_level": 5,
     "frequency": 299,
     "radical": "玉",
     "radical_code": 96,
     "stroke_count": 4,
-    "general_standard_num": 75,
-    "pinyin_alternates": "wàng"
+    "general_standard_num": 75
   },
   {
     "character": "象",
@@ -3642,14 +3642,14 @@
   {
     "character": "南",
     "pinyin": "nán",
+    "pinyin_alternates": "nā",
     "definition": "south; southern part; southward",
     "hsk_level": 3,
     "frequency": 307,
     "radical": "十",
     "radical_code": 24.7,
     "stroke_count": 9,
-    "general_standard_num": 1422,
-    "pinyin_alternates": "nā"
+    "general_standard_num": 1422
   },
   {
     "character": "品",
@@ -3713,14 +3713,14 @@
     "traditional_character": "據",
     "alternate_characters": "據",
     "pinyin": "jù",
+    "pinyin_alternates": "jū",
     "definition": "to occupy, take possession of; a base, position",
     "hsk_level": 3,
     "frequency": 313,
     "radical": "手",
     "radical_code": 64.8,
     "stroke_count": 11,
-    "general_standard_num": 2189,
-    "pinyin_alternates": "jū"
+    "general_standard_num": 2189
   },
   {
     "character": "程",
@@ -3736,14 +3736,14 @@
   {
     "character": "北",
     "pinyin": "běi",
+    "pinyin_alternates": "bèi",
     "definition": "north; northern; northward",
     "hsk_level": 1,
     "frequency": 315,
     "radical": "匕",
     "radical_code": 21.3,
     "stroke_count": 5,
-    "general_standard_num": 227,
-    "pinyin_alternates": "bèi"
+    "general_standard_num": 227
   },
   {
     "character": "边",
@@ -3824,14 +3824,14 @@
     "traditional_character": "萬",
     "alternate_characters": "萬",
     "pinyin": "wàn",
+    "pinyin_alternates": "mò",
     "definition": "ten thousand; innumerable",
     "hsk_level": 3,
     "frequency": 322,
     "radical": "一",
     "radical_code": 1.2,
     "stroke_count": 3,
-    "general_standard_num": 35,
-    "pinyin_alternates": "mò"
+    "general_standard_num": 35
   },
   {
     "character": "取",
@@ -3847,14 +3847,14 @@
   {
     "character": "拉",
     "pinyin": "lā",
+    "pinyin_alternates": "lá",
     "definition": "pull, drag; seize, hold; lengthen",
     "hsk_level": 4,
     "frequency": 324,
     "radical": "手",
     "radical_code": 64.5,
     "stroke_count": 8,
-    "general_standard_num": 981,
-    "pinyin_alternates": "lá"
+    "general_standard_num": 981
   },
   {
     "character": "格",
@@ -3883,28 +3883,28 @@
     "traditional_character": "覺",
     "alternate_characters": "覺",
     "pinyin": "jué",
+    "pinyin_alternates": "jiào",
     "definition": "to wake up from sleep; conscious",
     "hsk_level": 1,
     "frequency": 327,
     "radical": "見",
     "radical_code": 147.5,
     "stroke_count": 9,
-    "general_standard_num": 1694,
-    "pinyin_alternates": "jiào"
+    "general_standard_num": 1694
   },
   {
     "character": "术",
     "traditional_character": "術",
     "alternate_characters": "術",
     "pinyin": "shù",
+    "pinyin_alternates": "shú|zhú",
     "definition": "art, skill, special feat; method, technique",
     "hsk_level": 4,
     "frequency": 328,
     "radical": "木",
     "radical_code": 75.1,
     "stroke_count": 5,
-    "general_standard_num": 211,
-    "pinyin_alternates": "shú|zhú"
+    "general_standard_num": 211
   },
   {
     "character": "领",
@@ -3922,14 +3922,14 @@
   {
     "character": "共",
     "pinyin": "gòng",
+    "pinyin_alternates": "gōng",
     "definition": "together with, all, total; to share",
     "hsk_level": 2,
     "frequency": 330,
     "radical": "八",
     "radical_code": 12.4,
     "stroke_count": 6,
-    "general_standard_num": 371,
-    "pinyin_alternates": "gōng"
+    "general_standard_num": 371
   },
   {
     "character": "确",
@@ -3949,14 +3949,14 @@
     "traditional_character": "傳",
     "alternate_characters": "傳",
     "pinyin": "chuán",
+    "pinyin_alternates": "zhuàn",
     "definition": "summon; propagate, transmit",
     "hsk_level": 4,
     "frequency": 332,
     "radical": "人",
     "radical_code": 9.4,
     "stroke_count": 6,
-    "general_standard_num": 455,
-    "pinyin_alternates": "zhuàn"
+    "general_standard_num": 455
   },
   {
     "character": "师",
@@ -3976,14 +3976,14 @@
     "traditional_character": "觀",
     "alternate_characters": "觀",
     "pinyin": "guān",
+    "pinyin_alternates": "guàn",
     "definition": "see, observe, view; appearance",
     "hsk_level": 4,
     "frequency": 334,
     "radical": "見",
     "radical_code": 147.2,
     "stroke_count": 6,
-    "general_standard_num": 586,
-    "pinyin_alternates": "guàn"
+    "general_standard_num": 586
   },
   {
     "character": "清",
@@ -4010,14 +4010,14 @@
   {
     "character": "切",
     "pinyin": "qiè",
+    "pinyin_alternates": "qiē",
     "definition": "cut, mince, slice, carve",
     "hsk_level": 4,
     "frequency": 337,
     "radical": "刀",
     "radical_code": 18.2,
     "stroke_count": 4,
-    "general_standard_num": 107,
-    "pinyin_alternates": "qiē"
+    "general_standard_num": 107
   },
   {
     "character": "院",
@@ -4048,14 +4048,14 @@
     "traditional_character": "識",
     "alternate_characters": "識",
     "pinyin": "shí",
+    "pinyin_alternates": "zhì",
     "definition": "recognize, understand, know",
     "hsk_level": 1,
     "frequency": 340,
     "radical": "言",
     "radical_code": 149.5,
     "stroke_count": 7,
-    "general_standard_num": 892,
-    "pinyin_alternates": "zhì"
+    "general_standard_num": 892
   },
   {
     "character": "候",
@@ -4149,14 +4149,14 @@
     "traditional_character": "風",
     "alternate_characters": "風",
     "pinyin": "fēng",
+    "pinyin_alternates": "fěng",
     "definition": "wind; air; manners, atmosphere",
     "hsk_level": 3,
     "frequency": 348,
     "radical": "風",
     "radical_code": 182,
     "stroke_count": 4,
-    "general_standard_num": 154,
-    "pinyin_alternates": "fěng"
+    "general_standard_num": 154
   },
   {
     "character": "步",
@@ -4207,14 +4207,14 @@
     "traditional_character": "幹",
     "alternate_characters": "乾|幹",
     "pinyin": "gàn",
+    "pinyin_alternates": "gān",
     "definition": "oppose, offend; invade; dried",
     "hsk_level": 3,
     "frequency": 353,
     "radical": "干",
     "radical_code": 51,
     "stroke_count": 3,
-    "general_standard_num": 23,
-    "pinyin_alternates": "gān"
+    "general_standard_num": 23
   },
   {
     "character": "造",
@@ -4291,42 +4291,42 @@
     "traditional_character": "濟",
     "alternate_characters": "濟",
     "pinyin": "jì",
+    "pinyin_alternates": "jǐ",
     "definition": "help, aid, relieve; ferry, cross",
     "hsk_level": 4,
     "frequency": 360,
     "radical": "水",
     "radical_code": 85.6,
     "stroke_count": 9,
-    "general_standard_num": 1678,
-    "pinyin_alternates": "jǐ"
+    "general_standard_num": 1678
   },
   {
     "character": "车",
     "traditional_character": "車",
     "alternate_characters": "車",
     "pinyin": "chē",
+    "pinyin_alternates": "jū",
     "definition": "cart, vehicle; carry in cart",
     "hsk_level": 1,
     "frequency": 361,
     "radical": "車",
     "radical_code": 159,
     "stroke_count": 4,
-    "general_standard_num": 100,
-    "pinyin_alternates": "jū"
+    "general_standard_num": 100
   },
   {
     "character": "亲",
     "traditional_character": "親",
     "alternate_characters": "親",
     "pinyin": "qīn",
+    "pinyin_alternates": "qìng",
     "definition": "relatives, parents; intimate the hazel nut or filbert tree a thorny tree",
     "hsk_level": 4,
     "frequency": 362,
     "radical": "立",
     "radical_code": 117.4,
     "stroke_count": 9,
-    "general_standard_num": 1631,
-    "pinyin_alternates": "qìng"
+    "general_standard_num": 1631
   },
   {
     "character": "极",
@@ -4355,14 +4355,14 @@
   {
     "character": "服",
     "pinyin": "fú",
+    "pinyin_alternates": "fù",
     "definition": "clothes; wear, dress",
     "hsk_level": 1,
     "frequency": 365,
     "radical": "月",
     "radical_code": 74.4,
     "stroke_count": 8,
-    "general_standard_num": 1190,
-    "pinyin_alternates": "fù"
+    "general_standard_num": 1190
   },
   {
     "character": "快",
@@ -4485,37 +4485,37 @@
     "traditional_character": "轉",
     "alternate_characters": "轉",
     "pinyin": "zhuǎn",
+    "pinyin_alternates": "zhuàn|zhuǎi",
     "definition": "shift, move, turn",
     "hsk_level": 4,
     "frequency": 376,
     "radical": "車",
     "radical_code": 159.4,
     "stroke_count": 8,
-    "general_standard_num": 1059,
-    "pinyin_alternates": "zhuàn|zhuǎi"
+    "general_standard_num": 1059
   },
   {
     "character": "夫",
     "pinyin": "fū",
+    "pinyin_alternates": "fú",
     "definition": "man, male adult, husband; those",
     "hsk_level": 2,
     "frequency": 377,
     "radical": "大",
     "radical_code": 37.1,
     "stroke_count": 4,
-    "general_standard_num": 79,
-    "pinyin_alternates": "fú"
+    "general_standard_num": 79
   },
   {
     "character": "令",
     "pinyin": "lìng",
+    "pinyin_alternates": "líng|lǐng",
     "hsk_level": 5,
     "frequency": 378,
     "radical": "人",
     "radical_code": 9.3,
     "stroke_count": 5,
-    "general_standard_num": 282,
-    "pinyin_alternates": "líng|lǐng"
+    "general_standard_num": 282
   },
   {
     "character": "准",
@@ -4566,14 +4566,14 @@
   {
     "character": "呢",
     "pinyin": "ne",
+    "pinyin_alternates": "ní",
     "definition": "interrogative or emphatic final; (Cant.) this",
     "hsk_level": 1,
     "frequency": 383,
     "radical": "口",
     "radical_code": 30.5,
     "stroke_count": 8,
-    "general_standard_num": 1102,
-    "pinyin_alternates": "ní"
+    "general_standard_num": 1102
   },
   {
     "character": "存",
@@ -4602,14 +4602,14 @@
     "traditional_character": "遠",
     "alternate_characters": "遠",
     "pinyin": "yuǎn",
+    "pinyin_alternates": "yuàn",
     "definition": "distant, remote, far; profound",
     "hsk_level": 2,
     "frequency": 386,
     "radical": "辵",
     "radical_code": 162.4,
     "stroke_count": 7,
-    "general_standard_num": 608,
-    "pinyin_alternates": "yuàn"
+    "general_standard_num": 608
   },
   {
     "character": "叫",
@@ -4627,28 +4627,28 @@
     "traditional_character": "臺",
     "alternate_characters": "檯|臺",
     "pinyin": "tái",
+    "pinyin_alternates": "tāi",
     "definition": "platform; unit; term of address",
     "hsk_level": 4,
     "frequency": 388,
     "radical": "口",
     "radical_code": 30.2,
     "stroke_count": 5,
-    "general_standard_num": 342,
-    "pinyin_alternates": "tāi"
+    "general_standard_num": 342
   },
   {
     "character": "单",
     "traditional_character": "單",
     "alternate_characters": "單",
     "pinyin": "dān",
+    "pinyin_alternates": "shàn|chán",
     "definition": "single, individual, only; lone",
     "hsk_level": 3,
     "frequency": 389,
     "radical": "八",
     "radical_code": 12.6,
     "stroke_count": 8,
-    "general_standard_num": 1232,
-    "pinyin_alternates": "shàn|chán"
+    "general_standard_num": 1232
   },
   {
     "character": "影",
@@ -4774,14 +4774,14 @@
     "traditional_character": "調",
     "alternate_characters": "調",
     "pinyin": "diào",
+    "pinyin_alternates": "tiáo|zhōu",
     "definition": "transfer, move, change; tune",
     "hsk_level": 3,
     "frequency": 400,
     "radical": "言",
     "radical_code": 149.8,
     "stroke_count": 10,
-    "general_standard_num": 2123,
-    "pinyin_alternates": "tiáo|zhōu"
+    "general_standard_num": 2123
   },
   {
     "character": "深",
@@ -4917,14 +4917,14 @@
     "traditional_character": "華",
     "alternate_characters": "華",
     "pinyin": "huá",
+    "pinyin_alternates": "huà|huā",
     "definition": "flowery; illustrious; Chinese",
     "hsk_level": 5,
     "frequency": 412,
     "radical": "十",
     "radical_code": 24.4,
     "stroke_count": 6,
-    "general_standard_num": 472,
-    "pinyin_alternates": "huà|huā"
+    "general_standard_num": 472
   },
   {
     "character": "城",
@@ -4940,14 +4940,14 @@
   {
     "character": "石",
     "pinyin": "shí",
+    "pinyin_alternates": "dàn",
     "definition": "stone, rock, mineral; rad. 112",
     "hsk_level": 5,
     "frequency": 414,
     "radical": "石",
     "radical_code": 112,
     "stroke_count": 5,
-    "general_standard_num": 216,
-    "pinyin_alternates": "dàn"
+    "general_standard_num": 216
   },
   {
     "character": "级",
@@ -5065,14 +5065,14 @@
     "traditional_character": "約",
     "alternate_characters": "約",
     "pinyin": "yuē",
+    "pinyin_alternates": "yāo",
     "definition": "treaty, agreement, covenant",
     "hsk_level": 4,
     "frequency": 424,
     "radical": "糸",
     "radical_code": 120.3,
     "stroke_count": 6,
-    "general_standard_num": 593,
-    "pinyin_alternates": "yāo"
+    "general_standard_num": 593
   },
   {
     "character": "示",
@@ -5147,14 +5147,14 @@
   {
     "character": "似",
     "pinyin": "shì",
+    "pinyin_alternates": "sì",
     "definition": "resemble, similar to; as if, seem",
     "hsk_level": 5,
     "frequency": 431,
     "radical": "人",
     "radical_code": 9.5,
     "stroke_count": 6,
-    "general_standard_num": 481,
-    "pinyin_alternates": "sì"
+    "general_standard_num": 481
   },
   {
     "character": "官",
@@ -5332,14 +5332,14 @@
   {
     "character": "研",
     "pinyin": "yán",
+    "pinyin_alternates": "yàn",
     "definition": "grind, rub; study, research",
     "hsk_level": 4,
     "frequency": 447,
     "radical": "石",
     "radical_code": 112.6,
     "stroke_count": 9,
-    "general_standard_num": 1446,
-    "pinyin_alternates": "yàn"
+    "general_standard_num": 1446
   },
   {
     "character": "写",
@@ -5405,14 +5405,14 @@
     "traditional_character": "嗎",
     "alternate_characters": "嗎",
     "pinyin": "ma",
+    "pinyin_alternates": "má|mǎ",
     "definition": "final interrogative particle",
     "hsk_level": 1,
     "frequency": 453,
     "radical": "口",
     "radical_code": 30.3,
     "stroke_count": 6,
-    "general_standard_num": 432,
-    "pinyin_alternates": "má|mǎ"
+    "general_standard_num": 432
   },
   {
     "character": "包",
@@ -5428,14 +5428,14 @@
   {
     "character": "片",
     "pinyin": "piàn",
+    "pinyin_alternates": "piān",
     "definition": "slice, splinter, strip; rad. 91",
     "hsk_level": 3,
     "frequency": 455,
     "radical": "片",
     "radical_code": 91,
     "stroke_count": 4,
-    "general_standard_num": 130,
-    "pinyin_alternates": "piān"
+    "general_standard_num": 130
   },
   {
     "character": "史",
@@ -5451,14 +5451,14 @@
   {
     "character": "委",
     "pinyin": "wěi",
+    "pinyin_alternates": "wēi",
     "definition": "appoint, send, commission",
     "hsk_level": 5,
     "frequency": 457,
     "radical": "女",
     "radical_code": 38.5,
     "stroke_count": 8,
-    "general_standard_num": 1133,
-    "pinyin_alternates": "wēi"
+    "general_standard_num": 1133
   },
   {
     "character": "乎",
@@ -5474,14 +5474,14 @@
   {
     "character": "查",
     "pinyin": "chá",
+    "pinyin_alternates": "zhā",
     "definition": "investigate, examine, seek into",
     "hsk_level": 3,
     "frequency": 459,
     "radical": "木",
     "radical_code": 75.5,
     "stroke_count": 9,
-    "general_standard_num": 1431,
-    "pinyin_alternates": "zhā"
+    "general_standard_num": 1431
   },
   {
     "character": "轻",
@@ -5521,14 +5521,14 @@
   {
     "character": "曾",
     "pinyin": "céng",
+    "pinyin_alternates": "zēng",
     "definition": "already; sign of past",
     "hsk_level": 5,
     "frequency": 463,
     "radical": "曰",
     "radical_code": 73.8,
     "stroke_count": 12,
-    "general_standard_num": 2747,
-    "pinyin_alternates": "zēng"
+    "general_standard_num": 2747
   },
   {
     "character": "除",
@@ -5583,14 +5583,14 @@
     "traditional_character": "廣",
     "alternate_characters": "廣",
     "pinyin": "guǎng",
+    "pinyin_alternates": "ān",
     "definition": "wide, extensive, broad; rad. 53",
     "hsk_level": 4,
     "frequency": 468,
     "radical": "广",
     "radical_code": 53,
     "stroke_count": 3,
-    "general_standard_num": 53,
-    "pinyin_alternates": "ān"
+    "general_standard_num": 53
   },
   {
     "character": "显",
@@ -5608,25 +5608,25 @@
   {
     "character": "吧",
     "pinyin": "ba",
+    "pinyin_alternates": "bā",
     "definition": "emphatic final particle",
     "hsk_level": 2,
     "frequency": 470,
     "radical": "口",
     "radical_code": 30.4,
     "stroke_count": 7,
-    "general_standard_num": 747,
-    "pinyin_alternates": "bā"
+    "general_standard_num": 747
   },
   {
     "character": "阿",
     "pinyin": "ā",
+    "pinyin_alternates": "ē",
     "hsk_level": 3,
     "frequency": 471,
     "radical": "阜",
     "radical_code": 170.5,
     "stroke_count": 7,
-    "general_standard_num": 913,
-    "pinyin_alternates": "ē"
+    "general_standard_num": 913
   },
   {
     "character": "李",
@@ -5705,14 +5705,14 @@
   {
     "character": "六",
     "pinyin": "liù",
+    "pinyin_alternates": "lù",
     "definition": "number six",
     "hsk_level": 1,
     "frequency": 478,
     "radical": "八",
     "radical_code": 12.2,
     "stroke_count": 4,
-    "general_standard_num": 160,
-    "pinyin_alternates": "lù"
+    "general_standard_num": 160
   },
   {
     "character": "引",
@@ -5828,14 +5828,14 @@
     "traditional_character": "盡",
     "alternate_characters": "盡",
     "pinyin": "jǐn",
+    "pinyin_alternates": "jìn",
     "definition": "exhaust, use up; deplete",
     "hsk_level": 4,
     "frequency": 488,
     "radical": "尸",
     "radical_code": 44.3,
     "stroke_count": 6,
-    "general_standard_num": 566,
-    "pinyin_alternates": "jìn"
+    "general_standard_num": 566
   },
   {
     "character": "另",
@@ -5888,14 +5888,14 @@
     "traditional_character": "語",
     "alternate_characters": "語",
     "pinyin": "yǔ",
+    "pinyin_alternates": "yù",
     "definition": "language, words; saying, expression",
     "hsk_level": 1,
     "frequency": 493,
     "radical": "言",
     "radical_code": 149.7,
     "stroke_count": 9,
-    "general_standard_num": 1707,
-    "pinyin_alternates": "yù"
+    "general_standard_num": 1707
   },
   {
     "character": "仅",
@@ -5924,14 +5924,14 @@
   {
     "character": "落",
     "pinyin": "luò",
+    "pinyin_alternates": "là|lào",
     "definition": "fall, drop; net income, surplus",
     "hsk_level": 4,
     "frequency": 496,
     "radical": "艸",
     "radical_code": 140.9,
     "stroke_count": 12,
-    "general_standard_num": 2557,
-    "pinyin_alternates": "là|lào"
+    "general_standard_num": 2557
   },
   {
     "character": "青",
@@ -5997,14 +5997,14 @@
     "traditional_character": "紅",
     "alternate_characters": "紅",
     "pinyin": "hóng",
+    "pinyin_alternates": "gōng",
     "definition": "red, vermillion; blush, flush",
     "hsk_level": 2,
     "frequency": 502,
     "radical": "糸",
     "radical_code": 120.3,
     "stroke_count": 6,
-    "general_standard_num": 589,
-    "pinyin_alternates": "gōng"
+    "general_standard_num": 589
   },
   {
     "character": "响",
@@ -6144,14 +6144,14 @@
     "traditional_character": "節",
     "alternate_characters": "節",
     "pinyin": "jié",
+    "pinyin_alternates": "jiē",
     "definition": "knot, node, joint; section",
     "hsk_level": 3,
     "frequency": 514,
     "radical": "艸",
     "radical_code": 140.2,
     "stroke_count": 5,
-    "general_standard_num": 209,
-    "pinyin_alternates": "jiē"
+    "general_standard_num": 209
   },
   {
     "character": "土",
@@ -6346,14 +6346,14 @@
     "traditional_character": "興",
     "alternate_characters": "興",
     "pinyin": "xìng",
+    "pinyin_alternates": "xīng",
     "definition": "thrive, prosper, flourish",
     "hsk_level": 1,
     "frequency": 531,
     "radical": "八",
     "radical_code": 12.4,
     "stroke_count": 6,
-    "general_standard_num": 544,
-    "pinyin_alternates": "xīng"
+    "general_standard_num": 544
   },
   {
     "character": "派",
@@ -6670,14 +6670,14 @@
   {
     "character": "答",
     "pinyin": "dá",
+    "pinyin_alternates": "dā",
     "definition": "answer, reply; return; assent to",
     "hsk_level": 3,
     "frequency": 559,
     "radical": "竹",
     "radical_code": 118.6,
     "stroke_count": 12,
-    "general_standard_num": 2687,
-    "pinyin_alternates": "dā"
+    "general_standard_num": 2687
   },
   {
     "character": "紧",
@@ -6721,14 +6721,14 @@
   {
     "character": "奇",
     "pinyin": "qí",
+    "pinyin_alternates": "jī",
     "definition": "strange, unusual, uncanny, occult",
     "hsk_level": 3,
     "frequency": 563,
     "radical": "大",
     "radical_code": 37.5,
     "stroke_count": 8,
-    "general_standard_num": 1050,
-    "pinyin_alternates": "jī"
+    "general_standard_num": 1050
   },
   {
     "character": "察",
@@ -7028,14 +7028,14 @@
   {
     "character": "父",
     "pinyin": "fù",
+    "pinyin_alternates": "fǔ",
     "definition": "father; KangXi radical 88",
     "hsk_level": 4,
     "frequency": 589,
     "radical": "父",
     "radical_code": 88,
     "stroke_count": 4,
-    "general_standard_num": 141,
-    "pinyin_alternates": "fǔ"
+    "general_standard_num": 141
   },
   {
     "character": "苏",
@@ -7251,14 +7251,14 @@
   {
     "character": "倒",
     "pinyin": "dào",
+    "pinyin_alternates": "dǎo",
     "definition": "fall over; lie down; take turns",
     "hsk_level": 4,
     "frequency": 608,
     "radical": "人",
     "radical_code": 9.8,
     "stroke_count": 10,
-    "general_standard_num": 1960,
-    "pinyin_alternates": "dǎo"
+    "general_standard_num": 1960
   },
   {
     "character": "育",
@@ -7381,14 +7381,14 @@
     "traditional_character": "樂",
     "alternate_characters": "樂",
     "pinyin": "lè",
+    "pinyin_alternates": "yuè|yào|lào",
     "definition": "happy, glad; enjoyable; music",
     "hsk_level": 2,
     "frequency": 619,
     "radical": "丿",
     "radical_code": 4.4,
     "stroke_count": 5,
-    "general_standard_num": 287,
-    "pinyin_alternates": "yuè|yào|lào"
+    "general_standard_num": 287
   },
   {
     "character": "否",
@@ -7463,14 +7463,14 @@
   {
     "character": "甚",
     "pinyin": "shén",
+    "pinyin_alternates": "shèn",
     "definition": "great extent; considerably",
     "hsk_level": 4,
     "frequency": 626,
     "radical": "甘",
     "radical_code": 99.4,
     "stroke_count": 9,
-    "general_standard_num": 1400,
-    "pinyin_alternates": "shèn"
+    "general_standard_num": 1400
   },
   {
     "character": "独",
@@ -7757,26 +7757,26 @@
   {
     "character": "若",
     "pinyin": "ruò",
+    "pinyin_alternates": "rě",
     "definition": "if, supposing, assuming; similar",
     "hsk_level": 6,
     "frequency": 651,
     "radical": "艸",
     "radical_code": 140.5,
     "stroke_count": 8,
-    "general_standard_num": 1002,
-    "pinyin_alternates": "rě"
+    "general_standard_num": 1002
   },
   {
     "character": "哪",
     "pinyin": "nǎ",
+    "pinyin_alternates": "něi|na|né",
     "definition": "which? where? how?",
     "hsk_level": 1,
     "frequency": 652,
     "radical": "口",
     "radical_code": 30.7,
     "stroke_count": 9,
-    "general_standard_num": 1515,
-    "pinyin_alternates": "něi|na|né"
+    "general_standard_num": 1515
   },
   {
     "character": "微",
@@ -8014,14 +8014,14 @@
   {
     "character": "待",
     "pinyin": "dài",
+    "pinyin_alternates": "dāi",
     "definition": "treat, entertain, receive; wait",
     "hsk_level": 5,
     "frequency": 673,
     "radical": "彳",
     "radical_code": 60.6,
     "stroke_count": 9,
-    "general_standard_num": 1580,
-    "pinyin_alternates": "dāi"
+    "general_standard_num": 1580
   },
   {
     "character": "述",
@@ -8207,14 +8207,14 @@
   {
     "character": "模",
     "pinyin": "mó",
+    "pinyin_alternates": "mú",
     "definition": "model, standard, pattern; copy",
     "hsk_level": 5,
     "frequency": 689,
     "radical": "木",
     "radical_code": 75.11,
     "stroke_count": 14,
-    "general_standard_num": 3078,
-    "pinyin_alternates": "mú"
+    "general_standard_num": 3078
   },
   {
     "character": "充",
@@ -8421,14 +8421,14 @@
   {
     "character": "句",
     "pinyin": "jù",
+    "pinyin_alternates": "gōu",
     "definition": "sentence",
     "hsk_level": 3,
     "frequency": 707,
     "radical": "口",
     "radical_code": 30.2,
     "stroke_count": 5,
-    "general_standard_num": 288,
-    "pinyin_alternates": "gōu"
+    "general_standard_num": 288
   },
   {
     "character": "室",
@@ -9709,14 +9709,14 @@
   {
     "character": "弟",
     "pinyin": "dì",
+    "pinyin_alternates": "tì|tuí",
     "definition": "young brother; junior; i, me",
     "hsk_level": 2,
     "frequency": 816,
     "radical": "弓",
     "radical_code": 57.4,
     "stroke_count": 7,
-    "general_standard_num": 854,
-    "pinyin_alternates": "tì|tuí"
+    "general_standard_num": 854
   },
   {
     "character": "登",
@@ -10640,9 +10640,7 @@
     "radical": "木",
     "radical_code": 75.4,
     "stroke_count": 8,
-    "general_standard_num": 1026,
-    "alternate_characters": "鬆",
-    "traditional_character": "鬆"
+    "general_standard_num": 1026
   },
   {
     "character": "秘",
@@ -14910,8 +14908,7 @@
     "radical": "人",
     "radical_code": 9.4,
     "stroke_count": 6,
-    "general_standard_num": 474,
-    "alternate_characters": "彷"
+    "general_standard_num": 474
   },
   {
     "character": "倾",
@@ -40023,8 +40020,7 @@
     "radical": "彳",
     "radical_code": 60.4,
     "stroke_count": 7,
-    "general_standard_num": 3736,
-    "hsk_level": 5
+    "general_standard_num": 3736
   },
   {
     "character": "鹦",
@@ -69323,8 +69319,7 @@
     "frequency": 6256,
     "radical": "髟",
     "radical_code": 190.8,
-    "stroke_count": 18,
-    "hsk_level": 4
+    "stroke_count": 18
   },
   {
     "character": "練",

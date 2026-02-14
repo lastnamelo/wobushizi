@@ -5,8 +5,7 @@ Usage:
   python3 scripts/convert_hanzidb_csv.py \
     --input /path/to/source.csv \
     --output-json data/hanzidb.json \
-    --output-csv data/hanzidb_enhanced.csv \
-    --overrides data/variant_overrides.json
+    --output-csv data/hanzidb_enhanced.csv
 """
 
 from __future__ import annotations
@@ -20,6 +19,13 @@ FIELDNAMES = [
     "frequency_rank",
     "character",
     "pinyin",
+    "pinyin_alternates",
+    "common_word_1",
+    "common_word_1_pinyin",
+    "common_word_1_definition",
+    "common_word_2",
+    "common_word_2_pinyin",
+    "common_word_2_definition",
     "definition",
     "radical",
     "radical_code",
@@ -36,8 +42,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True, help="Source CSV path")
     parser.add_argument("--output-json", required=True, help="Output JSON path")
-    parser.add_argument("--output-csv", required=True, help="Output enhanced CSV path")
-    parser.add_argument("--overrides", required=True, help="Variant overrides JSON path")
+    parser.add_argument("--output-csv", help="Output normalized CSV path (defaults to --input)")
     return parser.parse_args()
 
 
@@ -67,8 +72,7 @@ def main() -> None:
 
     src_csv = Path(args.input)
     out_json = Path(args.output_json)
-    out_csv = Path(args.output_csv)
-    overrides = json.loads(Path(args.overrides).read_text(encoding="utf-8"))
+    out_csv = Path(args.output_csv) if args.output_csv else src_csv
 
     rows_json: list[dict[str, object]] = []
     enhanced_rows: list[dict[str, str]] = []
@@ -85,19 +89,35 @@ def main() -> None:
                 traditional = ""
 
             alt_set: set[str] = set()
-            if traditional:
-                alt_set.add(traditional)
-            for variant in overrides.get(character, []):
+            row_alternates = (row.get("alternate_characters") or "").strip()
+            for variant in row_alternates.split("|"):
                 v = (variant or "").strip()
                 if v and v != character:
                     alt_set.add(v)
+            if traditional:
+                alt_set.add(traditional)
 
             alternate = "|".join(sorted(alt_set, key=lambda x: (len(x), x)))
+            frequency_rank = (row.get("frequency_rank") or row.get("frequency") or "").strip()
+            pinyin_alternates = (row.get("pinyin_alternates") or "").strip()
+            common_word_1 = (row.get("common_word_1") or "").strip()
+            common_word_1_pinyin = (row.get("common_word_1_pinyin") or "").strip()
+            common_word_1_definition = (row.get("common_word_1_definition") or "").strip()
+            common_word_2 = (row.get("common_word_2") or "").strip()
+            common_word_2_pinyin = (row.get("common_word_2_pinyin") or "").strip()
+            common_word_2_definition = (row.get("common_word_2_definition") or "").strip()
 
             enhanced = {
-                "frequency_rank": (row.get("frequency_rank") or "").strip(),
+                "frequency_rank": frequency_rank,
                 "character": character,
                 "pinyin": (row.get("pinyin") or "").strip(),
+                "pinyin_alternates": pinyin_alternates,
+                "common_word_1": common_word_1,
+                "common_word_1_pinyin": common_word_1_pinyin,
+                "common_word_1_definition": common_word_1_definition,
+                "common_word_2": common_word_2,
+                "common_word_2_pinyin": common_word_2_pinyin,
+                "common_word_2_definition": common_word_2_definition,
                 "definition": (row.get("definition") or "").strip(),
                 "radical": (row.get("radical") or "").strip(),
                 "radical_code": (row.get("radical_code") or "").strip(),
@@ -115,9 +135,16 @@ def main() -> None:
                 "traditional_character": traditional,
                 "alternate_characters": alternate,
                 "pinyin": (row.get("pinyin") or "").strip(),
+                "pinyin_alternates": pinyin_alternates,
+                "common_word_1": common_word_1,
+                "common_word_1_pinyin": common_word_1_pinyin,
+                "common_word_1_definition": common_word_1_definition,
+                "common_word_2": common_word_2,
+                "common_word_2_pinyin": common_word_2_pinyin,
+                "common_word_2_definition": common_word_2_definition,
                 "definition": (row.get("definition") or "").strip(),
                 "hsk_level": to_int(row.get("hsk_level")),
-                "frequency": to_int(row.get("frequency_rank")),
+                "frequency": to_int(frequency_rank),
                 "radical": (row.get("radical") or "").strip(),
                 "radical_code": to_num(row.get("radical_code")),
                 "stroke_count": to_int(row.get("stroke_count")),

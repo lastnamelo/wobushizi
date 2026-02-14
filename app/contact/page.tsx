@@ -34,17 +34,30 @@ export default function ContactPage() {
           Questions, feedback, and feature ideas are always welcome.
         </p>
         <p className="mt-2 leading-7 text-stone-700">
-          If you spot missing entries, variant-character issues, or pinyin/definition mismatches, data
-          patches for the Master List are especially helpful.
+          If you notice missing entries, variant-character issues, or pinyin/definition mismatches, data
+          patches for the Master List are especially welcome.
         </p>
         <p className="mt-2 leading-7 text-stone-700">
-          Download the current master CSV:{" "}
-          <a className="underline" href="/master-list.csv" download>
-            master-list.csv
+          Email:{" "}
+          <a className="underline" href="mailto:hello@wobushizi.com">
+            hello@wobushizi.com
           </a>
         </p>
         <p className="mt-2 leading-7 text-stone-700">
-          Email: <a className="underline" href="mailto:hello@wobushizi.com">hello@wobushizi.com</a>
+          If this project has been helpful to you and you&apos;d like to support keeping it alive (domain,
+          hosting, etc.) you can{" "}
+          <a
+            className="underline"
+            href="https://buymeacoffee.com/lastnamelo"
+            target="_blank"
+            rel="noreferrer"
+          >
+            buy me a coffee
+          </a>
+          .
+        </p>
+        <p className="mt-2 leading-7 text-stone-700">
+          This project is small, open, and evolving — thanks for being part of it.
         </p>
       </section>
     </main>

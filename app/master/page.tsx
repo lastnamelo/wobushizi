@@ -69,6 +69,7 @@ export default function MasterPage() {
 
   const visibleRows = useMemo(() => {
     const query = search.trim().normalize("NFKC").toLowerCase();
+    const hasQuery = query.length > 0;
     const normalizedQ = normalizePinyin(query);
     const isLatinQuery = normalizedQ.length > 0 && /^[a-z]+$/.test(normalizedQ);
 
@@ -84,6 +85,9 @@ export default function MasterPage() {
         const hsk = typeof row.hsk_level === "number" ? String(row.hsk_level) : "unknown";
 
         if (statusFilter !== "all" && status !== statusFilter) return false;
+        // Default "all" view hides unknown-HSK rows for faster initial rendering.
+        // Unknown rows are still available via search or the explicit "unknown" filter.
+        if (hskFilter === "all" && !hasQuery && hsk === "unknown") return false;
         if (hskFilter !== "all" && hsk !== hskFilter) return false;
         if (!query) return true;
 
