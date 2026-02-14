@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 export function TopRightTextNav() {
-  const { isSupabaseConfigured, user, loading, error, signInWithEmail, signOut } = useSupabaseAuth();
+  const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [sentMsg, setSentMsg] = useState<string | null>(null);
@@ -20,17 +20,6 @@ export function TopRightTextNav() {
       await signInWithEmail(email.trim());
       setSentMsg("Magic link sent.");
       setEmail("");
-    } finally {
-      setAuthBusy(false);
-    }
-  }
-
-  async function handleLogout() {
-    setAuthBusy(true);
-    try {
-      await signOut();
-      setShowLogin(false);
-      setSentMsg(null);
     } finally {
       setAuthBusy(false);
     }
@@ -54,23 +43,21 @@ export function TopRightTextNav() {
         <Link href="/contact" className="hover:underline">
           Contact
         </Link>
-        <button
-          onClick={() => {
-            if (user) {
-              void handleLogout();
-              return;
-            }
-            if (!isSupabaseConfigured) {
-              setSentMsg("Login unavailable: Supabase env vars are missing.");
-              return;
-            }
-            setShowLogin((prev) => !prev);
-          }}
-          disabled={authBusy || loading}
-          className="text-sm text-stone-900 hover:underline disabled:opacity-60"
-        >
-          {user ? "Logout" : "Login"}
-        </button>
+        {!user ? (
+          <button
+            onClick={() => {
+              if (!isSupabaseConfigured) {
+                setSentMsg("Login unavailable: Supabase env vars are missing.");
+                return;
+              }
+              setShowLogin((prev) => !prev);
+            }}
+            disabled={authBusy || loading}
+            className="text-sm text-stone-900 hover:underline disabled:opacity-60"
+          >
+            Login
+          </button>
+        ) : null}
 
         {!user && showLogin && isSupabaseConfigured ? (
           <form onSubmit={handleLoginSubmit} className="mt-1 w-52 rounded-xl border border-line bg-white p-2 shadow-card">
