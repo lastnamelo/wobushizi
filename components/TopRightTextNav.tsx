@@ -54,47 +54,46 @@ export function TopRightTextNav() {
         <Link href="/contact" className="hover:underline">
           Contact
         </Link>
-        {isSupabaseConfigured ? (
-          <>
-            {user ? (
-              <button
-                onClick={handleLogout}
-                disabled={authBusy || loading}
-                className="text-sm text-stone-900 hover:underline disabled:opacity-60"
-              >
-                Logout
-              </button>
-            ) : (
-              <button
-                onClick={() => setShowLogin((prev) => !prev)}
-                disabled={loading}
-                className="text-sm text-stone-900 hover:underline disabled:opacity-60"
-              >
-                Login
-              </button>
-            )}
+        <button
+          onClick={() => {
+            if (user) {
+              void handleLogout();
+              return;
+            }
+            if (!isSupabaseConfigured) {
+              setSentMsg("Login unavailable: Supabase env vars are missing.");
+              return;
+            }
+            setShowLogin((prev) => !prev);
+          }}
+          disabled={authBusy || loading}
+          className="text-sm text-stone-900 hover:underline disabled:opacity-60"
+        >
+          {user ? "Logout" : "Login"}
+        </button>
 
-            {!user && showLogin ? (
-              <form onSubmit={handleLoginSubmit} className="mt-1 w-52 rounded-xl border border-line bg-white p-2 shadow-card">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email for magic link"
-                  className="w-full rounded-lg border border-line bg-stone-50 px-2 py-1 text-xs outline-none focus:border-stone-400"
-                />
-                <button
-                  type="submit"
-                  disabled={authBusy}
-                  className="mt-2 w-full rounded-lg bg-stone-900 px-2 py-1 text-xs text-white hover:bg-stone-800 disabled:opacity-60"
-                >
-                  {authBusy ? "Sending..." : "Send link"}
-                </button>
-                {sentMsg ? <p className="mt-1 text-left text-[11px] text-emerald-700">{sentMsg}</p> : null}
-                {error ? <p className="mt-1 text-left text-[11px] text-rose-700">{error}</p> : null}
-              </form>
-            ) : null}
-          </>
+        {!user && showLogin && isSupabaseConfigured ? (
+          <form onSubmit={handleLoginSubmit} className="mt-1 w-52 rounded-xl border border-line bg-white p-2 shadow-card">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email for magic link"
+              className="w-full rounded-lg border border-line bg-stone-50 px-2 py-1 text-xs outline-none focus:border-stone-400"
+            />
+            <button
+              type="submit"
+              disabled={authBusy}
+              className="mt-2 w-full rounded-lg bg-stone-900 px-2 py-1 text-xs text-white hover:bg-stone-800 disabled:opacity-60"
+            >
+              {authBusy ? "Sending..." : "Send link"}
+            </button>
+            {sentMsg ? <p className="mt-1 text-left text-[11px] text-emerald-700">{sentMsg}</p> : null}
+            {error ? <p className="mt-1 text-left text-[11px] text-rose-700">{error}</p> : null}
+          </form>
+        ) : null}
+        {!showLogin && sentMsg && !user ? (
+          <p className="mt-1 text-left text-[11px] text-stone-600">{sentMsg}</p>
         ) : null}
       </div>
     </div>
