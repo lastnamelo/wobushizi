@@ -185,7 +185,7 @@ export default function HomePage() {
           <BankQuickNav active="home" />
           {mode === "review" && uniqueChars.length > 0 ? (
             <div className="mx-auto mt-8 max-w-4xl">
-              <p className="mb-3 text-left text-lg text-stone-700">
+              <p className="mb-3 text-left text-sm text-stone-700 md:text-base">
                 Deselect any character you do not recognize to add to study and select unhighlighted
                 characters you would like to move to known.
               </p>

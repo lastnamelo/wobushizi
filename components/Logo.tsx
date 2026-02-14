@@ -11,7 +11,7 @@ export function Logo() {
           width={360}
           height={160}
           priority
-          className="h-auto w-[260px] sm:w-[320px]"
+          className="h-auto w-[220px] sm:w-[320px]"
         />
       </Link>
     </div>
