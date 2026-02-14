@@ -1,31 +1,31 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { EnrichedCharacter } from "@/lib/types";
 
 interface CharacterTableProps {
-  title: string;
   rows: EnrichedCharacter[];
   emptyMessage: string;
   onSetKnown?: (character: string) => Promise<void> | void;
   onSetStudy?: (character: string) => Promise<void> | void;
+  pendingCharacters?: Set<string>;
 }
 
 export function CharacterTable({
-  title,
   rows,
   emptyMessage,
   onSetKnown,
-  onSetStudy
+  onSetStudy,
+  pendingCharacters
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
   const [hasTradAltOnly, setHasTradAltOnly] = useState(false);
-  const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(
-    "frequency_rank_asc"
-  );
+  const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
+  const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">("frequency_rank_asc");
 
   const filtered = useMemo(() => {
     const dedupedRows = new Map<string, EnrichedCharacter>();
@@ -102,76 +102,70 @@ export function CharacterTable({
   }, [rows, search, sortBy, hskFilter, hasTradAltOnly]);
 
   return (
-    <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
-      <div className="mb-3 flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between">
-        <h2 className="text-lg font-medium text-stone-800">{title}</h2>
-        <div className="flex w-full items-center gap-2 md:w-auto md:flex-wrap">
+    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
+      <div className="table-scroll min-h-0 flex-1 overflow-hidden rounded-xl md:max-h-none md:overflow-visible">
+        <div className="mb-2">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search char / pinyin / trad-alt"
-            className="min-w-0 flex-1 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400 md:min-w-[16rem] md:flex-none"
+            placeholder="Seach character or pinyin..."
+            className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
           />
-          <select
-            value={hskFilter}
-            onChange={(e) => setHskFilter(e.target.value)}
-            className="shrink-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
-          >
-            <option value="all">HSK: All</option>
-            <option value="1">HSK 1</option>
-            <option value="2">HSK 2</option>
-            <option value="3">HSK 3</option>
-            <option value="4">HSK 4</option>
-            <option value="5">HSK 5</option>
-            <option value="6">HSK 6</option>
-            <option value="unknown">HSK Unknown</option>
-          </select>
-          <select
-            value={sortBy}
-            onChange={(e) =>
-              setSortBy(e.target.value as "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc")
-            }
-            className="hidden rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400 md:block"
-          >
-            <option value="frequency_rank_asc">Sort: Most frequent to least</option>
-            <option value="frequency_rank_desc">Sort: Least frequent to most</option>
-            <option value="hsk">Sort: HSK</option>
-            <option value="character">Sort: Character</option>
-          </select>
-          <label className="hidden items-center gap-2 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm text-stone-700 md:flex">
-            <input
-              type="checkbox"
-              checked={hasTradAltOnly}
-              onChange={(e) => setHasTradAltOnly(e.target.checked)}
-              className="h-4 w-4"
-            />
-            Has Trad/Alt
-          </label>
         </div>
-      </div>
-
-      <div className="table-scroll">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full table-fixed text-xs md:text-sm">
           <thead className="sticky top-0 z-10 bg-white">
-            <tr className="text-center text-stone-500">
-              <th className="border-b border-line bg-white py-2">字</th>
-              <th className="border-b border-line bg-white py-2">Pinyin</th>
-              <th className="hidden w-80 border-b border-line bg-white py-2 md:table-cell">Definition</th>
-              <th className="border-b border-line bg-white py-2">HSK</th>
-              <th className="hidden border-b border-line bg-white py-2 md:table-cell">Freq</th>
-              <th className="hidden w-36 border-b border-line bg-white py-2 md:table-cell">Trad / Alt</th>
-              <th className="border-b border-line bg-white py-2">Action</th>
+            <tr className="text-center text-[#806252]">
+              <th className="border-b border-line bg-white py-1.5 md:py-1">Character</th>
+              <th className="border-b border-line bg-white py-1.5 md:py-1">Pinyin</th>
+              <th
+                className="cursor-pointer border-b border-line bg-white py-1.5 md:py-1"
+                onClick={() => {
+                  const order = ["all", "1", "2", "3", "4", "5", "6", "unknown"] as const;
+                  const currentIndex = order.indexOf(hskFilter as (typeof order)[number]);
+                  const next = order[(currentIndex + 1) % order.length];
+                  setHskFilter(next);
+                }}
+              >
+                <span className="inline-flex items-center gap-1">
+                  HSK
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
+                    <path d="M2.5 4.5A1.5 1.5 0 0 1 4 3h12a1.5 1.5 0 0 1 1.2 2.4L12 12v4.25a.75.75 0 0 1-1.11.66l-2-1.11a.75.75 0 0 1-.39-.66V12L2.8 5.4a1.5 1.5 0 0 1-.3-.9Z" />
+                  </svg>
+                  {hskFilter !== "all" ? `(${hskFilter})` : ""}
+                </span>
+              </th>
+              <th
+                className="hidden cursor-pointer border-b border-line bg-white py-1.5 md:table-cell md:py-1"
+                onClick={() =>
+                  setSortBy((prev) =>
+                    prev === "frequency_rank_asc"
+                      ? "frequency_rank_desc"
+                      : "frequency_rank_asc"
+                  )
+                }
+              >
+                Freq {sortBy === "frequency_rank_asc" ? "↑" : "↓"}
+              </th>
+              <th
+                className="hidden w-36 cursor-pointer border-b border-line bg-white py-1.5 md:table-cell md:py-1"
+                onClick={() => setHasTradAltOnly((prev) => !prev)}
+              >
+                Trad / Alt{"  "}
+                <span className="inline-block align-middle text-xl leading-none">{hasTradAltOnly ? "●" : "○"}</span>
+              </th>
+              <th className="border-b border-line bg-white py-1.5 md:py-1">Action</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={7} className="py-6 text-center text-stone-500">
+                <td colSpan={6} className="py-6 text-center text-stone-500">
                   {emptyMessage}
                 </td>
               </tr>
             ) : (
               filtered.map((row, idx) => {
+                const isPending = pendingCharacters?.has(row.character) ?? false;
                 const variants = new Set<string>();
                 if (row.traditional_character) variants.add(row.traditional_character);
                 if (row.alternate_characters) {
@@ -188,18 +182,25 @@ export function CharacterTable({
                 const pinyinDisplay = [row.pinyin ?? "", ...pinyinAlt].filter(Boolean).join(" / ");
 
                 return (
-                  <tr key={`${row.character}-${row.pinyin || ""}-${idx}`} className="border-b border-stone-100 text-center align-middle">
-                    <td className="py-2 text-lg">{row.character}</td>
-                    <td className="max-w-40 truncate py-2 md:max-w-none" title={pinyinDisplay || "-"}>
+                  <tr
+                    key={`${row.character}-${row.pinyin || ""}-${idx}`}
+                    className={`border-b border-stone-100 text-center align-middle transition-opacity duration-500 ease-out ${
+                      isPending ? "opacity-55" : "opacity-100"
+                    }`}
+                  >
+                    <td className="py-1 text-base md:py-1 md:text-lg">
+                      <button
+                        onClick={() => setDetailState({ character: row.character, status: row.status })}
+                        className="hover:underline"
+                        title="View details"
+                      >
+                        {row.character}
+                      </button>
+                    </td>
+                    <td className="max-w-40 truncate py-1 md:max-w-none md:py-1" title={pinyinDisplay || "-"}>
                       {pinyinDisplay || "-"}
                     </td>
-                    <td
-                      className="hidden w-80 max-w-80 truncate py-2 text-left text-xs text-stone-700 md:table-cell"
-                      title={row.definition || "-"}
-                    >
-                      {row.definition || "-"}
-                    </td>
-                    <td className="py-2">
+                    <td className="py-1 md:py-1">
                       {(() => {
                         const level = normalizeHskLevel(row.hsk_level);
                         return (
@@ -212,30 +213,35 @@ export function CharacterTable({
                         );
                       })()}
                     </td>
-                    <td className="hidden py-2 md:table-cell">{row.frequency ?? "-"}</td>
-                    <td className="hidden w-36 max-w-36 truncate py-2 text-lg md:table-cell" title={alt || "-"}>
+                    <td className="hidden py-1 md:table-cell md:py-1">{row.frequency ?? "-"}</td>
+                    <td className="hidden w-36 max-w-36 truncate py-1 text-base md:table-cell md:py-1 md:text-lg" title={alt || "-"}>
                       {alt || "-"}
                     </td>
-                    <td className="py-2">
+                    <td className="py-1 md:py-1">
                       {onSetKnown && onSetStudy ? (
+                        (() => {
+                          return (
                         <button
-                          onClick={() =>
-                            row.status === "known" ? onSetStudy(row.character) : onSetKnown(row.character)
-                          }
+                          onClick={() => {
+                            if (isPending) return;
+                            row.status === "known" ? onSetStudy(row.character) : onSetKnown(row.character);
+                          }}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full border transition ${
                             row.status === "known"
                               ? "border-emerald-600 bg-emerald-600"
                               : "border-stone-300 bg-stone-300"
-                          }`}
+                          } ${isPending ? "opacity-70" : ""}`}
                           title={row.status === "known" ? "Switch to study" : "Switch to known"}
                           aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
                         >
                           <span
                             className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
                               row.status === "known" ? "translate-x-6" : "translate-x-1"
-                            }`}
+                            } duration-300 ease-out`}
                           />
                         </button>
+                          );
+                        })()
                       ) : null}
                     </td>
                   </tr>
@@ -245,6 +251,20 @@ export function CharacterTable({
           </tbody>
         </table>
       </div>
+      <CharacterDetailModal
+        character={detailState?.character ?? null}
+        status={detailState?.status}
+        onSetStatus={(status) => {
+          if (!detailState) return;
+          if (status === "known") {
+            onSetKnown?.(detailState.character);
+          } else {
+            onSetStudy?.(detailState.character);
+          }
+          setDetailState((prev) => (prev ? { ...prev, status } : prev));
+        }}
+        onClose={() => setDetailState(null)}
+      />
     </section>
   );
 }

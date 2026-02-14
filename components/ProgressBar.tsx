@@ -14,7 +14,7 @@ export function ProgressBar({ knownCount, target = 2500 }: ProgressBarProps) {
           style={{ width: `${ratio * 100}%`, backgroundColor: "#8c8378" }}
         />
       </div>
-      <p className="mt-2 text-center text-sm text-stone-600">Known {knownCount} / {target}</p>
+      <p className="mt-1 text-center text-sm text-stone-600">{knownCount} / {target}</p>
     </div>
   );
 }

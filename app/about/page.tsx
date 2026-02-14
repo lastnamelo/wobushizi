@@ -36,26 +36,41 @@ export default function AboutPage() {
       <ProgressBar knownCount={knownCount} />
       <BankQuickNav active="home" />
 
-      <section className="mx-auto mt-8 rounded-2xl border border-line bg-white p-6 shadow-card">
-        <h1 className="text-xl font-medium text-stone-800">About 我不识字</h1>
+      <section className="mx-auto mt-3 rounded-2xl border border-line bg-white p-6 shadow-card md:mt-6">
+        <h1 className="text-xl font-medium text-stone-800">About</h1>
         <p className="mt-3 leading-7 text-stone-700">
-          我不识字 is a simple reading companion for Chinese text. Paste a passage, quickly mark what you
-          currently recognize, and keep a lightweight known/study bank as you learn over time.
+          我不识字 (&ldquo;I am illiterate&rdquo;) is a simple reading companion for Chinese
+          learners. Paste a passage, quickly mark what you recognize, and keep a lightweight Known/Study
+          bank as you learn over time.
         </p>
         <p className="mt-3 leading-7 text-stone-700">
-          The current demo build stores data in your browser so you can iterate quickly. Supabase-backed
-          persistence can be toggled back on when you are ready.
+          A common benchmark is that recognizing about 2,500 characters is enough to be considered
+          &ldquo;literate.&rdquo; I&apos;ve always been curious how many characters I can actually recognize,
+          but I never found a simple way to track it efficiently.
+        </p>
+        <p className="mt-3 leading-7 text-stone-700">
+          In reality, Chinese literacy depends more on words than individual characters. Still, character
+          recognition is a practical place to start, and being able to pronounce characters is a major
+          hurdle.
+        </p>
+        <p className="mt-3 leading-7 text-stone-700">
+          This isn&apos;t meant to be an all-inclusive Chinese study tool. It&apos;s a lightweight tracker
+          designed to help you stay motivated, keep learning new characters, and work toward that literacy
+          benchmark. 加油！
         </p>
       </section>
-      <div className="mt-5 text-center">
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <p className="text-left text-xs italic leading-none text-stone-600">
+          This app was built with the help of Codex.
+        </p>
         <button
           onClick={handleReset}
-          className="rounded-xl border border-line px-4 py-2 text-sm text-stone-700 hover:bg-stone-100"
+          className="rounded-xl bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-800"
         >
-          Reset to 0
+          Reset Progress
         </button>
-        {resetMsg ? <p className="mt-2 text-sm text-stone-600">{resetMsg}</p> : null}
       </div>
+      {resetMsg ? <p className="mt-2 text-right text-sm text-stone-600">{resetMsg}</p> : null}
     </main>
   );
 }

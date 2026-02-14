@@ -8,14 +8,14 @@ interface BankQuickNavProps {
 export function BankQuickNav({ active, onSelectBankTab }: BankQuickNavProps) {
   const items: Array<{ key: "home" | "character" | "study" | "master"; label: string; href: string }> = [
     { key: "home", label: "Home", href: "/" },
-    { key: "character", label: "Character Bank", href: "/bank?tab=character" },
+    { key: "character", label: "Known Bank", href: "/bank?tab=character" },
     { key: "study", label: "Study Bank", href: "/bank?tab=study" },
     { key: "master", label: "Master List", href: "/master" }
   ];
 
   return (
-    <div className="mt-4 flex justify-center">
-      <div className="flex max-w-full flex-wrap items-center justify-center content-center gap-1 rounded-2xl border border-line bg-white p-1 text-sm">
+    <div className="mt-3 flex justify-center md:mt-5">
+      <div className="flex max-w-full flex-wrap items-center justify-center content-center gap-1 rounded-2xl border border-line bg-white p-1 text-xs sm:text-sm">
       {items.map((item) => (
         <Link
           key={item.key}

@@ -44,6 +44,7 @@ export default function BankPage() {
   const [knownCount, setKnownCount] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"character" | "study">("character");
+  const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
@@ -76,32 +77,65 @@ export default function BankPage() {
   );
 
   async function moveStatus(character: string, status: "known" | "study") {
-    await setCharacterStatusLocal(character, status);
+    if (pendingMoves.has(character)) return;
+    setMessage(null);
+    setPendingMoves((prev) => new Set(prev).add(character));
 
-    setTabData((prev) => {
-      const from = status === "known" ? "study" : "known";
-      const to = status === "known" ? "known" : "study";
-      const found = prev[from].find((row) => row.character === character);
-      const payload = found ?? enrichRows([{ user_id: "local-user", character, status, last_seen_at: null }])[0];
+    try {
+      await setCharacterStatusLocal(character, status);
 
-      return {
-        known:
-          to === "known"
-            ? [...prev.known.filter((r) => r.character !== character), { ...payload, status: "known" }]
-            : prev.known.filter((r) => r.character !== character),
-        study:
-          to === "study"
-            ? [...prev.study.filter((r) => r.character !== character), { ...payload, status: "study" }]
-            : prev.study.filter((r) => r.character !== character)
-      };
-    });
+      // First flip the switch in place so the user can see the state change.
+      setTabData((prev) => ({
+        known: prev.known.map((row) => (row.character === character ? { ...row, status } : row)),
+        study: prev.study.map((row) => (row.character === character ? { ...row, status } : row))
+      }));
 
-    const count = await fetchKnownCountLocal();
-    setKnownCount(count);
+      // Keep it visible briefly, then move it out of the current list.
+      await new Promise((resolve) => setTimeout(resolve, 420));
+
+      setTabData((prev) => {
+        const from = status === "known" ? "study" : "known";
+        const to = status === "known" ? "known" : "study";
+        const found = prev[from].find((row) => row.character === character);
+        const payload = found ?? enrichRows([{ user_id: "local-user", character, status, last_seen_at: null }])[0];
+
+        return {
+          known:
+            to === "known"
+              ? [...prev.known.filter((r) => r.character !== character), { ...payload, status: "known" }]
+              : prev.known.filter((r) => r.character !== character),
+          study:
+            to === "study"
+              ? [...prev.study.filter((r) => r.character !== character), { ...payload, status: "study" }]
+              : prev.study.filter((r) => r.character !== character)
+        };
+      });
+
+      const count = await fetchKnownCountLocal();
+      setKnownCount(count);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to update status.";
+      setMessage(msg);
+
+      // Restore canonical state if optimistic update path failed.
+      const [knownRows, studyRows, count] = await Promise.all([
+        fetchCharacterStatesByStatusLocal("known"),
+        fetchCharacterStatesByStatusLocal("study"),
+        fetchKnownCountLocal()
+      ]);
+      setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
+      setKnownCount(count);
+    } finally {
+      setPendingMoves((prev) => {
+        const next = new Set(prev);
+        next.delete(character);
+        return next;
+      });
+    }
   }
 
   return (
-    <main className="relative mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-6">
+    <main className="relative mx-auto flex h-screen max-w-6xl flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-6 md:h-auto md:min-h-screen md:overflow-visible md:py-4">
       <TopRightTextNav />
 
       <Logo />
@@ -113,21 +147,26 @@ export default function BankPage() {
           window.history.replaceState(null, "", `/bank?tab=${tab}`);
         }}
       />
-      <p className="mt-3 text-center text-xs text-stone-500 md:hidden">
-        You are in the mobile experience. For definitions, traditional characters, more filters, please use the desktop view.
+      <p className="mt-2 text-center text-[11px] text-stone-500 md:hidden">
+        You are in the mobile experience. For more features, please use desktop view.
       </p>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <section className="mt-6 text-center">
-          <CharacterTable
-            title={activeTab === "character" ? "Character Bank (Known)" : "Study Bank"}
-            rows={currentRows}
-            emptyMessage={activeTab === "character" ? "No known characters yet." : "Study queue is empty."}
-            onSetKnown={(ch) => moveStatus(ch, "known")}
-            onSetStudy={(ch) => moveStatus(ch, "study")}
-          />
+        <section className="mx-auto mt-3 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
+          <div className="relative w-full">
+            <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
+              {currentRows.length.toLocaleString()} characters
+            </p>
+            <CharacterTable
+              rows={currentRows}
+              emptyMessage={activeTab === "character" ? "No known characters yet." : "Study queue is empty."}
+              onSetKnown={(ch) => moveStatus(ch, "known")}
+              onSetStudy={(ch) => moveStatus(ch, "study")}
+              pendingCharacters={pendingMoves}
+            />
+          </div>
 
           {message ? <p className="mt-3 text-sm text-rose-700">{message}</p> : null}
         </section>

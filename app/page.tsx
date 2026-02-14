@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useMemo, useState } from "react";
 import { BankQuickNav } from "@/components/BankQuickNav";
+import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { Logo } from "@/components/Logo";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TextLoader } from "@/components/TextLoader";
@@ -11,7 +12,8 @@ import {
   applyLogLocal,
   ensureLocalProfile,
   fetchCharacterStatesForCharsLocal,
-  fetchKnownCountLocal
+  fetchKnownCountLocal,
+  setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskColorValue } from "@/lib/hskStyles";
@@ -41,6 +43,7 @@ function enrich(character: string): EnrichedCharacter {
         : "",
     alternate_characters: typeof meta?.alternate_characters === "string" ? meta.alternate_characters : "",
     pinyin: meta?.pinyin ? String(meta.pinyin) : "",
+    pinyin_alternates: typeof meta?.pinyin_alternates === "string" ? meta.pinyin_alternates : "",
     hsk_level: typeof meta?.hsk_level === "number" ? meta.hsk_level : null,
     frequency: typeof meta?.frequency === "number" ? meta.frequency : null,
     definition: meta?.definition ? String(meta.definition) : ""
@@ -61,6 +64,7 @@ export default function HomePage() {
     newKnown: EnrichedCharacter[];
     queuedStudy: EnrichedCharacter[];
   } | null>(null);
+  const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -173,7 +177,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6">
+    <main className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 md:py-4">
       <TopRightTextNav />
       <Logo />
 
@@ -184,18 +188,19 @@ export default function HomePage() {
           <ProgressBar knownCount={knownCount} />
           <BankQuickNav active="home" />
           {mode === "review" && uniqueChars.length > 0 ? (
-            <div className="mx-auto mt-8 max-w-4xl">
-              <p className="mb-3 text-left text-sm text-stone-700 md:text-base">
-                Deselect any character you do not recognize to add to study and select unhighlighted
-                characters you would like to move to known.
+            <div className="mx-auto mt-4 max-w-4xl">
+              <p className="mb-2 w-full text-left text-xs text-stone-700 md:text-sm">
+                Deselect characters you don&apos;t recognize to keep them in Study. Select unhighlighted
+                characters to move them to Known.
               </p>
-              <div className="hidden md:block">
-                <HskMiniPies stats={hskStats} />
-              </div>
             </div>
           ) : null}
 
-          <section className="mx-auto mt-4 max-w-4xl space-y-4">
+          <section
+            className={`mx-auto w-full max-w-4xl ${
+              mode === "review" ? "mt-1 flex min-h-0 flex-1 flex-col space-y-3" : "mt-4 space-y-3"
+            }`}
+          >
             {mode === "input" ? (
               <>
                 <textarea
@@ -203,12 +208,12 @@ export default function HomePage() {
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Paste Chinese text here..."
                   maxLength={MAX_INPUT_CHARS}
-                  className="h-60 w-full rounded-2xl border border-line bg-white p-5 text-lg leading-8 outline-none shadow-card focus:border-stone-400"
+                  className="h-52 w-full rounded-2xl border border-line bg-white p-5 text-base leading-7 outline-none shadow-card focus:border-stone-400 md:h-56"
                 />
-                <p className="text-right text-xs text-stone-500">
-                  {text.length}/{MAX_INPUT_CHARS}
-                </p>
-                <div className="flex justify-end">
+                <div className="flex items-start justify-between text-xs text-stone-600">
+                  <p className="self-start leading-none">
+                    {text.length}/{MAX_INPUT_CHARS}
+                  </p>
                   <button
                     onClick={handleLoad}
                     className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700"
@@ -227,45 +232,56 @@ export default function HomePage() {
                   known={knownSet}
                   onToggle={toggleCharacter}
                 />
-                <p className="text-right text-sm text-stone-600">
-                  Selected for logging: {selectedCount} / {uniqueChars.length}
-                </p>
-                <div className="flex justify-end gap-2">
-                  <button
-                    onClick={() => setMode("input")}
-                    className="rounded-xl border border-line px-5 py-2.5 text-sm hover:bg-white"
-                  >
-                    Back
-                  </button>
-                  <button
-                    disabled={isSaving}
-                    onClick={handleLog}
-                    className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700 disabled:opacity-60"
-                  >
-                    {isSaving ? "Logging..." : "Log"}
-                  </button>
+                <div className="hidden md:block">
+                  <HskMiniPies stats={hskStats} />
+                </div>
+                <div className="flex items-start justify-between gap-3">
+                  <p className="pt-2 text-left text-xs leading-none text-stone-600">
+                    Selected for logging: {selectedCount} / {uniqueChars.length}
+                  </p>
+                  <div className="flex justify-end gap-2">
+                    <button
+                      onClick={() => setMode("input")}
+                      className="rounded-xl border border-line px-5 py-2.5 text-sm hover:bg-white"
+                    >
+                      Back
+                    </button>
+                    <button
+                      disabled={isSaving}
+                      onClick={handleLog}
+                      className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700 disabled:opacity-60"
+                    >
+                      {isSaving ? "Logging..." : "Log"}
+                    </button>
+                  </div>
                 </div>
               </>
             ) : null}
 
             {mode === "result" && results ? (
               <div className="space-y-4">
-                <p className="text-lg text-stone-700">Log complete.</p>
-                <div className="mx-auto hidden max-w-4xl md:block">
-                  <HskMiniPies stats={hskStats} />
-                </div>
-
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
                     <h3 className="mb-3 text-base font-medium">New characters logged</h3>
-                    <CharacterCloud rows={results.newKnown} empty="No new known characters in this event." />
+                    <CharacterCloud
+                      rows={results.newKnown}
+                      empty="No new known characters in this event."
+                      onPickCharacter={(character) => setDetailState({ character, status: "known" })}
+                    />
                   </div>
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
                     <h3 className="mb-3 text-base font-medium">Characters to study</h3>
-                    <CharacterCloud rows={results.queuedStudy} empty="No study-queued characters in this event." />
+                    <CharacterCloud
+                      rows={results.queuedStudy}
+                      empty="No study-queued characters in this event."
+                      onPickCharacter={(character) => setDetailState({ character, status: "study" })}
+                    />
                   </div>
                 </div>
 
+                <div className="hidden md:block">
+                  <HskMiniPies stats={hskStats} />
+                </div>
                 <div className="flex justify-end gap-2">
                   <button
                     onClick={() => setMode("review")}
@@ -285,13 +301,45 @@ export default function HomePage() {
 
             {message ? <p className="text-sm text-rose-700">{message}</p> : null}
           </section>
+          <CharacterDetailModal
+            character={detailState?.character ?? null}
+            status={detailState?.status}
+            onSetStatus={async (status) => {
+              if (!detailState || !results) return;
+              await setCharacterStatusLocal(detailState.character, status);
+              const count = await fetchKnownCountLocal();
+              setKnownCount(count);
+
+              setResults((prev) => {
+                if (!prev || !detailState) return prev;
+                const all = [...prev.newKnown, ...prev.queuedStudy];
+                const byChar = new Map(all.map((r) => [r.character, r]));
+                const entry = byChar.get(detailState.character) ?? enrich(detailState.character);
+                byChar.set(detailState.character, { ...entry, status });
+                const nextKnown = [...byChar.values()].filter((r) => r.status === "known");
+                const nextStudy = [...byChar.values()].filter((r) => r.status === "study");
+                return { newKnown: nextKnown, queuedStudy: nextStudy };
+              });
+
+              setDetailState((prev) => (prev ? { ...prev, status } : prev));
+            }}
+            onClose={() => setDetailState(null)}
+          />
         </>
       ) : null}
     </main>
   );
 }
 
-function CharacterCloud({ rows, empty }: { rows: EnrichedCharacter[]; empty: string }) {
+function CharacterCloud({
+  rows,
+  empty,
+  onPickCharacter
+}: {
+  rows: EnrichedCharacter[];
+  empty: string;
+  onPickCharacter: (character: string) => void;
+}) {
   if (rows.length === 0) {
     return <p className="text-sm text-stone-500">{empty}</p>;
   }
@@ -299,14 +347,15 @@ function CharacterCloud({ rows, empty }: { rows: EnrichedCharacter[]; empty: str
   return (
     <div className="flex flex-wrap gap-2">
       {rows.map((row) => (
-        <span
+        <button
           key={row.character}
           className="text-2xl"
           style={{ color: getHskColorValue(row.hsk_level) }}
           title={row.pinyin || "No pinyin"}
+          onClick={() => onPickCharacter(row.character)}
         >
           {row.character}
-        </span>
+        </button>
       ))}
     </div>
   );
