@@ -103,7 +103,7 @@ export function CharacterTable({
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
-      <div className="table-scroll min-h-0 flex-1 overflow-hidden rounded-xl md:max-h-none md:overflow-visible">
+      <div className="table-scroll min-h-0 flex-1 overflow-y-auto rounded-xl">
         <div className="mb-2">
           <input
             value={search}

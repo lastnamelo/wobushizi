@@ -32,6 +32,8 @@ select {
 }
 
 .table-scroll {
-  max-height: none;
-  overflow: visible;
+  max-height: min(62vh, 680px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }

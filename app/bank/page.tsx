@@ -136,7 +136,7 @@ export default function BankPage() {
   }
 
   return (
-    <main className="relative mx-auto flex h-screen max-w-6xl flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-6 md:h-auto md:min-h-screen md:overflow-visible md:py-4">
+    <main className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-4 sm:px-6 sm:py-6 md:py-4">
       <AuthGate />
       <TopRightTextNav />
 

@@ -156,7 +156,7 @@ export default function MasterPage() {
   }
 
   return (
-    <main className="relative mx-auto flex h-screen max-w-7xl flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-6 md:h-auto md:min-h-screen md:overflow-visible md:py-4">
+    <main className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 md:py-4">
       <AuthGate />
       <TopRightTextNav />
 
@@ -175,7 +175,7 @@ export default function MasterPage() {
             {visibleRows.length.toLocaleString()} characters
           </p>
           <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
-            <div className="table-scroll overflow-hidden rounded-xl md:max-h-none md:overflow-visible">
+            <div className="table-scroll overflow-y-auto rounded-xl">
               <div className="mb-2">
                 <input
                   value={search}
