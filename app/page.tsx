@@ -60,6 +60,7 @@ export default function HomePage() {
   const [uniqueChars, setUniqueChars] = useState<string[]>([]);
   const [selectedSet, setSelectedSet] = useState<Set<string>>(new Set());
   const [isSaving, setIsSaving] = useState(false);
+  const [showWordHints, setShowWordHints] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [results, setResults] = useState<{
     newKnown: EnrichedCharacter[];
@@ -194,11 +195,20 @@ export default function HomePage() {
           <ProgressBar knownCount={knownCount} />
           <BankQuickNav active="home" />
           {mode === "review" && uniqueChars.length > 0 ? (
-            <div className="mx-auto mt-4 max-w-4xl">
-              <p className="mb-2 w-full text-left text-xs text-stone-700 md:text-sm">
+            <div className="mx-auto mt-4 flex w-full max-w-4xl items-center justify-between gap-3">
+              <p className="w-full text-left text-xs text-stone-700 md:text-sm">
                 Deselect characters you don&apos;t recognize to keep them in Study. Select unhighlighted
                 characters to move them to Known.
               </p>
+              <label className="inline-flex shrink-0 cursor-pointer items-center gap-2 text-xs text-stone-600 md:text-sm">
+                <input
+                  type="checkbox"
+                  checked={showWordHints}
+                  onChange={(e) => setShowWordHints(e.target.checked)}
+                  className="h-4 w-4 rounded border-line text-stone-700 focus:ring-stone-400"
+                />
+                Word hints
+              </label>
             </div>
           ) : null}
 
@@ -237,6 +247,7 @@ export default function HomePage() {
                   selected={selectedSet}
                   known={knownSet}
                   onToggle={toggleCharacter}
+                  showWordHints={showWordHints}
                 />
                 <div className="hidden md:block">
                   <HskMiniPies stats={hskStats} />

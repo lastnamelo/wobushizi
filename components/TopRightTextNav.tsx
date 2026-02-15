@@ -35,8 +35,9 @@ export function TopRightTextNav() {
   }, []);
 
   return (
-    <div className="absolute right-4 top-3 z-30 text-right sm:right-6 sm:top-6">
-      <div className="flex flex-col items-end gap-1 text-sm text-stone-900">
+    <div className="absolute inset-x-0 top-3 z-30 sm:top-6">
+      <div className="mx-auto flex w-full max-w-4xl justify-end px-4 sm:px-0">
+        <div className="flex flex-col items-end gap-1 text-right text-sm text-stone-900">
         <Link href="/about" className="hover:underline">
           About
         </Link>
@@ -82,6 +83,7 @@ export function TopRightTextNav() {
         {!showLogin && sentMsg && !user ? (
           <p className="mt-1 text-left text-[11px] text-stone-600">{sentMsg}</p>
         ) : null}
+      </div>
       </div>
     </div>
   );
