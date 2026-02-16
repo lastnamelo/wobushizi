@@ -270,7 +270,7 @@ export default function HomePage() {
                       disabled={isLoadingStarter}
                       className="rounded-xl border border-line px-4 py-2.5 text-sm text-stone-700 hover:bg-white disabled:opacity-60"
                     >
-                      {isLoadingStarter ? "Loading..." : "Try a starter passage"}
+                      {isLoadingStarter ? "Loading..." : "Try a passage"}
                     </button>
                     <button
                       onClick={handleLoad}
