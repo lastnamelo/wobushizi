@@ -5,6 +5,9 @@ import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterTable } from "@/components/CharacterTable";
 import { Logo } from "@/components/Logo";
+import { Milestone1000Modal } from "@/components/Milestone1000Modal";
+import { Milestone2500Modal } from "@/components/Milestone2500Modal";
+import { Milestone500Modal } from "@/components/Milestone500Modal";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
@@ -15,6 +18,7 @@ import {
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
 import { CharacterStateRow, EnrichedCharacter } from "@/lib/types";
+import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
 function enrichRows(rows: CharacterStateRow[]): EnrichedCharacter[] {
   return rows.map((row) => {
@@ -46,6 +50,11 @@ export default function BankPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"character" | "study">("character");
   const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
+  const { showMilestone, dismissMilestone } = useMilestone500(knownCount);
+  const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
+    useMilestone1000(knownCount);
+  const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
+    useMilestone2500(knownCount);
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
@@ -138,6 +147,9 @@ export default function BankPage() {
   return (
     <main className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-4 sm:px-6 sm:py-6 md:py-4">
       <AuthGate />
+      <Milestone500Modal open={showMilestone} onClose={dismissMilestone} />
+      <Milestone1000Modal open={showMilestone1000} onClose={dismissMilestone1000} />
+      <Milestone2500Modal open={showMilestone2500} onClose={dismissMilestone2500} />
       <TopRightTextNav />
 
       <Logo />

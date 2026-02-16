@@ -103,15 +103,15 @@ export function CharacterTable({
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
+      <div className="mb-2">
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Seach character or pinyin..."
+          className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+        />
+      </div>
       <div className="table-scroll min-h-0 flex-1 overflow-y-auto rounded-xl">
-        <div className="mb-2">
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Seach character or pinyin..."
-            className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
-          />
-        </div>
         <table className="w-full table-fixed text-xs md:text-sm">
           <thead className="sticky top-0 z-10 bg-white">
             <tr className="text-center text-[#806252]">

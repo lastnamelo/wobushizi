@@ -5,6 +5,9 @@ import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { Logo } from "@/components/Logo";
+import { Milestone1000Modal } from "@/components/Milestone1000Modal";
+import { Milestone2500Modal } from "@/components/Milestone2500Modal";
+import { Milestone500Modal } from "@/components/Milestone500Modal";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
@@ -17,6 +20,7 @@ import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { CharacterStatus, EnrichedCharacter, HanzidbEntry } from "@/lib/types";
+import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
 const allRows = getHanziData();
 
@@ -49,6 +53,11 @@ export default function MasterPage() {
   const [sortBy, setSortBy] = useState<"frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character">("frequency_rank_asc");
   const [message, setMessage] = useState<string | null>(null);
   const [detailState, setDetailState] = useState<{ character: string; status?: CharacterStatus } | null>(null);
+  const { showMilestone, dismissMilestone } = useMilestone500(knownCount);
+  const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
+    useMilestone1000(knownCount);
+  const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
+    useMilestone2500(knownCount);
 
   useEffect(() => {
     (async () => {
@@ -158,6 +167,9 @@ export default function MasterPage() {
   return (
     <main className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 md:py-4">
       <AuthGate />
+      <Milestone500Modal open={showMilestone} onClose={dismissMilestone} />
+      <Milestone1000Modal open={showMilestone1000} onClose={dismissMilestone1000} />
+      <Milestone2500Modal open={showMilestone2500} onClose={dismissMilestone2500} />
       <TopRightTextNav />
 
       <Logo />
@@ -175,15 +187,15 @@ export default function MasterPage() {
             {visibleRows.length.toLocaleString()} characters
           </p>
           <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
+            <div className="mb-2">
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Seach character or pinyin..."
+                className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+              />
+            </div>
             <div className="table-scroll overflow-y-auto rounded-xl">
-              <div className="mb-2">
-                <input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Seach character or pinyin..."
-                  className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
-                />
-              </div>
               <table className="w-full table-fixed text-xs md:text-sm">
               <thead className="sticky top-0 z-10 bg-white">
                 <tr className="text-center text-[#806252]">
