@@ -187,7 +187,7 @@ export default function MasterPage() {
       <ProgressBar knownCount={knownCount} />
       <BankQuickNav active="master" />
       <p className="mt-2 text-center text-[11px] text-stone-500 md:hidden">
-        You are in the mobile experience. For more features, please use desktop view.
+        You are in the mobile experience. For more features, use desktop view.
       </p>
       <div className="mx-auto mt-5 hidden w-full max-w-4xl md:block">
         <HskMiniPies stats={masterStats} />

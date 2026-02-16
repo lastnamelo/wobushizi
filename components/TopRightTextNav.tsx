@@ -35,9 +35,9 @@ export function TopRightTextNav() {
   }, []);
 
   return (
-    <div className="absolute inset-x-0 top-3 z-30 sm:top-6">
+    <div className="pointer-events-none absolute inset-x-0 top-3 z-30 sm:top-6">
       <div className="mx-auto flex w-full max-w-4xl justify-end px-4 sm:px-0">
-        <div className="flex flex-col items-end gap-1 text-right text-sm text-stone-900">
+        <div className="pointer-events-auto flex flex-col items-end gap-1 text-right text-sm text-stone-900">
         <Link href="/about" className="hover:underline">
           About
         </Link>

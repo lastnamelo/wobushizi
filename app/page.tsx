@@ -154,10 +154,10 @@ export default function HomePage() {
 
       const newKnown = uniqueChars
         .filter((ch) => !knownSet.has(ch) && selectedSet.has(ch))
-        .map(enrich);
+        .map((ch) => ({ ...enrich(ch), status: "known" as const }));
       const queuedStudy = uniqueChars
         .filter((ch) => !selectedSet.has(ch))
-        .map(enrich);
+        .map((ch) => ({ ...enrich(ch), status: "study" as const }));
 
       const dedupeByCharacter = (rows: EnrichedCharacter[]) => {
         const map = new Map<string, EnrichedCharacter>();
@@ -256,11 +256,21 @@ export default function HomePage() {
                   </p>
                   <div className="flex items-center gap-2">
                     <button
+                      onClick={() => {
+                        setText("");
+                        setNotice(null);
+                        setMessage(null);
+                      }}
+                      className="rounded-xl border border-line px-4 py-2.5 text-sm text-stone-700 hover:bg-white"
+                    >
+                      Clear
+                    </button>
+                    <button
                       onClick={handleLoadStarterPassage}
                       disabled={isLoadingStarter}
                       className="rounded-xl border border-line px-4 py-2.5 text-sm text-stone-700 hover:bg-white disabled:opacity-60"
                     >
-                      {isLoadingStarter ? "Loading..." : "Don’t know where to start?"}
+                      {isLoadingStarter ? "Loading..." : "Try a starter passage"}
                     </button>
                     <button
                       onClick={handleLoad}
@@ -282,7 +292,7 @@ export default function HomePage() {
               <>
                 <div className="flex items-center justify-between gap-3 text-[11px] text-stone-600 md:text-xs">
                   <p className="text-left">
-                    Passage snapshot: {uniqueChars.length} unique characters, {newToYouCount} new to you.
+                    {uniqueChars.length} unique characters, {newToYouCount} new to you.
                   </p>
                   <label className="inline-flex shrink-0 cursor-pointer items-center gap-2">
                     <input
@@ -384,7 +394,10 @@ export default function HomePage() {
 
               setResults((prev) => {
                 if (!prev || !detailState) return prev;
-                const all = [...prev.newKnown, ...prev.queuedStudy];
+                const all = [
+                  ...prev.newKnown.map((r) => ({ ...r, status: "known" as const })),
+                  ...prev.queuedStudy.map((r) => ({ ...r, status: "study" as const }))
+                ];
                 const byChar = new Map(all.map((r) => [r.character, r]));
                 const entry = byChar.get(detailState.character) ?? enrich(detailState.character);
                 byChar.set(detailState.character, { ...entry, status });
