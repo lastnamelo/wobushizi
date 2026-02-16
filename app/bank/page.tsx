@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterTable } from "@/components/CharacterTable";
+import { HskMiniPies } from "@/components/HskMiniPies";
 import { Logo } from "@/components/Logo";
 import { Milestone1000Modal } from "@/components/Milestone1000Modal";
 import { Milestone2500Modal } from "@/components/Milestone2500Modal";
@@ -17,6 +18,7 @@ import {
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
+import { countHskLevels } from "@/lib/hskCounts";
 import { CharacterStateRow, EnrichedCharacter } from "@/lib/types";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
@@ -85,6 +87,7 @@ export default function BankPage() {
     () => (activeTab === "character" ? tabData.known : tabData.study),
     [activeTab, tabData]
   );
+  const currentStats = useMemo(() => countHskLevels(currentRows), [currentRows]);
 
   async function moveStatus(character: string, status: "known" | "study") {
     if (pendingMoves.has(character)) return;
@@ -164,21 +167,26 @@ export default function BankPage() {
       <p className="mt-2 text-center text-[11px] text-stone-500 md:hidden">
         You are in the mobile experience. For more features, please use desktop view.
       </p>
+      <div className="mx-auto mt-5 hidden w-full max-w-4xl md:block">
+        <HskMiniPies stats={currentStats} />
+      </div>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <section className="mx-auto mt-3 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
+        <section className="mx-auto mt-4 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
           <div className="relative w-full">
             <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
               {currentRows.length.toLocaleString()} characters
             </p>
             <CharacterTable
+              key={activeTab}
               rows={currentRows}
               emptyMessage={activeTab === "character" ? "No known characters yet." : "Study queue is empty."}
               onSetKnown={(ch) => moveStatus(ch, "known")}
               onSetStudy={(ch) => moveStatus(ch, "study")}
               pendingCharacters={pendingMoves}
+              defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
             />
           </div>
 

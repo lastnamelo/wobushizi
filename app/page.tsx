@@ -1,9 +1,10 @@
 "use client";
 
-import { CSSProperties, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { AuthGate } from "@/components/AuthGate";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
+import { HskMiniPies } from "@/components/HskMiniPies";
 import { Logo } from "@/components/Logo";
 import { Milestone1000Modal } from "@/components/Milestone1000Modal";
 import { Milestone2500Modal } from "@/components/Milestone2500Modal";
@@ -19,24 +20,15 @@ import {
   fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
-import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
+import { lookupHanziEntry } from "@/lib/hanzidb";
+import { countHskLevels } from "@/lib/hskCounts";
 import { getHskColorValue } from "@/lib/hskStyles";
+import { STARTER_PASSAGES, bumpStarterPassageIndex, getNextStarterPassageIndex } from "@/lib/starterPassages";
 import { EnrichedCharacter } from "@/lib/types";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
 type HomeMode = "input" | "review" | "result";
-type HskCounts = { 1: number; 2: number; 3: number; 4: number; 5: number; 6: number; unknown: number };
 const MAX_INPUT_CHARS = 2000;
-
-const totalHskCounts: HskCounts = (() => {
-  const counts: HskCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, unknown: 0 };
-  for (const row of getHanziData()) {
-    const hsk = typeof row.hsk_level === "number" ? row.hsk_level : null;
-    if (hsk && hsk >= 1 && hsk <= 6) counts[hsk as 1 | 2 | 3 | 4 | 5 | 6] += 1;
-    else counts.unknown += 1;
-  }
-  return counts;
-})();
 
 function enrich(character: string): EnrichedCharacter {
   const meta = lookupHanziEntry(character);
@@ -64,8 +56,10 @@ export default function HomePage() {
   const [uniqueChars, setUniqueChars] = useState<string[]>([]);
   const [selectedSet, setSelectedSet] = useState<Set<string>>(new Set());
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingStarter, setIsLoadingStarter] = useState(false);
   const [showWordHints, setShowWordHints] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
   const [results, setResults] = useState<{
     newKnown: EnrichedCharacter[];
     queuedStudy: EnrichedCharacter[];
@@ -90,15 +84,11 @@ export default function HomePage() {
   }, []);
 
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
-  const hskStats = useMemo(() => {
-    const counts: HskCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, unknown: 0 };
-    for (const ch of uniqueChars) {
-      const hsk = lookupHanziEntry(ch)?.hsk_level;
-      if (hsk && hsk >= 1 && hsk <= 6) counts[hsk as 1 | 2 | 3 | 4 | 5 | 6] += 1;
-      else counts.unknown += 1;
-    }
-    return counts;
-  }, [uniqueChars]);
+  const hskStats = useMemo(
+    () => countHskLevels(uniqueChars.map((ch) => ({ hsk_level: lookupHanziEntry(ch)?.hsk_level }))),
+    [uniqueChars]
+  );
+  const newToYouCount = useMemo(() => uniqueChars.filter((ch) => !knownSet.has(ch)).length, [uniqueChars, knownSet]);
 
   function resetToFreshInput() {
     setText("");
@@ -108,10 +98,12 @@ export default function HomePage() {
     setSelectedSet(new Set());
     setResults(null);
     setMessage(null);
+    setNotice(null);
   }
 
   async function handleLoad() {
     setMessage(null);
+    setNotice(null);
 
     try {
       const chars = extractUniqueChineseChars(text);
@@ -191,6 +183,29 @@ export default function HomePage() {
     await runLogFlow();
   }
 
+  async function handleLoadStarterPassage() {
+    setMessage(null);
+    setNotice(null);
+    setIsLoadingStarter(true);
+    try {
+      const idx = getNextStarterPassageIndex();
+      const item = STARTER_PASSAGES[idx];
+      const res = await fetch(item.path, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`Could not load starter passage (${res.status}).`);
+      }
+      const body = await res.text();
+      setText(body.trim());
+      setMode("input");
+      bumpStarterPassageIndex(idx);
+      setNotice(item.title);
+    } catch (err) {
+      setMessage((err as Error).message || "Failed to load starter passage.");
+    } finally {
+      setIsLoadingStarter(false);
+    }
+  }
+
   return (
     <main className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 md:py-4">
       <AuthGate />
@@ -207,20 +222,11 @@ export default function HomePage() {
           <ProgressBar knownCount={knownCount} />
           <BankQuickNav active="home" />
           {mode === "review" && uniqueChars.length > 0 ? (
-            <div className="mx-auto mt-4 flex w-full max-w-4xl items-center justify-between gap-3">
-              <p className="w-full text-left text-xs text-stone-700 md:text-sm">
+            <div className="mx-auto mt-4 mb-3 w-full max-w-4xl">
+              <p className="w-full text-center text-xs text-stone-700 md:text-sm">
                 Deselect characters you don&apos;t recognize to keep them in Study. Select unhighlighted
                 characters to move them to Known.
               </p>
-              <label className="inline-flex shrink-0 cursor-pointer items-center gap-2 text-xs text-stone-600 md:text-sm">
-                <input
-                  type="checkbox"
-                  checked={showWordHints}
-                  onChange={(e) => setShowWordHints(e.target.checked)}
-                  className="h-4 w-4 rounded border-line text-stone-700 focus:ring-stone-400"
-                />
-                Word hints
-              </label>
             </div>
           ) : null}
 
@@ -233,7 +239,13 @@ export default function HomePage() {
               <>
                 <textarea
                   value={text}
-                  onChange={(e) => setText(e.target.value)}
+                  onChange={(e) => {
+                    const next = e.target.value;
+                    setText(next);
+                    if (next.length === 0) {
+                      setNotice(null);
+                    }
+                  }}
                   placeholder="Paste Chinese text here..."
                   maxLength={MAX_INPUT_CHARS}
                   className="h-52 w-full rounded-2xl border border-line bg-white p-5 text-base leading-7 outline-none shadow-card focus:border-stone-400 md:h-56"
@@ -242,18 +254,46 @@ export default function HomePage() {
                   <p className="self-start leading-none">
                     {text.length}/{MAX_INPUT_CHARS}
                   </p>
-                  <button
-                    onClick={handleLoad}
-                    className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700"
-                  >
-                    Load
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handleLoadStarterPassage}
+                      disabled={isLoadingStarter}
+                      className="rounded-xl border border-line px-4 py-2.5 text-sm text-stone-700 hover:bg-white disabled:opacity-60"
+                    >
+                      {isLoadingStarter ? "Loading..." : "Don’t know where to start?"}
+                    </button>
+                    <button
+                      onClick={handleLoad}
+                      className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700"
+                    >
+                      Load
+                    </button>
+                  </div>
                 </div>
+                {notice ? (
+                  <div className="flex justify-end">
+                    <p className="text-right text-sm text-stone-600">{notice}</p>
+                  </div>
+                ) : null}
               </>
             ) : null}
 
             {mode === "review" ? (
               <>
+                <div className="flex items-center justify-between gap-3 text-[11px] text-stone-600 md:text-xs">
+                  <p className="text-left">
+                    Passage snapshot: {uniqueChars.length} unique characters, {newToYouCount} new to you.
+                  </p>
+                  <label className="inline-flex shrink-0 cursor-pointer items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={showWordHints}
+                      onChange={(e) => setShowWordHints(e.target.checked)}
+                      className="h-4 w-4 rounded border-line text-stone-700 focus:ring-stone-400"
+                    />
+                    Word hints
+                  </label>
+                </div>
                 <TextLoader
                   text={text}
                   selected={selectedSet}
@@ -261,28 +301,26 @@ export default function HomePage() {
                   onToggle={toggleCharacter}
                   showWordHints={showWordHints}
                 />
+                <p className="text-right text-xs leading-none text-stone-600">
+                  Selected now: {selectedCount} of {uniqueChars.length}
+                </p>
                 <div className="hidden md:block">
                   <HskMiniPies stats={hskStats} />
                 </div>
-                <div className="flex items-start justify-between gap-3">
-                  <p className="pt-2 text-left text-xs leading-none text-stone-600">
-                    Selected for logging: {selectedCount} / {uniqueChars.length}
-                  </p>
-                  <div className="flex justify-end gap-2">
-                    <button
-                      onClick={() => setMode("input")}
-                      className="rounded-xl border border-line px-5 py-2.5 text-sm hover:bg-white"
-                    >
-                      Back
-                    </button>
-                    <button
-                      disabled={isSaving}
-                      onClick={handleLog}
-                      className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700 disabled:opacity-60"
-                    >
-                      {isSaving ? "Logging..." : "Log"}
-                    </button>
-                  </div>
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => setMode("input")}
+                    className="rounded-xl border border-line px-5 py-2.5 text-sm hover:bg-white"
+                  >
+                    Back
+                  </button>
+                  <button
+                    disabled={isSaving}
+                    onClick={handleLog}
+                    className="rounded-xl bg-stone-800 px-5 py-2.5 text-sm text-white hover:bg-stone-700 disabled:opacity-60"
+                  >
+                    {isSaving ? "Logging..." : "Log"}
+                  </button>
                 </div>
               </>
             ) : null}
@@ -291,7 +329,9 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
-                    <h3 className="mb-3 text-base font-medium">New characters logged</h3>
+                    <h3 className="mb-3 text-base font-medium">
+                      New characters logged ({results.newKnown.length})
+                    </h3>
                     <CharacterCloud
                       rows={results.newKnown}
                       empty="No new known characters in this event."
@@ -299,7 +339,9 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
-                    <h3 className="mb-3 text-base font-medium">Characters to study</h3>
+                    <h3 className="mb-3 text-base font-medium">
+                      Added to study ({results.queuedStudy.length})
+                    </h3>
                     <CharacterCloud
                       rows={results.queuedStudy}
                       empty="No study-queued characters in this event."
@@ -387,84 +429,6 @@ function CharacterCloud({
           {row.character}
         </button>
       ))}
-    </div>
-  );
-}
-
-function pieSlicePath(percent: number): string {
-  const clamped = Math.max(0, Math.min(percent, 100));
-  if (clamped <= 0) return "";
-  if (clamped >= 100) {
-    // Full circle path split into two arcs for SVG compatibility.
-    return "M 12 12 m -10 0 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0";
-  }
-  const angle = (clamped / 100) * 360;
-  const rad = ((angle - 90) * Math.PI) / 180;
-  const x = 12 + 10 * Math.cos(rad);
-  const y = 12 + 10 * Math.sin(rad);
-  const largeArc = angle > 180 ? 1 : 0;
-  return `M 12 12 L 12 2 A 10 10 0 ${largeArc} 1 ${x} ${y} Z`;
-}
-
-function HskMiniPies({ stats }: { stats: HskCounts }) {
-  const entries: Array<{ label: string; count: number; color: string }> = [
-    { label: "HSK 1", count: stats[1], color: "var(--h1)" },
-    { label: "HSK 2", count: stats[2], color: "var(--h2)" },
-    { label: "HSK 3", count: stats[3], color: "var(--h3)" },
-    { label: "HSK 4", count: stats[4], color: "var(--h4)" },
-    { label: "HSK 5", count: stats[5], color: "var(--h5)" },
-    { label: "HSK 6", count: stats[6], color: "var(--h6)" },
-    { label: "Unknown", count: stats.unknown, color: "var(--h0)" }
-  ];
-  const sampleTotal = Math.max(
-    stats[1] + stats[2] + stats[3] + stats[4] + stats[5] + stats[6] + stats.unknown,
-    1
-  );
-
-  return (
-    <div
-      className="rounded-xl border border-line bg-white p-3 shadow-card"
-      style={
-        {
-          "--h1": "#c41d0e",
-          "--h2": "#15803d",
-          "--h3": "#1d4ed8",
-          "--h4": "#fa6f19",
-          "--h5": "#8f7bbf",
-          "--h6": "#f74f90",
-          "--h0": "#6b7280"
-        } as CSSProperties
-      }
-    >
-      <div className="flex flex-wrap justify-center gap-5">
-        {entries.map((entry) => {
-          const pct = (entry.count / sampleTotal) * 100;
-          const denominator =
-            entry.label === "Unknown"
-              ? totalHskCounts.unknown
-              : totalHskCounts[Number(entry.label.replace("HSK ", "")) as 1 | 2 | 3 | 4 | 5 | 6];
-          return (
-            <div key={entry.label} className="flex items-center gap-2 text-xs leading-none text-stone-600">
-              <svg
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                className="block shrink-0 overflow-hidden rounded-full border border-stone-300"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" fill="#ddd6cc" />
-                {pct > 0 ? <path d={pieSlicePath(pct)} fill={entry.color} /> : null}
-              </svg>
-              <span className="flex flex-col leading-tight" style={{ color: entry.color }}>
-                <span>{entry.label}</span>
-                <span>
-                  ({entry.count}/{denominator})
-                </span>
-              </span>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 }

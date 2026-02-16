@@ -35,9 +35,9 @@ export function getHskMutedBgValue(level: number | null | undefined): string {
     case 3:
       return "#6b96cf";
     case 4:
-      return "#c79161";
+      return "#e68435";
     case 5:
-      return "#8e7fb0";
+      return "#a686c4";
     case 6:
       return "#d48aa0";
     default:

@@ -1,18 +1,24 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 export function AuthGate() {
   const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
-  const [skipGate, setSkipGate] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem("wobushizi:skip_auth_gate") === "1";
-  });
+  const [skipGate, setSkipGate] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [sentMsg, setSentMsg] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSkipGate(window.sessionStorage.getItem("wobushizi:skip_auth_gate") === "1");
+    }
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return null;
   if (!isSupabaseConfigured || user || skipGate) return null;
 
   async function onSubmit(e: FormEvent) {

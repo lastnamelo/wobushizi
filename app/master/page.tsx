@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AuthGate } from "@/components/AuthGate";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
+import { HskMiniPies } from "@/components/HskMiniPies";
 import { Logo } from "@/components/Logo";
 import { Milestone1000Modal } from "@/components/Milestone1000Modal";
 import { Milestone2500Modal } from "@/components/Milestone2500Modal";
@@ -17,6 +18,7 @@ import {
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
+import { countHskLevels } from "@/lib/hskCounts";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { CharacterStatus, EnrichedCharacter, HanzidbEntry } from "@/lib/types";
@@ -150,6 +152,15 @@ export default function MasterPage() {
 
     return [...deduped.values()];
   }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap]);
+  const masterStats = useMemo(() => {
+    const tracked = Array.from(stateMap.entries())
+      .filter(([, status]) => status === "known" || status === "study")
+      .map(([character]) => {
+        const row = lookupHanziEntry(character);
+        return { hsk_level: row?.hsk_level };
+      });
+    return countHskLevels(tracked);
+  }, [stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
     await setCharacterStatusLocal(character, status);
@@ -178,11 +189,14 @@ export default function MasterPage() {
       <p className="mt-2 text-center text-[11px] text-stone-500 md:hidden">
         You are in the mobile experience. For more features, please use desktop view.
       </p>
+      <div className="mx-auto mt-5 hidden w-full max-w-4xl md:block">
+        <HskMiniPies stats={masterStats} />
+      </div>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <div className="relative mx-auto mt-3 w-full max-w-4xl md:mt-6">
+        <div className="relative mx-auto mt-4 w-full max-w-4xl md:mt-6">
           <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
             {visibleRows.length.toLocaleString()} characters
           </p>
@@ -215,7 +229,7 @@ export default function MasterPage() {
                       <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
                         <path d="M2.5 4.5A1.5 1.5 0 0 1 4 3h12a1.5 1.5 0 0 1 1.2 2.4L12 12v4.25a.75.75 0 0 1-1.11.66l-2-1.11a.75.75 0 0 1-.39-.66V12L2.8 5.4a1.5 1.5 0 0 1-.3-.9Z" />
                       </svg>
-                      {hskFilter !== "all" ? `(${hskFilter})` : ""}
+                      {hskFilter !== "all" ? `(${hskFilter === "unknown" ? "-" : hskFilter})` : ""}
                     </span>
                   </th>
                   <th
@@ -237,7 +251,48 @@ export default function MasterPage() {
                     Trad / Alt{"  "}
                     <span className="inline-block align-middle text-xl leading-none">{hasTradAltOnly ? "●" : "○"}</span>
                   </th>
-                  <th className="border-b border-line bg-white py-1.5 md:py-1">Action</th>
+                  <th className="border-b border-line bg-white py-1.5 md:py-1">
+                    <span className="inline-flex items-center gap-1">
+                      Action
+                      <button
+                        onClick={() =>
+                          setStatusFilter((prev) =>
+                            prev === "all" ? "known" : prev === "known" ? "none" : "all"
+                          )
+                        }
+                        className="inline-flex items-center"
+                        title={
+                          statusFilter === "all"
+                            ? "Status filter: All"
+                            : statusFilter === "known"
+                              ? "Status filter: Known"
+                              : "Status filter: Unknown"
+                        }
+                        aria-label={
+                          statusFilter === "all"
+                            ? "Status filter all"
+                            : statusFilter === "known"
+                              ? "Status filter known"
+                              : "Status filter unknown"
+                        }
+                      >
+                        <svg
+                          viewBox="0 0 20 20"
+                          className="h-3.5 w-3.5"
+                          fill={
+                            statusFilter === "all"
+                              ? "#806252"
+                              : statusFilter === "known"
+                                ? "#15803d"
+                                : "#b91c1c"
+                          }
+                          aria-hidden="true"
+                        >
+                          <path d="M2.5 4.5A1.5 1.5 0 0 1 4 3h12a1.5 1.5 0 0 1 1.2 2.4L12 12v4.25a.75.75 0 0 1-1.11.66l-2-1.11a.75.75 0 0 1-.39-.66V12L2.8 5.4a1.5 1.5 0 0 1-.3-.9Z" />
+                        </svg>
+                      </button>
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>

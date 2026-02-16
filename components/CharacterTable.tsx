@@ -12,6 +12,8 @@ interface CharacterTableProps {
   onSetKnown?: (character: string) => Promise<void> | void;
   onSetStudy?: (character: string) => Promise<void> | void;
   pendingCharacters?: Set<string>;
+  defaultSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
+  forcedSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
 }
 
 export function CharacterTable({
@@ -19,13 +21,16 @@ export function CharacterTable({
   emptyMessage,
   onSetKnown,
   onSetStudy,
-  pendingCharacters
+  pendingCharacters,
+  defaultSortBy = "frequency_rank_asc",
+  forcedSortBy
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
   const [hasTradAltOnly, setHasTradAltOnly] = useState(false);
   const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
-  const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">("frequency_rank_asc");
+  const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(defaultSortBy);
+  const activeSortBy = forcedSortBy ?? sortBy;
 
   const filtered = useMemo(() => {
     const dedupedRows = new Map<string, EnrichedCharacter>();
@@ -85,21 +90,21 @@ export function CharacterTable({
     });
 
     return subset.sort((a, b) => {
-      if (sortBy === "frequency_rank_asc" || sortBy === "frequency_rank_desc") {
+      if (activeSortBy === "frequency_rank_asc" || activeSortBy === "frequency_rank_desc") {
         const af = a.frequency ?? Number.MAX_SAFE_INTEGER;
         const bf = b.frequency ?? Number.MAX_SAFE_INTEGER;
         if (af !== bf) {
-          return sortBy === "frequency_rank_asc" ? af - bf : bf - af;
+          return activeSortBy === "frequency_rank_asc" ? af - bf : bf - af;
         }
       }
-      if (sortBy === "hsk") {
+      if (activeSortBy === "hsk") {
         const ah = a.hsk_level ?? 99;
         const bh = b.hsk_level ?? 99;
         if (ah !== bh) return ah - bh;
       }
       return a.character.localeCompare(b.character, "zh-Hans-CN");
     });
-  }, [rows, search, sortBy, hskFilter, hasTradAltOnly]);
+  }, [rows, search, activeSortBy, hskFilter, hasTradAltOnly]);
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
@@ -131,20 +136,30 @@ export function CharacterTable({
                   <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
                     <path d="M2.5 4.5A1.5 1.5 0 0 1 4 3h12a1.5 1.5 0 0 1 1.2 2.4L12 12v4.25a.75.75 0 0 1-1.11.66l-2-1.11a.75.75 0 0 1-.39-.66V12L2.8 5.4a1.5 1.5 0 0 1-.3-.9Z" />
                   </svg>
-                  {hskFilter !== "all" ? `(${hskFilter})` : ""}
+                  {hskFilter !== "all" ? `(${hskFilter === "unknown" ? "-" : hskFilter})` : ""}
                 </span>
               </th>
               <th
-                className="hidden cursor-pointer border-b border-line bg-white py-1.5 md:table-cell md:py-1"
-                onClick={() =>
-                  setSortBy((prev) =>
-                    prev === "frequency_rank_asc"
-                      ? "frequency_rank_desc"
-                      : "frequency_rank_asc"
-                  )
+                className={`hidden border-b border-line bg-white py-1.5 md:table-cell md:py-1 ${
+                  forcedSortBy ? "cursor-default" : "cursor-pointer"
+                }`}
+                onClick={
+                  forcedSortBy
+                    ? undefined
+                    : () =>
+                        setSortBy((prev) =>
+                          prev === "frequency_rank_asc"
+                            ? "frequency_rank_desc"
+                            : "frequency_rank_asc"
+                        )
                 }
               >
-                Freq {sortBy === "frequency_rank_asc" ? "↑" : "↓"}
+                Freq{" "}
+                {activeSortBy === "frequency_rank_asc"
+                  ? "↑"
+                  : activeSortBy === "frequency_rank_desc"
+                    ? "↓"
+                    : ""}
               </th>
               <th
                 className="hidden w-36 cursor-pointer border-b border-line bg-white py-1.5 md:table-cell md:py-1"
