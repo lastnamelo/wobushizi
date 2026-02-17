@@ -198,12 +198,12 @@ export default function MasterPage() {
       {!loading ? (
         <div className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
           <div className="w-full">
+            <p className="mb-1 text-right text-xs leading-none text-stone-600">
+              {visibleRows.length.toLocaleString()} characters
+            </p>
             <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
               <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
                 Click any character to view definitions and more.
-              </p>
-              <p className="mb-1 text-right text-xs leading-none text-stone-600">
-                {visibleRows.length.toLocaleString()} characters
               </p>
               <div className="mb-2">
                 <input
