@@ -77,6 +77,7 @@ export function TopRightTextNav() {
               {authBusy ? "Sending..." : "Send link"}
             </button>
             {sentMsg ? <p className="mt-1 text-left text-[11px] text-emerald-700">{sentMsg}</p> : null}
+            <p className="mt-1 text-left text-[11px] text-stone-600">Check spam/junk if needed.</p>
             {error ? <p className="mt-1 text-left text-[11px] text-rose-700">{error}</p> : null}
           </form>
         ) : null}
