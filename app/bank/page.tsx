@@ -87,7 +87,7 @@ export default function BankPage() {
     () => (activeTab === "character" ? tabData.known : tabData.study),
     [activeTab, tabData]
   );
-  const currentStats = useMemo(() => countHskLevels(currentRows), [currentRows]);
+  const knownStats = useMemo(() => countHskLevels(tabData.known), [tabData.known]);
 
   async function moveStatus(character: string, status: "known" | "study") {
     if (pendingMoves.has(character)) return;
@@ -168,18 +168,15 @@ export default function BankPage() {
         You are in the mobile experience. For more features, use desktop view.
       </p>
       <div className="mx-auto mt-5 hidden w-full max-w-4xl md:block">
-        <HskMiniPies stats={currentStats} />
+        <HskMiniPies stats={knownStats} />
       </div>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
         <section className="mx-auto mt-3 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
-          <p className="mb-2 text-center text-xs text-stone-600 md:text-sm">
-            Click any character to view definitions and more.
-          </p>
-          <div className="relative w-full">
-            <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
+          <div className="w-full">
+            <p className="mb-1 text-right text-xs leading-none text-stone-600">
               {currentRows.length.toLocaleString()} characters
             </p>
             <CharacterTable
@@ -190,6 +187,7 @@ export default function BankPage() {
               onSetStudy={(ch) => moveStatus(ch, "study")}
               pendingCharacters={pendingMoves}
               defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
+              helperText="Click any character to view definitions and more."
             />
           </div>
 

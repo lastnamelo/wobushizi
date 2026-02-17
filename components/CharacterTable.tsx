@@ -14,6 +14,7 @@ interface CharacterTableProps {
   pendingCharacters?: Set<string>;
   defaultSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   forcedSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
+  helperText?: string;
 }
 
 export function CharacterTable({
@@ -23,7 +24,8 @@ export function CharacterTable({
   onSetStudy,
   pendingCharacters,
   defaultSortBy = "frequency_rank_asc",
-  forcedSortBy
+  forcedSortBy,
+  helperText
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
@@ -108,6 +110,11 @@ export function CharacterTable({
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
+      {helperText ? (
+        <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
+          {helperText}
+        </p>
+      ) : null}
       <div className="mb-2">
         <input
           value={search}

@@ -152,9 +152,9 @@ export default function MasterPage() {
 
     return [...deduped.values()];
   }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap]);
-  const masterStats = useMemo(() => {
+  const knownStats = useMemo(() => {
     const tracked = Array.from(stateMap.entries())
-      .filter(([, status]) => status === "known" || status === "study")
+      .filter(([, status]) => status === "known")
       .map(([character]) => {
         const row = lookupHanziEntry(character);
         return { hsk_level: row?.hsk_level };
@@ -190,21 +190,21 @@ export default function MasterPage() {
         You are in the mobile experience. For more features, use desktop view.
       </p>
       <div className="mx-auto mt-5 hidden w-full max-w-4xl md:block">
-        <HskMiniPies stats={masterStats} />
+        <HskMiniPies stats={knownStats} />
       </div>
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
         <div className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
-          <p className="mb-2 text-center text-xs text-stone-600 md:text-sm">
-            Click any character to view definitions and more.
-          </p>
-          <div className="relative w-full">
-            <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
-              {visibleRows.length.toLocaleString()} characters
-            </p>
+          <div className="w-full">
             <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
+              <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
+                Click any character to view definitions and more.
+              </p>
+              <p className="mb-1 text-right text-xs leading-none text-stone-600">
+                {visibleRows.length.toLocaleString()} characters
+              </p>
               <div className="mb-2">
                 <input
                   value={search}

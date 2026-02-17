@@ -16,6 +16,7 @@ import { extractUniqueChineseChars } from "@/lib/cjk";
 import {
   applyLogLocal,
   ensureLocalProfile,
+  fetchCharacterStatesByStatusLocal,
   fetchCharacterStatesForCharsLocal,
   fetchKnownCountLocal,
   setCharacterStatusLocal
@@ -53,6 +54,7 @@ export default function HomePage() {
   const [text, setText] = useState("");
   const [mode, setMode] = useState<HomeMode>("input");
   const [knownSet, setKnownSet] = useState<Set<string>>(new Set());
+  const [knownCharsForPies, setKnownCharsForPies] = useState<string[]>([]);
   const [uniqueChars, setUniqueChars] = useState<string[]>([]);
   const [selectedSet, setSelectedSet] = useState<Set<string>>(new Set());
   const [isSaving, setIsSaving] = useState(false);
@@ -71,11 +73,16 @@ export default function HomePage() {
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
     useMilestone2500(knownCount);
 
+  async function refreshKnownSnapshot() {
+    const [count, knownRows] = await Promise.all([fetchKnownCountLocal(), fetchCharacterStatesByStatusLocal("known")]);
+    setKnownCount(count);
+    setKnownCharsForPies(knownRows.map((row) => row.character));
+  }
+
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const count = await fetchKnownCountLocal();
-      setKnownCount(count);
+      await refreshKnownSnapshot();
       setLoading(false);
     })().catch((err: Error) => {
       setMessage(err.message);
@@ -85,8 +92,8 @@ export default function HomePage() {
 
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
   const hskStats = useMemo(
-    () => countHskLevels(uniqueChars.map((ch) => ({ hsk_level: lookupHanziEntry(ch)?.hsk_level }))),
-    [uniqueChars]
+    () => countHskLevels(knownCharsForPies.map((ch) => ({ hsk_level: lookupHanziEntry(ch)?.hsk_level }))),
+    [knownCharsForPies]
   );
   const newToYouCount = useMemo(() => uniqueChars.filter((ch) => !knownSet.has(ch)).length, [uniqueChars, knownSet]);
 
@@ -170,8 +177,7 @@ export default function HomePage() {
       setResults({ newKnown: dedupeByCharacter(newKnown), queuedStudy: dedupeByCharacter(queuedStudy) });
       setMode("result");
 
-      const count = await fetchKnownCountLocal();
-      setKnownCount(count);
+      await refreshKnownSnapshot();
     } catch (err) {
       setMessage((err as Error).message);
     } finally {
@@ -392,8 +398,7 @@ export default function HomePage() {
             onSetStatus={async (status) => {
               if (!detailState || !results) return;
               await setCharacterStatusLocal(detailState.character, status);
-              const count = await fetchKnownCountLocal();
-              setKnownCount(count);
+              await refreshKnownSnapshot();
 
               setResults((prev) => {
                 if (!prev || !detailState) return prev;
