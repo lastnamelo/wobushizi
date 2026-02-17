@@ -66,12 +66,16 @@ export default function HomePage() {
     newKnown: EnrichedCharacter[];
     queuedStudy: EnrichedCharacter[];
   } | null>(null);
-  const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
-  const { showMilestone, dismissMilestone } = useMilestone500(knownCount);
+  const [detailState, setDetailState] = useState<{
+    character: string;
+    status?: "known" | "study";
+    source: "known" | "study";
+  } | null>(null);
+  const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
-    useMilestone1000(knownCount);
+    useMilestone1000(knownCount, !loading);
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
-    useMilestone2500(knownCount);
+    useMilestone2500(knownCount, !loading);
 
   async function refreshKnownSnapshot() {
     const [count, knownRows] = await Promise.all([fetchKnownCountLocal(), fetchCharacterStatesByStatusLocal("known")]);
@@ -96,6 +100,27 @@ export default function HomePage() {
     [knownCharsForPies]
   );
   const newToYouCount = useMemo(() => uniqueChars.filter((ch) => !knownSet.has(ch)).length, [uniqueChars, knownSet]);
+  const modalRows = useMemo(() => {
+    if (!results || !detailState) return [];
+    return detailState.source === "known" ? results.newKnown : results.queuedStudy;
+  }, [detailState, results]);
+  const detailIndex = useMemo(() => {
+    if (!detailState) return -1;
+    return modalRows.findIndex((row) => row.character === detailState.character);
+  }, [detailState, modalRows]);
+
+  function moveDetail(step: -1 | 1) {
+    if (!detailState || detailIndex < 0) return;
+    const nextIndex = detailIndex + step;
+    if (nextIndex < 0 || nextIndex >= modalRows.length) return;
+    const nextRow = modalRows[nextIndex];
+    if (!nextRow) return;
+    setDetailState({
+      character: nextRow.character,
+      status: nextRow.status,
+      source: detailState.source
+    });
+  }
 
   function resetToFreshInput() {
     setText("");
@@ -354,7 +379,7 @@ export default function HomePage() {
                     <CharacterCloud
                       rows={results.newKnown}
                       empty="No new known characters in this event."
-                      onPickCharacter={(character) => setDetailState({ character, status: "known" })}
+                      onPickCharacter={(character) => setDetailState({ character, status: "known", source: "known" })}
                     />
                   </div>
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
@@ -364,7 +389,7 @@ export default function HomePage() {
                     <CharacterCloud
                       rows={results.queuedStudy}
                       empty="No study-queued characters in this event."
-                      onPickCharacter={(character) => setDetailState({ character, status: "study" })}
+                      onPickCharacter={(character) => setDetailState({ character, status: "study", source: "study" })}
                     />
                   </div>
                 </div>
@@ -414,8 +439,12 @@ export default function HomePage() {
                 return { newKnown: nextKnown, queuedStudy: nextStudy };
               });
 
-              setDetailState((prev) => (prev ? { ...prev, status } : prev));
+              setDetailState((prev) => (prev ? { ...prev, status, source: status } : prev));
             }}
+            onPrev={() => moveDetail(-1)}
+            onNext={() => moveDetail(1)}
+            canPrev={detailIndex > 0}
+            canNext={detailIndex >= 0 && detailIndex < modalRows.length - 1}
             onClose={() => setDetailState(null)}
           />
         </>

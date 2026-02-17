@@ -9,17 +9,32 @@ interface CharacterDetailModalProps {
   character: string | null;
   status?: CharacterStatus | "none";
   onSetStatus?: (status: CharacterStatus) => void | Promise<void>;
+  onPrev?: () => void;
+  onNext?: () => void;
+  canPrev?: boolean;
+  canNext?: boolean;
   onClose: () => void;
 }
 
-export function CharacterDetailModal({ character, status, onSetStatus, onClose }: CharacterDetailModalProps) {
+export function CharacterDetailModal({
+  character,
+  status,
+  onSetStatus,
+  onPrev,
+  onNext,
+  canPrev = false,
+  canNext = false,
+  onClose
+}: CharacterDetailModalProps) {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
+      if (event.key === "ArrowLeft" && canPrev) onPrev?.();
+      if (event.key === "ArrowRight" && canNext) onNext?.();
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [canNext, canPrev, onClose, onNext, onPrev]);
 
   if (!character) return null;
 
@@ -101,6 +116,27 @@ export function CharacterDetailModal({ character, status, onSetStatus, onClose }
               {[trad, ...altList].filter(Boolean).join(" / ") || "-"}
             </p>
           </div>
+        </div>
+
+        <div className="mt-4 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={onPrev}
+            disabled={!canPrev}
+            className="px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-35"
+            aria-label="Previous character"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            onClick={onNext}
+            disabled={!canNext}
+            className="px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-35"
+            aria-label="Next character"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>

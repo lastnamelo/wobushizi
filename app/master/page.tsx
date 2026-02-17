@@ -55,11 +55,11 @@ export default function MasterPage() {
   const [sortBy, setSortBy] = useState<"frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character">("frequency_rank_asc");
   const [message, setMessage] = useState<string | null>(null);
   const [detailState, setDetailState] = useState<{ character: string; status?: CharacterStatus } | null>(null);
-  const { showMilestone, dismissMilestone } = useMilestone500(knownCount);
+  const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
-    useMilestone1000(knownCount);
+    useMilestone1000(knownCount, !loading);
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
-    useMilestone2500(knownCount);
+    useMilestone2500(knownCount, !loading);
 
   useEffect(() => {
     (async () => {
@@ -152,6 +152,21 @@ export default function MasterPage() {
 
     return [...deduped.values()];
   }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap]);
+
+  const detailIndex = useMemo(() => {
+    if (!detailState) return -1;
+    return visibleRows.findIndex((row) => row.character === detailState.character);
+  }, [detailState, visibleRows]);
+
+  function moveDetail(step: -1 | 1) {
+    if (!detailState || detailIndex < 0) return;
+    const nextIndex = detailIndex + step;
+    if (nextIndex < 0 || nextIndex >= visibleRows.length) return;
+    const nextRow = visibleRows[nextIndex];
+    if (!nextRow) return;
+    setDetailState({ character: nextRow.character, status: nextRow.status });
+  }
+
   const knownStats = useMemo(() => {
     const tracked = Array.from(stateMap.entries())
       .filter(([, status]) => status === "known")
@@ -201,7 +216,7 @@ export default function MasterPage() {
             <p className="mb-1 text-right text-xs leading-none text-stone-600">
               {visibleRows.length.toLocaleString()} characters
             </p>
-            <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
+            <section className="w-full rounded-2xl border border-line bg-white p-4 shadow-card">
               <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
                 Click any character to view definitions and more.
               </p>
@@ -213,7 +228,7 @@ export default function MasterPage() {
                   className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
                 />
               </div>
-              <div className="table-scroll overflow-y-auto rounded-xl">
+              <div className="overflow-x-auto rounded-xl">
                 <table className="w-full table-fixed text-xs md:text-sm">
               <thead className="sticky top-0 z-10 bg-white">
                 <tr className="text-center text-[#806252]">
@@ -386,6 +401,10 @@ export default function MasterPage() {
           setStatus(detailState.character, status);
           setDetailState((prev) => (prev ? { ...prev, status } : prev));
         }}
+        onPrev={() => moveDetail(-1)}
+        onNext={() => moveDetail(1)}
+        canPrev={detailIndex > 0}
+        canNext={detailIndex >= 0 && detailIndex < visibleRows.length - 1}
         onClose={() => setDetailState(null)}
       />
     </main>

@@ -108,8 +108,22 @@ export function CharacterTable({
     });
   }, [rows, search, activeSortBy, hskFilter, hasTradAltOnly]);
 
+  const detailIndex = useMemo(() => {
+    if (!detailState) return -1;
+    return filtered.findIndex((row) => row.character === detailState.character);
+  }, [detailState, filtered]);
+
+  function moveDetail(step: -1 | 1) {
+    if (!detailState || detailIndex < 0) return;
+    const nextIndex = detailIndex + step;
+    if (nextIndex < 0 || nextIndex >= filtered.length) return;
+    const nextRow = filtered[nextIndex];
+    if (!nextRow) return;
+    setDetailState({ character: nextRow.character, status: nextRow.status });
+  }
+
   return (
-    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card">
+    <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
       {helperText ? (
         <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
           {helperText}
@@ -123,7 +137,7 @@ export function CharacterTable({
           className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
         />
       </div>
-      <div className="table-scroll min-h-0 flex-1 overflow-y-auto rounded-xl">
+      <div className="overflow-x-auto rounded-xl">
         <table className="w-full table-fixed text-xs md:text-sm">
           <thead className="sticky top-0 z-10 bg-white">
             <tr className="text-center text-[#806252]">
@@ -285,6 +299,10 @@ export function CharacterTable({
           }
           setDetailState((prev) => (prev ? { ...prev, status } : prev));
         }}
+        onPrev={() => moveDetail(-1)}
+        onNext={() => moveDetail(1)}
+        canPrev={detailIndex > 0}
+        canNext={detailIndex >= 0 && detailIndex < filtered.length - 1}
         onClose={() => setDetailState(null)}
       />
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useMemo } from "react";
+import { memo, useMemo, useState } from "react";
 import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { isChineseChar } from "@/lib/cjk";
@@ -55,6 +55,8 @@ export const TextLoader = memo(function TextLoader({
   onToggle,
   showWordHints = false
 }: TextLoaderProps) {
+  const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+
   const wordHintSegments = useMemo(() => {
     if (!showWordHints) return new Map<number, number>();
     return getWordHintSegmentMap(text);
@@ -95,17 +97,45 @@ export const TextLoader = memo(function TextLoader({
               }}
               onMouseEnter={(e) => {
                 if (!isSelected) e.currentTarget.style.backgroundColor = "#f2f5f8";
+                setTooltip({
+                  text: tooltipText,
+                  x: e.clientX + 10,
+                  y: e.clientY + 18
+                });
+              }}
+              onMouseMove={(e) => {
+                setTooltip((prev) =>
+                  prev
+                    ? {
+                        ...prev,
+                        x: e.clientX + 10,
+                        y: e.clientY + 18
+                      }
+                    : null
+                );
               }}
               onMouseLeave={(e) => {
                 if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
+                setTooltip(null);
               }}
-              title={tooltipText}
             >
               {ch}
             </span>
           );
         })}
       </div>
+      {tooltip ? (
+        <div
+          className="pointer-events-none fixed z-[120] px-2 py-1 text-xs text-stone-900"
+          style={{
+            left: tooltip.x,
+            top: tooltip.y,
+            backgroundColor: "#f6f6f6"
+          }}
+        >
+          {tooltip.text}
+        </div>
+      ) : null}
     </div>
   );
 });

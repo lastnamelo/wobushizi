@@ -52,11 +52,11 @@ export default function BankPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"character" | "study">("character");
   const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
-  const { showMilestone, dismissMilestone } = useMilestone500(knownCount);
+  const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
-    useMilestone1000(knownCount);
+    useMilestone1000(knownCount, !loading);
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
-    useMilestone2500(knownCount);
+    useMilestone2500(knownCount, !loading);
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
@@ -174,7 +174,7 @@ export default function BankPage() {
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <section className="mx-auto mt-3 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
+        <section className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
           <div className="w-full">
             <p className="mb-1 text-right text-xs leading-none text-stone-600">
               {currentRows.length.toLocaleString()} characters

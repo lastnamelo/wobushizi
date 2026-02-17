@@ -744,7 +744,7 @@
     "traditional_character": "麼",
     "alternate_characters": "麼",
     "pinyin": "me",
-    "pinyin_alternates": "mó|ma|yāo",
+    "pinyin_alternates": "mó",
     "definition": "interrogative particle; repetition of a tune small; tender",
     "hsk_level": 1,
     "frequency": 63,
@@ -4880,6 +4880,7 @@
     "traditional_character": "價",
     "alternate_characters": "價",
     "pinyin": "jià",
+    "pinyin_alternates": "jiè|jie",
     "definition": "price, value",
     "hsk_level": 4,
     "frequency": 409,
@@ -5359,6 +5360,7 @@
     "traditional_character": "稱",
     "alternate_characters": "稱",
     "pinyin": "chēng",
+    "pinyin_alternates": "chèn|chèng",
     "definition": "call; name, brand; address; say",
     "hsk_level": 5,
     "frequency": 449,
@@ -5815,6 +5817,7 @@
     "traditional_character": "號",
     "alternate_characters": "號",
     "pinyin": "hào",
+    "pinyin_alternates": "háo",
     "definition": "mark, sign; symbol; number",
     "hsk_level": 1,
     "frequency": 487,
@@ -5902,6 +5905,7 @@
     "traditional_character": "僅",
     "alternate_characters": "僅",
     "pinyin": "jǐn",
+    "pinyin_alternates": "jìn",
     "definition": "only, merely, solely, just",
     "hsk_level": 4,
     "frequency": 494,
@@ -6061,6 +6065,7 @@
     "traditional_character": "參",
     "alternate_characters": "參",
     "pinyin": "cān",
+    "pinyin_alternates": "shēn|cēn|sān",
     "definition": "take part in, intervene; ginseng",
     "hsk_level": 3,
     "frequency": 507,
@@ -6237,6 +6242,7 @@
     "traditional_character": "劃",
     "alternate_characters": "劃",
     "pinyin": "huà",
+    "pinyin_alternates": "huá",
     "definition": "to row or paddle boat; to scratch",
     "hsk_level": 4,
     "frequency": 522,
@@ -6395,6 +6401,7 @@
     "traditional_character": "責",
     "alternate_characters": "責",
     "pinyin": "zé",
+    "pinyin_alternates": "zhài",
     "hsk_level": 4,
     "frequency": 535,
     "radical": "貝",
@@ -6486,6 +6493,7 @@
   {
     "character": "底",
     "pinyin": "dǐ",
+    "pinyin_alternates": "de",
     "definition": "bottom, underneath, underside",
     "hsk_level": 4,
     "frequency": 543,
@@ -6565,6 +6573,7 @@
   {
     "character": "供",
     "pinyin": "gōng",
+    "pinyin_alternates": "gòng",
     "definition": "supply, provide for; offer in worship",
     "hsk_level": 4,
     "frequency": 550,
@@ -6895,6 +6904,7 @@
     "traditional_character": "織",
     "alternate_characters": "織",
     "pinyin": "zhī",
+    "pinyin_alternates": "zhì",
     "definition": "weave, knit; organize, unite",
     "hsk_level": 5,
     "frequency": 578,
@@ -6919,6 +6929,7 @@
     "traditional_character": "鬥",
     "alternate_characters": "鬥",
     "pinyin": "dòu",
+    "pinyin_alternates": "dǒu",
     "definition": "Chinese peck; liquid measure",
     "hsk_level": 5,
     "frequency": 580,
@@ -6967,6 +6978,7 @@
     "traditional_character": "紀",
     "alternate_characters": "紀",
     "pinyin": "jì",
+    "pinyin_alternates": "jǐ",
     "definition": "record, annal, historical account",
     "hsk_level": 4,
     "frequency": 584,
@@ -6980,6 +6992,7 @@
     "traditional_character": "採",
     "alternate_characters": "採",
     "pinyin": "cǎi",
+    "pinyin_alternates": "cài",
     "definition": "collect, gather; pick, pluck",
     "hsk_level": 5,
     "frequency": 585,
@@ -7042,6 +7055,7 @@
     "traditional_character": "蘇",
     "alternate_characters": "蘇",
     "pinyin": "sū",
+    "pinyin_alternates": "sù",
     "hsk_level": 6,
     "frequency": 590,
     "radical": "艸",
@@ -7074,6 +7088,7 @@
   {
     "character": "朝",
     "pinyin": "cháo",
+    "pinyin_alternates": "zhāo",
     "definition": "dynasty; morning",
     "hsk_level": 5,
     "frequency": 593,
@@ -7240,6 +7255,7 @@
   {
     "character": "助",
     "pinyin": "zhù",
+    "pinyin_alternates": "chú",
     "definition": "help, aid, assist",
     "hsk_level": 2,
     "frequency": 607,
@@ -7276,6 +7292,7 @@
     "traditional_character": "屬",
     "alternate_characters": "屬",
     "pinyin": "shǔ",
+    "pinyin_alternates": "zhǔ",
     "definition": "class, category, type; belong to",
     "hsk_level": 5,
     "frequency": 610,
@@ -7393,6 +7410,7 @@
   {
     "character": "否",
     "pinyin": "fǒu",
+    "pinyin_alternates": "pǐ",
     "definition": "not, no, negative; final particle",
     "hsk_level": 4,
     "frequency": 620,
@@ -7452,6 +7470,7 @@
   {
     "character": "率",
     "pinyin": "lǜ",
+    "pinyin_alternates": "shuài",
     "definition": "to lead; ratio; rate; limit",
     "hsk_level": 5,
     "frequency": 625,
@@ -7534,6 +7553,7 @@
     "traditional_character": "彈",
     "alternate_characters": "彈",
     "pinyin": "dàn",
+    "pinyin_alternates": "tán",
     "definition": "pellet, bullet, shot, shell",
     "hsk_level": 4,
     "frequency": 632,
@@ -7545,6 +7565,7 @@
   {
     "character": "校",
     "pinyin": "xiào",
+    "pinyin_alternates": "jiào",
     "definition": "school; military field officer",
     "hsk_level": 1,
     "frequency": 633,
@@ -7569,6 +7590,7 @@
     "traditional_character": "創",
     "alternate_characters": "創",
     "pinyin": "chuàng",
+    "pinyin_alternates": "chuāng",
     "definition": "establish, create; knife cut",
     "hsk_level": 5,
     "frequency": 635,
@@ -7580,6 +7602,7 @@
   {
     "character": "假",
     "pinyin": "jiǎ",
+    "pinyin_alternates": "jià",
     "definition": "falsehood, deception; vacation",
     "hsk_level": 3,
     "frequency": 636,
@@ -7837,6 +7860,7 @@
   {
     "character": "血",
     "pinyin": "xuè",
+    "pinyin_alternates": "xiě",
     "definition": "blood; radical number 143",
     "hsk_level": 5,
     "frequency": 658,
@@ -7900,6 +7924,7 @@
     "traditional_character": "適",
     "alternate_characters": "適",
     "pinyin": "shì",
+    "pinyin_alternates": "kuò",
     "definition": "go, reach; appropriate, suitable",
     "hsk_level": 4,
     "frequency": 663,
@@ -7933,6 +7958,7 @@
   {
     "character": "省",
     "pinyin": "shěng",
+    "pinyin_alternates": "xǐng",
     "definition": "province; save, economize",
     "hsk_level": 4,
     "frequency": 666,
@@ -7990,6 +8016,7 @@
   {
     "character": "食",
     "pinyin": "shí",
+    "pinyin_alternates": "sì|yì",
     "definition": "eat; meal; food; KangXi radical number 184",
     "hsk_level": 5,
     "frequency": 671,
@@ -8124,6 +8151,7 @@
   {
     "character": "排",
     "pinyin": "pái",
+    "pinyin_alternates": "pǎi",
     "definition": "row, rank, line",
     "hsk_level": 4,
     "frequency": 682,
@@ -8293,6 +8321,7 @@
     "traditional_character": "龍",
     "alternate_characters": "龍",
     "pinyin": "lóng",
+    "pinyin_alternates": "lǒng",
     "definition": "dragon; symbolic of emperor",
     "hsk_level": 5,
     "frequency": 696,
@@ -8317,6 +8346,7 @@
   {
     "character": "疑",
     "pinyin": "yí",
+    "pinyin_alternates": "nǐ",
     "definition": "doubt, question, suspect",
     "hsk_level": 4,
     "frequency": 698,
@@ -8365,6 +8395,7 @@
     "traditional_character": "衝",
     "alternate_characters": "衝",
     "pinyin": "chōng",
+    "pinyin_alternates": "chòng",
     "definition": "soar; pour boiling water over",
     "hsk_level": 5,
     "frequency": 702,
@@ -8376,6 +8407,7 @@
   {
     "character": "射",
     "pinyin": "shè",
+    "pinyin_alternates": "yè|yì",
     "definition": "shoot, eject, issue forth, emit",
     "hsk_level": 5,
     "frequency": 703,
@@ -8492,6 +8524,7 @@
   {
     "character": "哈",
     "pinyin": "hā",
+    "pinyin_alternates": "hǎ|hà",
     "definition": "sound of laughter",
     "hsk_level": 5,
     "frequency": 713,
@@ -8538,6 +8571,7 @@
   {
     "character": "卡",
     "pinyin": "kǎ",
+    "pinyin_alternates": "qiǎ",
     "definition": "card, punch card; calorie",
     "hsk_level": 3,
     "frequency": 717,
@@ -8573,6 +8607,7 @@
     "traditional_character": "擔",
     "alternate_characters": "擔",
     "pinyin": "dān",
+    "pinyin_alternates": "dàn|dǎn",
     "definition": "carry, bear, undertake",
     "hsk_level": 3,
     "frequency": 720,
@@ -8712,6 +8747,7 @@
   {
     "character": "差",
     "pinyin": "chà",
+    "pinyin_alternates": "chā|chāi|cī",
     "definition": "to differ; different, wrong; nearly, almost; an officer",
     "hsk_level": 3,
     "frequency": 732,
@@ -8760,6 +8796,7 @@
   {
     "character": "角",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "jué",
     "definition": "horn; angle, corner; point",
     "hsk_level": 3,
     "frequency": 736,
@@ -8773,6 +8810,7 @@
     "traditional_character": "佔",
     "alternate_characters": "佔",
     "pinyin": "zhàn",
+    "pinyin_alternates": "zhān",
     "definition": "divine; observe; versify",
     "hsk_level": 4,
     "frequency": 737,
@@ -8856,6 +8894,7 @@
   {
     "character": "降",
     "pinyin": "jiàng",
+    "pinyin_alternates": "xiáng",
     "definition": "descend, fall, drop; lower, down",
     "hsk_level": 4,
     "frequency": 744,
@@ -8955,6 +8994,7 @@
     "traditional_character": "讀",
     "alternate_characters": "讀",
     "pinyin": "dú",
+    "pinyin_alternates": "dòu",
     "definition": "read, study; pronounce",
     "hsk_level": 1,
     "frequency": 752,
@@ -8966,6 +9006,7 @@
   {
     "character": "啊",
     "pinyin": "a",
+    "pinyin_alternates": "ā|á|ǎ|à",
     "definition": "exclamatory particle",
     "hsk_level": 3,
     "frequency": 753,
@@ -9001,6 +9042,7 @@
     "traditional_character": "壓",
     "alternate_characters": "壓",
     "pinyin": "yā",
+    "pinyin_alternates": "yà",
     "definition": "press; oppress; crush; pressure",
     "hsk_level": 4,
     "frequency": 756,
@@ -9098,6 +9140,7 @@
   {
     "character": "副",
     "pinyin": "fù",
+    "pinyin_alternates": "pì",
     "definition": "assist; supplement; assistant",
     "hsk_level": 6,
     "frequency": 764,
@@ -9144,6 +9187,7 @@
   {
     "character": "追",
     "pinyin": "zhuī",
+    "pinyin_alternates": "duī",
     "definition": "pursue, chase after; expel",
     "hsk_level": 5,
     "frequency": 768,
@@ -9180,6 +9224,7 @@
     "character": "佛",
     "alternate_characters": "彿",
     "pinyin": "fú",
+    "pinyin_alternates": "fó|bì|bó",
     "definition": "Buddha; of Buddhism; merciful person; Buddhist image; the dead (Jap.)",
     "hsk_level": 5,
     "frequency": 771,
@@ -9250,6 +9295,7 @@
   {
     "character": "著",
     "pinyin": "zhe",
+    "pinyin_alternates": "zhù|zhuó",
     "definition": "manifest; (Cant.) to wear",
     "hsk_level": 4,
     "frequency": 777,
@@ -9331,6 +9377,7 @@
   {
     "character": "份",
     "pinyin": "fèn",
+    "pinyin_alternates": "bīn",
     "definition": "portion, part; duty",
     "hsk_level": 4,
     "frequency": 784,
@@ -9366,6 +9413,7 @@
   {
     "character": "背",
     "pinyin": "bèi",
+    "pinyin_alternates": "bēi",
     "definition": "back; back side; behind; betray",
     "hsk_level": 5,
     "frequency": 787,
@@ -9427,6 +9475,7 @@
     "traditional_character": "惡",
     "alternate_characters": "惡",
     "pinyin": "è",
+    "pinyin_alternates": "wù|ě|wū",
     "definition": "evil, wicked, bad, foul",
     "hsk_level": 5,
     "frequency": 792,
@@ -9685,6 +9734,7 @@
   {
     "character": "景",
     "pinyin": "jǐng",
+    "pinyin_alternates": "yǐng",
     "definition": "scenery, view; conditions",
     "hsk_level": 4,
     "frequency": 814,
@@ -9767,6 +9817,7 @@
   {
     "character": "伯",
     "pinyin": "bó",
+    "pinyin_alternates": "bǎi|bà",
     "hsk_level": 6,
     "frequency": 821,
     "radical": "人",
@@ -9849,6 +9900,7 @@
   {
     "character": "核",
     "pinyin": "hé",
+    "pinyin_alternates": "hú",
     "definition": "seed, kernel, core, nut; atom",
     "hsk_level": 5,
     "frequency": 828,
@@ -9921,6 +9973,7 @@
     "traditional_character": "麗",
     "alternate_characters": "麗",
     "pinyin": "lì",
+    "pinyin_alternates": "lí",
     "definition": "beautiful, magnificent, elegant",
     "hsk_level": 4,
     "frequency": 834,
@@ -9967,6 +10020,7 @@
     "traditional_character": "監",
     "alternate_characters": "監",
     "pinyin": "jiān",
+    "pinyin_alternates": "jiàn",
     "definition": "supervise, control, direct",
     "hsk_level": 6,
     "frequency": 838,
@@ -10002,6 +10056,7 @@
   {
     "character": "露",
     "pinyin": "lù",
+    "pinyin_alternates": "lòu",
     "definition": "dew; bare, open, exposed",
     "hsk_level": 6,
     "frequency": 841,
@@ -10079,6 +10134,7 @@
   {
     "character": "沙",
     "pinyin": "shā",
+    "pinyin_alternates": "shà",
     "definition": "sand, gravel, pebbles; granulated",
     "hsk_level": 4,
     "frequency": 848,
@@ -10101,6 +10157,7 @@
   {
     "character": "括",
     "pinyin": "kuò",
+    "pinyin_alternates": "guā",
     "definition": "include, embrace, enclose",
     "hsk_level": 5,
     "frequency": 850,
@@ -10273,6 +10330,7 @@
   {
     "character": "跑",
     "pinyin": "pǎo",
+    "pinyin_alternates": "páo",
     "definition": "run, flee, leave in hurry",
     "hsk_level": 2,
     "frequency": 864,
@@ -10297,6 +10355,7 @@
   {
     "character": "散",
     "pinyin": "sàn",
+    "pinyin_alternates": "sǎn",
     "definition": "scatter, disperse, break up",
     "hsk_level": 4,
     "frequency": 866,
@@ -10347,6 +10406,7 @@
     "traditional_character": "漸",
     "alternate_characters": "漸",
     "pinyin": "jiàn",
+    "pinyin_alternates": "jiān",
     "definition": "gradually",
     "hsk_level": 5,
     "frequency": 870,
@@ -10432,6 +10492,7 @@
     "traditional_character": "縣",
     "alternate_characters": "縣",
     "pinyin": "xiàn",
+    "pinyin_alternates": "xuán",
     "definition": "county, district, subdivision",
     "hsk_level": 5,
     "frequency": 877,
@@ -10647,6 +10708,7 @@
     "traditional_character": "祕",
     "alternate_characters": "祕",
     "pinyin": "mì",
+    "pinyin_alternates": "bì",
     "definition": "secret, mysterious, abstruse",
     "hsk_level": 5,
     "frequency": 896,
@@ -10780,6 +10842,7 @@
   {
     "character": "藏",
     "pinyin": "cáng",
+    "pinyin_alternates": "zàng",
     "definition": "hide, conceal; hoard, store up",
     "hsk_level": 5,
     "frequency": 907,
@@ -10817,6 +10880,7 @@
   {
     "character": "票",
     "pinyin": "piào",
+    "pinyin_alternates": "piāo",
     "definition": "slip of paper or bamboo; ticket",
     "hsk_level": 2,
     "frequency": 910,
@@ -10863,6 +10927,7 @@
   {
     "character": "炮",
     "pinyin": "pào",
+    "pinyin_alternates": "páo|bāo",
     "definition": "large gun, cannon; artillery",
     "hsk_level": 5,
     "frequency": 914,
@@ -10935,6 +11000,7 @@
     "traditional_character": "葉",
     "alternate_characters": "葉",
     "pinyin": "yè",
+    "pinyin_alternates": "xié",
     "definition": "to harmonize, to rhyme; to unite; (borrowed for) leaf",
     "hsk_level": 4,
     "frequency": 920,
@@ -10992,6 +11058,7 @@
   {
     "character": "予",
     "pinyin": "yǔ",
+    "pinyin_alternates": "yú",
     "definition": "I, me; to give",
     "hsk_level": 6,
     "frequency": 925,
@@ -11016,6 +11083,7 @@
   {
     "character": "港",
     "pinyin": "gǎng",
+    "pinyin_alternates": "jiǎng",
     "definition": "port, harbor; small stream; bay",
     "hsk_level": 6,
     "frequency": 927,
@@ -11027,6 +11095,7 @@
   {
     "character": "雨",
     "pinyin": "yǔ",
+    "pinyin_alternates": "yù",
     "definition": "rain; rainy; KangXi radical 173",
     "hsk_level": 1,
     "frequency": 928,
@@ -11038,6 +11107,7 @@
   {
     "character": "呀",
     "pinyin": "ya",
+    "pinyin_alternates": "yā",
     "definition": "particle used to express surprise or mild emphasis; (Cant.) slurred form of the number ten",
     "hsk_level": 4,
     "frequency": 929,
@@ -11256,6 +11326,7 @@
   {
     "character": "毒",
     "pinyin": "dú",
+    "pinyin_alternates": "dài",
     "definition": "poison, venom; poisonous",
     "hsk_level": 5,
     "frequency": 947,
@@ -11304,6 +11375,7 @@
     "traditional_character": "澤",
     "alternate_characters": "澤",
     "pinyin": "zé",
+    "pinyin_alternates": "shì",
     "definition": "marsh, swamp; grace, brilliance",
     "hsk_level": 6,
     "frequency": 951,
@@ -11350,6 +11422,7 @@
   {
     "character": "莫",
     "pinyin": "mò",
+    "pinyin_alternates": "mù",
     "definition": "do not, is not, can not; negative",
     "hsk_level": 6,
     "frequency": 955,
@@ -11374,6 +11447,7 @@
   {
     "character": "亡",
     "pinyin": "wáng",
+    "pinyin_alternates": "wú",
     "definition": "death, destroyed; lose, perish",
     "hsk_level": 6,
     "frequency": 957,
@@ -11387,6 +11461,7 @@
     "traditional_character": "鮮",
     "alternate_characters": "鮮",
     "pinyin": "xiān",
+    "pinyin_alternates": "xiǎn",
     "definition": "fresh; delicious; attractive",
     "hsk_level": 3,
     "frequency": 958,
@@ -11426,6 +11501,7 @@
     "traditional_character": "擇",
     "alternate_characters": "擇",
     "pinyin": "zé",
+    "pinyin_alternates": "zhái",
     "definition": "select, choose, pick out",
     "hsk_level": 3,
     "frequency": 961,
@@ -11452,6 +11528,7 @@
     "traditional_character": "廠",
     "alternate_characters": "廠",
     "pinyin": "chǎng",
+    "pinyin_alternates": "ān|hàn",
     "definition": "factory, workshop; radical 27",
     "hsk_level": 5,
     "frequency": 963,
@@ -11485,6 +11562,7 @@
   {
     "character": "勒",
     "pinyin": "lēi",
+    "pinyin_alternates": "lè",
     "definition": "strangle, tighten",
     "frequency": 966,
     "radical": "力",
@@ -11558,6 +11636,7 @@
     "traditional_character": "奧",
     "alternate_characters": "奧",
     "pinyin": "ào",
+    "pinyin_alternates": "yù",
     "definition": "mysterious, obscure, profound",
     "hsk_level": 6,
     "frequency": 972,
@@ -11603,6 +11682,7 @@
   {
     "character": "炸",
     "pinyin": "zhà",
+    "pinyin_alternates": "zhá",
     "definition": "to fry in oil; to scald; to explode",
     "hsk_level": 5,
     "frequency": 976,
@@ -11616,6 +11696,7 @@
     "traditional_character": "載",
     "alternate_characters": "載",
     "pinyin": "zài",
+    "pinyin_alternates": "zǎi",
     "definition": "load; carry; transport, convey",
     "hsk_level": 5,
     "frequency": 977,
@@ -11659,6 +11740,7 @@
   {
     "character": "旁",
     "pinyin": "páng",
+    "pinyin_alternates": "bàng",
     "definition": "side; by side, close by, near",
     "hsk_level": 2,
     "frequency": 981,
@@ -11683,6 +11765,7 @@
   {
     "character": "喝",
     "pinyin": "hē",
+    "pinyin_alternates": "hè|yè",
     "definition": "drink; shout, call out",
     "hsk_level": 1,
     "frequency": 983,
@@ -11716,6 +11799,7 @@
   {
     "character": "禁",
     "pinyin": "jìn",
+    "pinyin_alternates": "jīn",
     "definition": "restrict, prohibit, forbid",
     "hsk_level": 4,
     "frequency": 986,
@@ -11822,6 +11906,7 @@
     "traditional_character": "孫",
     "alternate_characters": "孫",
     "pinyin": "sūn",
+    "pinyin_alternates": "xùn",
     "definition": "grandchild, descendent; surname",
     "hsk_level": 4,
     "frequency": 995,
@@ -11866,6 +11951,7 @@
   {
     "character": "跳",
     "pinyin": "tiào",
+    "pinyin_alternates": "táo",
     "definition": "jump, leap, vault, bounce; dance",
     "hsk_level": 2,
     "frequency": 999,
@@ -11949,6 +12035,7 @@
   {
     "character": "迫",
     "pinyin": "pò",
+    "pinyin_alternates": "pǎi",
     "definition": "coerce, force, compel; urgent",
     "hsk_level": 5,
     "frequency": 1006,
@@ -12065,6 +12152,7 @@
   {
     "character": "卷",
     "pinyin": "juǎn",
+    "pinyin_alternates": "juàn",
     "definition": "scroll; curl; make a comeback",
     "hsk_level": 5,
     "frequency": 1016,
@@ -12100,6 +12188,7 @@
     "traditional_character": "寧",
     "alternate_characters": "寧",
     "pinyin": "níng",
+    "pinyin_alternates": "nìng|zhù",
     "definition": "calm, peaceful, serene; healthy",
     "hsk_level": 5,
     "frequency": 1019,
@@ -12209,6 +12298,7 @@
   {
     "character": "暴",
     "pinyin": "bào",
+    "pinyin_alternates": "pù",
     "definition": "violent, brutal, tyrannical",
     "hsk_level": 6,
     "frequency": 1028,
@@ -12266,6 +12356,7 @@
     "traditional_character": "戲",
     "alternate_characters": "戲",
     "pinyin": "xì",
+    "pinyin_alternates": "hū",
     "definition": "theatrical play, show",
     "hsk_level": 3,
     "frequency": 1033,
@@ -12279,6 +12370,7 @@
     "traditional_character": "隱",
     "alternate_characters": "隱",
     "pinyin": "yǐn",
+    "pinyin_alternates": "yìn",
     "definition": "hide, conceal; hidden, secret",
     "hsk_level": 6,
     "frequency": 1034,
@@ -12290,6 +12382,7 @@
   {
     "character": "熟",
     "pinyin": "shú",
+    "pinyin_alternates": "shóu",
     "definition": "well-cooked; ripe; familiar with",
     "hsk_level": 4,
     "frequency": 1035,
@@ -12301,6 +12394,7 @@
   {
     "character": "骨",
     "pinyin": "gǔ",
+    "pinyin_alternates": "gū",
     "definition": "bone; skeleton; frame, framework",
     "hsk_level": 5,
     "frequency": 1036,
@@ -12336,6 +12430,7 @@
   {
     "character": "蒙",
     "pinyin": "méng",
+    "pinyin_alternates": "mēng|měng",
     "definition": "cover; ignorant; suffer; mongolia",
     "hsk_level": 6,
     "frequency": 1039,
@@ -12490,6 +12585,7 @@
     "traditional_character": "蓋",
     "alternate_characters": "蓋",
     "pinyin": "gài",
+    "pinyin_alternates": "gě|hé",
     "definition": "cover, hide, protect",
     "hsk_level": 5,
     "frequency": 1052,
@@ -12501,6 +12597,7 @@
   {
     "character": "弄",
     "pinyin": "nòng",
+    "pinyin_alternates": "lòng",
     "definition": "do, play or fiddle with; alley",
     "hsk_level": 4,
     "frequency": 1053,
@@ -12560,6 +12657,7 @@
   {
     "character": "刺",
     "pinyin": "cì",
+    "pinyin_alternates": "cī",
     "definition": "stab; prick, irritate; prod",
     "hsk_level": 5,
     "frequency": 1058,
@@ -12619,6 +12717,7 @@
     "traditional_character": "齊",
     "alternate_characters": "齊",
     "pinyin": "qí",
+    "pinyin_alternates": "zhāi",
     "definition": "even, uniform, of equal length",
     "hsk_level": 5,
     "frequency": 1063,
@@ -12643,6 +12742,7 @@
   {
     "character": "趣",
     "pinyin": "qù",
+    "pinyin_alternates": "cù",
     "hsk_level": 3,
     "frequency": 1065,
     "radical": "走",
@@ -12653,6 +12753,7 @@
   {
     "character": "曲",
     "pinyin": "qū",
+    "pinyin_alternates": "qǔ",
     "definition": "crooked, bent; wrong, false",
     "hsk_level": 6,
     "frequency": 1066,
@@ -12767,6 +12868,7 @@
   {
     "character": "妻",
     "pinyin": "qī",
+    "pinyin_alternates": "qì",
     "definition": "wife",
     "hsk_level": 2,
     "frequency": 1076,
@@ -12813,6 +12915,7 @@
   {
     "character": "塞",
     "pinyin": "sāi",
+    "pinyin_alternates": "sài|sè",
     "definition": "stop up, block, seal, cork; pass, frontier; fortress",
     "hsk_level": 6,
     "frequency": 1080,
@@ -12835,6 +12938,7 @@
   {
     "character": "休",
     "pinyin": "xiū",
+    "pinyin_alternates": "xǔ",
     "definition": "rest, stop; retire; do not!",
     "hsk_level": 2,
     "frequency": 1082,
@@ -12905,6 +13009,7 @@
     "traditional_character": "綠",
     "alternate_characters": "綠",
     "pinyin": "lǜ",
+    "pinyin_alternates": "lù",
     "definition": "green; chlorine",
     "hsk_level": 3,
     "frequency": 1088,
@@ -13263,6 +13368,7 @@
     "traditional_character": "絡",
     "alternate_characters": "絡",
     "pinyin": "luò",
+    "pinyin_alternates": "lào",
     "definition": "enmesh, wrap around; web, net",
     "hsk_level": 5,
     "frequency": 1118,
@@ -13285,6 +13391,7 @@
   {
     "character": "朱",
     "pinyin": "zhū",
+    "pinyin_alternates": "shú",
     "definition": "cinnabar, vermilion; surname",
     "frequency": 1120,
     "radical": "木",
@@ -13401,6 +13508,7 @@
     "traditional_character": "築",
     "alternate_characters": "築",
     "pinyin": "zhù",
+    "pinyin_alternates": "zhú",
     "definition": "ancient lute; build",
     "hsk_level": 5,
     "frequency": 1130,
@@ -13412,6 +13520,7 @@
   {
     "character": "折",
     "pinyin": "zhé",
+    "pinyin_alternates": "zhē|shé",
     "definition": "break off, snap; bend",
     "hsk_level": 4,
     "frequency": 1131,
@@ -13482,6 +13591,7 @@
   {
     "character": "混",
     "pinyin": "hùn",
+    "pinyin_alternates": "hún",
     "definition": "to mix, blend, mingle; to bumble along",
     "hsk_level": 6,
     "frequency": 1137,
@@ -13537,6 +13647,7 @@
   {
     "character": "盛",
     "pinyin": "shèng",
+    "pinyin_alternates": "chéng",
     "definition": "abundant, flourishing; contain; fill",
     "hsk_level": 6,
     "frequency": 1142,
@@ -13767,6 +13878,7 @@
   {
     "character": "摩",
     "pinyin": "mó",
+    "pinyin_alternates": "mā",
     "definition": "rub, scour, grind; friction",
     "hsk_level": 5,
     "frequency": 1162,
@@ -13832,6 +13944,7 @@
   {
     "character": "丁",
     "pinyin": "dīng",
+    "pinyin_alternates": "zhēng",
     "definition": "male adult; robust, vigorous; 4th heavenly stem",
     "hsk_level": 6,
     "frequency": 1168,
@@ -13902,6 +14015,7 @@
   {
     "character": "耶",
     "pinyin": "yé",
+    "pinyin_alternates": "yē",
     "definition": "used in transliteration",
     "frequency": 1174,
     "radical": "耳",
@@ -14139,6 +14253,7 @@
   {
     "character": "啦",
     "pinyin": "la",
+    "pinyin_alternates": "lā",
     "definition": "final particle of assertion",
     "hsk_level": 6,
     "frequency": 1194,
@@ -14150,6 +14265,7 @@
   {
     "character": "瓦",
     "pinyin": "wǎ",
+    "pinyin_alternates": "wà",
     "definition": "tile; earthenware pottery; girl",
     "hsk_level": 6,
     "frequency": 1195,
@@ -14373,6 +14489,7 @@
   {
     "character": "召",
     "pinyin": "zhào",
+    "pinyin_alternates": "shào",
     "definition": "imperial decree; summon",
     "hsk_level": 5,
     "frequency": 1214,
@@ -14447,6 +14564,7 @@
     "traditional_character": "側",
     "alternate_characters": "側",
     "pinyin": "cè",
+    "pinyin_alternates": "zè|zhāi",
     "definition": "side; incline, slant, lean",
     "hsk_level": 6,
     "frequency": 1220,
@@ -14470,6 +14588,7 @@
   {
     "character": "冒",
     "pinyin": "mào",
+    "pinyin_alternates": "mò",
     "definition": "risk, brave, dare",
     "hsk_level": 3,
     "frequency": 1222,
@@ -14574,6 +14693,7 @@
   {
     "character": "乘",
     "pinyin": "chéng",
+    "pinyin_alternates": "shèng",
     "definition": "ride, ascend; avail oneself of; numerary adjunct for vehicles",
     "hsk_level": 4,
     "frequency": 1231,
@@ -14637,6 +14757,7 @@
     "traditional_character": "縱",
     "alternate_characters": "縱",
     "pinyin": "zòng",
+    "pinyin_alternates": "zǒng",
     "definition": "indulge in, give free reign to",
     "hsk_level": 6,
     "frequency": 1236,
@@ -14764,6 +14885,7 @@
   {
     "character": "洗",
     "pinyin": "xǐ",
+    "pinyin_alternates": "xiǎn",
     "definition": "wash, rinse; clean, purify",
     "hsk_level": 2,
     "frequency": 1247,
@@ -14891,6 +15013,7 @@
   {
     "character": "症",
     "pinyin": "zhèng",
+    "pinyin_alternates": "zhēng",
     "definition": "disease, illness, ailment",
     "hsk_level": 6,
     "frequency": 1258,
@@ -14950,6 +15073,7 @@
     "traditional_character": "鳥",
     "alternate_characters": "鳥",
     "pinyin": "niǎo",
+    "pinyin_alternates": "diǎo",
     "definition": "bird; KangXi radical 196",
     "hsk_level": 3,
     "frequency": 1263,
@@ -14974,6 +15098,7 @@
   {
     "character": "咱",
     "pinyin": "zán",
+    "pinyin_alternates": "zá|zǎ",
     "definition": "we, us",
     "hsk_level": 4,
     "frequency": 1265,
@@ -15169,6 +15294,7 @@
   {
     "character": "尾",
     "pinyin": "wěi",
+    "pinyin_alternates": "yǐ",
     "definition": "tail, extremity; end, stern",
     "hsk_level": 5,
     "frequency": 1282,
@@ -15204,6 +15330,7 @@
   {
     "character": "奔",
     "pinyin": "bēn",
+    "pinyin_alternates": "bèn",
     "definition": "run fast, flee; rush about; run",
     "hsk_level": 6,
     "frequency": 1285,
@@ -15274,6 +15401,7 @@
   {
     "character": "艾",
     "pinyin": "ài",
+    "pinyin_alternates": "yì",
     "definition": "artemisia, mugwort; translit.",
     "frequency": 1291,
     "radical": "艸",
@@ -15330,6 +15458,7 @@
   {
     "character": "繁",
     "pinyin": "fán",
+    "pinyin_alternates": "pó",
     "definition": "complicated, complex, difficult",
     "hsk_level": 5,
     "frequency": 1296,
@@ -15424,6 +15553,7 @@
     "traditional_character": "縮",
     "alternate_characters": "縮",
     "pinyin": "suō",
+    "pinyin_alternates": "sù",
     "definition": "contract, draw in, reduce",
     "hsk_level": 5,
     "frequency": 1304,
@@ -15437,6 +15567,7 @@
     "traditional_character": "罷",
     "alternate_characters": "罷",
     "pinyin": "bà",
+    "pinyin_alternates": "ba|pí",
     "definition": "cease, finish, stop; give up",
     "hsk_level": 6,
     "frequency": 1305,
@@ -15483,6 +15614,7 @@
   {
     "character": "挑",
     "pinyin": "tiāo",
+    "pinyin_alternates": "tiǎo",
     "definition": "a load carried on the shoulders; to carry",
     "hsk_level": 5,
     "frequency": 1309,
@@ -15570,6 +15702,7 @@
   {
     "character": "裂",
     "pinyin": "liè",
+    "pinyin_alternates": "liě",
     "definition": "split, crack, break open; rend",
     "hsk_level": 6,
     "frequency": 1317,
@@ -15638,6 +15771,7 @@
   {
     "character": "累",
     "pinyin": "lèi",
+    "pinyin_alternates": "léi|lěi",
     "definition": "tired; implicate, involve; bother",
     "hsk_level": 2,
     "frequency": 1323,
@@ -15673,6 +15807,7 @@
   {
     "character": "估",
     "pinyin": "gū",
+    "pinyin_alternates": "gù",
     "definition": "merchant; estimate, guess, presume",
     "hsk_level": 4,
     "frequency": 1326,
@@ -15721,6 +15856,7 @@
     "traditional_character": "橫",
     "alternate_characters": "橫",
     "pinyin": "héng",
+    "pinyin_alternates": "hèng",
     "definition": "across",
     "hsk_level": 6,
     "frequency": 1330,
@@ -15801,6 +15937,7 @@
   {
     "character": "羊",
     "pinyin": "yáng",
+    "pinyin_alternates": "xiáng",
     "definition": "sheep, goat; KangXi radical 123",
     "hsk_level": 2,
     "frequency": 1337,
@@ -15882,6 +16019,7 @@
   {
     "character": "舍",
     "pinyin": "shě",
+    "pinyin_alternates": "shè",
     "definition": "house, dwelling; dwell, reside",
     "hsk_level": 5,
     "frequency": 1344,
@@ -16047,6 +16185,7 @@
     "traditional_character": "勁",
     "alternate_characters": "勁",
     "pinyin": "jìn",
+    "pinyin_alternates": "jìng",
     "definition": "strong, unyielding, tough, power",
     "hsk_level": 5,
     "frequency": 1358,
@@ -16140,6 +16279,7 @@
   {
     "character": "圈",
     "pinyin": "quān",
+    "pinyin_alternates": "juàn|juān",
     "definition": "to circle; a circle; corral",
     "hsk_level": 5,
     "frequency": 1366,
@@ -16162,6 +16302,7 @@
   {
     "character": "仰",
     "pinyin": "yǎng",
+    "pinyin_alternates": "áng",
     "definition": "raise the head to look; look up to, rely on, admire",
     "hsk_level": 6,
     "frequency": 1368,
@@ -16219,6 +16360,7 @@
   {
     "character": "稍",
     "pinyin": "shāo",
+    "pinyin_alternates": "shào",
     "definition": "little, slightly; rather",
     "hsk_level": 4,
     "frequency": 1373,
@@ -16271,6 +16413,7 @@
     "traditional_character": "淨",
     "alternate_characters": "淨",
     "pinyin": "jìng",
+    "pinyin_alternates": "chēng",
     "definition": "clean, pure; cleanse",
     "hsk_level": 3,
     "frequency": 1377,
@@ -16339,6 +16482,7 @@
   {
     "character": "旋",
     "pinyin": "xuán",
+    "pinyin_alternates": "xuàn",
     "definition": "revolve, move in orbit; return",
     "hsk_level": 6,
     "frequency": 1383,
@@ -16453,6 +16597,7 @@
   {
     "character": "糊",
     "pinyin": "hú",
+    "pinyin_alternates": "hū|hù",
     "definition": "paste, stick on with paste",
     "hsk_level": 5,
     "frequency": 1393,
@@ -16567,6 +16712,7 @@
     "traditional_character": "攝",
     "alternate_characters": "攝",
     "pinyin": "shè",
+    "pinyin_alternates": "niè",
     "definition": "take in, absorb; act as deputy",
     "hsk_level": 5,
     "frequency": 1403,
@@ -16580,6 +16726,7 @@
     "traditional_character": "喪",
     "alternate_characters": "喪",
     "pinyin": "sàng",
+    "pinyin_alternates": "sāng",
     "definition": "mourning; mourn; funeral",
     "hsk_level": 6,
     "frequency": 1404,
@@ -16659,6 +16806,7 @@
   {
     "character": "扎",
     "pinyin": "zhā",
+    "pinyin_alternates": "zā|zhá",
     "definition": "pull up; pierce; struggle free",
     "hsk_level": 6,
     "frequency": 1411,
@@ -16672,6 +16820,7 @@
     "traditional_character": "搶",
     "alternate_characters": "搶",
     "pinyin": "qiǎng",
+    "pinyin_alternates": "qiāng|chēng",
     "definition": "plunder, rob, take by force",
     "hsk_level": 5,
     "frequency": 1412,
@@ -16740,6 +16889,7 @@
   {
     "character": "菲",
     "pinyin": "fēi",
+    "pinyin_alternates": "fěi",
     "definition": "fragrant, luxuriant; the Philippines",
     "frequency": 1418,
     "radical": "艸",
@@ -16821,6 +16971,7 @@
     "traditional_character": "綜",
     "alternate_characters": "綜",
     "pinyin": "zōng",
+    "pinyin_alternates": "zèng",
     "definition": "arrange threads for weaving",
     "hsk_level": 5,
     "frequency": 1425,
@@ -16910,6 +17061,7 @@
   {
     "character": "薄",
     "pinyin": "báo",
+    "pinyin_alternates": "bó|bò",
     "definition": "thin, slight, weak; poor, stingy",
     "hsk_level": 5,
     "frequency": 1433,
@@ -16921,6 +17073,7 @@
   {
     "character": "悄",
     "pinyin": "qiāo",
+    "pinyin_alternates": "qiǎo",
     "definition": "silent, quiet, still; anxious",
     "hsk_level": 5,
     "frequency": 1434,
@@ -16934,6 +17087,7 @@
     "traditional_character": "掃",
     "alternate_characters": "掃",
     "pinyin": "sǎo",
+    "pinyin_alternates": "sào",
     "definition": "sweep, clear away; exterminate",
     "hsk_level": 3,
     "frequency": 1435,
@@ -16969,6 +17123,7 @@
   {
     "character": "殖",
     "pinyin": "zhí",
+    "pinyin_alternates": "shi",
     "definition": "breed, spawn; increase; prosper",
     "hsk_level": 6,
     "frequency": 1438,
@@ -16982,6 +17137,7 @@
     "traditional_character": "詳",
     "alternate_characters": "詳",
     "pinyin": "xiáng",
+    "pinyin_alternates": "yáng",
     "definition": "detailed, complete, thorough",
     "hsk_level": 4,
     "frequency": 1439,
@@ -17047,6 +17203,7 @@
   {
     "character": "撒",
     "pinyin": "sā",
+    "pinyin_alternates": "sǎ",
     "definition": "release, cast away, let go; disperse; relax",
     "hsk_level": 6,
     "frequency": 1445,
@@ -17131,6 +17288,7 @@
   {
     "character": "番",
     "pinyin": "fān",
+    "pinyin_alternates": "pān",
     "definition": "to take turns; a turn, a time; to repeat",
     "hsk_level": 6,
     "frequency": 1452,
@@ -17188,6 +17346,7 @@
   {
     "character": "郎",
     "pinyin": "láng",
+    "pinyin_alternates": "làng",
     "definition": "gentleman, young man; husband",
     "hsk_level": 6,
     "frequency": 1457,
@@ -17293,6 +17452,7 @@
     "traditional_character": "嚇",
     "alternate_characters": "嚇",
     "pinyin": "xià",
+    "pinyin_alternates": "hè",
     "definition": "scare, frighten; intimidate",
     "hsk_level": 5,
     "frequency": 1466,
@@ -17389,6 +17549,7 @@
   {
     "character": "尺",
     "pinyin": "chǐ",
+    "pinyin_alternates": "chě",
     "hsk_level": 5,
     "frequency": 1474,
     "radical": "尸",
@@ -17471,6 +17632,7 @@
   {
     "character": "券",
     "pinyin": "quàn",
+    "pinyin_alternates": "xuàn",
     "definition": "certificate, ticket; title deeds",
     "hsk_level": 6,
     "frequency": 1481,
@@ -17534,6 +17696,7 @@
     "traditional_character": "趨",
     "alternate_characters": "趨",
     "pinyin": "qū",
+    "pinyin_alternates": "cù",
     "definition": "hasten, hurry; be attracted to",
     "hsk_level": 5,
     "frequency": 1486,
@@ -17581,6 +17744,7 @@
   {
     "character": "汗",
     "pinyin": "hàn",
+    "pinyin_alternates": "hán",
     "definition": "perspiration, sweat",
     "hsk_level": 4,
     "frequency": 1490,
@@ -17592,6 +17756,7 @@
   {
     "character": "枝",
     "pinyin": "zhī",
+    "pinyin_alternates": "qí",
     "definition": "branches, limbs; branch off",
     "hsk_level": 6,
     "frequency": 1491,
@@ -17662,6 +17827,7 @@
     "traditional_character": "臘",
     "alternate_characters": "臘",
     "pinyin": "là",
+    "pinyin_alternates": "xī",
     "definition": "year end sacrifice; dried meat",
     "frequency": 1497,
     "radical": "肉",
@@ -17683,6 +17849,7 @@
   {
     "character": "泥",
     "pinyin": "ní",
+    "pinyin_alternates": "nì",
     "definition": "mud, mire; earth, clay; plaster",
     "hsk_level": 6,
     "frequency": 1499,
@@ -17694,6 +17861,7 @@
   {
     "character": "氏",
     "pinyin": "shì",
+    "pinyin_alternates": "zhī",
     "definition": "clan, family; mister",
     "hsk_level": 6,
     "frequency": 1500,
@@ -17705,6 +17873,7 @@
   {
     "character": "彭",
     "pinyin": "péng",
+    "pinyin_alternates": "bāng",
     "definition": "name of ancient country; surname",
     "frequency": 1501,
     "radical": "彡",
@@ -17942,6 +18111,7 @@
   {
     "character": "堡",
     "pinyin": "bǎo",
+    "pinyin_alternates": "bǔ|pù",
     "definition": "fort, fortress; town, village",
     "hsk_level": 6,
     "frequency": 1521,
@@ -18090,6 +18260,7 @@
   {
     "character": "勃",
     "pinyin": "bó",
+    "pinyin_alternates": "bèi",
     "definition": "suddenly, sudden, quick",
     "hsk_level": 6,
     "frequency": 1533,
@@ -18116,6 +18287,7 @@
     "traditional_character": "頻",
     "alternate_characters": "頻",
     "pinyin": "pín",
+    "pinyin_alternates": "bīn",
     "definition": "frequently, again and again",
     "hsk_level": 5,
     "frequency": 1535,
@@ -18127,6 +18299,7 @@
   {
     "character": "仇",
     "pinyin": "chóu",
+    "pinyin_alternates": "qiú",
     "definition": "enemy, hate, hatred, enmity",
     "hsk_level": 6,
     "frequency": 1536,
@@ -18138,6 +18311,7 @@
   {
     "character": "磨",
     "pinyin": "mó",
+    "pinyin_alternates": "mò",
     "definition": "grind; polish; rub; wear out; a millstone",
     "hsk_level": 6,
     "frequency": 1537,
@@ -18162,6 +18336,7 @@
   {
     "character": "邪",
     "pinyin": "xié",
+    "pinyin_alternates": "yá|yé|yú|xú",
     "definition": "wrong, evil, depraved, vicious, perverse, heterodox",
     "frequency": 1539,
     "radical": "邑",
@@ -18503,6 +18678,7 @@
   {
     "character": "漂",
     "pinyin": "piào",
+    "pinyin_alternates": "piāo|piǎo",
     "definition": "float, drift; tossed about",
     "hsk_level": 1,
     "frequency": 1568,
@@ -18548,6 +18724,7 @@
   {
     "character": "仔",
     "pinyin": "zǐ",
+    "pinyin_alternates": "zī|zǎi",
     "definition": "small thing, child; young animal",
     "hsk_level": 4,
     "frequency": 1572,
@@ -18572,6 +18749,7 @@
     "traditional_character": "倆",
     "alternate_characters": "倆",
     "pinyin": "liǎ",
+    "pinyin_alternates": "liǎng",
     "definition": "two, pair",
     "hsk_level": 4,
     "frequency": 1574,
@@ -18652,6 +18830,7 @@
     "traditional_character": "涼",
     "alternate_characters": "涼",
     "pinyin": "liáng",
+    "pinyin_alternates": "liàng",
     "definition": "cool, cold; disheartened",
     "hsk_level": 4,
     "frequency": 1581,
@@ -18685,6 +18864,7 @@
   {
     "character": "娜",
     "pinyin": "nà",
+    "pinyin_alternates": "nuó",
     "definition": "elegant, graceful, delicate",
     "frequency": 1584,
     "radical": "女",
@@ -18799,6 +18979,7 @@
     "traditional_character": "脈",
     "alternate_characters": "脈",
     "pinyin": "mài",
+    "pinyin_alternates": "mò",
     "definition": "blood vessels, veins, arteries",
     "hsk_level": 6,
     "frequency": 1594,
@@ -18821,6 +19002,7 @@
   {
     "character": "柏",
     "pinyin": "bǎi",
+    "pinyin_alternates": "bó|bò",
     "definition": "cypress, cedar",
     "frequency": 1596,
     "radical": "木",
@@ -18979,6 +19161,7 @@
     "traditional_character": "鋼",
     "alternate_characters": "鋼",
     "pinyin": "gāng",
+    "pinyin_alternates": "gàng",
     "definition": "steel; hard, strong, tough",
     "hsk_level": 4,
     "frequency": 1609,
@@ -19027,6 +19210,7 @@
     "traditional_character": "鋪",
     "alternate_characters": "鋪",
     "pinyin": "pù",
+    "pinyin_alternates": "pū",
     "definition": "shop, store; place sleep, bed",
     "hsk_level": 6,
     "frequency": 1613,
@@ -19091,6 +19275,7 @@
     "traditional_character": "湯",
     "alternate_characters": "湯",
     "pinyin": "tāng",
+    "pinyin_alternates": "shāng",
     "definition": "hot water; soup, gravy, broth",
     "hsk_level": 4,
     "frequency": 1618,
@@ -19205,6 +19390,7 @@
   {
     "character": "嘛",
     "pinyin": "ma",
+    "pinyin_alternates": "má",
     "definition": "final exclamatory particle",
     "hsk_level": 6,
     "frequency": 1628,
@@ -19347,6 +19533,7 @@
   {
     "character": "埋",
     "pinyin": "mái",
+    "pinyin_alternates": "mán",
     "definition": "bury, secrete, conceal",
     "hsk_level": 6,
     "frequency": 1640,
@@ -19371,6 +19558,7 @@
     "traditional_character": "湧",
     "alternate_characters": "湧",
     "pinyin": "yǒng",
+    "pinyin_alternates": "chōng",
     "definition": "surge up, bubble up, gush forth",
     "hsk_level": 6,
     "frequency": 1642,
@@ -19453,6 +19641,7 @@
   {
     "character": "吾",
     "pinyin": "wú",
+    "pinyin_alternates": "yù",
     "definition": "i, my, our; resist, impede",
     "frequency": 1649,
     "radical": "口",
@@ -19498,6 +19687,7 @@
   {
     "character": "吐",
     "pinyin": "tǔ",
+    "pinyin_alternates": "tù",
     "definition": "vomit, spew out, cough up",
     "hsk_level": 5,
     "frequency": 1653,
@@ -19614,6 +19804,7 @@
   {
     "character": "椅",
     "pinyin": "yǐ",
+    "pinyin_alternates": "yī",
     "definition": "chair, seat",
     "hsk_level": 1,
     "frequency": 1663,
@@ -19647,6 +19838,7 @@
   {
     "character": "揭",
     "pinyin": "jiē",
+    "pinyin_alternates": "qì",
     "definition": "raise, lift up; surname",
     "hsk_level": 6,
     "frequency": 1666,
@@ -19733,6 +19925,7 @@
     "traditional_character": "貓",
     "alternate_characters": "貓",
     "pinyin": "māo",
+    "pinyin_alternates": "máo",
     "definition": "cat",
     "hsk_level": 1,
     "frequency": 1673,
@@ -19833,6 +20026,7 @@
   {
     "character": "沈",
     "pinyin": "chén",
+    "pinyin_alternates": "shěn",
     "definition": "sink, submerge; addicted to; surname",
     "frequency": 1681,
     "radical": "水",
@@ -19911,6 +20105,7 @@
   {
     "character": "臂",
     "pinyin": "bì",
+    "pinyin_alternates": "bei",
     "definition": "arm",
     "hsk_level": 6,
     "frequency": 1688,
@@ -19922,6 +20117,7 @@
   {
     "character": "蛇",
     "pinyin": "shé",
+    "pinyin_alternates": "yí",
     "definition": "snake",
     "hsk_level": 5,
     "frequency": 1689,
@@ -20073,6 +20269,7 @@
   {
     "character": "衰",
     "pinyin": "shuāi",
+    "pinyin_alternates": "cuī",
     "definition": "decline, falter, decrease; weaken",
     "hsk_level": 6,
     "frequency": 1702,
@@ -20108,6 +20305,7 @@
   {
     "character": "燕",
     "pinyin": "yàn",
+    "pinyin_alternates": "yān",
     "definition": "swallow (bird); comfort, enjoy",
     "frequency": 1705,
     "radical": "火",
@@ -20197,6 +20395,7 @@
   {
     "character": "冠",
     "pinyin": "guān",
+    "pinyin_alternates": "guàn",
     "definition": "cap, crown, headgear",
     "hsk_level": 5,
     "frequency": 1713,
@@ -20269,6 +20468,7 @@
     "traditional_character": "馮",
     "alternate_characters": "馮",
     "pinyin": "féng",
+    "pinyin_alternates": "píng",
     "definition": "surname; gallop; by dint of",
     "frequency": 1719,
     "radical": "馬",
@@ -20294,6 +20494,7 @@
     "traditional_character": "淺",
     "alternate_characters": "淺",
     "pinyin": "qiǎn",
+    "pinyin_alternates": "jiān",
     "definition": "shallow, not deep; superficial",
     "hsk_level": 5,
     "frequency": 1721,
@@ -20305,6 +20506,7 @@
   {
     "character": "敦",
     "pinyin": "dūn",
+    "pinyin_alternates": "duì",
     "definition": "esteem; honest, candid, sincere",
     "frequency": 1722,
     "radical": "攴",
@@ -20330,6 +20532,7 @@
     "traditional_character": "鑽",
     "alternate_characters": "鑽",
     "pinyin": "zuān",
+    "pinyin_alternates": "zuàn",
     "definition": "drill, bore; pierce; diamond",
     "hsk_level": 6,
     "frequency": 1724,
@@ -20354,6 +20557,7 @@
     "traditional_character": "豈",
     "alternate_characters": "豈",
     "pinyin": "qǐ",
+    "pinyin_alternates": "kǎi",
     "definition": "how? what?",
     "hsk_level": 6,
     "frequency": 1726,
@@ -20393,6 +20597,7 @@
     "traditional_character": "噴",
     "alternate_characters": "噴",
     "pinyin": "pēn",
+    "pinyin_alternates": "pèn",
     "definition": "spurt, blow out, puff out",
     "hsk_level": 5,
     "frequency": 1729,
@@ -20437,6 +20642,7 @@
   {
     "character": "菌",
     "pinyin": "jūn",
+    "pinyin_alternates": "jùn",
     "definition": "mushroom; germ, microbe",
     "hsk_level": 6,
     "frequency": 1733,
@@ -20485,6 +20691,7 @@
   {
     "character": "扁",
     "pinyin": "biǎn",
+    "pinyin_alternates": "piān",
     "definition": "flat; tablet, signboard",
     "hsk_level": 6,
     "frequency": 1737,
@@ -20656,6 +20863,7 @@
   {
     "character": "宿",
     "pinyin": "sù",
+    "pinyin_alternates": "xiǔ|xiù",
     "definition": "stop, rest, lodge, stay overnight; constellation",
     "hsk_level": 5,
     "frequency": 1752,
@@ -20701,6 +20909,7 @@
   {
     "character": "侯",
     "pinyin": "hóu",
+    "pinyin_alternates": "hòu",
     "definition": "marquis, lord; target in archery",
     "frequency": 1756,
     "radical": "人",
@@ -20724,6 +20933,7 @@
     "traditional_character": "夾",
     "alternate_characters": "夾",
     "pinyin": "jiā",
+    "pinyin_alternates": "jiá|gā",
     "definition": "be wedged or inserted between",
     "hsk_level": 5,
     "frequency": 1758,
@@ -20843,6 +21053,7 @@
     "traditional_character": "紋",
     "alternate_characters": "紋",
     "pinyin": "wén",
+    "pinyin_alternates": "wèn",
     "definition": "line, streak, stripe; wrinkle",
     "hsk_level": 6,
     "frequency": 1768,
@@ -20994,6 +21205,7 @@
     "traditional_character": "茲",
     "alternate_characters": "茲",
     "pinyin": "zī",
+    "pinyin_alternates": "cí",
     "definition": "now, here; this; time, year",
     "frequency": 1781,
     "radical": "艸",
@@ -21004,6 +21216,7 @@
   {
     "character": "祭",
     "pinyin": "jì",
+    "pinyin_alternates": "zhài",
     "definition": "sacrifice to, worship",
     "frequency": 1782,
     "radical": "示",
@@ -21038,6 +21251,7 @@
     "traditional_character": "彌",
     "alternate_characters": "彌",
     "pinyin": "mí",
+    "pinyin_alternates": "mǐ",
     "definition": "extensive, full; fill; complete",
     "hsk_level": 6,
     "frequency": 1785,
@@ -21143,6 +21357,7 @@
   {
     "character": "削",
     "pinyin": "xuē",
+    "pinyin_alternates": "xiāo",
     "definition": "scrape off, pare, trim",
     "hsk_level": 6,
     "frequency": 1794,
@@ -21167,6 +21382,7 @@
   {
     "character": "晃",
     "pinyin": "huǎng",
+    "pinyin_alternates": "huàng",
     "definition": "bright, dazzling; to sway, shake",
     "hsk_level": 6,
     "frequency": 1796,
@@ -21211,6 +21427,7 @@
   {
     "character": "肚",
     "pinyin": "dù",
+    "pinyin_alternates": "dǔ",
     "definition": "belly; abdomen; bowels",
     "hsk_level": 4,
     "frequency": 1800,
@@ -21248,6 +21465,7 @@
     "traditional_character": "漲",
     "alternate_characters": "漲",
     "pinyin": "zhǎng",
+    "pinyin_alternates": "zhàng",
     "definition": "rise in price",
     "hsk_level": 5,
     "frequency": 1803,
@@ -21355,6 +21573,7 @@
     "traditional_character": "僕",
     "alternate_characters": "僕",
     "pinyin": "pū",
+    "pinyin_alternates": "pú",
     "definition": "fall forward; lie prostrate, prone; servant",
     "frequency": 1812,
     "radical": "人",
@@ -21435,6 +21654,7 @@
   {
     "character": "契",
     "pinyin": "qì",
+    "pinyin_alternates": "qiè|xiè",
     "definition": "deed, contract, bond; engrave",
     "frequency": 1819,
     "radical": "大",
@@ -21491,6 +21711,7 @@
   {
     "character": "刷",
     "pinyin": "shuā",
+    "pinyin_alternates": "shuà",
     "definition": "brush; clean with brush, scrub",
     "hsk_level": 3,
     "frequency": 1824,
@@ -21559,6 +21780,7 @@
     "traditional_character": "悶",
     "alternate_characters": "悶",
     "pinyin": "mèn",
+    "pinyin_alternates": "mēn",
     "definition": "gloomy, depressed, melancholy",
     "hsk_level": 6,
     "frequency": 1830,
@@ -21605,6 +21827,7 @@
     "traditional_character": "繳",
     "alternate_characters": "繳",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "zhuó",
     "definition": "deliver, submit; hand over",
     "hsk_level": 6,
     "frequency": 1834,
@@ -21818,6 +22041,7 @@
     "traditional_character": "縫",
     "alternate_characters": "縫",
     "pinyin": "fèng",
+    "pinyin_alternates": "féng",
     "definition": "sew, mend",
     "hsk_level": 6,
     "frequency": 1852,
@@ -21915,6 +22139,7 @@
   {
     "character": "呵",
     "pinyin": "ā",
+    "pinyin_alternates": "hē|a|kē",
     "definition": "scold; laughing sound; yawn",
     "hsk_level": 6,
     "frequency": 1861,
@@ -22074,6 +22299,7 @@
     "traditional_character": "掙",
     "alternate_characters": "掙",
     "pinyin": "zhēng",
+    "pinyin_alternates": "zhèng",
     "definition": "strive, endeavor, struggle",
     "hsk_level": 5,
     "frequency": 1875,
@@ -22095,6 +22321,7 @@
   {
     "character": "尿",
     "pinyin": "niào",
+    "pinyin_alternates": "suī",
     "definition": "urine; urinate",
     "frequency": 1877,
     "radical": "尸",
@@ -22261,6 +22488,7 @@
   {
     "character": "屏",
     "pinyin": "píng",
+    "pinyin_alternates": "bǐng",
     "definition": "folding screen, shield",
     "hsk_level": 6,
     "frequency": 1891,
@@ -22283,6 +22511,7 @@
   {
     "character": "胖",
     "pinyin": "pàng",
+    "pinyin_alternates": "pán|pàn",
     "definition": "fat, obese; fatty",
     "hsk_level": 3,
     "frequency": 1893,
@@ -22362,6 +22591,7 @@
     "traditional_character": "顫",
     "alternate_characters": "顫",
     "pinyin": "chàn",
+    "pinyin_alternates": "zhàn",
     "definition": "shiver, tremble; trembling",
     "hsk_level": 6,
     "frequency": 1900,
@@ -22508,6 +22738,7 @@
   {
     "character": "哦",
     "pinyin": "ó",
+    "pinyin_alternates": "ò|é",
     "definition": "oh? really? is that so?",
     "hsk_level": 6,
     "frequency": 1913,
@@ -22545,6 +22776,7 @@
     "traditional_character": "潰",
     "alternate_characters": "潰",
     "pinyin": "kuì",
+    "pinyin_alternates": "huì",
     "definition": "flooding river; militarily defeat",
     "hsk_level": 6,
     "frequency": 1916,
@@ -22580,6 +22812,7 @@
   {
     "character": "葛",
     "pinyin": "gé",
+    "pinyin_alternates": "gě",
     "definition": "edible bean; surname",
     "frequency": 1919,
     "radical": "艸",
@@ -22625,6 +22858,7 @@
   {
     "character": "溜",
     "pinyin": "liū",
+    "pinyin_alternates": "liù",
     "definition": "slide, glide, slip; slippery",
     "hsk_level": 6,
     "frequency": 1923,
@@ -22684,6 +22918,7 @@
     "traditional_character": "籠",
     "alternate_characters": "籠",
     "pinyin": "lóng",
+    "pinyin_alternates": "lǒng",
     "definition": "cage; cage-like basket",
     "hsk_level": 6,
     "frequency": 1928,
@@ -22740,6 +22975,7 @@
     "traditional_character": "擋",
     "alternate_characters": "擋",
     "pinyin": "dǎng",
+    "pinyin_alternates": "dàng",
     "definition": "obstruct, impede; stop; resist",
     "hsk_level": 5,
     "frequency": 1933,
@@ -22787,6 +23023,7 @@
     "traditional_character": "殼",
     "alternate_characters": "殼",
     "pinyin": "ké",
+    "pinyin_alternates": "qiào",
     "definition": "casing, shell, husk",
     "hsk_level": 6,
     "frequency": 1937,
@@ -22831,6 +23068,7 @@
   {
     "character": "膀",
     "pinyin": "bǎng",
+    "pinyin_alternates": "páng",
     "definition": "upper arm; shoulder; wing",
     "hsk_level": 5,
     "frequency": 1941,
@@ -22925,6 +23163,7 @@
   {
     "character": "哩",
     "pinyin": "lī",
+    "pinyin_alternates": "li|lǐ",
     "definition": "mile",
     "frequency": 1949,
     "radical": "口",
@@ -22992,6 +23231,7 @@
     "traditional_character": "誇",
     "alternate_characters": "誇",
     "pinyin": "kuā",
+    "pinyin_alternates": "kuà",
     "definition": "extravagant, luxurious; handsome",
     "hsk_level": 5,
     "frequency": 1955,
@@ -23038,6 +23278,7 @@
     "traditional_character": "剝",
     "alternate_characters": "剝",
     "pinyin": "bō",
+    "pinyin_alternates": "bāo",
     "definition": "peel",
     "hsk_level": 6,
     "frequency": 1959,
@@ -23060,6 +23301,7 @@
   {
     "character": "拾",
     "pinyin": "shí",
+    "pinyin_alternates": "shè",
     "definition": "pick up, collect, tidy up; accounting form of the numeral ten",
     "hsk_level": 4,
     "frequency": 1961,
@@ -23121,6 +23363,7 @@
   {
     "character": "哼",
     "pinyin": "hēng",
+    "pinyin_alternates": "hng",
     "definition": "hum; sing softly; groan, moan; (Cant.) an interjecting indicating disapproval",
     "hsk_level": 6,
     "frequency": 1966,
@@ -23167,6 +23410,7 @@
   {
     "character": "填",
     "pinyin": "tián",
+    "pinyin_alternates": "zhèn",
     "definition": "fill in, fill up; make good",
     "hsk_level": 4,
     "frequency": 1970,
@@ -23268,6 +23512,7 @@
   {
     "character": "卜",
     "pinyin": "bo",
+    "pinyin_alternates": "bǔ",
     "definition": "fortune telling; prophesy",
     "frequency": 1979,
     "radical": "卜",
@@ -23302,6 +23547,7 @@
   {
     "character": "愉",
     "pinyin": "yú",
+    "pinyin_alternates": "tōu",
     "definition": "pleasant, delightful; please",
     "hsk_level": 4,
     "frequency": 1982,
@@ -23426,6 +23672,7 @@
   {
     "character": "扇",
     "pinyin": "shàn",
+    "pinyin_alternates": "shān",
     "definition": "fan; door panel",
     "hsk_level": 5,
     "frequency": 1993,
@@ -23439,6 +23686,7 @@
     "traditional_character": "櫃",
     "alternate_characters": "櫃",
     "pinyin": "guì",
+    "pinyin_alternates": "jǔ",
     "definition": "cabinet, cupboard; shop counter",
     "hsk_level": 5,
     "frequency": 1994,
@@ -23501,6 +23749,7 @@
   {
     "character": "乾",
     "pinyin": "gān",
+    "pinyin_alternates": "qián",
     "definition": "dry; first hexagram; warming principle of the sun, penetrating and fertilizing, heavenly generative principle (male)",
     "frequency": 1999,
     "radical": "乙",
@@ -23511,6 +23760,7 @@
   {
     "character": "泡",
     "pinyin": "pào",
+    "pinyin_alternates": "pāo",
     "definition": "bubbles, suds; blister; soak",
     "hsk_level": 6,
     "frequency": 2000,
@@ -23621,6 +23871,7 @@
   {
     "character": "泄",
     "pinyin": "xiè",
+    "pinyin_alternates": "yì",
     "definition": "leak; vent; flow; reveal",
     "hsk_level": 6,
     "frequency": 2010,
@@ -23632,6 +23883,7 @@
   {
     "character": "杆",
     "pinyin": "gān",
+    "pinyin_alternates": "gǎn",
     "definition": "pole; shaft of spear",
     "hsk_level": 6,
     "frequency": 2011,
@@ -23643,6 +23895,7 @@
   {
     "character": "挨",
     "pinyin": "āi",
+    "pinyin_alternates": "ái",
     "definition": "near, close by, next to, towards, against; to wait; to lean on",
     "hsk_level": 6,
     "frequency": 2012,
@@ -23719,6 +23972,7 @@
   {
     "character": "肖",
     "pinyin": "xiào",
+    "pinyin_alternates": "xiāo",
     "definition": "look like, resemble, be like",
     "hsk_level": 6,
     "frequency": 2019,
@@ -23789,6 +24043,7 @@
   {
     "character": "於",
     "pinyin": "yú",
+    "pinyin_alternates": "wū",
     "definition": "in, at, on; interjection alas!",
     "frequency": 2025,
     "radical": "方",
@@ -23842,6 +24097,7 @@
   {
     "character": "畜",
     "pinyin": "chù",
+    "pinyin_alternates": "xù",
     "definition": "livestock, domestic animals",
     "hsk_level": 6,
     "frequency": 2030,
@@ -23853,6 +24109,7 @@
   {
     "character": "咽",
     "pinyin": "yàn",
+    "pinyin_alternates": "yān|yè",
     "definition": "throat; pharynx",
     "hsk_level": 6,
     "frequency": 2031,
@@ -23888,6 +24145,7 @@
   {
     "character": "勾",
     "pinyin": "gōu",
+    "pinyin_alternates": "gòu",
     "definition": "hook, join, connect; entice",
     "hsk_level": 6,
     "frequency": 2034,
@@ -23910,6 +24168,7 @@
   {
     "character": "疆",
     "pinyin": "jiāng",
+    "pinyin_alternates": "qiáng",
     "definition": "boundary, border, frontier",
     "hsk_level": 6,
     "frequency": 2036,
@@ -23956,6 +24215,7 @@
   {
     "character": "吵",
     "pinyin": "chǎo",
+    "pinyin_alternates": "chāo",
     "definition": "argue, dispute; disturb, annoy",
     "hsk_level": 5,
     "frequency": 2040,
@@ -23967,6 +24227,7 @@
   {
     "character": "囊",
     "pinyin": "náng",
+    "pinyin_alternates": "nāng",
     "definition": "bag, purse, sack; put in bag",
     "frequency": 2041,
     "radical": "口",
@@ -23977,6 +24238,7 @@
   {
     "character": "嗯",
     "pinyin": "ń",
+    "pinyin_alternates": "ǹg|ńg|ňg|ǹ|ň",
     "definition": "final particle",
     "hsk_level": 5,
     "frequency": 2042,
@@ -23988,6 +24250,7 @@
   {
     "character": "泊",
     "pinyin": "pō",
+    "pinyin_alternates": "bó",
     "definition": "anchor vessel; lie at anchor",
     "hsk_level": 6,
     "frequency": 2043,
@@ -24083,6 +24346,7 @@
     "traditional_character": "賈",
     "alternate_characters": "賈",
     "pinyin": "jiǎ",
+    "pinyin_alternates": "gǔ",
     "definition": "surname; merchant; buy, trade",
     "frequency": 2051,
     "radical": "貝",
@@ -24366,6 +24630,7 @@
   {
     "character": "拆",
     "pinyin": "chāi",
+    "pinyin_alternates": "cā",
     "definition": "to break up, split apart, rip open; to destroy",
     "hsk_level": 5,
     "frequency": 2076,
@@ -24489,6 +24754,7 @@
   {
     "character": "抹",
     "pinyin": "mǒ",
+    "pinyin_alternates": "mò|mā",
     "definition": "smear, apply, wipe off, erase",
     "hsk_level": 6,
     "frequency": 2087,
@@ -24535,6 +24801,7 @@
   {
     "character": "唉",
     "pinyin": "āi",
+    "pinyin_alternates": "ài",
     "definition": "alas, exclamation of surprise or pain",
     "hsk_level": 5,
     "frequency": 2091,
@@ -24548,6 +24815,7 @@
     "traditional_character": "樸",
     "alternate_characters": "樸",
     "pinyin": "pǔ",
+    "pinyin_alternates": "pò|pō|piáo",
     "definition": "simple, unadorned; sincere; surname; a tree",
     "hsk_level": 6,
     "frequency": 2092,
@@ -24614,6 +24882,7 @@
   {
     "character": "拘",
     "pinyin": "jū",
+    "pinyin_alternates": "gōu",
     "definition": "restrain, seize, detain",
     "hsk_level": 6,
     "frequency": 2098,
@@ -24701,6 +24970,7 @@
   {
     "character": "臭",
     "pinyin": "chòu",
+    "pinyin_alternates": "xiù",
     "definition": "smell, stink, emit foul odor",
     "hsk_level": 5,
     "frequency": 2105,
@@ -24714,6 +24984,7 @@
     "traditional_character": "纖",
     "alternate_characters": "纖",
     "pinyin": "xiān",
+    "pinyin_alternates": "qiàn",
     "definition": "fine, delicate; minute; graceful",
     "hsk_level": 6,
     "frequency": 2106,
@@ -24838,6 +25109,7 @@
     "traditional_character": "頸",
     "alternate_characters": "頸",
     "pinyin": "jǐng",
+    "pinyin_alternates": "gěng",
     "definition": "neck, throat",
     "hsk_level": 6,
     "frequency": 2117,
@@ -24849,6 +25121,7 @@
   {
     "character": "倘",
     "pinyin": "tǎng",
+    "pinyin_alternates": "cháng",
     "definition": "if, supposing, in event of",
     "hsk_level": 6,
     "frequency": 2118,
@@ -24930,6 +25203,7 @@
   {
     "character": "莎",
     "pinyin": "shā",
+    "pinyin_alternates": "suō",
     "definition": "kind of sedge grass, used anciently for raincoats",
     "frequency": 2125,
     "radical": "艸",
@@ -24940,6 +25214,7 @@
   {
     "character": "尉",
     "pinyin": "wèi",
+    "pinyin_alternates": "yù",
     "definition": "officer, military rank",
     "frequency": 2126,
     "radical": "寸",
@@ -25082,6 +25357,7 @@
     "traditional_character": "籲",
     "alternate_characters": "籲",
     "pinyin": "xū",
+    "pinyin_alternates": "yù",
     "hsk_level": 6,
     "frequency": 2138,
     "radical": "口",
@@ -25106,6 +25382,7 @@
     "traditional_character": "闢",
     "alternate_characters": "闢",
     "pinyin": "pì",
+    "pinyin_alternates": "bì",
     "definition": "law, rule; open up, develop",
     "hsk_level": 6,
     "frequency": 2140,
@@ -25171,6 +25448,7 @@
   {
     "character": "亨",
     "pinyin": "hēng",
+    "pinyin_alternates": "pēng",
     "definition": "smoothly, progressing, no trouble",
     "frequency": 2146,
     "radical": "亠",
@@ -25417,6 +25695,7 @@
   {
     "character": "淋",
     "pinyin": "lín",
+    "pinyin_alternates": "lìn",
     "definition": "drip, soak, drench; perfectly",
     "hsk_level": 6,
     "frequency": 2168,
@@ -25614,6 +25893,7 @@
   {
     "character": "倡",
     "pinyin": "chàng",
+    "pinyin_alternates": "chāng",
     "definition": "guide, leader; lead, introduce",
     "hsk_level": 5,
     "frequency": 2185,
@@ -25738,6 +26018,7 @@
     "traditional_character": "禪",
     "alternate_characters": "禪",
     "pinyin": "chán",
+    "pinyin_alternates": "shàn",
     "frequency": 2196,
     "radical": "示",
     "radical_code": 113.8,
@@ -25942,6 +26223,7 @@
     "traditional_character": "嶺",
     "alternate_characters": "嶺",
     "pinyin": "lǐng",
+    "pinyin_alternates": "líng",
     "definition": "mountain ridge, mountain peak",
     "frequency": 2214,
     "radical": "山",
@@ -25954,6 +26236,7 @@
     "traditional_character": "暈",
     "alternate_characters": "暈",
     "pinyin": "yūn",
+    "pinyin_alternates": "yùn",
     "definition": "halo in sky; fog; dizzy, faint",
     "hsk_level": 5,
     "frequency": 2215,
@@ -25965,6 +26248,7 @@
   {
     "character": "逮",
     "pinyin": "dǎi",
+    "pinyin_alternates": "dài",
     "definition": "seize, catch; reach, arrive",
     "hsk_level": 6,
     "frequency": 2216,
@@ -26129,6 +26413,7 @@
   {
     "character": "叉",
     "pinyin": "chā",
+    "pinyin_alternates": "chá|chǎ",
     "definition": "crotch; fork, prong",
     "hsk_level": 5,
     "frequency": 2231,
@@ -26194,6 +26479,7 @@
     "traditional_character": "騷",
     "alternate_characters": "騷",
     "pinyin": "sāo",
+    "pinyin_alternates": "sǎo",
     "definition": "harass, bother, annoy, disturb",
     "hsk_level": 6,
     "frequency": 2237,
@@ -26205,6 +26491,7 @@
   {
     "character": "拓",
     "pinyin": "tà",
+    "pinyin_alternates": "tuò|zhí",
     "definition": "expand; open up; support or push",
     "hsk_level": 6,
     "frequency": 2238,
@@ -26227,6 +26514,7 @@
   {
     "character": "粘",
     "pinyin": "zhān",
+    "pinyin_alternates": "nián",
     "definition": "viscous, mucous; glutinous",
     "hsk_level": 5,
     "frequency": 2240,
@@ -26328,6 +26616,7 @@
     "traditional_character": "剎",
     "alternate_characters": "剎",
     "pinyin": "shā",
+    "pinyin_alternates": "chà",
     "definition": "temple, shrine, monastary",
     "hsk_level": 6,
     "frequency": 2249,
@@ -26396,6 +26685,7 @@
   {
     "character": "棍",
     "pinyin": "gùn",
+    "pinyin_alternates": "hùn",
     "definition": "stick, cudgel; scoundrel",
     "hsk_level": 6,
     "frequency": 2255,
@@ -26407,6 +26697,7 @@
   {
     "character": "嚷",
     "pinyin": "rǎng",
+    "pinyin_alternates": "rāng",
     "definition": "shout, brawl, make uproar, cry",
     "hsk_level": 6,
     "frequency": 2256,
@@ -26498,6 +26789,7 @@
     "traditional_character": "廈",
     "alternate_characters": "廈",
     "pinyin": "shà",
+    "pinyin_alternates": "xià",
     "definition": "big building, mansion",
     "hsk_level": 5,
     "frequency": 2264,
@@ -26537,6 +26829,7 @@
     "traditional_character": "釘",
     "alternate_characters": "釘",
     "pinyin": "dīng",
+    "pinyin_alternates": "dìng",
     "definition": "nail, spike; pursue closely",
     "hsk_level": 6,
     "frequency": 2267,
@@ -26684,6 +26977,7 @@
   {
     "character": "煞",
     "pinyin": "shā",
+    "pinyin_alternates": "shà",
     "definition": "malignant deity; baleful, noxious; strike dead",
     "frequency": 2280,
     "radical": "火",
@@ -26720,6 +27014,7 @@
     "traditional_character": "灑",
     "alternate_characters": "灑",
     "pinyin": "sǎ",
+    "pinyin_alternates": "xǐ",
     "definition": "sprinkle; scatter; pour; to wipe away; to shiver",
     "hsk_level": 5,
     "frequency": 2283,
@@ -26950,6 +27245,7 @@
     "traditional_character": "碩",
     "alternate_characters": "碩",
     "pinyin": "shuò",
+    "pinyin_alternates": "shí",
     "definition": "great, eminent; large, big",
     "hsk_level": 4,
     "frequency": 2304,
@@ -27070,6 +27366,7 @@
   {
     "character": "渠",
     "pinyin": "qú",
+    "pinyin_alternates": "jù",
     "definition": "ditch, canal, channel, gutter",
     "hsk_level": 6,
     "frequency": 2315,
@@ -27182,6 +27479,7 @@
   {
     "character": "嘲",
     "pinyin": "cháo",
+    "pinyin_alternates": "zhāo",
     "definition": "ridicule, deride, scorn, jeer at",
     "hsk_level": 6,
     "frequency": 2325,
@@ -27252,6 +27550,7 @@
   {
     "character": "雀",
     "pinyin": "què",
+    "pinyin_alternates": "qiāo|qiǎo",
     "definition": "sparrow",
     "hsk_level": 6,
     "frequency": 2331,
@@ -27616,6 +27915,7 @@
   {
     "character": "爪",
     "pinyin": "zhǎo",
+    "pinyin_alternates": "zhuǎ",
     "definition": "claw, nail, talon; animal feet",
     "frequency": 2363,
     "radical": "爪",
@@ -27637,6 +27937,7 @@
   {
     "character": "殷",
     "pinyin": "yīn",
+    "pinyin_alternates": "yān|yǐn",
     "definition": "many, great; abundant, flourishing",
     "frequency": 2365,
     "radical": "殳",
@@ -27674,6 +27975,7 @@
     "traditional_character": "啞",
     "alternate_characters": "啞",
     "pinyin": "yǎ",
+    "pinyin_alternates": "yā",
     "definition": "dumb, mute; become hoarse",
     "hsk_level": 6,
     "frequency": 2368,
@@ -27731,6 +28033,7 @@
   {
     "character": "咳",
     "pinyin": "hāi",
+    "pinyin_alternates": "ké",
     "definition": "cough",
     "hsk_level": 4,
     "frequency": 2373,
@@ -27798,6 +28101,7 @@
   {
     "character": "咖",
     "pinyin": "kā",
+    "pinyin_alternates": "gā",
     "definition": "coffee; a phonetic",
     "hsk_level": 2,
     "frequency": 2379,
@@ -27811,6 +28115,7 @@
     "traditional_character": "擱",
     "alternate_characters": "擱",
     "pinyin": "gē",
+    "pinyin_alternates": "gé",
     "definition": "place, put, lay down; delay",
     "hsk_level": 6,
     "frequency": 2380,
@@ -27953,6 +28258,7 @@
     "traditional_character": "龜",
     "alternate_characters": "龜",
     "pinyin": "guī",
+    "pinyin_alternates": "jūn|qiū",
     "definition": "turtle or tortoise; cuckold",
     "frequency": 2392,
     "radical": "龜",
@@ -28030,6 +28336,7 @@
   {
     "character": "巷",
     "pinyin": "xiàng",
+    "pinyin_alternates": "hàng",
     "definition": "alley, lane",
     "hsk_level": 6,
     "frequency": 2399,
@@ -28100,6 +28407,7 @@
     "traditional_character": "瞞",
     "alternate_characters": "瞞",
     "pinyin": "mán",
+    "pinyin_alternates": "mén",
     "definition": "deceive, lie; eyes half-closed",
     "hsk_level": 6,
     "frequency": 2405,
@@ -28308,6 +28616,7 @@
   {
     "character": "嘿",
     "pinyin": "hēi",
+    "pinyin_alternates": "mò",
     "definition": "be silent, be quiet",
     "hsk_level": 6,
     "frequency": 2423,
@@ -28321,6 +28630,7 @@
     "traditional_character": "兌",
     "alternate_characters": "兌",
     "pinyin": "duì",
+    "pinyin_alternates": "ruì|yuè",
     "definition": "cash; exchange",
     "hsk_level": 5,
     "frequency": 2424,
@@ -28356,6 +28666,7 @@
   {
     "character": "稽",
     "pinyin": "jī",
+    "pinyin_alternates": "qǐ",
     "definition": "examine, investigate; delay",
     "frequency": 2427,
     "radical": "禾",
@@ -28423,6 +28734,7 @@
   {
     "character": "哇",
     "pinyin": "wa",
+    "pinyin_alternates": "wā",
     "definition": "vomit; cry of an infant",
     "hsk_level": 6,
     "frequency": 2433,
@@ -28482,6 +28794,7 @@
     "traditional_character": "軸",
     "alternate_characters": "軸",
     "pinyin": "zhóu",
+    "pinyin_alternates": "zhòu",
     "definition": "axle, axletree; pivot; axis",
     "frequency": 2438,
     "radical": "車",
@@ -28664,6 +28977,7 @@
   {
     "character": "椎",
     "pinyin": "chuí",
+    "pinyin_alternates": "zhuī",
     "definition": "hammer, mallet; vertebra",
     "hsk_level": 6,
     "frequency": 2455,
@@ -28686,6 +29000,7 @@
   {
     "character": "趟",
     "pinyin": "tàng",
+    "pinyin_alternates": "tāng",
     "definition": "time, occasion; take journey",
     "hsk_level": 4,
     "frequency": 2457,
@@ -28723,6 +29038,7 @@
     "traditional_character": "棲",
     "alternate_characters": "棲",
     "pinyin": "qī",
+    "pinyin_alternates": "xī",
     "definition": "perch; roost; stay",
     "frequency": 2460,
     "radical": "木",
@@ -28912,6 +29228,7 @@
   {
     "character": "匙",
     "pinyin": "shi",
+    "pinyin_alternates": "chí",
     "definition": "spoon; surname",
     "hsk_level": 4,
     "frequency": 2476,
@@ -28937,6 +29254,7 @@
     "traditional_character": "蘋",
     "alternate_characters": "蘋",
     "pinyin": "píng",
+    "pinyin_alternates": "pēng",
     "definition": "artemisia; duckweed; apple",
     "hsk_level": 1,
     "frequency": 2478,
@@ -28972,6 +29290,7 @@
     "traditional_character": "鑰",
     "alternate_characters": "鑰",
     "pinyin": "yào",
+    "pinyin_alternates": "yuè",
     "definition": "key; lock",
     "hsk_level": 4,
     "frequency": 2481,
@@ -29029,6 +29348,7 @@
     "traditional_character": "譁",
     "alternate_characters": "譁",
     "pinyin": "huā",
+    "pinyin_alternates": "huá",
     "definition": "rushing sound; gush forward",
     "hsk_level": 6,
     "frequency": 2486,
@@ -29040,6 +29360,7 @@
   {
     "character": "劈",
     "pinyin": "pī",
+    "pinyin_alternates": "pǐ",
     "definition": "cut apart, split, chop",
     "hsk_level": 6,
     "frequency": 2487,
@@ -29072,6 +29393,7 @@
   {
     "character": "胳",
     "pinyin": "gē",
+    "pinyin_alternates": "gé",
     "definition": "armpit, arms",
     "hsk_level": 4,
     "frequency": 2490,
@@ -29330,6 +29652,7 @@
   {
     "character": "哄",
     "pinyin": "hōng",
+    "pinyin_alternates": "hǒng|hòng",
     "definition": "coax; beguile, cheat, deceive",
     "hsk_level": 6,
     "frequency": 2513,
@@ -29462,6 +29785,7 @@
     "traditional_character": "喲",
     "alternate_characters": "喲",
     "pinyin": "yō",
+    "pinyin_alternates": "yo",
     "definition": "ah, final particle",
     "frequency": 2524,
     "radical": "口",
@@ -29508,6 +29832,7 @@
   {
     "character": "宛",
     "pinyin": "wǎn",
+    "pinyin_alternates": "yuān",
     "definition": "seem, as if, crooked",
     "frequency": 2528,
     "radical": "宀",
@@ -29555,6 +29880,7 @@
   {
     "character": "伽",
     "pinyin": "jiā",
+    "pinyin_alternates": "qié|gā",
     "frequency": 2532,
     "radical": "人",
     "radical_code": 9.5,
@@ -29635,6 +29961,7 @@
   {
     "character": "芯",
     "pinyin": "xīn",
+    "pinyin_alternates": "xìn",
     "definition": "pith from rush (juncus effusus)",
     "frequency": 2539,
     "radical": "艸",
@@ -29666,6 +29993,7 @@
   {
     "character": "坊",
     "pinyin": "fāng",
+    "pinyin_alternates": "fáng",
     "frequency": 2542,
     "radical": "土",
     "radical_code": 32.4,
@@ -29710,6 +30038,7 @@
     "traditional_character": "傭",
     "alternate_characters": "傭",
     "pinyin": "yōng",
+    "pinyin_alternates": "yòng",
     "definition": "commission fee",
     "hsk_level": 6,
     "frequency": 2546,
@@ -29731,6 +30060,7 @@
   {
     "character": "碌",
     "pinyin": "lù",
+    "pinyin_alternates": "liù",
     "definition": "rough, uneven, rocky; mediocre",
     "hsk_level": 6,
     "frequency": 2548,
@@ -29818,6 +30148,7 @@
   {
     "character": "榜",
     "pinyin": "bǎng",
+    "pinyin_alternates": "bàng",
     "definition": "placard; list of successful exam candidates",
     "hsk_level": 6,
     "frequency": 2556,
@@ -29928,6 +30259,7 @@
   {
     "character": "幢",
     "pinyin": "chuáng",
+    "pinyin_alternates": "zhuàng",
     "definition": "carriage curtain; sun screen",
     "hsk_level": 6,
     "frequency": 2566,
@@ -30016,6 +30348,7 @@
   {
     "character": "妃",
     "pinyin": "fēi",
+    "pinyin_alternates": "pèi",
     "definition": "wife, spouse; imperial concubine",
     "frequency": 2574,
     "radical": "女",
@@ -30127,6 +30460,7 @@
   {
     "character": "卒",
     "pinyin": "zú",
+    "pinyin_alternates": "cù",
     "definition": "soldier; servant; at last, finally",
     "frequency": 2584,
     "radical": "十",
@@ -30169,6 +30503,7 @@
   {
     "character": "甸",
     "pinyin": "diān",
+    "pinyin_alternates": "diàn|tián|shèng",
     "definition": "suburbs of capital; govern; crops",
     "frequency": 2588,
     "radical": "田",
@@ -30403,6 +30738,7 @@
   {
     "character": "泌",
     "pinyin": "mì",
+    "pinyin_alternates": "bì",
     "definition": "to seep out, excrete",
     "hsk_level": 6,
     "frequency": 2609,
@@ -30469,6 +30805,7 @@
   {
     "character": "藉",
     "pinyin": "jí",
+    "pinyin_alternates": "jiè",
     "definition": "mat, pad; rely on; pretext",
     "frequency": 2615,
     "radical": "艸",
@@ -30554,6 +30891,7 @@
   {
     "character": "拂",
     "pinyin": "fú",
+    "pinyin_alternates": "bì",
     "definition": "shake off, brush away; dust",
     "frequency": 2623,
     "radical": "手",
@@ -30591,6 +30929,7 @@
     "traditional_character": "漿",
     "alternate_characters": "漿",
     "pinyin": "jiāng",
+    "pinyin_alternates": "jiàng",
     "definition": "any thick fluid; starch; broth",
     "frequency": 2626,
     "radical": "水",
@@ -30657,6 +30996,7 @@
   {
     "character": "剿",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "chāo",
     "definition": "destroy, exterminate, annihilate",
     "frequency": 2632,
     "radical": "刀",
@@ -30767,6 +31107,7 @@
     "traditional_character": "鉛",
     "alternate_characters": "鉛",
     "pinyin": "qiān",
+    "pinyin_alternates": "yán",
     "definition": "lead",
     "hsk_level": 2,
     "frequency": 2641,
@@ -31047,6 +31388,7 @@
     "traditional_character": "墮",
     "alternate_characters": "墮",
     "pinyin": "duò",
+    "pinyin_alternates": "huī",
     "definition": "fall, sink, let fall; degenerate",
     "hsk_level": 6,
     "frequency": 2666,
@@ -31082,6 +31424,7 @@
     "traditional_character": "蔭",
     "alternate_characters": "蔭",
     "pinyin": "yīn",
+    "pinyin_alternates": "yìn",
     "definition": "shade, shelter; protect",
     "frequency": 2669,
     "radical": "艸",
@@ -31127,6 +31470,7 @@
   {
     "character": "膏",
     "pinyin": "gāo",
+    "pinyin_alternates": "gào",
     "definition": "grease, fat; paste, ointment",
     "hsk_level": 4,
     "frequency": 2673,
@@ -31492,6 +31836,7 @@
   {
     "character": "熬",
     "pinyin": "áo",
+    "pinyin_alternates": "āo",
     "definition": "cook down, to boil; endure",
     "hsk_level": 5,
     "frequency": 2705,
@@ -31633,6 +31978,7 @@
   {
     "character": "杉",
     "pinyin": "shān",
+    "pinyin_alternates": "shā",
     "definition": "various species of pine and fir",
     "frequency": 2718,
     "radical": "木",
@@ -31715,6 +32061,7 @@
     "traditional_character": "麼",
     "alternate_characters": "麼",
     "pinyin": "mó",
+    "pinyin_alternates": "me|ma",
     "definition": "interrogative final particle; insignificant, small, tiny",
     "frequency": 2725,
     "radical": "麻",
@@ -31784,6 +32131,7 @@
   {
     "character": "嚼",
     "pinyin": "jué",
+    "pinyin_alternates": "jiáo|jiào",
     "definition": "prattle, be glib",
     "hsk_level": 6,
     "frequency": 2731,
@@ -31897,6 +32245,7 @@
   {
     "character": "咧",
     "pinyin": "liě",
+    "pinyin_alternates": "liē|lié|lie",
     "definition": "stretch mouth, grimace, grin",
     "frequency": 2741,
     "radical": "口",
@@ -31929,6 +32278,7 @@
   {
     "character": "咯",
     "pinyin": "gē",
+    "pinyin_alternates": "kǎ|luò|lo",
     "definition": "final particle",
     "frequency": 2744,
     "radical": "口",
@@ -32060,6 +32410,7 @@
   {
     "character": "澄",
     "pinyin": "chéng",
+    "pinyin_alternates": "dèng",
     "definition": "purify water by allowing sediment to settle; clear, pure",
     "hsk_level": 6,
     "frequency": 2756,
@@ -32094,6 +32445,7 @@
     "traditional_character": "渦",
     "alternate_characters": "渦",
     "pinyin": "wō",
+    "pinyin_alternates": "guō",
     "definition": "swirl, whirlpool, eddy",
     "frequency": 2759,
     "radical": "水",
@@ -32342,6 +32694,7 @@
   {
     "character": "伺",
     "pinyin": "cì",
+    "pinyin_alternates": "sì",
     "definition": "serve, wait upon, attend; examine",
     "hsk_level": 6,
     "frequency": 2782,
@@ -32373,6 +32726,7 @@
   {
     "character": "梢",
     "pinyin": "shāo",
+    "pinyin_alternates": "sào",
     "definition": "pointed tip of something long like a branch; rudder",
     "hsk_level": 6,
     "frequency": 2785,
@@ -32490,6 +32844,7 @@
     "traditional_character": "摟",
     "alternate_characters": "摟",
     "pinyin": "lǒu",
+    "pinyin_alternates": "lōu",
     "definition": "hug, embrace; drag, pull",
     "hsk_level": 6,
     "frequency": 2795,
@@ -32599,6 +32954,7 @@
   {
     "character": "吱",
     "pinyin": "zhī",
+    "pinyin_alternates": "zī",
     "definition": "chirping, squeaking, hissing",
     "frequency": 2805,
     "radical": "口",
@@ -32721,6 +33077,7 @@
     "traditional_character": "挾",
     "alternate_characters": "挾",
     "pinyin": "xié",
+    "pinyin_alternates": "jiā",
     "definition": "clasp under arm; hold to bosom",
     "frequency": 2816,
     "radical": "手",
@@ -32858,6 +33215,7 @@
   {
     "character": "隋",
     "pinyin": "suí",
+    "pinyin_alternates": "duò",
     "definition": "Sui dynasty; surname",
     "frequency": 2828,
     "radical": "阜",
@@ -32868,6 +33226,7 @@
   {
     "character": "蔓",
     "pinyin": "màn",
+    "pinyin_alternates": "wàn",
     "definition": "creeping plants, tendrils, vines",
     "hsk_level": 6,
     "frequency": 2829,
@@ -32879,6 +33238,7 @@
   {
     "character": "咋",
     "pinyin": "zǎ",
+    "pinyin_alternates": "zé|zhā",
     "definition": "question-forming particle, why? how? what?; to bite; loud",
     "hsk_level": 6,
     "frequency": 2830,
@@ -32890,6 +33250,7 @@
   {
     "character": "嵌",
     "pinyin": "qiàn",
+    "pinyin_alternates": "kàn",
     "definition": "inlay, set in; fall into; rugged",
     "hsk_level": 6,
     "frequency": 2831,
@@ -33034,6 +33395,7 @@
   {
     "character": "叨",
     "pinyin": "dāo",
+    "pinyin_alternates": "tāo",
     "definition": "talkative; quarrelous",
     "hsk_level": 6,
     "frequency": 2844,
@@ -33069,6 +33431,7 @@
     "traditional_character": "蝦",
     "alternate_characters": "蝦",
     "pinyin": "xiā",
+    "pinyin_alternates": "hā",
     "definition": "shrimp, prawn",
     "frequency": 2847,
     "radical": "虫",
@@ -33079,6 +33442,7 @@
   {
     "character": "簿",
     "pinyin": "bù",
+    "pinyin_alternates": "bó",
     "definition": "register, account book, notebook",
     "frequency": 2848,
     "radical": "竹",
@@ -33122,6 +33486,7 @@
   {
     "character": "嘎",
     "pinyin": "gā",
+    "pinyin_alternates": "gá|gǎ",
     "definition": "sound of laughter; bad, malevolent",
     "frequency": 2852,
     "radical": "口",
@@ -33142,6 +33507,7 @@
   {
     "character": "牟",
     "pinyin": "móu",
+    "pinyin_alternates": "mù",
     "definition": "make; seek, get; barley; low",
     "frequency": 2854,
     "radical": "牛",
@@ -33154,6 +33520,7 @@
     "traditional_character": "嘔",
     "alternate_characters": "嘔",
     "pinyin": "ǒu",
+    "pinyin_alternates": "ōu|òu",
     "definition": "vomit; annoy, enrage",
     "hsk_level": 6,
     "frequency": 2855,
@@ -33209,6 +33576,7 @@
   {
     "character": "喔",
     "pinyin": "ō",
+    "pinyin_alternates": "wō",
     "definition": "descriptive of crying or of crowing",
     "frequency": 2860,
     "radical": "口",
@@ -33219,6 +33587,7 @@
   {
     "character": "裳",
     "pinyin": "shang",
+    "pinyin_alternates": "cháng",
     "definition": "clothes; skirt; beautiful",
     "hsk_level": 6,
     "frequency": 2861,
@@ -33230,6 +33599,7 @@
   {
     "character": "凹",
     "pinyin": "āo",
+    "pinyin_alternates": "wā",
     "definition": "concave, hollow, depressed; a pass, valley",
     "hsk_level": 6,
     "frequency": 2862,
@@ -33253,6 +33623,7 @@
   {
     "character": "屯",
     "pinyin": "tún",
+    "pinyin_alternates": "zhūn",
     "definition": "village, hamlet; camp; station",
     "frequency": 2864,
     "radical": "屮",
@@ -33363,6 +33734,7 @@
   {
     "character": "姥",
     "pinyin": "lǎo",
+    "pinyin_alternates": "mǔ",
     "definition": "maternal grandmother; midwife",
     "hsk_level": 5,
     "frequency": 2874,
@@ -33406,6 +33778,7 @@
   {
     "character": "沮",
     "pinyin": "jǔ",
+    "pinyin_alternates": "jù",
     "definition": "stop, prevent; defeated, dejected",
     "hsk_level": 6,
     "frequency": 2878,
@@ -33428,6 +33801,7 @@
   {
     "character": "俏",
     "pinyin": "qiào",
+    "pinyin_alternates": "xiào",
     "definition": "like, similar; resemble; pretty",
     "frequency": 2880,
     "radical": "人",
@@ -33448,6 +33822,7 @@
   {
     "character": "撇",
     "pinyin": "piē",
+    "pinyin_alternates": "piě",
     "definition": "discard, abandon, throw away",
     "hsk_level": 6,
     "frequency": 2882,
@@ -33516,6 +33891,7 @@
     "traditional_character": "螞",
     "alternate_characters": "螞",
     "pinyin": "mǎ",
+    "pinyin_alternates": "mā|mà",
     "definition": "ant; leech",
     "hsk_level": 6,
     "frequency": 2888,
@@ -33560,6 +33936,7 @@
   {
     "character": "帖",
     "pinyin": "tiē",
+    "pinyin_alternates": "tiè|tiě",
     "definition": "invitation card; notice",
     "hsk_level": 6,
     "frequency": 2892,
@@ -33616,6 +33993,7 @@
   {
     "character": "棱",
     "pinyin": "léng",
+    "pinyin_alternates": "lēng|líng",
     "definition": "squared timber; angle, edge",
     "frequency": 2897,
     "radical": "木",
@@ -33638,6 +34016,7 @@
     "traditional_character": "吶",
     "alternate_characters": "吶",
     "pinyin": "nà",
+    "pinyin_alternates": "nè",
     "definition": "raise voice, yell out loud, shout; stammer",
     "frequency": 2899,
     "radical": "口",
@@ -33827,6 +34206,7 @@
     "traditional_character": "矯",
     "alternate_characters": "矯",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "jiáo",
     "definition": "correct, rectify, straighten out",
     "frequency": 2916,
     "radical": "矢",
@@ -33881,6 +34261,7 @@
   {
     "character": "琢",
     "pinyin": "zuó",
+    "pinyin_alternates": "zhuó",
     "definition": "polish jade; cut jade",
     "hsk_level": 6,
     "frequency": 2921,
@@ -33984,6 +34365,7 @@
     "traditional_character": "綽",
     "alternate_characters": "綽",
     "pinyin": "chuò",
+    "pinyin_alternates": "chāo",
     "definition": "graceful, delicate; spacious",
     "frequency": 2930,
     "radical": "糸",
@@ -34101,6 +34483,7 @@
   {
     "character": "磅",
     "pinyin": "bàng",
+    "pinyin_alternates": "páng",
     "definition": "pound; weigh",
     "hsk_level": 6,
     "frequency": 2941,
@@ -34192,6 +34575,7 @@
     "traditional_character": "濺",
     "alternate_characters": "濺",
     "pinyin": "jiàn",
+    "pinyin_alternates": "jiān",
     "definition": "sprinkle, spray; spill, splash",
     "hsk_level": 6,
     "frequency": 2949,
@@ -34247,6 +34631,7 @@
   {
     "character": "豁",
     "pinyin": "huō",
+    "pinyin_alternates": "huò|huá",
     "definition": "open up, clear; exempt",
     "frequency": 2954,
     "radical": "谷",
@@ -34257,6 +34642,7 @@
   {
     "character": "眯",
     "pinyin": "mī",
+    "pinyin_alternates": "mí",
     "definition": "be blinded",
     "hsk_level": 6,
     "frequency": 2955,
@@ -34444,6 +34830,7 @@
   {
     "character": "斐",
     "pinyin": "fěi",
+    "pinyin_alternates": "fēi",
     "definition": "graceful, elegant, beautiful",
     "frequency": 2972,
     "radical": "文",
@@ -34456,6 +34843,7 @@
     "traditional_character": "噓",
     "alternate_characters": "噓",
     "pinyin": "xū",
+    "pinyin_alternates": "shī",
     "definition": "exhale; blow out; deep sigh; hiss; praise",
     "frequency": 2973,
     "radical": "口",
@@ -34512,6 +34900,7 @@
     "traditional_character": "繃",
     "alternate_characters": "繃",
     "pinyin": "běng",
+    "pinyin_alternates": "bēng|bèng",
     "definition": "bind, draw firmly, strap",
     "frequency": 2978,
     "radical": "糸",
@@ -34564,6 +34953,7 @@
   {
     "character": "拚",
     "pinyin": "pàn",
+    "pinyin_alternates": "pīn|fān",
     "definition": "risk, disregard; go all out for",
     "frequency": 2983,
     "radical": "手",
@@ -34628,6 +35018,7 @@
   {
     "character": "扛",
     "pinyin": "káng",
+    "pinyin_alternates": "gāng",
     "definition": "carry on shoulders; lift",
     "hsk_level": 6,
     "frequency": 2989,
@@ -34663,6 +35054,7 @@
     "traditional_character": "翹",
     "alternate_characters": "翹",
     "pinyin": "qiào",
+    "pinyin_alternates": "qiáo",
     "definition": "turn up, lift, elevate, raise",
     "hsk_level": 6,
     "frequency": 2992,
@@ -34684,6 +35076,7 @@
   {
     "character": "淌",
     "pinyin": "tǎng",
+    "pinyin_alternates": "chǎng",
     "definition": "trickle; flow down; drip",
     "frequency": 2994,
     "radical": "水",
@@ -34696,6 +35089,7 @@
     "traditional_character": "柵",
     "alternate_characters": "柵",
     "pinyin": "zhà",
+    "pinyin_alternates": "shān|shi|cè",
     "definition": "fence; palisade; grid",
     "frequency": 2995,
     "radical": "木",
@@ -34720,6 +35114,7 @@
     "traditional_character": "燻",
     "alternate_characters": "燻",
     "pinyin": "xūn",
+    "pinyin_alternates": "xùn",
     "definition": "smoke, fog, vapor; smoke, cure",
     "hsk_level": 6,
     "frequency": 2997,
@@ -34985,6 +35380,7 @@
   {
     "character": "粥",
     "pinyin": "zhōu",
+    "pinyin_alternates": "yù",
     "definition": "rice gruel, congee",
     "hsk_level": 6,
     "frequency": 3021,
@@ -35124,6 +35520,7 @@
   {
     "character": "揣",
     "pinyin": "chuāi",
+    "pinyin_alternates": "chuǎi|chuài|tuán|zhuī",
     "definition": "put things under clothes",
     "frequency": 3034,
     "radical": "手",
@@ -35136,6 +35533,7 @@
     "traditional_character": "嶄",
     "alternate_characters": "嶄",
     "pinyin": "zhǎn",
+    "pinyin_alternates": "chán",
     "definition": "high, steep, precipitous; new",
     "hsk_level": 6,
     "frequency": 3035,
@@ -35147,6 +35545,7 @@
   {
     "character": "鞘",
     "pinyin": "qiào",
+    "pinyin_alternates": "shāo",
     "definition": "scabbard, sheath",
     "frequency": 3036,
     "radical": "革",
@@ -35257,6 +35656,7 @@
   {
     "character": "峙",
     "pinyin": "zhì",
+    "pinyin_alternates": "shì",
     "definition": "stand erect, stand up; pile up",
     "frequency": 3046,
     "radical": "山",
@@ -35365,6 +35765,7 @@
   {
     "character": "禺",
     "pinyin": "yú",
+    "pinyin_alternates": "yù|ǒu",
     "definition": "district; mountain in Zhejiang",
     "frequency": 3056,
     "radical": "禸",
@@ -35410,6 +35811,7 @@
   {
     "character": "氓",
     "pinyin": "máng",
+    "pinyin_alternates": "méng",
     "definition": "people; subjects; vassals",
     "hsk_level": 6,
     "frequency": 3060,
@@ -35475,6 +35877,7 @@
     "traditional_character": "槓",
     "alternate_characters": "槓",
     "pinyin": "gāng",
+    "pinyin_alternates": "gàng",
     "definition": "lever, pole, crowbar; sharpen",
     "hsk_level": 6,
     "frequency": 3066,
@@ -35486,6 +35889,7 @@
   {
     "character": "吭",
     "pinyin": "kēng",
+    "pinyin_alternates": "háng",
     "definition": "throat",
     "frequency": 3067,
     "radical": "口",
@@ -35785,6 +36189,7 @@
   {
     "character": "苛",
     "pinyin": "kē",
+    "pinyin_alternates": "hē",
     "definition": "small, petty; harsh, rigorous",
     "frequency": 3095,
     "radical": "艸",
@@ -35909,6 +36314,7 @@
   {
     "character": "苔",
     "pinyin": "tái",
+    "pinyin_alternates": "tāi",
     "definition": "moss, lichen",
     "frequency": 3106,
     "radical": "艸",
@@ -36068,6 +36474,7 @@
   {
     "character": "扒",
     "pinyin": "bā",
+    "pinyin_alternates": "pá",
     "definition": "scratch; dig up; crawl; crouch",
     "hsk_level": 6,
     "frequency": 3121,
@@ -36099,6 +36506,7 @@
   {
     "character": "埔",
     "pinyin": "bù",
+    "pinyin_alternates": "pǔ",
     "definition": "plain, arena; port, market",
     "frequency": 3124,
     "radical": "土",
@@ -36319,6 +36727,7 @@
   {
     "character": "忒",
     "pinyin": "tè",
+    "pinyin_alternates": "tuī",
     "definition": "excessive; too; very-usually of objectionable things; to err; to mistake; changeable",
     "frequency": 3144,
     "radical": "心",
@@ -36352,6 +36761,7 @@
   {
     "character": "淳",
     "pinyin": "chún",
+    "pinyin_alternates": "zhūn",
     "definition": "honest, simple, unsophisticated; cyanogen; ethane dinitrile",
     "frequency": 3147,
     "radical": "水",
@@ -36511,6 +36921,7 @@
   {
     "character": "唬",
     "pinyin": "hǔ",
+    "pinyin_alternates": "xià",
     "definition": "to intimidate; to scare",
     "frequency": 3161,
     "radical": "口",
@@ -36555,6 +36966,7 @@
     "traditional_character": "緝",
     "alternate_characters": "緝",
     "pinyin": "jī",
+    "pinyin_alternates": "qī",
     "definition": "to sew in close stitches",
     "hsk_level": 6,
     "frequency": 3165,
@@ -36695,6 +37107,7 @@
     "traditional_character": "擰",
     "alternate_characters": "擰",
     "pinyin": "níng",
+    "pinyin_alternates": "nǐng|nìng",
     "definition": "pinch; twist, wring; determined",
     "hsk_level": 6,
     "frequency": 3178,
@@ -36877,6 +37290,7 @@
   {
     "character": "瀑",
     "pinyin": "pù",
+    "pinyin_alternates": "bào",
     "definition": "waterfall, cascade; heavy rain",
     "hsk_level": 6,
     "frequency": 3195,
@@ -36951,6 +37365,7 @@
   {
     "character": "唔",
     "pinyin": "wú",
+    "pinyin_alternates": "wù|ńg|ń",
     "definition": "hold in mouth; bite; (Cant.) not, negation",
     "frequency": 3202,
     "radical": "口",
@@ -37151,6 +37566,7 @@
     "traditional_character": "嘍",
     "alternate_characters": "嘍",
     "pinyin": "lóu",
+    "pinyin_alternates": "lou",
     "definition": "used in onomatopoetic expressions",
     "frequency": 3220,
     "radical": "口",
@@ -37161,6 +37577,7 @@
   {
     "character": "砌",
     "pinyin": "qì",
+    "pinyin_alternates": "qiè",
     "definition": "to build, pile up; stone steps, brick walk",
     "frequency": 3221,
     "radical": "石",
@@ -37408,6 +37825,7 @@
   {
     "character": "踉",
     "pinyin": "liáng",
+    "pinyin_alternates": "liàng",
     "definition": "hop, jump; hurriedly, urgently",
     "frequency": 3244,
     "radical": "足",
@@ -37418,6 +37836,7 @@
   {
     "character": "佃",
     "pinyin": "diàn",
+    "pinyin_alternates": "tián",
     "definition": "tenant farmer; be a tenant farmer",
     "frequency": 3245,
     "radical": "人",
@@ -37448,6 +37867,7 @@
   {
     "character": "拽",
     "pinyin": "zhuāi",
+    "pinyin_alternates": "zhuài|yè",
     "definition": "drag, tow; throw; twist",
     "hsk_level": 6,
     "frequency": 3248,
@@ -37483,6 +37903,7 @@
   {
     "character": "俞",
     "pinyin": "yú",
+    "pinyin_alternates": "yù|shù",
     "definition": "surname; consent, approve",
     "frequency": 3251,
     "radical": "人",
@@ -37791,6 +38212,7 @@
     "traditional_character": "頜",
     "alternate_characters": "頜",
     "pinyin": "hé",
+    "pinyin_alternates": "gé",
     "definition": "mouth; jaw",
     "frequency": 3279,
     "radical": "頁",
@@ -37867,6 +38289,7 @@
     "traditional_character": "繆",
     "alternate_characters": "繆",
     "pinyin": "móu",
+    "pinyin_alternates": "miù|miào|mù|liáo",
     "definition": "wind around, bind; prepare",
     "frequency": 3286,
     "radical": "糸",
@@ -37918,6 +38341,7 @@
   {
     "character": "溺",
     "pinyin": "nì",
+    "pinyin_alternates": "niào",
     "definition": "drown; submerge in water; indulge",
     "frequency": 3291,
     "radical": "水",
@@ -37949,6 +38373,7 @@
   {
     "character": "嗨",
     "pinyin": "hāi",
+    "pinyin_alternates": "hēi",
     "definition": "an exclamation",
     "hsk_level": 6,
     "frequency": 3294,
@@ -38060,6 +38485,7 @@
   {
     "character": "桔",
     "pinyin": "jú",
+    "pinyin_alternates": "jié",
     "definition": "Chinese bellflower; well-swept; the inner fibers of corn-stalks",
     "hsk_level": 5,
     "frequency": 3304,
@@ -38071,6 +38497,7 @@
   {
     "character": "瞿",
     "pinyin": "qú",
+    "pinyin_alternates": "jù",
     "definition": "surname",
     "frequency": 3305,
     "radical": "目",
@@ -38105,6 +38532,7 @@
     "traditional_character": "摻",
     "alternate_characters": "摻",
     "pinyin": "càn",
+    "pinyin_alternates": "chān|xiān|shǎn",
     "definition": "mix, blend, adulterate",
     "frequency": 3308,
     "radical": "手",
@@ -38136,6 +38564,7 @@
   {
     "character": "喳",
     "pinyin": "zhā",
+    "pinyin_alternates": "chā",
     "definition": "whispering",
     "frequency": 3311,
     "radical": "口",
@@ -38272,6 +38701,7 @@
   {
     "character": "肋",
     "pinyin": "lē",
+    "pinyin_alternates": "lèi",
     "definition": "ribs; chest",
     "frequency": 3324,
     "radical": "肉",
@@ -38335,6 +38765,7 @@
     "traditional_character": "蹌",
     "alternate_characters": "蹌",
     "pinyin": "qiāng",
+    "pinyin_alternates": "qiàng",
     "definition": "walk rapidly",
     "frequency": 3330,
     "radical": "足",
@@ -38355,6 +38786,7 @@
   {
     "character": "伎",
     "pinyin": "jì",
+    "pinyin_alternates": "qí",
     "definition": "talent, skill, ability",
     "frequency": 3332,
     "radical": "人",
@@ -38430,6 +38862,7 @@
   {
     "character": "褪",
     "pinyin": "tuì",
+    "pinyin_alternates": "tùn",
     "definition": "strip, undress; fall off; fade",
     "frequency": 3339,
     "radical": "衣",
@@ -38648,6 +39081,7 @@
     "traditional_character": "僥",
     "alternate_characters": "僥",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "yáo",
     "definition": "be lucky; by chance, by luck",
     "hsk_level": 6,
     "frequency": 3359,
@@ -38803,6 +39237,7 @@
     "traditional_character": "瀆",
     "alternate_characters": "瀆",
     "pinyin": "dú",
+    "pinyin_alternates": "dòu",
     "definition": "ditch, sluice, gutter, drain",
     "frequency": 3373,
     "radical": "水",
@@ -38869,6 +39304,7 @@
     "traditional_character": "檻",
     "alternate_characters": "檻",
     "pinyin": "kǎn",
+    "pinyin_alternates": "jiàn",
     "definition": "threshold, door-sill",
     "frequency": 3379,
     "radical": "木",
@@ -38986,6 +39422,7 @@
   {
     "character": "倭",
     "pinyin": "wō",
+    "pinyin_alternates": "wēi",
     "definition": "dwarf; dwarfish, short",
     "frequency": 3390,
     "radical": "人",
@@ -39068,6 +39505,7 @@
   {
     "character": "蛾",
     "pinyin": "é",
+    "pinyin_alternates": "yǐ",
     "definition": "moth",
     "frequency": 3398,
     "radical": "虫",
@@ -39080,6 +39518,7 @@
     "traditional_character": "嘮",
     "alternate_characters": "嘮",
     "pinyin": "láo",
+    "pinyin_alternates": "lào",
     "definition": "chat, jaw, gossip, talk",
     "hsk_level": 6,
     "frequency": 3399,
@@ -39145,6 +39584,7 @@
     "traditional_character": "詰",
     "alternate_characters": "詰",
     "pinyin": "jí",
+    "pinyin_alternates": "jié",
     "definition": "question, interrogate",
     "frequency": 3405,
     "radical": "言",
@@ -39217,6 +39657,7 @@
   {
     "character": "鞅",
     "pinyin": "yāng",
+    "pinyin_alternates": "yàng",
     "frequency": 3412,
     "radical": "革",
     "radical_code": 177.5,
@@ -39278,6 +39719,7 @@
     "traditional_character": "嗆",
     "alternate_characters": "嗆",
     "pinyin": "qiāng",
+    "pinyin_alternates": "qiàng",
     "definition": "choke by smoke; irritates nose",
     "frequency": 3418,
     "radical": "口",
@@ -39375,6 +39817,7 @@
     "traditional_character": "馱",
     "alternate_characters": "馱",
     "pinyin": "tuó",
+    "pinyin_alternates": "duò",
     "definition": "carry on back",
     "frequency": 3427,
     "radical": "馬",
@@ -39417,6 +39860,7 @@
   {
     "character": "曝",
     "pinyin": "pù",
+    "pinyin_alternates": "bào",
     "definition": "sun, air in sun, expose or dry in the sun",
     "hsk_level": 6,
     "frequency": 3431,
@@ -39504,6 +39948,7 @@
   {
     "character": "竺",
     "pinyin": "zhú",
+    "pinyin_alternates": "dǔ",
     "definition": "India; bamboo; surname",
     "frequency": 3439,
     "radical": "竹",
@@ -39514,6 +39959,7 @@
   {
     "character": "烙",
     "pinyin": "lào",
+    "pinyin_alternates": "luò",
     "definition": "brand, burn; branding iron",
     "frequency": 3440,
     "radical": "火",
@@ -39644,6 +40090,7 @@
     "traditional_character": "闕",
     "alternate_characters": "闕",
     "pinyin": "quē",
+    "pinyin_alternates": "què",
     "definition": "watch tower; palace",
     "frequency": 3452,
     "radical": "門",
@@ -39752,6 +40199,7 @@
   {
     "character": "奄",
     "pinyin": "yǎn",
+    "pinyin_alternates": "yān",
     "definition": "ere long; remain, tarry; feeble",
     "frequency": 3462,
     "radical": "大",
@@ -39762,6 +40210,7 @@
   {
     "character": "嫖",
     "pinyin": "piáo",
+    "pinyin_alternates": "piāo",
     "definition": "patronize prostitutes, frequent",
     "frequency": 3463,
     "radical": "女",
@@ -39847,6 +40296,7 @@
   {
     "character": "捻",
     "pinyin": "niǎn",
+    "pinyin_alternates": "niē",
     "definition": "to twist or nip with the fingers",
     "frequency": 3471,
     "radical": "手",
@@ -39899,6 +40349,7 @@
   {
     "character": "呱",
     "pinyin": "gū",
+    "pinyin_alternates": "guā|guǎ",
     "definition": "wail, crying of child; swear at",
     "frequency": 3476,
     "radical": "口",
@@ -39995,6 +40446,7 @@
   {
     "character": "撮",
     "pinyin": "cuō",
+    "pinyin_alternates": "zuǒ",
     "definition": "little bit, small amount, pinch",
     "frequency": 3485,
     "radical": "手",
@@ -40015,6 +40467,7 @@
   {
     "character": "彷",
     "pinyin": "fǎng",
+    "pinyin_alternates": "páng",
     "definition": "like, resembling; resemble",
     "frequency": 3487,
     "radical": "彳",
@@ -40124,6 +40577,7 @@
   {
     "character": "嗒",
     "pinyin": "dā",
+    "pinyin_alternates": "tà",
     "definition": "absent-minded",
     "frequency": 3497,
     "radical": "口",
@@ -40134,6 +40588,7 @@
   {
     "character": "咀",
     "pinyin": "jǔ",
+    "pinyin_alternates": "zuǐ",
     "definition": "suck; chew, masticate",
     "hsk_level": 6,
     "frequency": 3498,
@@ -40222,6 +40677,7 @@
     "traditional_character": "覷",
     "alternate_characters": "覷",
     "pinyin": "qù",
+    "pinyin_alternates": "qū",
     "definition": "peep at; watch, spy on",
     "frequency": 3506,
     "radical": "見",
@@ -40310,6 +40766,7 @@
   {
     "character": "撩",
     "pinyin": "liāo",
+    "pinyin_alternates": "liáo",
     "definition": "lift up, raise; leave, depart",
     "frequency": 3514,
     "radical": "手",
@@ -40445,6 +40902,7 @@
   {
     "character": "疙",
     "pinyin": "gē",
+    "pinyin_alternates": "yì",
     "definition": "pimple, sore, boil, wart, pustule",
     "hsk_level": 6,
     "frequency": 3527,
@@ -40476,6 +40934,7 @@
   {
     "character": "楷",
     "pinyin": "kǎi",
+    "pinyin_alternates": "jiē",
     "definition": "model style of Chinese writing",
     "frequency": 3530,
     "radical": "木",
@@ -40530,6 +40989,7 @@
     "traditional_character": "輾",
     "alternate_characters": "輾",
     "pinyin": "niǎn",
+    "pinyin_alternates": "zhǎn",
     "definition": "turn over, roll",
     "frequency": 3535,
     "radical": "車",
@@ -40604,6 +41064,7 @@
   {
     "character": "倔",
     "pinyin": "jué",
+    "pinyin_alternates": "juè",
     "definition": "stubborn, obstinate, intransigent; firm",
     "hsk_level": 6,
     "frequency": 3542,
@@ -40627,6 +41088,7 @@
     "traditional_character": "頡",
     "alternate_characters": "頡",
     "pinyin": "jié",
+    "pinyin_alternates": "xié|jiá",
     "definition": "fly upward, soar; contest",
     "frequency": 3544,
     "radical": "頁",
@@ -40670,6 +41132,7 @@
     "traditional_character": "攢",
     "alternate_characters": "攢",
     "pinyin": "zǎn",
+    "pinyin_alternates": "cuán",
     "definition": "save, hoard",
     "hsk_level": 6,
     "frequency": 3548,
@@ -40681,6 +41144,7 @@
   {
     "character": "瘩",
     "pinyin": "da",
+    "pinyin_alternates": "dá",
     "definition": "pimples",
     "hsk_level": 6,
     "frequency": 3549,
@@ -40802,6 +41266,7 @@
     "traditional_character": "綸",
     "alternate_characters": "綸",
     "pinyin": "lún",
+    "pinyin_alternates": "guān",
     "definition": "green silk thread or tassel",
     "frequency": 3560,
     "radical": "糸",
@@ -40908,6 +41373,7 @@
   {
     "character": "拌",
     "pinyin": "bàn",
+    "pinyin_alternates": "pàn",
     "definition": "mix",
     "hsk_level": 6,
     "frequency": 3570,
@@ -40982,6 +41448,7 @@
   {
     "character": "剌",
     "pinyin": "lá",
+    "pinyin_alternates": "là",
     "definition": "slash, cut in two; contradict",
     "frequency": 3577,
     "radical": "刀",
@@ -41078,6 +41545,7 @@
   {
     "character": "簸",
     "pinyin": "bǒ",
+    "pinyin_alternates": "bò",
     "definition": "winnower",
     "hsk_level": 6,
     "frequency": 3586,
@@ -41224,6 +41692,7 @@
   {
     "character": "嚓",
     "pinyin": "cā",
+    "pinyin_alternates": "chā",
     "definition": "a cracking or snapping sound",
     "frequency": 3600,
     "radical": "口",
@@ -41236,6 +41705,7 @@
     "traditional_character": "憚",
     "alternate_characters": "憚",
     "pinyin": "dàn",
+    "pinyin_alternates": "dá",
     "definition": "dread, shrink from, shirk, fear",
     "hsk_level": 6,
     "frequency": 3601,
@@ -41257,6 +41727,7 @@
   {
     "character": "捎",
     "pinyin": "shāo",
+    "pinyin_alternates": "shào",
     "definition": "to select; to take; to carry",
     "hsk_level": 6,
     "frequency": 3603,
@@ -41278,6 +41749,7 @@
   {
     "character": "俟",
     "pinyin": "qí",
+    "pinyin_alternates": "sì",
     "definition": "wait for, wait until, as soon as",
     "frequency": 3605,
     "radical": "人",
@@ -41423,6 +41895,7 @@
   {
     "character": "亟",
     "pinyin": "jí",
+    "pinyin_alternates": "qì",
     "definition": "urgently, immediately, extremely",
     "frequency": 3619,
     "radical": "二",
@@ -41463,6 +41936,7 @@
   {
     "character": "刨",
     "pinyin": "páo",
+    "pinyin_alternates": "bào",
     "frequency": 3623,
     "radical": "刀",
     "radical_code": 18.5,
@@ -41529,6 +42003,7 @@
   {
     "character": "拗",
     "pinyin": "ǎo",
+    "pinyin_alternates": "ào|niù",
     "definition": "to pull, drag, break off, to pluck (a flower); bent, warped; perverse, obstinate",
     "frequency": 3629,
     "radical": "手",
@@ -41571,6 +42046,7 @@
   {
     "character": "喋",
     "pinyin": "dié",
+    "pinyin_alternates": "zhá",
     "definition": "nag; chatter, babble, twitter",
     "frequency": 3633,
     "radical": "口",
@@ -41865,6 +42341,7 @@
   {
     "character": "矜",
     "pinyin": "jīn",
+    "pinyin_alternates": "qín|guān",
     "definition": "pity, feel sorry for, show sympat",
     "frequency": 3661,
     "radical": "矛",
@@ -42117,6 +42594,7 @@
   {
     "character": "擂",
     "pinyin": "léi",
+    "pinyin_alternates": "lèi",
     "definition": "rub, grind; grind with a mortar and pestle; triturate",
     "frequency": 3685,
     "radical": "手",
@@ -42233,6 +42711,7 @@
   {
     "character": "蟒",
     "pinyin": "mǎng",
+    "pinyin_alternates": "měng",
     "definition": "python, boa constrictor",
     "frequency": 3696,
     "radical": "虫",
@@ -42380,6 +42859,7 @@
     "traditional_character": "撾",
     "alternate_characters": "撾",
     "pinyin": "wō",
+    "pinyin_alternates": "zhuā",
     "definition": "to beat; to strike",
     "frequency": 3710,
     "radical": "手",
@@ -42412,6 +42892,7 @@
   {
     "character": "糜",
     "pinyin": "mí",
+    "pinyin_alternates": "méi",
     "definition": "rice gruel, congee; mashed",
     "frequency": 3713,
     "radical": "米",
@@ -42474,6 +42955,7 @@
   {
     "character": "汶",
     "pinyin": "wèn",
+    "pinyin_alternates": "mén",
     "definition": "a river in Shandong province",
     "frequency": 3719,
     "radical": "水",
@@ -42559,6 +43041,7 @@
     "traditional_character": "匱",
     "alternate_characters": "匱",
     "pinyin": "kuì",
+    "pinyin_alternates": "guì",
     "definition": "to lack",
     "frequency": 3727,
     "radical": "匚",
@@ -42613,6 +43096,7 @@
   {
     "character": "蛤",
     "pinyin": "há",
+    "pinyin_alternates": "gé",
     "definition": "clam",
     "frequency": 3732,
     "radical": "虫",
@@ -42682,6 +43166,7 @@
   {
     "character": "潦",
     "pinyin": "lǎo",
+    "pinyin_alternates": "lào|liáo",
     "definition": "to flood; a puddle; without care",
     "frequency": 3739,
     "radical": "水",
@@ -42831,6 +43316,7 @@
   {
     "character": "浚",
     "pinyin": "jùn",
+    "pinyin_alternates": "xùn",
     "definition": "dredge",
     "frequency": 3753,
     "radical": "水",
@@ -43109,6 +43595,7 @@
   {
     "character": "耆",
     "pinyin": "qí",
+    "pinyin_alternates": "shì",
     "definition": "man of sixty; aged, old",
     "frequency": 3779,
     "radical": "老",
@@ -43271,6 +43758,7 @@
     "traditional_character": "滸",
     "alternate_characters": "滸",
     "pinyin": "hǔ",
+    "pinyin_alternates": "xǔ",
     "definition": "riverbank, shore",
     "frequency": 3794,
     "radical": "水",
@@ -43392,6 +43880,7 @@
   {
     "character": "佚",
     "pinyin": "yì",
+    "pinyin_alternates": "dié",
     "definition": "indulge in pleasures; flee",
     "frequency": 3805,
     "radical": "人",
@@ -43402,6 +43891,7 @@
   {
     "character": "沓",
     "pinyin": "dá",
+    "pinyin_alternates": "tà",
     "definition": "connected, joined; repeated",
     "frequency": 3806,
     "radical": "水",
@@ -43465,6 +43955,7 @@
     "traditional_character": "癟",
     "alternate_characters": "癟",
     "pinyin": "biě",
+    "pinyin_alternates": "biē",
     "definition": "shrivelled up, dried up; vexed",
     "frequency": 3812,
     "radical": "疒",
@@ -43509,6 +44000,7 @@
     "traditional_character": "鰓",
     "alternate_characters": "鰓",
     "pinyin": "sāi",
+    "pinyin_alternates": "xǐ",
     "definition": "fish gills",
     "frequency": 3816,
     "radical": "魚",
@@ -43617,6 +44109,7 @@
   {
     "character": "褚",
     "pinyin": "chǔ",
+    "pinyin_alternates": "zhǔ",
     "definition": "bag, valise; stuff, pad; surname",
     "frequency": 3826,
     "radical": "衣",
@@ -43739,6 +44232,7 @@
     "traditional_character": "噯",
     "alternate_characters": "噯",
     "pinyin": "āi",
+    "pinyin_alternates": "ǎi|ài",
     "definition": "interjection; exclamation",
     "frequency": 3837,
     "radical": "口",
@@ -43864,6 +44358,7 @@
   {
     "character": "蟆",
     "pinyin": "má",
+    "pinyin_alternates": "mò",
     "definition": "frog, toad",
     "frequency": 3849,
     "radical": "虫",
@@ -44023,6 +44518,7 @@
   {
     "character": "掖",
     "pinyin": "yē",
+    "pinyin_alternates": "yè",
     "definition": "support with the arms; stick in, tuck in; fold up",
     "frequency": 3863,
     "radical": "手",
@@ -44089,6 +44585,7 @@
     "traditional_character": "掄",
     "alternate_characters": "掄",
     "pinyin": "lūn",
+    "pinyin_alternates": "lún",
     "definition": "swing, brandish, flourish",
     "frequency": 3869,
     "radical": "手",
@@ -44101,6 +44598,7 @@
     "traditional_character": "擻",
     "alternate_characters": "擻",
     "pinyin": "sǒu",
+    "pinyin_alternates": "sòu",
     "definition": "shake, tremble, quake; flutter",
     "frequency": 3870,
     "radical": "手",
@@ -44121,6 +44619,7 @@
   {
     "character": "坷",
     "pinyin": "kě",
+    "pinyin_alternates": "kē",
     "definition": "clod of earth, lump of soil",
     "frequency": 3872,
     "radical": "土",
@@ -44241,6 +44740,7 @@
     "traditional_character": "姍",
     "alternate_characters": "姍",
     "pinyin": "shān",
+    "pinyin_alternates": "shàn",
     "definition": "slander; ridicule; proceed slowly",
     "frequency": 3883,
     "radical": "女",
@@ -44627,6 +45127,7 @@
   {
     "character": "翟",
     "pinyin": "dí",
+    "pinyin_alternates": "zhái",
     "definition": "surname; a kind of pheasant; plumes",
     "frequency": 3919,
     "radical": "羽",
@@ -44797,6 +45298,7 @@
   {
     "character": "蹊",
     "pinyin": "qī",
+    "pinyin_alternates": "xī",
     "definition": "footpath, trail; track",
     "frequency": 3935,
     "radical": "足",
@@ -44912,6 +45414,7 @@
   {
     "character": "傀",
     "pinyin": "guī",
+    "pinyin_alternates": "kuǐ",
     "definition": "great, gigantic; puppet",
     "frequency": 3946,
     "radical": "人",
@@ -44922,6 +45425,7 @@
   {
     "character": "蚌",
     "pinyin": "bàng",
+    "pinyin_alternates": "bèng",
     "definition": "oysters, mussels; mother-of-pearl",
     "frequency": 3947,
     "radical": "虫",
@@ -45086,6 +45590,7 @@
     "traditional_character": "唄",
     "alternate_characters": "唄",
     "pinyin": "bei",
+    "pinyin_alternates": "bài",
     "definition": "final particle of assertion",
     "frequency": 3962,
     "radical": "口",
@@ -45128,6 +45633,7 @@
   {
     "character": "淖",
     "pinyin": "nào",
+    "pinyin_alternates": "chuò|zhuō",
     "definition": "slush; mud",
     "frequency": 3966,
     "radical": "水",
@@ -45313,6 +45819,7 @@
   {
     "character": "皋",
     "pinyin": "gāo",
+    "pinyin_alternates": "háo",
     "definition": "the high land along a river",
     "frequency": 3983,
     "radical": "白",
@@ -45463,6 +45970,7 @@
     "traditional_character": "齦",
     "alternate_characters": "齦",
     "pinyin": "kěn",
+    "pinyin_alternates": "yín",
     "definition": "gums",
     "frequency": 3997,
     "radical": "齒",
@@ -45503,6 +46011,7 @@
   {
     "character": "町",
     "pinyin": "tīng",
+    "pinyin_alternates": "tǐng|dīng",
     "definition": "raised path between fields",
     "frequency": 4001,
     "radical": "田",
@@ -45513,6 +46022,7 @@
   {
     "character": "芥",
     "pinyin": "jiè",
+    "pinyin_alternates": "gài",
     "definition": "mustard plant; mustard; tiny",
     "frequency": 4002,
     "radical": "艸",
@@ -45546,6 +46056,7 @@
   {
     "character": "挎",
     "pinyin": "kuà",
+    "pinyin_alternates": "kū",
     "definition": "carry",
     "hsk_level": 6,
     "frequency": 4005,
@@ -45579,6 +46090,7 @@
   {
     "character": "啜",
     "pinyin": "chuài",
+    "pinyin_alternates": "chuò",
     "definition": "sip, suck up; sob, weep",
     "frequency": 4008,
     "radical": "口",
@@ -45589,6 +46101,7 @@
   {
     "character": "垛",
     "pinyin": "duǒ",
+    "pinyin_alternates": "duò",
     "definition": "heap, pile; pile up, heap up",
     "frequency": 4009,
     "radical": "土",
@@ -45880,6 +46393,7 @@
     "traditional_character": "檳",
     "alternate_characters": "檳",
     "pinyin": "bīn",
+    "pinyin_alternates": "bīng",
     "definition": "betel-nut, areca nut",
     "frequency": 4036,
     "radical": "木",
@@ -45933,6 +46447,7 @@
   {
     "character": "燎",
     "pinyin": "liáo",
+    "pinyin_alternates": "liǎo",
     "definition": "to burn, set afire; to illuminate; a signal lamp",
     "frequency": 4041,
     "radical": "火",
@@ -46019,6 +46534,7 @@
   {
     "character": "捋",
     "pinyin": "lǚ",
+    "pinyin_alternates": "luō",
     "definition": "to pluck; to gather in the fingers; to rub; to scrape off",
     "frequency": 4049,
     "radical": "手",
@@ -46125,6 +46641,7 @@
   {
     "character": "湮",
     "pinyin": "yān",
+    "pinyin_alternates": "yīn",
     "definition": "bury, sink, block up; stain",
     "frequency": 4059,
     "radical": "水",
@@ -46327,6 +46844,7 @@
   {
     "character": "媛",
     "pinyin": "yuàn",
+    "pinyin_alternates": "yuán",
     "definition": "beauty, beautiful woman",
     "frequency": 4078,
     "radical": "女",
@@ -46409,6 +46927,7 @@
   {
     "character": "徵",
     "pinyin": "zhēng",
+    "pinyin_alternates": "zhǐ",
     "definition": "summon, recruit; musical note",
     "frequency": 4086,
     "radical": "彳",
@@ -46571,6 +47090,7 @@
     "traditional_character": "檜",
     "alternate_characters": "檜",
     "pinyin": "guì",
+    "pinyin_alternates": "huì",
     "definition": "Chinese cypress, Chinese juniper",
     "frequency": 4101,
     "radical": "木",
@@ -46652,6 +47172,7 @@
   {
     "character": "蚣",
     "pinyin": "gōng",
+    "pinyin_alternates": "zhōng",
     "definition": "centipede",
     "frequency": 4109,
     "radical": "虫",
@@ -46720,6 +47241,7 @@
   {
     "character": "撅",
     "pinyin": "juē",
+    "pinyin_alternates": "jué",
     "definition": "protrude; snap, break; dig",
     "frequency": 4115,
     "radical": "手",
@@ -46740,6 +47262,7 @@
   {
     "character": "斡",
     "pinyin": "wò",
+    "pinyin_alternates": "guǎn",
     "definition": "revolve, rotate, turn",
     "frequency": 4117,
     "radical": "斗",
@@ -46838,6 +47361,7 @@
   {
     "character": "耙",
     "pinyin": "bà",
+    "pinyin_alternates": "pá",
     "definition": "rake",
     "frequency": 4126,
     "radical": "耒",
@@ -46882,6 +47406,7 @@
     "traditional_character": "諶",
     "alternate_characters": "諶",
     "pinyin": "chén",
+    "pinyin_alternates": "shèn",
     "definition": "sincere, faithful; surname",
     "frequency": 4130,
     "radical": "言",
@@ -47131,6 +47656,7 @@
     "traditional_character": "瘧",
     "alternate_characters": "瘧",
     "pinyin": "nüè",
+    "pinyin_alternates": "yào",
     "definition": "intermittent fever; malaria",
     "frequency": 4153,
     "radical": "疒",
@@ -47350,6 +47876,7 @@
   {
     "character": "喏",
     "pinyin": "nuò",
+    "pinyin_alternates": "rě",
     "definition": "respectful reply of assent to superiors",
     "frequency": 4174,
     "radical": "口",
@@ -47768,6 +48295,7 @@
   {
     "character": "棣",
     "pinyin": "dì",
+    "pinyin_alternates": "dài|tì",
     "definition": "kerria japonica plant, cherry",
     "frequency": 4213,
     "radical": "木",
@@ -47834,6 +48362,7 @@
     "traditional_character": "醃",
     "alternate_characters": "醃",
     "pinyin": "yān",
+    "pinyin_alternates": "ā",
     "definition": "salt, pickle; be dirty",
     "frequency": 4219,
     "radical": "肉",
@@ -47866,6 +48395,7 @@
     "traditional_character": "鎬",
     "alternate_characters": "鎬",
     "pinyin": "gǎo",
+    "pinyin_alternates": "hào",
     "definition": "stove; bright",
     "frequency": 4222,
     "radical": "金",
@@ -47954,6 +48484,7 @@
   {
     "character": "裨",
     "pinyin": "bì",
+    "pinyin_alternates": "pí",
     "definition": "aid, benefit, help; supplement",
     "frequency": 4230,
     "radical": "衣",
@@ -48020,6 +48551,7 @@
     "traditional_character": "雋",
     "alternate_characters": "雋",
     "pinyin": "juàn",
+    "pinyin_alternates": "jùn",
     "definition": "superior, outstanding, talented",
     "frequency": 4236,
     "radical": "隹",
@@ -48278,6 +48810,7 @@
   {
     "character": "莞",
     "pinyin": "guǎn",
+    "pinyin_alternates": "guān|wǎn",
     "definition": "smiling; a kind of aquatic herb, clubrush, Scirpus lacustris",
     "frequency": 4260,
     "radical": "艸",
@@ -48288,6 +48821,7 @@
   {
     "character": "澹",
     "pinyin": "dàn",
+    "pinyin_alternates": "tán",
     "definition": "calm, quiet, tranquil",
     "frequency": 4261,
     "radical": "水",
@@ -48392,6 +48926,7 @@
   {
     "character": "宓",
     "pinyin": "mì",
+    "pinyin_alternates": "fú",
     "definition": "quiet, silent; in good health",
     "frequency": 4271,
     "radical": "宀",
@@ -48515,6 +49050,7 @@
   {
     "character": "偈",
     "pinyin": "jì",
+    "pinyin_alternates": "jié",
     "definition": "brave; martial; hasty; scudding",
     "frequency": 4283,
     "radical": "人",
@@ -48598,6 +49134,7 @@
   {
     "character": "圩",
     "pinyin": "wéi",
+    "pinyin_alternates": "xū",
     "definition": "dike, embankment",
     "frequency": 4291,
     "radical": "土",
@@ -48743,6 +49280,7 @@
   {
     "character": "臧",
     "pinyin": "zāng",
+    "pinyin_alternates": "zàng|cáng",
     "definition": "good, right, generous; command",
     "frequency": 4304,
     "radical": "臣",
@@ -48922,6 +49460,7 @@
   {
     "character": "碴",
     "pinyin": "chá",
+    "pinyin_alternates": "chā",
     "definition": "chipped edge of a container",
     "frequency": 4321,
     "radical": "石",
@@ -48974,6 +49513,7 @@
   {
     "character": "睢",
     "pinyin": "suī",
+    "pinyin_alternates": "huī",
     "definition": "gaze at, stare at; uninhibited",
     "frequency": 4326,
     "radical": "目",
@@ -49122,6 +49662,7 @@
     "traditional_character": "鮭",
     "alternate_characters": "鮭",
     "pinyin": "guī",
+    "pinyin_alternates": "xié",
     "definition": "salmon; spheroides vermicularis",
     "frequency": 4340,
     "radical": "魚",
@@ -49144,6 +49685,7 @@
   {
     "character": "汩",
     "pinyin": "gǔ",
+    "pinyin_alternates": "yù",
     "definition": "run swiftly",
     "frequency": 4342,
     "radical": "水",
@@ -49248,6 +49790,7 @@
     "traditional_character": "詒",
     "alternate_characters": "詒",
     "pinyin": "yí",
+    "pinyin_alternates": "dài",
     "definition": "bequeath, pass on to future generations",
     "frequency": 4352,
     "radical": "言",
@@ -49455,6 +49998,7 @@
     "traditional_character": "饢",
     "alternate_characters": "饢",
     "pinyin": "náng",
+    "pinyin_alternates": "nǎng",
     "definition": "bread (persian naan)",
     "frequency": 4372,
     "radical": "食",
@@ -49635,6 +50179,7 @@
   {
     "character": "臊",
     "pinyin": "sāo",
+    "pinyin_alternates": "sào",
     "definition": "rank; rancid; frowzy, fetid; bashful",
     "frequency": 4389,
     "radical": "肉",
@@ -49776,6 +50321,7 @@
     "traditional_character": "撣",
     "alternate_characters": "撣",
     "pinyin": "dǎn",
+    "pinyin_alternates": "shàn",
     "definition": "to dust; a duster",
     "frequency": 4402,
     "radical": "手",
@@ -49820,6 +50366,7 @@
   {
     "character": "侗",
     "pinyin": "dòng",
+    "pinyin_alternates": "tóng|tǒng",
     "definition": "big; ignorant; rude, rustic",
     "frequency": 4406,
     "radical": "人",
@@ -49894,6 +50441,7 @@
   {
     "character": "體",
     "pinyin": "tǐ",
+    "pinyin_alternates": "tī",
     "definition": "body; group, class, body, unit",
     "frequency": 4413,
     "radical": "骨",
@@ -49967,6 +50515,7 @@
   {
     "character": "蹶",
     "pinyin": "jué",
+    "pinyin_alternates": "juě",
     "definition": "stumble, fall down; trample",
     "frequency": 4420,
     "radical": "足",
@@ -50094,6 +50643,7 @@
   {
     "character": "莘",
     "pinyin": "shēn",
+    "pinyin_alternates": "xīn",
     "definition": "long; numerous; a marsh plant whose root is used for medicine",
     "frequency": 4432,
     "radical": "艸",
@@ -50138,6 +50688,7 @@
     "traditional_character": "鐺",
     "alternate_characters": "鐺",
     "pinyin": "dāng",
+    "pinyin_alternates": "chēng",
     "definition": "frying pan; warming vessel",
     "frequency": 4436,
     "radical": "金",
@@ -50398,6 +50949,7 @@
     "traditional_character": "縹",
     "alternate_characters": "縹",
     "pinyin": "piāo",
+    "pinyin_alternates": "piǎo",
     "definition": "light blue silk; dim; misty",
     "frequency": 4460,
     "radical": "糸",
@@ -50802,6 +51354,7 @@
     "traditional_character": "樅",
     "alternate_characters": "樅",
     "pinyin": "cōng",
+    "pinyin_alternates": "zōng",
     "definition": "fir tree",
     "frequency": 4497,
     "radical": "木",
@@ -50812,6 +51365,7 @@
   {
     "character": "熨",
     "pinyin": "yùn",
+    "pinyin_alternates": "yù",
     "definition": "iron, press",
     "hsk_level": 6,
     "frequency": 4498,
@@ -51085,6 +51639,7 @@
   {
     "character": "僮",
     "pinyin": "tóng",
+    "pinyin_alternates": "zhuàng",
     "definition": "page, boy servant",
     "frequency": 4523,
     "radical": "人",
@@ -51150,6 +51705,7 @@
   {
     "character": "杈",
     "pinyin": "chā",
+    "pinyin_alternates": "chà",
     "definition": "fork of a tree; a pitchfork",
     "frequency": 4529,
     "radical": "木",
@@ -51222,6 +51778,7 @@
   {
     "character": "拮",
     "pinyin": "jié",
+    "pinyin_alternates": "jiá",
     "definition": "laboring hard, occupied; pursue",
     "frequency": 4536,
     "radical": "手",
@@ -51294,6 +51851,7 @@
   {
     "character": "囤",
     "pinyin": "dùn",
+    "pinyin_alternates": "tún",
     "definition": "grain basket, bin for grain",
     "frequency": 4543,
     "radical": "囗",
@@ -51314,6 +51872,7 @@
   {
     "character": "奘",
     "pinyin": "zàng",
+    "pinyin_alternates": "zhuǎng",
     "definition": "large, powerful, stout, thick",
     "frequency": 4545,
     "radical": "大",
@@ -51378,6 +51937,7 @@
   {
     "character": "潢",
     "pinyin": "huáng",
+    "pinyin_alternates": "guāng",
     "definition": "expanse of water, lake, pond",
     "frequency": 4551,
     "radical": "水",
@@ -51398,6 +51958,7 @@
   {
     "character": "柚",
     "pinyin": "yòu",
+    "pinyin_alternates": "yóu",
     "definition": "pomelo, grapefruit",
     "frequency": 4553,
     "radical": "木",
@@ -51605,6 +52166,7 @@
     "traditional_character": "僂",
     "alternate_characters": "僂",
     "pinyin": "lóu",
+    "pinyin_alternates": "lǚ",
     "definition": "humpback; surname",
     "frequency": 4573,
     "radical": "人",
@@ -51615,6 +52177,7 @@
   {
     "character": "夯",
     "pinyin": "hāng",
+    "pinyin_alternates": "bèn",
     "definition": "heavy load, burden; lift up",
     "frequency": 4574,
     "radical": "大",
@@ -51691,6 +52254,7 @@
   {
     "character": "筠",
     "pinyin": "yún",
+    "pinyin_alternates": "jūn",
     "definition": "bamboo skin; bamboo",
     "frequency": 4581,
     "radical": "竹",
@@ -51701,6 +52265,7 @@
   {
     "character": "埽",
     "pinyin": "sào",
+    "pinyin_alternates": "sǎo",
     "definition": "broom; to sweep, clear away",
     "frequency": 4582,
     "radical": "土",
@@ -51831,6 +52396,7 @@
   {
     "character": "嗑",
     "pinyin": "kē",
+    "pinyin_alternates": "kè",
     "definition": "eat seeds; reproach; loquacious",
     "frequency": 4594,
     "radical": "口",
@@ -52051,6 +52617,7 @@
   {
     "character": "啐",
     "pinyin": "cuì",
+    "pinyin_alternates": "qi",
     "definition": "to taste, to sip; to spit; the sound of sipping; to surprise",
     "frequency": 4615,
     "radical": "口",
@@ -52139,6 +52706,7 @@
   {
     "character": "苫",
     "pinyin": "shān",
+    "pinyin_alternates": "shàn",
     "definition": "rush or straw matting",
     "frequency": 4623,
     "radical": "艸",
@@ -52247,6 +52815,7 @@
   {
     "character": "峒",
     "pinyin": "dòng",
+    "pinyin_alternates": "tóng",
     "definition": "mountain in Gansu province",
     "frequency": 4633,
     "radical": "山",
@@ -52281,6 +52850,7 @@
     "traditional_character": "靚",
     "alternate_characters": "靚",
     "pinyin": "jìng",
+    "pinyin_alternates": "liàng",
     "definition": "make up face; ornament; quiet",
     "frequency": 4636,
     "radical": "青",
@@ -52708,6 +53278,7 @@
   {
     "character": "姣",
     "pinyin": "jiāo",
+    "pinyin_alternates": "xiáo",
     "definition": "beautiful, handsome, pretty",
     "frequency": 4676,
     "radical": "女",
@@ -52793,6 +53364,7 @@
   {
     "character": "窕",
     "pinyin": "tiǎo",
+    "pinyin_alternates": "yáo",
     "definition": "slender; quiet and modest, charming",
     "frequency": 4684,
     "radical": "穴",
@@ -52823,6 +53395,7 @@
   {
     "character": "崴",
     "pinyin": "wǎi",
+    "pinyin_alternates": "wēi",
     "definition": "high, lofty; precipitous",
     "frequency": 4687,
     "radical": "山",
@@ -52960,6 +53533,7 @@
     "traditional_character": "餾",
     "alternate_characters": "餾",
     "pinyin": "liú",
+    "pinyin_alternates": "liù",
     "definition": "distill, distillation",
     "frequency": 4700,
     "radical": "食",
@@ -53056,6 +53630,7 @@
     "traditional_character": "鋌",
     "alternate_characters": "鋌",
     "pinyin": "dìng",
+    "pinyin_alternates": "tǐng",
     "definition": "ingots, bars of metal; hurry",
     "frequency": 4709,
     "radical": "金",
@@ -53187,6 +53762,7 @@
     "traditional_character": "櫟",
     "alternate_characters": "櫟",
     "pinyin": "lì",
+    "pinyin_alternates": "yuè",
     "definition": "chestnut-leaved oak; oak",
     "frequency": 4721,
     "radical": "木",
@@ -53300,6 +53876,7 @@
   {
     "character": "迤",
     "pinyin": "yí",
+    "pinyin_alternates": "yǐ",
     "definition": "wind; walk out of straight path",
     "frequency": 4732,
     "radical": "辵",
@@ -53312,6 +53889,7 @@
     "traditional_character": "賁",
     "alternate_characters": "賁",
     "pinyin": "bēn",
+    "pinyin_alternates": "bì",
     "definition": "forge ahead; energetic; surname",
     "frequency": 4733,
     "radical": "貝",
@@ -53569,6 +54147,7 @@
   {
     "character": "濯",
     "pinyin": "zhuó",
+    "pinyin_alternates": "zhào",
     "definition": "wash out, rinse; cleanse",
     "frequency": 4757,
     "radical": "水",
@@ -53643,6 +54222,7 @@
   {
     "character": "楂",
     "pinyin": "zhā",
+    "pinyin_alternates": "chá",
     "definition": "a raft, to hew, to fell trees",
     "frequency": 4764,
     "radical": "木",
@@ -53800,6 +54380,7 @@
   {
     "character": "碣",
     "pinyin": "jié",
+    "pinyin_alternates": "yà",
     "definition": "stone tablet",
     "frequency": 4779,
     "radical": "石",
@@ -53824,6 +54405,7 @@
     "traditional_character": "徠",
     "alternate_characters": "徠",
     "pinyin": "lái",
+    "pinyin_alternates": "lài",
     "definition": "induce, encourage to come",
     "frequency": 4781,
     "radical": "彳",
@@ -53878,6 +54460,7 @@
     "traditional_character": "銑",
     "alternate_characters": "銑",
     "pinyin": "xǐ",
+    "pinyin_alternates": "xiǎn",
     "definition": "mill",
     "frequency": 4786,
     "radical": "金",
@@ -53932,6 +54515,7 @@
   {
     "character": "酊",
     "pinyin": "dīng",
+    "pinyin_alternates": "dǐng",
     "definition": "drunk, intoxicated",
     "frequency": 4791,
     "radical": "酉",
@@ -53984,6 +54568,7 @@
   {
     "character": "陂",
     "pinyin": "bēi",
+    "pinyin_alternates": "pí|pō",
     "definition": "dam, embankment; reservoir",
     "frequency": 4796,
     "radical": "阜",
@@ -54030,6 +54615,7 @@
     "traditional_character": "鶻",
     "alternate_characters": "鶻",
     "pinyin": "gǔ",
+    "pinyin_alternates": "hú",
     "definition": "a kind of pigeon; treron permagna",
     "frequency": 4800,
     "radical": "鳥",
@@ -54050,6 +54636,7 @@
   {
     "character": "趄",
     "pinyin": "jū",
+    "pinyin_alternates": "qiè",
     "definition": "weak, lame",
     "frequency": 4802,
     "radical": "走",
@@ -54616,6 +55203,7 @@
     "traditional_character": "紇",
     "alternate_characters": "紇",
     "pinyin": "gē",
+    "pinyin_alternates": "hé",
     "definition": "inferior silk; tassel, fringe",
     "frequency": 4854,
     "radical": "糸",
@@ -54987,6 +55575,7 @@
   {
     "character": "覃",
     "pinyin": "tán",
+    "pinyin_alternates": "qín",
     "definition": "reach to, spread to; extensive",
     "frequency": 4889,
     "radical": "襾",
@@ -55104,6 +55693,7 @@
     "traditional_character": "漚",
     "alternate_characters": "漚",
     "pinyin": "ōu",
+    "pinyin_alternates": "òu",
     "definition": "soak, steep; sodden or soaked",
     "frequency": 4900,
     "radical": "水",
@@ -55524,6 +56114,7 @@
   {
     "character": "隗",
     "pinyin": "kuí",
+    "pinyin_alternates": "wěi",
     "definition": "high; lofty; surname",
     "frequency": 4940,
     "radical": "阜",
@@ -55584,6 +56175,7 @@
   {
     "character": "歙",
     "pinyin": "shè",
+    "pinyin_alternates": "xī",
     "frequency": 4946,
     "radical": "欠",
     "radical_code": 76.12,
@@ -55744,6 +56336,7 @@
   {
     "character": "烊",
     "pinyin": "yáng",
+    "pinyin_alternates": "yàng",
     "definition": "to smelt; to melt",
     "frequency": 4961,
     "radical": "火",
@@ -55911,6 +56504,7 @@
     "traditional_character": "瀧",
     "alternate_characters": "瀧",
     "pinyin": "lóng",
+    "pinyin_alternates": "shuāng",
     "definition": "raining; wet; soaked; a river in Guangdong",
     "frequency": 4977,
     "radical": "水",
@@ -55996,6 +56590,7 @@
   {
     "character": "孱",
     "pinyin": "càn",
+    "pinyin_alternates": "chán",
     "definition": "weak, unfit, frail, feeble",
     "frequency": 4985,
     "radical": "子",
@@ -56159,6 +56754,7 @@
   {
     "character": "圻",
     "pinyin": "qí",
+    "pinyin_alternates": "yín",
     "definition": "border, boundary",
     "frequency": 5001,
     "radical": "土",
@@ -56332,6 +56928,7 @@
   {
     "character": "螫",
     "pinyin": "shì",
+    "pinyin_alternates": "zhē",
     "definition": "poison; sting; poisonous insect",
     "frequency": 5017,
     "radical": "虫",
@@ -56408,6 +57005,7 @@
     "traditional_character": "愾",
     "alternate_characters": "愾",
     "pinyin": "kài",
+    "pinyin_alternates": "xì",
     "definition": "anger, wrath, hatred, enmity",
     "frequency": 5024,
     "radical": "心",
@@ -56460,6 +57058,7 @@
   {
     "character": "嗄",
     "pinyin": "á",
+    "pinyin_alternates": "shà",
     "definition": "hoarse of voice",
     "frequency": 5029,
     "radical": "口",
@@ -56649,6 +57248,7 @@
     "traditional_character": "滎",
     "alternate_characters": "滎",
     "pinyin": "xíng",
+    "pinyin_alternates": "yíng",
     "definition": "a county in Henan; the rising and dashing of waves",
     "frequency": 5047,
     "radical": "艸",
@@ -56834,6 +57434,7 @@
   {
     "character": "佝",
     "pinyin": "gōu",
+    "pinyin_alternates": "kòu",
     "definition": "rickets",
     "frequency": 5065,
     "radical": "人",
@@ -57274,6 +57875,7 @@
   {
     "character": "咭",
     "pinyin": "jī",
+    "pinyin_alternates": "xī|qià",
     "frequency": 5107,
     "radical": "口",
     "radical_code": 30.6,
@@ -57443,6 +58045,7 @@
     "traditional_character": "酈",
     "alternate_characters": "酈",
     "pinyin": "lì",
+    "pinyin_alternates": "zhí",
     "frequency": 5123,
     "radical": "邑",
     "radical_code": 163.7,
@@ -57452,6 +58055,7 @@
   {
     "character": "噱",
     "pinyin": "jué",
+    "pinyin_alternates": "xué",
     "definition": "laugh heartily, laugh aloud",
     "frequency": 5124,
     "radical": "口",
@@ -57955,6 +58559,7 @@
     "traditional_character": "鈿",
     "alternate_characters": "鈿",
     "pinyin": "diàn",
+    "pinyin_alternates": "tián",
     "definition": "hairpin; gold inlaid work, filigree",
     "frequency": 5171,
     "radical": "金",
@@ -57975,6 +58580,7 @@
   {
     "character": "恁",
     "pinyin": "nèn",
+    "pinyin_alternates": "nín",
     "definition": "that, like this, thus, so, such",
     "frequency": 5173,
     "radical": "心",
@@ -58146,6 +58752,7 @@
   {
     "character": "菟",
     "pinyin": "tú",
+    "pinyin_alternates": "tù",
     "definition": "dodder; creeper",
     "frequency": 5189,
     "radical": "艸",
@@ -58300,6 +58907,7 @@
     "traditional_character": "嶠",
     "alternate_characters": "嶠",
     "pinyin": "jiào",
+    "pinyin_alternates": "qiáo",
     "definition": "high pointed mountain",
     "frequency": 5203,
     "radical": "山",
@@ -58439,6 +59047,7 @@
   {
     "character": "砉",
     "pinyin": "huò",
+    "pinyin_alternates": "xū|huā",
     "frequency": 5216,
     "radical": "石",
     "radical_code": 112.4,
@@ -58509,6 +59118,7 @@
     "traditional_character": "黽",
     "alternate_characters": "黽",
     "pinyin": "miǎn",
+    "pinyin_alternates": "mǐn|měng",
     "definition": "to strive; to endeavor",
     "frequency": 5223,
     "radical": "黽",
@@ -58519,6 +59129,7 @@
   {
     "character": "麼",
     "pinyin": "me",
+    "pinyin_alternates": "mó",
     "definition": "interrogative final particle; insignificant, small, tiny",
     "frequency": 5224,
     "radical": "麻",
@@ -58586,6 +59197,7 @@
   {
     "character": "挲",
     "pinyin": "sā",
+    "pinyin_alternates": "suō|shā",
     "definition": "to feel or fondle with the fingers",
     "frequency": 5230,
     "radical": "手",
@@ -58733,6 +59345,7 @@
   {
     "character": "圜",
     "pinyin": "huán",
+    "pinyin_alternates": "yuán",
     "definition": "circle, surround; encircle",
     "frequency": 5244,
     "radical": "囗",
@@ -58956,6 +59569,7 @@
   {
     "character": "乜",
     "pinyin": "miē",
+    "pinyin_alternates": "niè",
     "definition": "to squint; (Cant.) what? huh?",
     "frequency": 5265,
     "radical": "乙",
@@ -59050,6 +59664,7 @@
   {
     "character": "忪",
     "pinyin": "sōng",
+    "pinyin_alternates": "zhōng",
     "definition": "quiet, calm, tranquil, peaceful",
     "frequency": 5274,
     "radical": "心",
@@ -59086,6 +59701,7 @@
     "traditional_character": "紕",
     "alternate_characters": "紕",
     "pinyin": "pī",
+    "pinyin_alternates": "pí|bǐ",
     "definition": "spoiled silk; hem of dress; mista",
     "frequency": 5277,
     "radical": "糸",
@@ -59365,6 +59981,7 @@
   {
     "character": "吒",
     "pinyin": "zhā",
+    "pinyin_alternates": "zhà",
     "definition": "shout, roar, bellow; scold",
     "frequency": 5303,
     "radical": "口",
@@ -59531,6 +60148,7 @@
   {
     "character": "苕",
     "pinyin": "sháo",
+    "pinyin_alternates": "tiáo",
     "definition": "rush plant",
     "frequency": 5319,
     "radical": "艸",
@@ -59553,6 +60171,7 @@
     "traditional_character": "驃",
     "alternate_characters": "驃",
     "pinyin": "biāo",
+    "pinyin_alternates": "piào",
     "definition": "charger, steed; swift, valiant",
     "frequency": 5321,
     "radical": "馬",
@@ -59984,6 +60603,7 @@
   {
     "character": "柢",
     "pinyin": "dǐ",
+    "pinyin_alternates": "chí",
     "definition": "root, base; bottom of object",
     "frequency": 5362,
     "radical": "木",
@@ -60167,6 +60787,7 @@
   {
     "character": "桁",
     "pinyin": "héng",
+    "pinyin_alternates": "háng",
     "definition": "cross-beams of roof",
     "frequency": 5380,
     "radical": "木",
@@ -60447,6 +61068,7 @@
     "traditional_character": "橈",
     "alternate_characters": "橈",
     "pinyin": "ráo",
+    "pinyin_alternates": "náo",
     "definition": "bent or twisted piece of wood",
     "frequency": 5406,
     "radical": "木",
@@ -60886,6 +61508,7 @@
   {
     "character": "擘",
     "pinyin": "bāi",
+    "pinyin_alternates": "bò",
     "definition": "thumb; break, tear open, rip",
     "frequency": 5448,
     "radical": "手",
@@ -61092,6 +61715,7 @@
   {
     "character": "貉",
     "pinyin": "háo",
+    "pinyin_alternates": "hé|mò",
     "definition": "badger; raccoon dog",
     "frequency": 5468,
     "radical": "豸",
@@ -61112,6 +61736,7 @@
   {
     "character": "湫",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "qiū",
     "definition": "a small pond; a damp and narrow place",
     "frequency": 5470,
     "radical": "水",
@@ -61305,6 +61930,7 @@
   {
     "character": "晟",
     "pinyin": "chéng",
+    "pinyin_alternates": "shèng",
     "definition": "clear, bright; splendor, brightness",
     "frequency": 5488,
     "radical": "日",
@@ -61337,6 +61963,7 @@
   {
     "character": "苴",
     "pinyin": "jū",
+    "pinyin_alternates": "chá",
     "definition": "sackcloth; female hemp plant",
     "frequency": 5491,
     "radical": "艸",
@@ -61513,6 +62140,7 @@
   {
     "character": "繇",
     "pinyin": "yáo",
+    "pinyin_alternates": "yóu|zhòu",
     "definition": "reason, cause",
     "frequency": 5508,
     "radical": "糸",
@@ -61888,6 +62516,7 @@
   {
     "character": "虺",
     "pinyin": "huī",
+    "pinyin_alternates": "huǐ",
     "definition": "large poisonous snake",
     "frequency": 5543,
     "radical": "虫",
@@ -61920,6 +62549,7 @@
   {
     "character": "帑",
     "pinyin": "tǎng",
+    "pinyin_alternates": "nú",
     "definition": "a treasury; public funds",
     "frequency": 5546,
     "radical": "巾",
@@ -61954,6 +62584,7 @@
   {
     "character": "啁",
     "pinyin": "zhāo",
+    "pinyin_alternates": "zhōu|tiào",
     "definition": "chirp, twitter, twittering",
     "frequency": 5549,
     "radical": "口",
@@ -62323,6 +62954,7 @@
     "traditional_character": "嬈",
     "alternate_characters": "嬈",
     "pinyin": "ráo",
+    "pinyin_alternates": "rǎo",
     "definition": "graceful, charming, fascinating",
     "frequency": 5584,
     "radical": "女",
@@ -62715,6 +63347,7 @@
   {
     "character": "慊",
     "pinyin": "qiàn",
+    "pinyin_alternates": "qiè",
     "definition": "to resent; contended; satisfied",
     "frequency": 5621,
     "radical": "心",
@@ -62737,6 +63370,7 @@
     "traditional_character": "澠",
     "alternate_characters": "澠",
     "pinyin": "miǎn",
+    "pinyin_alternates": "shéng",
     "definition": "name of a river in Shandong",
     "frequency": 5623,
     "radical": "水",
@@ -62870,6 +63504,7 @@
   {
     "character": "隳",
     "pinyin": "huī",
+    "pinyin_alternates": "duò",
     "definition": "to destroy; to overthrow",
     "frequency": 5636,
     "radical": "阜",
@@ -62990,6 +63625,7 @@
     "traditional_character": "羶",
     "alternate_characters": "羶",
     "pinyin": "shān",
+    "pinyin_alternates": "dàn",
     "definition": "a rank odor; a technical term from Chinese medicine for the center of the chest",
     "frequency": 5647,
     "radical": "肉",
@@ -63115,6 +63751,7 @@
     "traditional_character": "傖",
     "alternate_characters": "傖",
     "pinyin": "cāng",
+    "pinyin_alternates": "chen",
     "definition": "vulgar person, country man",
     "frequency": 5659,
     "radical": "人",
@@ -63214,6 +63851,7 @@
     "traditional_character": "韞",
     "alternate_characters": "韞",
     "pinyin": "yùn",
+    "pinyin_alternates": "wēn",
     "definition": "secrete, hide, conceal",
     "frequency": 5668,
     "radical": "韋",
@@ -63266,6 +63904,7 @@
   {
     "character": "焯",
     "pinyin": "chāo",
+    "pinyin_alternates": "zhuō",
     "definition": "boil vegetables for a very short time; scald",
     "frequency": 5673,
     "radical": "火",
@@ -63346,6 +63985,7 @@
     "traditional_character": "薺",
     "alternate_characters": "薺",
     "pinyin": "jì",
+    "pinyin_alternates": "qí",
     "definition": "water-chestnuts; caltrop",
     "frequency": 5681,
     "radical": "艸",
@@ -63437,6 +64077,7 @@
   {
     "character": "杓",
     "pinyin": "biāo",
+    "pinyin_alternates": "sháo",
     "definition": "handle of cup, ladle, spoon; name of a constellation",
     "frequency": 5690,
     "radical": "木",
@@ -63607,6 +64248,7 @@
     "traditional_character": "戇",
     "alternate_characters": "戇",
     "pinyin": "gàng",
+    "pinyin_alternates": "zhuàng",
     "definition": "stupid, simple, simple-minded",
     "frequency": 5706,
     "radical": "心",
@@ -63747,6 +64389,7 @@
     "traditional_character": "繒",
     "alternate_characters": "繒",
     "pinyin": "zēng",
+    "pinyin_alternates": "zèng",
     "definition": "silk fabrics; surname",
     "frequency": 5719,
     "radical": "糸",
@@ -64697,6 +65340,7 @@
   {
     "character": "儋",
     "pinyin": "dān",
+    "pinyin_alternates": "dàn",
     "definition": "a small jar; to bear a burden; a load of two",
     "frequency": 5810,
     "radical": "人",
@@ -65047,6 +65691,7 @@
   {
     "character": "玢",
     "pinyin": "bīn",
+    "pinyin_alternates": "fēn",
     "definition": "(archaic) a kind of jade",
     "frequency": 5844,
     "radical": "玉",
@@ -65136,6 +65781,7 @@
   {
     "character": "猗",
     "pinyin": "yī",
+    "pinyin_alternates": "yǐ",
     "definition": "exclamation of admiration",
     "frequency": 5853,
     "radical": "犬",
@@ -65219,6 +65865,7 @@
     "traditional_character": "䰾",
     "alternate_characters": "䰾",
     "pinyin": "bā",
+    "pinyin_alternates": "bà",
     "definition": "a kind of fish; a bonito, (same as",
     "frequency": 5861,
     "radical": "魚",
@@ -65960,6 +66607,7 @@
   {
     "character": "蓼",
     "pinyin": "liǎo",
+    "pinyin_alternates": "lù",
     "definition": "smartweed, polygonum",
     "frequency": 5931,
     "radical": "艸",
@@ -66000,6 +66648,7 @@
   {
     "character": "甯",
     "pinyin": "níng",
+    "pinyin_alternates": "nìng",
     "definition": "peaceful",
     "frequency": 5935,
     "radical": "用",
@@ -66130,6 +66779,7 @@
   {
     "character": "麇",
     "pinyin": "jūn",
+    "pinyin_alternates": "qún",
     "definition": "general name for the hornless deer; to collect to band together",
     "frequency": 5947,
     "radical": "鹿",
@@ -66151,6 +66801,7 @@
     "traditional_character": "鈀",
     "alternate_characters": "鈀",
     "pinyin": "bǎ",
+    "pinyin_alternates": "pá",
     "definition": "palladium",
     "frequency": 5949,
     "radical": "金",
@@ -66190,6 +66841,7 @@
   {
     "character": "莩",
     "pinyin": "fú",
+    "pinyin_alternates": "piǎo",
     "definition": "membrane lining inside of reed",
     "frequency": 5953,
     "radical": "艸",
@@ -66404,6 +67056,7 @@
   {
     "character": "睥",
     "pinyin": "pì",
+    "pinyin_alternates": "bì",
     "definition": "look askance at, glare at",
     "frequency": 5974,
     "radical": "目",
@@ -66738,6 +67391,7 @@
   {
     "character": "仡",
     "pinyin": "gē",
+    "pinyin_alternates": "yì",
     "definition": "strong; valiant",
     "frequency": 6006,
     "radical": "人",
@@ -67211,6 +67865,7 @@
   {
     "character": "哏",
     "pinyin": "gén",
+    "pinyin_alternates": "hěn",
     "frequency": 6052,
     "radical": "口",
     "radical_code": 30.6,
@@ -67778,6 +68433,7 @@
   {
     "character": "旄",
     "pinyin": "máo",
+    "pinyin_alternates": "mào",
     "definition": "a kind of ancient flag; old",
     "frequency": 6107,
     "radical": "方",
@@ -68941,6 +69597,7 @@
   {
     "character": "徼",
     "pinyin": "jiǎo",
+    "pinyin_alternates": "jiào",
     "definition": "frontier, border; inspect, patrol",
     "frequency": 6219,
     "radical": "彳",
@@ -69095,6 +69752,7 @@
     "traditional_character": "鮊",
     "alternate_characters": "鮊",
     "pinyin": "bà",
+    "pinyin_alternates": "bó",
     "frequency": 6234,
     "radical": "魚",
     "radical_code": 195.5,
@@ -69594,6 +70252,7 @@
   {
     "character": "荑",
     "pinyin": "tí",
+    "pinyin_alternates": "yí",
     "definition": "sprouts; tares",
     "frequency": 6285,
     "radical": "艸",
@@ -70037,6 +70696,7 @@
   {
     "character": "棹",
     "pinyin": "zhào",
+    "pinyin_alternates": "zhuō",
     "definition": "oar; boat",
     "frequency": 6328,
     "radical": "木",
@@ -70239,6 +70899,7 @@
   {
     "character": "剡",
     "pinyin": "shàn",
+    "pinyin_alternates": "yǎn",
     "definition": "sharp, sharp-pointed; sharpen",
     "frequency": 6348,
     "radical": "刀",
@@ -70661,6 +71322,7 @@
   {
     "character": "怍",
     "pinyin": "zuò",
+    "pinyin_alternates": "zhà",
     "definition": "to be ashamed",
     "frequency": 6390,
     "radical": "心",
@@ -70824,6 +71486,7 @@
   {
     "character": "囝",
     "pinyin": "jiǎn",
+    "pinyin_alternates": "nān",
     "definition": "baby, infant",
     "frequency": 6406,
     "radical": "囗",
@@ -71177,6 +71840,7 @@
   {
     "character": "龍",
     "pinyin": "lóng",
+    "pinyin_alternates": "lǒng",
     "definition": "dragon; symbolic of emperor",
     "frequency": 6441,
     "radical": "龍",
@@ -71217,6 +71881,7 @@
     "traditional_character": "駘",
     "alternate_characters": "駘",
     "pinyin": "dài",
+    "pinyin_alternates": "tái",
     "definition": "an old, tired horse, a jade; tired, exhausted",
     "frequency": 6445,
     "radical": "馬",
@@ -71280,6 +71945,7 @@
     "traditional_character": "鱖",
     "alternate_characters": "鱖",
     "pinyin": "guì",
+    "pinyin_alternates": "jué",
     "definition": "mandarin fish",
     "frequency": 6451,
     "radical": "魚",
@@ -71353,6 +72019,7 @@
   {
     "character": "磻",
     "pinyin": "pán",
+    "pinyin_alternates": "bō",
     "definition": "a tributary of the Wei river in Shanxi",
     "frequency": 6458,
     "radical": "石",
@@ -72100,6 +72767,7 @@
   {
     "character": "玟",
     "pinyin": "wén",
+    "pinyin_alternates": "mín",
     "definition": "streaks in jade; gem",
     "frequency": 6534,
     "radical": "玉",
@@ -72258,6 +72926,7 @@
   {
     "character": "鮊",
     "pinyin": "bà",
+    "pinyin_alternates": "bó",
     "frequency": 6549,
     "radical": "魚",
     "radical_code": 195.5,
@@ -72788,6 +73457,7 @@
   {
     "character": "鮮",
     "pinyin": "xiān",
+    "pinyin_alternates": "xiǎn",
     "definition": "fresh, new, delicious; rare, few",
     "frequency": 6601,
     "radical": "魚",
@@ -72860,6 +73530,7 @@
   {
     "character": "拶",
     "pinyin": "zā",
+    "pinyin_alternates": "zǎn",
     "definition": "press, squeeze hard; force",
     "frequency": 6608,
     "radical": "手",
@@ -72958,6 +73629,7 @@
   {
     "character": "褔",
     "pinyin": "fù",
+    "pinyin_alternates": "fú",
     "definition": "complex; double",
     "frequency": 6618,
     "radical": "衣",
@@ -73536,6 +74208,7 @@
   {
     "character": "垸",
     "pinyin": "yuàn",
+    "pinyin_alternates": "huán",
     "definition": "a dyke, embankment",
     "frequency": 6677,
     "radical": "土",
@@ -73687,6 +74360,7 @@
     "traditional_character": "齗",
     "alternate_characters": "齗",
     "pinyin": "yín",
+    "pinyin_alternates": "kěn",
     "definition": "gums (of the teeth); to dispute",
     "frequency": 6692,
     "radical": "齒",
@@ -74776,6 +75450,7 @@
   {
     "character": "郄",
     "pinyin": "qiè",
+    "pinyin_alternates": "xì",
     "definition": "surname",
     "frequency": 6803,
     "radical": "邑",
@@ -74943,6 +75618,7 @@
     "traditional_character": "餎",
     "alternate_characters": "餎",
     "pinyin": "le",
+    "pinyin_alternates": "gē",
     "frequency": 6819,
     "radical": "食",
     "radical_code": 184.6,
@@ -75286,6 +75962,7 @@
   {
     "character": "鬲",
     "pinyin": "gé",
+    "pinyin_alternates": "lì",
     "definition": "type of caldron with three hollow legs; name of a state; KangXi radical number 193",
     "frequency": 6855,
     "radical": "鬲",
@@ -75558,6 +76235,7 @@
   {
     "character": "袊",
     "pinyin": "lǐng",
+    "pinyin_alternates": "líng",
     "frequency": 6884,
     "radical": "衣",
     "radical_code": 145.5,
@@ -76041,6 +76719,7 @@
     "traditional_character": "鉦",
     "alternate_characters": "鉦",
     "pinyin": "zhēng",
+    "pinyin_alternates": "zhèng",
     "definition": "kind of gong used in ancient times by troops on the march",
     "frequency": 6935,
     "radical": "金",
@@ -77022,6 +77701,7 @@
   {
     "character": "菑",
     "pinyin": "zāi",
+    "pinyin_alternates": "zī|zì",
     "definition": "to weed grass; land which has been under cultivation for one year",
     "frequency": 7038,
     "radical": "艸",
@@ -77990,6 +78670,7 @@
   {
     "character": "鯆",
     "pinyin": "pū",
+    "pinyin_alternates": "bū",
     "definition": "the skate or ray",
     "frequency": 7141,
     "radical": "魚",
@@ -78964,6 +79645,7 @@
   {
     "character": "矞",
     "pinyin": "yù",
+    "pinyin_alternates": "xù|jué",
     "definition": "bore with awl; bright, charming",
     "frequency": 7243,
     "radical": "矛",
@@ -79113,6 +79795,7 @@
     "traditional_character": "魺",
     "alternate_characters": "魺",
     "pinyin": "hé",
+    "pinyin_alternates": "gě",
     "frequency": 7258,
     "radical": "魚",
     "radical_code": 195.5,
@@ -79121,6 +79804,7 @@
   {
     "character": "龜",
     "pinyin": "guī",
+    "pinyin_alternates": "jūn|qiū",
     "definition": "turtle or tortoise; cuckold",
     "frequency": 7259,
     "radical": "龜",
@@ -79914,6 +80598,7 @@
     "traditional_character": "鮓",
     "alternate_characters": "鮓",
     "pinyin": "zhǎ",
+    "pinyin_alternates": "zhà",
     "definition": "minced and salted fish; to preserve",
     "frequency": 7344,
     "radical": "魚",
@@ -79924,6 +80609,7 @@
   {
     "character": "麗",
     "pinyin": "lì",
+    "pinyin_alternates": "lí",
     "definition": "beautiful, magnificent, elegant",
     "frequency": 7345,
     "radical": "鹿",
@@ -80920,6 +81606,7 @@
   {
     "character": "麆",
     "pinyin": "zhù",
+    "pinyin_alternates": "cū",
     "frequency": 7452,
     "radical": "鹿",
     "radical_code": 198.5,
@@ -81889,6 +82576,7 @@
   {
     "character": "麃",
     "pinyin": "páo",
+    "pinyin_alternates": "biāo",
     "definition": "till, plow",
     "frequency": 7558,
     "radical": "鹿",
@@ -82106,6 +82794,7 @@
   {
     "character": "髳",
     "pinyin": "máo",
+    "pinyin_alternates": "méng",
     "definition": "state",
     "frequency": 7581,
     "radical": "髟",
@@ -82673,6 +83362,7 @@
   {
     "character": "馧",
     "pinyin": "yūn",
+    "pinyin_alternates": "wò",
     "frequency": 7644,
     "radical": "香",
     "radical_code": 186.1,
@@ -83198,6 +83888,7 @@
   {
     "character": "鶝",
     "pinyin": "fú",
+    "pinyin_alternates": "bì",
     "frequency": 7703,
     "radical": "鳥",
     "radical_code": 196.9,
@@ -83932,6 +84623,7 @@
     "traditional_character": "鱣",
     "alternate_characters": "鱣",
     "pinyin": "zhān",
+    "pinyin_alternates": "shàn",
     "definition": "sturgeon",
     "frequency": 7781,
     "radical": "魚",
@@ -85108,6 +85800,7 @@
   {
     "character": "鶗",
     "pinyin": "tí",
+    "pinyin_alternates": "chí",
     "definition": "a kind of hawk; cuckoo",
     "frequency": 7912,
     "radical": "鳥",
@@ -85135,6 +85828,7 @@
   {
     "character": "齊",
     "pinyin": "qí",
+    "pinyin_alternates": "zhāi",
     "definition": "even, uniform, of equal length",
     "frequency": 7915,
     "radical": "齊",
@@ -86569,6 +87263,7 @@
   {
     "character": "骳",
     "pinyin": "bèi",
+    "pinyin_alternates": "mó",
     "frequency": 8073,
     "radical": "骨",
     "radical_code": 188.5,
@@ -86577,6 +87272,7 @@
   {
     "character": "骹",
     "pinyin": "qiāo",
+    "pinyin_alternates": "xiāo",
     "definition": "(Cant.) a joint",
     "frequency": 8074,
     "radical": "骨",
@@ -86616,6 +87312,7 @@
   {
     "character": "鶡",
     "pinyin": "hé",
+    "pinyin_alternates": "jiè",
     "definition": "crossbill, species of nightingale",
     "frequency": 8078,
     "radical": "鳥",
@@ -87642,6 +88339,7 @@
   {
     "character": "馮",
     "pinyin": "féng",
+    "pinyin_alternates": "píng",
     "definition": "surname; gallop; by dint of",
     "frequency": 8196,
     "radical": "馬",
@@ -90431,6 +91129,7 @@
   {
     "character": "駃",
     "pinyin": "jué",
+    "pinyin_alternates": "kuài",
     "definition": "gallop",
     "frequency": 8511,
     "radical": "馬",
@@ -95245,6 +95944,7 @@
   {
     "character": "髲",
     "pinyin": "bì",
+    "pinyin_alternates": "pǒ",
     "definition": "a wig",
     "frequency": 9058,
     "radical": "髟",
@@ -96528,6 +97228,7 @@
     "traditional_character": "鶬",
     "alternate_characters": "鶬",
     "pinyin": "cāng",
+    "pinyin_alternates": "qiāng",
     "definition": "oriole",
     "frequency": 9205,
     "radical": "鳥",
@@ -96558,6 +97259,7 @@
   {
     "character": "黮",
     "pinyin": "dǎn",
+    "pinyin_alternates": "dàn|shèn",
     "definition": "black, dark; unclear; private",
     "frequency": 9208,
     "radical": "黑",
@@ -96576,6 +97278,7 @@
   {
     "character": "龓",
     "pinyin": "lǒng",
+    "pinyin_alternates": "lóng",
     "definition": "a halter",
     "frequency": 9210,
     "radical": "龍",
@@ -97645,6 +98348,7 @@
   {
     "character": "髉",
     "pinyin": "bó",
+    "pinyin_alternates": "jué",
     "frequency": 9335,
     "radical": "骨",
     "radical_code": 188.1,
@@ -98622,6 +99326,7 @@
   {
     "character": "綄",
     "pinyin": "huán",
+    "pinyin_alternates": "huàn|wàn",
     "frequency": 9449,
     "radical": "糸",
     "radical_code": 120.7,
@@ -100362,6 +101067,7 @@
   {
     "character": "駨",
     "pinyin": "xūn",
+    "pinyin_alternates": "xún|xuān",
     "frequency": 9652,
     "radical": "馬",
     "radical_code": 187.6,
@@ -102056,6 +102762,7 @@
   {
     "character": "鮭",
     "pinyin": "guī",
+    "pinyin_alternates": "xié",
     "definition": "salmon; spheroides vermicularis",
     "frequency": 9848,
     "radical": "魚",
@@ -102514,5 +103221,14 @@
     "radical_code": 140.6,
     "stroke_count": 9,
     "general_standard_num": 6785
+  },
+  {
+    "character": "啰",
+    "traditional_character": "囉",
+    "alternate_characters": "囉",
+    "pinyin": "luō",
+    "pinyin_alternates": "luó|luo",
+    "definition": "phonetic",
+    "frequency": 9901
   }
 ]
