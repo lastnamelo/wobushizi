@@ -16,7 +16,7 @@ export function Milestone500Modal({ open, onClose }: Milestone500ModalProps) {
           You now recognize roughly 70-75% of the characters that appear in everyday modern Chinese text.
         </p>
         <p className="mt-2 text-sm leading-6 text-stone-700">
-          That&apos;s about what a native first grader reads - and about where many first-year college
+          That&apos;s about what a native first grader reads--and about where many first-year college
           students land.
         </p>
         <p className="mt-3 text-base font-medium text-stone-900">不错！</p>

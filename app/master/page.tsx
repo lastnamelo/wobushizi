@@ -196,21 +196,25 @@ export default function MasterPage() {
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <div className="relative mx-auto mt-4 w-full max-w-4xl md:mt-6">
-          <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
-            {visibleRows.length.toLocaleString()} characters
+        <div className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
+          <p className="mb-2 text-center text-xs text-stone-600 md:text-sm">
+            Click any character to view definitions and more.
           </p>
-          <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
-            <div className="mb-2">
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Seach character or pinyin..."
-                className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
-              />
-            </div>
-            <div className="table-scroll overflow-y-auto rounded-xl">
-              <table className="w-full table-fixed text-xs md:text-sm">
+          <div className="relative w-full">
+            <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
+              {visibleRows.length.toLocaleString()} characters
+            </p>
+            <section className="min-h-0 w-full flex-1 overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-card md:flex-none md:overflow-visible">
+              <div className="mb-2">
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Seach character or pinyin..."
+                  className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+                />
+              </div>
+              <div className="table-scroll overflow-y-auto rounded-xl">
+                <table className="w-full table-fixed text-xs md:text-sm">
               <thead className="sticky top-0 z-10 bg-white">
                 <tr className="text-center text-[#806252]">
                   <th className="border-b border-line bg-white py-1.5 md:py-1">Character</th>
@@ -367,10 +371,11 @@ export default function MasterPage() {
               })}
               </tbody>
               </table>
-            </div>
+              </div>
 
-            {message ? <p className="mt-2 text-sm text-rose-700">{message}</p> : null}
-          </section>
+              {message ? <p className="mt-2 text-sm text-rose-700">{message}</p> : null}
+            </section>
+          </div>
         </div>
       ) : null}
       <CharacterDetailModal

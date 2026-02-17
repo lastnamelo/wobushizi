@@ -174,7 +174,10 @@ export default function BankPage() {
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
       {!loading ? (
-        <section className="mx-auto mt-4 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
+        <section className="mx-auto mt-3 flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden md:mt-6 md:flex-none md:overflow-visible">
+          <p className="mb-2 text-center text-xs text-stone-600 md:text-sm">
+            Click any character to view definitions and more.
+          </p>
           <div className="relative w-full">
             <p className="pointer-events-none absolute -top-4 right-2 z-20 text-xs leading-none text-stone-600">
               {currentRows.length.toLocaleString()} characters

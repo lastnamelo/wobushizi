@@ -337,6 +337,9 @@ export default function HomePage() {
 
             {mode === "result" && results ? (
               <div className="space-y-4">
+                <p className="text-center text-xs text-stone-600 md:text-sm">
+                  Click any character to view definitions and more.
+                </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
                     <h3 className="mb-3 text-base font-medium">
