@@ -5,10 +5,9 @@ export interface StarterPassage {
 }
 
 export const STARTER_PASSAGES: StarterPassage[] = [
-  { id: "howto", title: "How To Use This Site", path: "/starter-passages/01-howto.txt" },
-  { id: "blast", title: "Chinese 101 Throwback", path: "/starter-passages/02-chinese-100-blast.txt" },
-  { id: "idioms", title: "My Chinese Journey (In Idioms)", path: "/starter-passages/04-philosophical-idioms.txt" },
-  { id: "ai", title: "How I Used AI", path: "/starter-passages/05-ai-build-story.txt" }
+  { id: "welcome", title: "Welcome (Easy)", path: "/starter-passages/00-welcome.txt" },
+  { id: "tips", title: "Tips (Medium)", path: "/starter-passages/01-tips.txt" },
+  { id: "chinese101", title: "Chinese 101 Throwback (Easy)", path: "/starter-passages/02-chinese-101.txt" }
 ];
 
 const NEXT_INDEX_KEY = "wobushizi:starter_passage_next_index";

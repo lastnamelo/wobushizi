@@ -277,7 +277,7 @@ export default function HomePage() {
                       setNotice(null);
                     }
                   }}
-                  placeholder="Paste Chinese text here..."
+                  placeholder="Paste Chinese text here (news article, short story, social post, or textbook paragraph)..."
                   maxLength={MAX_INPUT_CHARS}
                   className="h-52 w-full rounded-2xl border border-line bg-white p-5 text-base leading-7 outline-none shadow-card focus:border-stone-400 md:h-56"
                 />
