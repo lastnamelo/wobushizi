@@ -5,6 +5,7 @@ import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { EnrichedCharacter } from "@/lib/types";
+import { useIsCoarsePointer } from "@/lib/useIsCoarsePointer";
 
 interface CharacterTableProps {
   rows: EnrichedCharacter[];
@@ -33,6 +34,7 @@ export function CharacterTable({
   const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
   const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(defaultSortBy);
   const activeSortBy = forcedSortBy ?? sortBy;
+  const isCoarsePointer = useIsCoarsePointer();
 
   const filtered = useMemo(() => {
     const dedupedRows = new Map<string, EnrichedCharacter>();
@@ -228,12 +230,15 @@ export function CharacterTable({
                       <button
                         onClick={() => setDetailState({ character: row.character, status: row.status })}
                         className="hover:underline"
-                        title="View details"
+                        title={isCoarsePointer ? undefined : "View details"}
                       >
                         {row.character}
                       </button>
                     </td>
-                    <td className="max-w-40 truncate py-1 md:max-w-none md:py-1" title={pinyinDisplay || "-"}>
+                    <td
+                      className="max-w-40 truncate py-1 md:max-w-none md:py-1"
+                      title={isCoarsePointer ? undefined : pinyinDisplay || "-"}
+                    >
                       {pinyinDisplay || "-"}
                     </td>
                     <td className="py-1 md:py-1">
@@ -250,7 +255,10 @@ export function CharacterTable({
                       })()}
                     </td>
                     <td className="hidden py-1 md:table-cell md:py-1">{row.frequency ?? "-"}</td>
-                    <td className="hidden w-36 max-w-36 truncate py-1 text-base md:table-cell md:py-1 md:text-lg" title={alt || "-"}>
+                    <td
+                      className="hidden w-36 max-w-36 truncate py-1 text-base md:table-cell md:py-1 md:text-lg"
+                      title={isCoarsePointer ? undefined : alt || "-"}
+                    >
                       {alt || "-"}
                     </td>
                     <td className="py-1 md:py-1">
@@ -267,7 +275,13 @@ export function CharacterTable({
                               ? "border-emerald-600 bg-emerald-600"
                               : "border-stone-300 bg-stone-300"
                           } ${isPending ? "opacity-70" : ""}`}
-                          title={row.status === "known" ? "Switch to study" : "Switch to known"}
+                          title={
+                            isCoarsePointer
+                              ? undefined
+                              : row.status === "known"
+                                ? "Switch to study"
+                                : "Switch to known"
+                          }
                           aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
                         >
                           <span

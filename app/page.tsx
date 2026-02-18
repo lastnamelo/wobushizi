@@ -26,6 +26,7 @@ import { countHskLevels } from "@/lib/hskCounts";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { STARTER_PASSAGES, bumpStarterPassageIndex, getNextStarterPassageIndex } from "@/lib/starterPassages";
 import { EnrichedCharacter } from "@/lib/types";
+import { useIsCoarsePointer } from "@/lib/useIsCoarsePointer";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
 type HomeMode = "input" | "review" | "result";
@@ -71,6 +72,7 @@ export default function HomePage() {
     status?: "known" | "study";
     source: "known" | "study";
   } | null>(null);
+  const isCoarsePointer = useIsCoarsePointer();
   const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
     useMilestone1000(knownCount, !loading);
@@ -379,6 +381,7 @@ export default function HomePage() {
                     <CharacterCloud
                       rows={results.newKnown}
                       empty="No new known characters in this event."
+                      disableTitleTooltips={isCoarsePointer}
                       onPickCharacter={(character) => setDetailState({ character, status: "known", source: "known" })}
                     />
                   </div>
@@ -389,6 +392,7 @@ export default function HomePage() {
                     <CharacterCloud
                       rows={results.queuedStudy}
                       empty="No study-queued characters in this event."
+                      disableTitleTooltips={isCoarsePointer}
                       onPickCharacter={(character) => setDetailState({ character, status: "study", source: "study" })}
                     />
                   </div>
@@ -456,10 +460,12 @@ export default function HomePage() {
 function CharacterCloud({
   rows,
   empty,
+  disableTitleTooltips,
   onPickCharacter
 }: {
   rows: EnrichedCharacter[];
   empty: string;
+  disableTitleTooltips?: boolean;
   onPickCharacter: (character: string) => void;
 }) {
   if (rows.length === 0) {
@@ -473,7 +479,7 @@ function CharacterCloud({
           key={row.character}
           className="text-2xl"
           style={{ color: getHskColorValue(row.hsk_level) }}
-          title={row.pinyin || "No pinyin"}
+          title={disableTitleTooltips ? undefined : row.pinyin || "No pinyin"}
           onClick={() => onPickCharacter(row.character)}
         >
           {row.character}

@@ -22,6 +22,7 @@ import { countHskLevels } from "@/lib/hskCounts";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { CharacterStatus, EnrichedCharacter, HanzidbEntry } from "@/lib/types";
+import { useIsCoarsePointer } from "@/lib/useIsCoarsePointer";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
 const allRows = getHanziData();
@@ -55,6 +56,7 @@ export default function MasterPage() {
   const [sortBy, setSortBy] = useState<"frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character">("frequency_rank_asc");
   const [message, setMessage] = useState<string | null>(null);
   const [detailState, setDetailState] = useState<{ character: string; status?: CharacterStatus } | null>(null);
+  const isCoarsePointer = useIsCoarsePointer();
   const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
     useMilestone1000(knownCount, !loading);
@@ -281,11 +283,13 @@ export default function MasterPage() {
                         }
                         className="inline-flex items-center"
                         title={
-                          statusFilter === "all"
-                            ? "Status filter: All"
-                            : statusFilter === "known"
-                              ? "Status filter: Known"
-                              : "Status filter: Unknown"
+                          isCoarsePointer
+                            ? undefined
+                            : statusFilter === "all"
+                              ? "Status filter: All"
+                              : statusFilter === "known"
+                                ? "Status filter: Known"
+                                : "Status filter: Unknown"
                         }
                         aria-label={
                           statusFilter === "all"
@@ -328,12 +332,15 @@ export default function MasterPage() {
                       <button
                         onClick={() => setDetailState({ character: row.character, status: row.status })}
                         className="hover:underline"
-                        title="View details"
+                        title={isCoarsePointer ? undefined : "View details"}
                       >
                         {row.character}
                       </button>
                     </td>
-                    <td className="max-w-40 truncate py-1 md:max-w-none md:py-1" title={pinyinDisplay || "-"}>
+                    <td
+                      className="max-w-40 truncate py-1 md:max-w-none md:py-1"
+                      title={isCoarsePointer ? undefined : pinyinDisplay || "-"}
+                    >
                       {pinyinDisplay || "-"}
                     </td>
                     <td className="py-1 md:py-1">
@@ -371,7 +378,13 @@ export default function MasterPage() {
                             ? "border-emerald-600 bg-emerald-600"
                             : "border-stone-300 bg-stone-300"
                         }`}
-                        title={row.status === "known" ? "Switch to study" : "Switch to known"}
+                        title={
+                          isCoarsePointer
+                            ? undefined
+                            : row.status === "known"
+                              ? "Switch to study"
+                              : "Switch to known"
+                        }
                         aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
                       >
                         <span

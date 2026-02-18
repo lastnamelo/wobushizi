@@ -6,8 +6,8 @@ export interface StarterPassage {
 
 export const STARTER_PASSAGES: StarterPassage[] = [
   { id: "welcome", title: "Welcome (Easy)", path: "/starter-passages/00-welcome.txt" },
-  { id: "tips", title: "Tips (Medium)", path: "/starter-passages/01-tips.txt" },
-  { id: "chinese101", title: "Chinese 101 Throwback (Easy)", path: "/starter-passages/02-chinese-101.txt" }
+  { id: "chinese101", title: "Chinese 101 Throwback (Easy)", path: "/starter-passages/02-chinese-101.txt" },
+  { id: "tips", title: "Tips (Medium)", path: "/starter-passages/01-tips.txt" }
 ];
 
 const NEXT_INDEX_KEY = "wobushizi:starter_passage_next_index";
