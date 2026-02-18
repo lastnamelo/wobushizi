@@ -4,6 +4,7 @@ import { memo, useMemo, useState } from "react";
 import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { isChineseChar } from "@/lib/cjk";
+import { useIsCoarsePointer } from "@/lib/useIsCoarsePointer";
 
 interface TextLoaderProps {
   text: string;
@@ -56,6 +57,7 @@ export const TextLoader = memo(function TextLoader({
   showWordHints = false
 }: TextLoaderProps) {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const isCoarsePointer = useIsCoarsePointer();
 
   const wordHintSegments = useMemo(() => {
     if (!showWordHints) return new Map<number, number>();
@@ -96,6 +98,7 @@ export const TextLoader = memo(function TextLoader({
                 marginRight: showWordHints && isWordEnd ? "0.08em" : "0"
               }}
               onMouseEnter={(e) => {
+                if (isCoarsePointer) return;
                 if (!isSelected) e.currentTarget.style.backgroundColor = "#f2f5f8";
                 setTooltip({
                   text: tooltipText,
@@ -104,6 +107,7 @@ export const TextLoader = memo(function TextLoader({
                 });
               }}
               onMouseMove={(e) => {
+                if (isCoarsePointer) return;
                 setTooltip((prev) =>
                   prev
                     ? {
@@ -115,6 +119,7 @@ export const TextLoader = memo(function TextLoader({
                 );
               }}
               onMouseLeave={(e) => {
+                if (isCoarsePointer) return;
                 if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
                 setTooltip(null);
               }}
@@ -124,7 +129,7 @@ export const TextLoader = memo(function TextLoader({
           );
         })}
       </div>
-      {tooltip ? (
+      {tooltip && !isCoarsePointer ? (
         <div
           className="pointer-events-none fixed z-[120] px-2 py-1 text-xs text-stone-900"
           style={{
