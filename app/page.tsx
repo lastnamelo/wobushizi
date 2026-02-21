@@ -246,7 +246,7 @@ export default function HomePage() {
       <Milestone1000Modal open={showMilestone1000} onClose={dismissMilestone1000} />
       <Milestone2500Modal open={showMilestone2500} onClose={dismissMilestone2500} />
       <TopRightTextNav />
-      <Logo />
+      <Logo onHomeClick={resetToFreshInput} />
 
       {loading ? <p className="mt-6 text-center text-stone-600">Loading...</p> : null}
 
