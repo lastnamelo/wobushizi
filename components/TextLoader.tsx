@@ -5,6 +5,7 @@ import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { isChineseChar } from "@/lib/cjk";
 import { useCanHover } from "@/lib/useCanHover";
+import { useIsIpad } from "@/lib/useIsIpad";
 
 interface TextLoaderProps {
   text: string;
@@ -58,6 +59,8 @@ export const TextLoader = memo(function TextLoader({
 }: TextLoaderProps) {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const canHover = useCanHover();
+  const isIpad = useIsIpad();
+  const enableTooltip = canHover || isIpad;
 
   const wordHintSegments = useMemo(() => {
     if (!showWordHints) return new Map<number, number>();
@@ -98,7 +101,7 @@ export const TextLoader = memo(function TextLoader({
                 marginRight: showWordHints && isWordEnd ? "0.08em" : "0"
               }}
               onMouseEnter={(e) => {
-                if (!canHover) return;
+                if (!enableTooltip) return;
                 if (!isSelected) e.currentTarget.style.backgroundColor = "#f2f5f8";
                 setTooltip({
                   text: tooltipText,
@@ -107,7 +110,7 @@ export const TextLoader = memo(function TextLoader({
                 });
               }}
               onMouseMove={(e) => {
-                if (!canHover) return;
+                if (!enableTooltip) return;
                 setTooltip((prev) =>
                   prev
                     ? {
@@ -119,7 +122,7 @@ export const TextLoader = memo(function TextLoader({
                 );
               }}
               onMouseLeave={(e) => {
-                if (!canHover) return;
+                if (!enableTooltip) return;
                 if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
                 setTooltip(null);
               }}
@@ -129,7 +132,7 @@ export const TextLoader = memo(function TextLoader({
           );
         })}
       </div>
-      {tooltip && canHover ? (
+      {tooltip && enableTooltip ? (
         <div
           className="pointer-events-none fixed z-[120] px-2 py-1 text-xs text-stone-900"
           style={{
