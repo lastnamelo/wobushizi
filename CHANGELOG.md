@@ -7,6 +7,7 @@ All notable project changes are tracked here.
 - Canonicalized HSK counting by simplified character to prevent variant double-counting.
 - Updated Home/Bank/Master pie stats to count canonical known characters.
 - Canonicalized character-state persistence and log aggregation to reduce duplicate known entries (e.g., `180/174`).
+- Matched Master-list action toggle behavior to Bank with delayed fade/remove animation in filtered views.
 
 ## 2026-02-17
 - Improved modal navigation, hover tooltips, milestone behavior, and data updates.

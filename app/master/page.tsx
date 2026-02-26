@@ -56,6 +56,8 @@ export default function MasterPage() {
   const [sortBy, setSortBy] = useState<"frequency_rank_asc" | "frequency_rank_desc" | "hsk" | "character">("frequency_rank_asc");
   const [message, setMessage] = useState<string | null>(null);
   const [detailState, setDetailState] = useState<{ character: string; status?: CharacterStatus } | null>(null);
+  const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
+  const [transientStatusMap, setTransientStatusMap] = useState<Map<string, CharacterStatus>>(new Map());
   const isCoarsePointer = useIsCoarsePointer();
   const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
@@ -120,7 +122,12 @@ export default function MasterPage() {
           tokens.some((token) => token.startsWith(normalizedQ))
         );
       })
-      .map((row) => toDisplayRow(row, stateMap.get(row.character) ?? "none"))
+      .map((row) =>
+        toDisplayRow(
+          row,
+          transientStatusMap.get(row.character) ?? stateMap.get(row.character) ?? "none"
+        )
+      )
       .sort((a, b) => {
         if (sortBy === "frequency_rank_asc" || sortBy === "frequency_rank_desc") {
           const af = a.frequency ?? Number.MAX_SAFE_INTEGER;
@@ -153,7 +160,7 @@ export default function MasterPage() {
     }
 
     return [...deduped.values()];
-  }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap]);
+  }, [search, statusFilter, hskFilter, hasTradAltOnly, sortBy, stateMap, transientStatusMap]);
 
   const detailIndex = useMemo(() => {
     if (!detailState) return -1;
@@ -177,16 +184,52 @@ export default function MasterPage() {
   }, [stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
-    await setCharacterStatusLocal(character, status);
+    if (pendingMoves.has(character)) return;
+    setMessage(null);
+    setPendingMoves((prev) => new Set(prev).add(character));
 
-    setStateMap((prev) => {
-      const next = new Map(prev);
-      next.set(character, status);
-      return next;
-    });
+    try {
+      await setCharacterStatusLocal(character, status);
 
-    const count = await fetchKnownCountLocal();
-    setKnownCount(count);
+      // Flip the toggle immediately for visual feedback.
+      setTransientStatusMap((prev) => {
+        const next = new Map(prev);
+        next.set(character, status);
+        return next;
+      });
+
+      // Keep row visible briefly before it leaves current filtered view.
+      await new Promise((resolve) => setTimeout(resolve, 420));
+
+      setStateMap((prev) => {
+        const next = new Map(prev);
+        next.set(character, status);
+        return next;
+      });
+
+      setTransientStatusMap((prev) => {
+        const next = new Map(prev);
+        next.delete(character);
+        return next;
+      });
+
+      const count = await fetchKnownCountLocal();
+      setKnownCount(count);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to update status.";
+      setMessage(msg);
+      setTransientStatusMap((prev) => {
+        const next = new Map(prev);
+        next.delete(character);
+        return next;
+      });
+    } finally {
+      setPendingMoves((prev) => {
+        const next = new Set(prev);
+        next.delete(character);
+        return next;
+      });
+    }
   }
 
   return (
@@ -324,7 +367,12 @@ export default function MasterPage() {
                   const pinyinDisplay = [row.pinyin ?? "", ...pinyinAlt].filter(Boolean).join(" / ");
 
                   return (
-                  <tr key={row.character} className="border-b border-stone-100 text-center">
+                  <tr
+                    key={row.character}
+                    className={`border-b border-stone-100 text-center transition-opacity duration-500 ease-out ${
+                      pendingMoves.has(row.character) ? "opacity-55" : "opacity-100"
+                    }`}
+                  >
                     <td className="py-1 text-base md:py-1 md:text-lg">
                       <button
                         onClick={() => setDetailState({ character: row.character, status: row.status })}
@@ -374,7 +422,7 @@ export default function MasterPage() {
                           row.status === "known"
                             ? "border-emerald-600 bg-emerald-600"
                             : "border-stone-300 bg-stone-300"
-                        }`}
+                        } ${pendingMoves.has(row.character) ? "opacity-70" : ""}`}
                         title={
                           isCoarsePointer
                             ? undefined
@@ -383,6 +431,7 @@ export default function MasterPage() {
                               : "Switch to known"
                         }
                         aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
+                        disabled={pendingMoves.has(row.character)}
                       >
                         <span
                           className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
