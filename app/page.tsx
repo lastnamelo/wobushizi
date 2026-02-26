@@ -22,7 +22,7 @@ import {
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
-import { countHskLevels } from "@/lib/hskCounts";
+import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { STARTER_PASSAGES, bumpStarterPassageIndex, getNextStarterPassageIndex } from "@/lib/starterPassages";
 import { EnrichedCharacter } from "@/lib/types";
@@ -97,10 +97,7 @@ export default function HomePage() {
   }, []);
 
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
-  const hskStats = useMemo(
-    () => countHskLevels(knownCharsForPies.map((ch) => ({ hsk_level: lookupHanziEntry(ch)?.hsk_level }))),
-    [knownCharsForPies]
-  );
+  const hskStats = useMemo(() => countHskLevelsFromCharacters(knownCharsForPies), [knownCharsForPies]);
   const newToYouCount = useMemo(() => uniqueChars.filter((ch) => !knownSet.has(ch)).length, [uniqueChars, knownSet]);
   const modalRows = useMemo(() => {
     if (!results || !detailState) return [];

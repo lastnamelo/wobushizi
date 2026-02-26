@@ -2,6 +2,12 @@
 
 All notable project changes are tracked here.
 
+## 2026-02-26
+- Fixed HSK mini pie completion logic to use per-level denominators (full slice at level completion).
+- Canonicalized HSK counting by simplified character to prevent variant double-counting.
+- Updated Home/Bank/Master pie stats to count canonical known characters.
+- Canonicalized character-state persistence and log aggregation to reduce duplicate known entries (e.g., `180/174`).
+
 ## 2026-02-17
 - Improved modal navigation, hover tooltips, milestone behavior, and data updates.
 

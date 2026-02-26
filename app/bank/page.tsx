@@ -18,7 +18,7 @@ import {
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
-import { countHskLevels } from "@/lib/hskCounts";
+import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { CharacterStateRow, EnrichedCharacter } from "@/lib/types";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
 
@@ -87,7 +87,10 @@ export default function BankPage() {
     () => (activeTab === "character" ? tabData.known : tabData.study),
     [activeTab, tabData]
   );
-  const knownStats = useMemo(() => countHskLevels(tabData.known), [tabData.known]);
+  const knownStats = useMemo(
+    () => countHskLevelsFromCharacters(tabData.known.map((row) => row.character)),
+    [tabData.known]
+  );
 
   async function moveStatus(character: string, status: "known" | "study") {
     if (pendingMoves.has(character)) return;

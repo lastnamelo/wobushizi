@@ -1,4 +1,4 @@
-import { getHanziData } from "@/lib/hanzidb";
+import { getCanonicalCharacter, getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
 
 export type HskCounts = {
   1: number;
@@ -24,5 +24,22 @@ export function countHskLevels(rows: Array<{ hsk_level?: unknown }>): HskCounts 
   return counts;
 }
 
-export const TOTAL_HSK_COUNTS: HskCounts = countHskLevels(getHanziData());
+export function countHskLevelsFromCharacters(characters: string[]): HskCounts {
+  const canonical = new Set<string>();
+  for (const ch of characters) {
+    if (!ch) continue;
+    canonical.add(getCanonicalCharacter(ch));
+  }
 
+  return countHskLevels(
+    [...canonical].map((character) => ({
+      hsk_level: lookupHanziEntry(character)?.hsk_level
+    }))
+  );
+}
+
+export const TOTAL_HSK_COUNTS: HskCounts = countHskLevelsFromCharacters(
+  getHanziData()
+    .map((row) => row.character)
+    .filter((ch): ch is string => Boolean(ch))
+);

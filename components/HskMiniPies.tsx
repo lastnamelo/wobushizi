@@ -35,11 +35,6 @@ export function HskMiniPies({
     { label: "HSK 6", count: stats[6], color: "var(--h6)" },
     { label: "Unknown", count: stats.unknown, color: "var(--h0)" }
   ];
-  const sampleTotal = Math.max(
-    stats[1] + stats[2] + stats[3] + stats[4] + stats[5] + stats[6] + stats.unknown,
-    1
-  );
-
   return (
     <div
       className={`rounded-xl border border-line bg-white p-3 shadow-card ${className}`.trim()}
@@ -57,11 +52,11 @@ export function HskMiniPies({
     >
       <div className="flex flex-wrap justify-center gap-5">
         {entries.map((entry) => {
-          const pct = (entry.count / sampleTotal) * 100;
           const denominator =
             entry.label === "Unknown"
               ? denominators.unknown
               : denominators[Number(entry.label.replace("HSK ", "")) as 1 | 2 | 3 | 4 | 5 | 6];
+          const pct = denominator > 0 ? Math.min((entry.count / denominator) * 100, 100) : 0;
           return (
             <div key={entry.label} className="flex items-center gap-2 text-xs leading-none text-stone-600">
               <svg
@@ -87,4 +82,3 @@ export function HskMiniPies({
     </div>
   );
 }
-

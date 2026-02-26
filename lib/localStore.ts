@@ -1,10 +1,9 @@
 import { CharacterStateRow, CharacterStatus } from "@/lib/types";
+import { getCanonicalCharacter } from "@/lib/hanzidb";
 import {
   ensureProfile,
   fetchAllCharacterStates,
-  fetchCharacterStatesByStatus,
   fetchCharacterStatesForChars,
-  fetchKnownCount
 } from "@/lib/db";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
@@ -19,6 +18,64 @@ export interface LocalLogEvent {
   source_text: string;
   created_at: string;
   items: Array<{ character: string; action: string; created_at: string }>;
+}
+
+function rowSortTimestamp(row: CharacterStateRow): string {
+  return row.last_seen_at ?? row.created_at ?? "";
+}
+
+function normalizeRowsByCanonical(rows: CharacterStateRow[]): CharacterStateRow[] {
+  const byCanonical = new Map<string, CharacterStateRow>();
+
+  for (const row of rows) {
+    const canonical = getCanonicalCharacter(row.character);
+    const next: CharacterStateRow = { ...row, character: canonical };
+    const existing = byCanonical.get(canonical);
+    if (!existing) {
+      byCanonical.set(canonical, next);
+      continue;
+    }
+    if (rowSortTimestamp(next) > rowSortTimestamp(existing)) {
+      byCanonical.set(canonical, next);
+    }
+  }
+
+  return [...byCanonical.values()].sort((a, b) => a.character.localeCompare(b.character, "zh-Hans-CN"));
+}
+
+function buildCanonicalLogRows(
+  uniqueChars: string[],
+  knownSet: Set<string>,
+  selectedSet: Set<string>
+): Array<{ character: string; status: CharacterStatus; action: "skipped" | "logged_known" | "queued_study" }> {
+  const aggregate = new Map<
+    string,
+    { alreadyKnown: boolean; selectedCount: number; deselectedCount: number }
+  >();
+
+  for (const character of uniqueChars) {
+    const canonical = getCanonicalCharacter(character);
+    const prev = aggregate.get(canonical) ?? {
+      alreadyKnown: false,
+      selectedCount: 0,
+      deselectedCount: 0
+    };
+    prev.alreadyKnown = prev.alreadyKnown || knownSet.has(character);
+    if (selectedSet.has(character)) prev.selectedCount += 1;
+    else prev.deselectedCount += 1;
+    aggregate.set(canonical, prev);
+  }
+
+  const rows: Array<{ character: string; status: CharacterStatus; action: "skipped" | "logged_known" | "queued_study" }> = [];
+
+  for (const [character, summary] of aggregate.entries()) {
+    const status: CharacterStatus = summary.deselectedCount > 0 ? "study" : "known";
+    const action =
+      status === "study" ? "queued_study" : summary.alreadyKnown ? "skipped" : "logged_known";
+    rows.push({ character, status, action });
+  }
+
+  return rows;
 }
 
 function readStates(): StoredState {
@@ -65,30 +122,45 @@ export async function ensureLocalProfile(): Promise<void> {
 export async function fetchKnownCountLocal(): Promise<number> {
   const user = await getAuthUser();
   if (user && supabase) {
-    return fetchKnownCount(supabase, user.id);
+    const rows = await fetchAllCharacterStates(supabase, user.id);
+    return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
   }
 
-  const states = readStates();
-  return Object.values(states).filter((row) => row.status === "known").length;
+  return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === "known").length;
 }
 
 export async function fetchCharacterStatesForCharsLocal(
   characters: string[]
 ): Promise<Map<string, CharacterStateRow>> {
+  const canonicalByInput = new Map<string, string>();
+  for (const ch of characters) {
+    canonicalByInput.set(ch, getCanonicalCharacter(ch));
+  }
+  const uniqueCanonical = [...new Set(canonicalByInput.values())];
+
   const user = await getAuthUser();
   if (user && supabase) {
-    return fetchCharacterStatesForChars(supabase, user.id, characters);
+    const canonicalMap = await fetchCharacterStatesForChars(supabase, user.id, uniqueCanonical);
+    const normalized = normalizeRowsByCanonical([...canonicalMap.values()]);
+    const byCanonical = new Map(normalized.map((row) => [row.character, row]));
+    const result = new Map<string, CharacterStateRow>();
+    for (const [input, canonical] of canonicalByInput.entries()) {
+      const row = byCanonical.get(canonical);
+      if (row) result.set(input, row);
+    }
+    return result;
   }
 
-  const states = readStates();
-  const map = new Map<string, CharacterStateRow>();
-
-  for (const ch of characters) {
-    const row = states[ch];
-    if (row) map.set(ch, row);
+  const byCanonical = new Map(
+    normalizeRowsByCanonical(Object.values(readStates())).map((row) => [row.character, row])
+  );
+  const result = new Map<string, CharacterStateRow>();
+  for (const [input, canonical] of canonicalByInput.entries()) {
+    const row = byCanonical.get(canonical);
+    if (row) result.set(input, row);
   }
 
-  return map;
+  return result;
 }
 
 export async function fetchCharacterStatesByStatusLocal(
@@ -96,23 +168,20 @@ export async function fetchCharacterStatesByStatusLocal(
 ): Promise<CharacterStateRow[]> {
   const user = await getAuthUser();
   if (user && supabase) {
-    return fetchCharacterStatesByStatus(supabase, user.id, status);
+    const rows = await fetchAllCharacterStates(supabase, user.id);
+    return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
   }
 
-  const states = readStates();
-  return Object.values(states)
-    .filter((row) => row.status === status)
-    .sort((a, b) => a.character.localeCompare(b.character, "zh-Hans-CN"));
+  return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === status);
 }
 
 export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[]> {
   const user = await getAuthUser();
   if (user && supabase) {
-    return fetchAllCharacterStates(supabase, user.id);
+    return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
   }
 
-  const states = readStates();
-  return Object.values(states);
+  return normalizeRowsByCanonical(Object.values(readStates()));
 }
 
 export async function setCharacterStatusLocal(
@@ -120,6 +189,7 @@ export async function setCharacterStatusLocal(
   status: CharacterStatus,
   timestamp = new Date().toISOString()
 ): Promise<void> {
+  const canonical = getCanonicalCharacter(character);
   const user = await getAuthUser();
   if (user && supabase) {
     const { error } = await supabase
@@ -127,7 +197,7 @@ export async function setCharacterStatusLocal(
       .upsert(
         {
           user_id: user.id,
-          character,
+          character: canonical,
           status,
           last_seen_at: timestamp
         },
@@ -138,12 +208,12 @@ export async function setCharacterStatusLocal(
   }
 
   const states = readStates();
-  states[character] = {
+  states[canonical] = {
     user_id: LOCAL_USER_ID,
-    character,
+    character: canonical,
     status,
     last_seen_at: timestamp,
-    created_at: states[character]?.created_at ?? timestamp
+    created_at: states[canonical]?.created_at ?? timestamp
   };
   writeStates(states);
 }
@@ -169,10 +239,11 @@ export async function applyLogLocal(
     if (logError) throw logError;
 
     if (uniqueChars.length > 0) {
-      const stateRows = uniqueChars.map((character) => ({
+      const canonicalRows = buildCanonicalLogRows(uniqueChars, knownSet, selectedSet);
+      const stateRows = canonicalRows.map((row) => ({
         user_id: user.id,
-        character,
-        status: (selectedSet.has(character) ? "known" : "study") as CharacterStatus,
+        character: row.character,
+        status: row.status,
         last_seen_at: now
       }));
 
@@ -181,16 +252,12 @@ export async function applyLogLocal(
         .upsert(stateRows, { onConflict: "user_id,character" });
       if (upsertError) throw upsertError;
 
-      const eventItemRows = uniqueChars.map((character) => {
-        const alreadyKnown = knownSet.has(character);
-        const selected = selectedSet.has(character);
-        const action = alreadyKnown ? "skipped" : selected ? "logged_known" : "queued_study";
-        const normalizedAction = !selected ? "queued_study" : action;
+      const eventItemRows = canonicalRows.map((row) => {
         return {
           log_event_id: logEvent.id,
           user_id: user.id,
-          character,
-          action: normalizedAction,
+          character: row.character,
+          action: row.action,
           created_at: now
         };
       });
@@ -204,14 +271,14 @@ export async function applyLogLocal(
 
   const states = readStates();
 
-  for (const character of uniqueChars) {
-    const status: CharacterStatus = selectedSet.has(character) ? "known" : "study";
-    states[character] = {
+  const canonicalRows = buildCanonicalLogRows(uniqueChars, knownSet, selectedSet);
+  for (const row of canonicalRows) {
+    states[row.character] = {
       user_id: LOCAL_USER_ID,
-      character,
-      status,
+      character: row.character,
+      status: row.status,
       last_seen_at: now,
-      created_at: states[character]?.created_at ?? now
+      created_at: states[row.character]?.created_at ?? now
     };
   }
 
@@ -224,13 +291,7 @@ export async function applyLogLocal(
       id: crypto.randomUUID(),
       source_text: sourceText,
       created_at: now,
-      items: uniqueChars.map((character) => {
-        const alreadyKnown = knownSet.has(character);
-        const selected = selectedSet.has(character);
-        const action = alreadyKnown ? "skipped" : selected ? "logged_known" : "queued_study";
-        const normalizedAction = !selected ? "queued_study" : action;
-        return { character, action: normalizedAction, created_at: now };
-      })
+      items: canonicalRows.map((row) => ({ character: row.character, action: row.action, created_at: now }))
     });
     window.localStorage.setItem(LOG_KEY, JSON.stringify(logs));
   }

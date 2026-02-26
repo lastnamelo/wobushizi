@@ -18,7 +18,7 @@ import {
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
-import { countHskLevels } from "@/lib/hskCounts";
+import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { CharacterStatus, EnrichedCharacter, HanzidbEntry } from "@/lib/types";
@@ -172,11 +172,8 @@ export default function MasterPage() {
   const knownStats = useMemo(() => {
     const tracked = Array.from(stateMap.entries())
       .filter(([, status]) => status === "known")
-      .map(([character]) => {
-        const row = lookupHanziEntry(character);
-        return { hsk_level: row?.hsk_level };
-      });
-    return countHskLevels(tracked);
+      .map(([character]) => character);
+    return countHskLevelsFromCharacters(tracked);
   }, [stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
