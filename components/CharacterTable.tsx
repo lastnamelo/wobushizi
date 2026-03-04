@@ -189,7 +189,7 @@ export function CharacterTable({
                 onClick={() => setHasTradAltOnly((prev) => !prev)}
               >
                 Trad / Alt{"  "}
-                <span className="inline-block align-middle text-xl leading-none">{hasTradAltOnly ? "●" : "○"}</span>
+                <span className="inline-block align-middle text-base leading-none">{hasTradAltOnly ? "●" : "○"}</span>
               </th>
               <th className="border-b border-line bg-white py-1.5 md:py-1">Action</th>
             </tr>

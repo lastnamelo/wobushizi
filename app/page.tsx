@@ -99,6 +99,8 @@ export default function HomePage() {
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
   const hskStats = useMemo(() => countHskLevelsFromCharacters(knownCharsForPies), [knownCharsForPies]);
   const newToYouCount = useMemo(() => uniqueChars.filter((ch) => !knownSet.has(ch)).length, [uniqueChars, knownSet]);
+  const knownInPassageCount = useMemo(() => uniqueChars.filter((ch) => knownSet.has(ch)).length, [uniqueChars, knownSet]);
+  const toStudyCount = useMemo(() => uniqueChars.filter((ch) => !selectedSet.has(ch)).length, [uniqueChars, selectedSet]);
   const modalRows = useMemo(() => {
     if (!results || !detailState) return [];
     return detailState.source === "known" ? results.newKnown : results.queuedStudy;
@@ -322,7 +324,8 @@ export default function HomePage() {
               <>
                 <div className="flex items-center justify-between gap-3 text-[11px] text-stone-600 md:text-xs">
                   <p className="text-left">
-                    {uniqueChars.length} unique characters, {newToYouCount} new to you.
+                    {uniqueChars.length} unique characters, {knownInPassageCount} known, {toStudyCount} to
+                    study, {newToYouCount} new to you.
                   </p>
                   <label className="inline-flex shrink-0 cursor-pointer items-center gap-2">
                     <input

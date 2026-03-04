@@ -11,6 +11,8 @@ All notable project changes are tracked here.
 - Added one-time per-user reconciliation for canonical character states (Supabase + local mode).
 - Fixed Master-list status/toggle mapping to use canonical keys so toggles reliably move characters into Known.
 - Hardened milestone popup behavior against first-load hydration race conditions.
+- Reduced Trad/Alt filter circle size in Known, Study, and Master tables.
+- Updated Load-page passage summary to show unique, known, to-study, and new-to-you counts.
 
 ## 2026-02-17
 - Improved modal navigation, hover tooltips, milestone behavior, and data updates.
