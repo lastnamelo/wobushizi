@@ -1,75 +1,105 @@
 # 我不识字
 
-A minimal, cozy web app for pasting Chinese text, color-coding characters by HSK level, and logging known/study characters to Supabase.
+A lightweight Chinese reading companion that helps you log recognized characters over time.
+
+Core idea:
+- Paste Chinese text
+- Review character-by-character
+- Keep a Known/Study bank
+- Track progress toward a 2,500-character literacy benchmark
+
+## What The App Does Now
+
+- Home (`/`)
+  - Paste text or load a starter passage
+  - Parse unique Chinese characters from the passage
+  - Show Load view with HSK-colored characters
+  - Toggle each character as known/study for this log event
+  - Optional word-hint underlines
+  - Log Complete view with two lists: `new known` and `added to study`
+
+- Bank (`/bank`)
+  - Known Bank + Study Bank toggle
+  - Shared searchable/sortable/filterable table
+  - One-click status toggle (`known` <-> `study`)
+  - Character detail modal on row click
+
+- Master (`/master`)
+  - Full dictionary-backed table
+  - Status, HSK, trad/alt, and sort controls
+  - Set any character to known/study
+
+- About (`/about`)
+  - Project origin text
+  - Reset progress action
+
+- Contact (`/contact`)
+  - Contact information and data-patch notes
+
+## Auth + Persistence
+
+The app supports two modes automatically:
+
+1. Supabase mode (recommended)
+- If `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are present, users see an email magic-link gate.
+- Progress is stored per authenticated user in Supabase.
+
+2. Local fallback mode
+- If env vars are missing, or no auth session exists, the app falls back to browser `localStorage`.
+- This is useful for demo/testing but not portable across browsers/devices.
+
+Tester bypass:
+- In the auth modal, tapping the invisible top-left hotspot 5 times enables a 24-hour local bypass for testing.
 
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
 - `@supabase/supabase-js`
-- Local dictionary at `/data/hanzidb.json`
-
-## Current Mode
-
-The app is currently in **temporary local guest mode** (no sign-in screen), using `localStorage` for character state while you build UI/features.
-
-When you want to switch back to Supabase Auth + RLS, re-enable the auth-backed data flow in the page files.
+- Local dictionary data: `/Users/lastnamelo/wobushizi.com/data/hanzidb.json`
 
 ## Setup
 
-1. Create a Supabase project.
-2. In Supabase dashboard, enable **Email OTP / magic link** auth provider.
-3. In SQL editor, run the schema:
-   - File: `/Users/lastnamelo/wobushizi.com/sql/schema.sql`
-4. Copy env template and fill values:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Configure env vars:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Set:
-
+Add:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-5. Install and run:
+3. Create Supabase tables/policies:
+- Run `/Users/lastnamelo/wobushizi.com/sql/schema.sql` in Supabase SQL Editor.
+
+4. Start dev server:
 
 ```bash
-npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+5. Build check:
 
-## Pages
+```bash
+npm run build
+```
 
-- `/` Home (Load & Log)
-  - Paste text, load clickable rendered Hanzi, toggle selection
-  - Log event writes to `log_events`, `log_event_items`, and `character_states`
-  - Shows event result tables: new known vs queued study
-- `/bank`
-  - Tabs: Character Bank (known), Study Bank (study)
-  - Search, sort, one-click move between known/study
-- `/master`
-  - Full local dictionary browser with filters (status/HSK/search)
-  - Set known/study for any character
+## Data Files
 
-## Data Notes
+- Main runtime dataset:
+  - `/Users/lastnamelo/wobushizi.com/data/hanzidb.json`
+- Editable/source-like dataset:
+  - `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`
+- CSV -> JSON conversion script:
+  - `/Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py`
 
-- Dictionary map is loaded from `/Users/lastnamelo/wobushizi.com/data/hanzidb.json`.
-- Single source-of-truth CSV is `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`.
-- Lookup supports simplified + traditional + alternate characters via `alternate_characters`.
-
-### Refreshing Data From CSV
-
-Canonical master CSV:
-- `/Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv`
-
-Supported enrichment columns in the master CSV:
-- `pinyin_alternates` (pipe-separated)
-- `common_word_1`, `common_word_1_pinyin`, `common_word_1_definition`
-- `common_word_2`, `common_word_2_pinyin`, `common_word_2_definition`
-
-Then run:
+Example conversion:
 
 ```bash
 python3 /Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py \
@@ -78,45 +108,56 @@ python3 /Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py \
   --output-csv /Users/lastnamelo/wobushizi.com/data/hanzidb_enhanced.csv
 ```
 
-## Lazy Seeding Strategy
+## File Map (Beginner-Friendly)
 
-No global pre-seed of all characters is required.
-Rows in `character_states` are created lazily on-demand when a user logs text or manually sets status in `/master` or `/bank`.
+Current project file categories (excluding `node_modules`, `.next`, `.git`):
 
-## RLS Summary
+- UI pages/routes (`/app`): 9
+  - Screen-level routes (`home`, `bank`, `master`, `about`, `contact`)
 
-RLS is enabled on all app tables.
-Policies only allow reads/writes where `user_id = auth.uid()` (or `profiles.id = auth.uid()`).
+- UI components (`/components`): 12
+  - Reusable visual blocks (table, logo, progress bar, modals, nav)
 
-## Flashcards TODO (not implemented)
+- App logic/hooks/helpers (`/lib`): 17
+  - Data logic, parsing, local storage, Supabase bridge, shared hooks
 
-Suggested future tables:
+- Static assets/content (`/public`): 6
+  - Logo and starter passage `.txt` files
 
-```sql
-create table flashcard_sets (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references profiles(id) on delete cascade,
-  name text not null,
-  created_at timestamptz not null default now()
-);
+- Dataset files (`/data`): 2
+  - Hanzi source/runtime datasets
 
-create table flashcards (
-  id uuid primary key default gen_random_uuid(),
-  set_id uuid not null references flashcard_sets(id) on delete cascade,
-  user_id uuid not null references profiles(id) on delete cascade,
-  character text not null,
-  ease_factor numeric not null default 2.5,
-  interval_days integer not null default 0,
-  due_at timestamptz,
-  created_at timestamptz not null default now()
-);
+- SQL schema (`/sql`): 1
+  - Supabase schema and RLS setup
+
+- Utility scripts (`/scripts`): 1
+  - CSV/JSON conversion tooling
+
+- CI workflow (`/.github/workflows`): 1
+  - GitHub Actions lint check
+
+- Root config/docs files: 18
+  - `package.json`, `tsconfig`, `tailwind`, `README`, `CHANGELOG`, etc.
+
+## Quality Checks
+
+Lint:
+
+```bash
+npm run lint
 ```
 
-## Key Files
+Build:
 
-- `/Users/lastnamelo/wobushizi.com/app/page.tsx`
-- `/Users/lastnamelo/wobushizi.com/app/bank/page.tsx`
-- `/Users/lastnamelo/wobushizi.com/app/master/page.tsx`
-- `/Users/lastnamelo/wobushizi.com/components/TextLoader.tsx`
-- `/Users/lastnamelo/wobushizi.com/lib/hanzidb.ts`
-- `/Users/lastnamelo/wobushizi.com/sql/schema.sql`
+```bash
+npm run build
+```
+
+CI:
+- Lint runs on push/PR via `/Users/lastnamelo/wobushizi.com/.github/workflows/lint.yml`.
+
+## Notes
+
+- The app canonicalizes simplified/traditional variants for status tracking so counts remain stable.
+- Search is character + pinyin focused (not definition-driven fuzzy search).
+- Starter passages are editable text files in `/Users/lastnamelo/wobushizi.com/public/starter-passages/`.

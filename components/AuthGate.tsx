@@ -10,7 +10,7 @@ export function AuthGate() {
   const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
   const [hydrated, setHydrated] = useState(false);
   const [testerBypassed, setTesterBypassed] = useState(false);
-  const [testerTapCount, setTesterTapCount] = useState(0);
+  const [, setTesterTapCount] = useState(0);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [sentMsg, setSentMsg] = useState<string | null>(null);

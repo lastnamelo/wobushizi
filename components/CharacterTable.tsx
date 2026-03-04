@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { EnrichedCharacter } from "@/lib/types";
-import { useIsCoarsePointer } from "@/lib/useIsCoarsePointer";
+import { useDeviceCapabilities } from "@/lib/useDeviceCapabilities";
 
 interface CharacterTableProps {
   rows: EnrichedCharacter[];
@@ -16,6 +16,10 @@ interface CharacterTableProps {
   defaultSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   forcedSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   helperText?: string;
+  statusFilterOptions?: Array<"all" | "known" | "study" | "none">;
+  defaultStatusFilter?: "all" | "known" | "study" | "none";
+  hideUnknownHskByDefault?: boolean;
+  onFilteredCountChange?: (count: number) => void;
 }
 
 export function CharacterTable({
@@ -26,15 +30,20 @@ export function CharacterTable({
   pendingCharacters,
   defaultSortBy = "frequency_rank_asc",
   forcedSortBy,
-  helperText
+  helperText,
+  statusFilterOptions,
+  defaultStatusFilter = "all",
+  hideUnknownHskByDefault = false,
+  onFilteredCountChange
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
   const [hasTradAltOnly, setHasTradAltOnly] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<"all" | "known" | "study" | "none">(defaultStatusFilter);
   const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
   const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(defaultSortBy);
   const activeSortBy = forcedSortBy ?? sortBy;
-  const isCoarsePointer = useIsCoarsePointer();
+  const { isCoarsePointer } = useDeviceCapabilities();
 
   const filtered = useMemo(() => {
     const dedupedRows = new Map<string, EnrichedCharacter>();
@@ -68,6 +77,15 @@ export function CharacterTable({
       if (hskFilter !== "all") {
         const rowHsk = row.hsk_level == null ? "unknown" : String(row.hsk_level);
         if (rowHsk !== hskFilter) return false;
+      }
+
+      const rowStatus = row.status ?? "none";
+      if (statusFilter !== "all" && rowStatus !== statusFilter) {
+        return false;
+      }
+
+      if (!q && hideUnknownHskByDefault && hskFilter === "all" && row.hsk_level == null) {
+        return false;
       }
 
       if (!q) return true;
@@ -108,7 +126,11 @@ export function CharacterTable({
       }
       return a.character.localeCompare(b.character, "zh-Hans-CN");
     });
-  }, [rows, search, activeSortBy, hskFilter, hasTradAltOnly]);
+  }, [rows, search, activeSortBy, hskFilter, hasTradAltOnly, statusFilter, hideUnknownHskByDefault]);
+
+  useEffect(() => {
+    onFilteredCountChange?.(filtered.length);
+  }, [filtered.length, onFilteredCountChange]);
 
   const detailIndex = useMemo(() => {
     if (!detailState) return -1;
@@ -135,7 +157,7 @@ export function CharacterTable({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Seach character or pinyin..."
+          placeholder="Search character or pinyin..."
           className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
         />
       </div>
@@ -189,9 +211,67 @@ export function CharacterTable({
                 onClick={() => setHasTradAltOnly((prev) => !prev)}
               >
                 Trad / Alt{"  "}
-                <span className="inline-block align-middle text-base leading-none">{hasTradAltOnly ? "●" : "○"}</span>
+                <span
+                  className={`inline-block align-middle leading-none ${
+                    hasTradAltOnly ? "text-lg" : "text-base"
+                  }`}
+                >
+                  {hasTradAltOnly ? "●" : "○"}
+                </span>
               </th>
-              <th className="border-b border-line bg-white py-1.5 md:py-1">Action</th>
+              <th className="border-b border-line bg-white py-1.5 md:py-1">
+                <span className="inline-flex items-center gap-1">
+                  Action
+                  {statusFilterOptions ? (
+                    <button
+                      onClick={() => {
+                        const order = statusFilterOptions;
+                        const i = order.indexOf(statusFilter);
+                        const next = order[(i + 1) % order.length];
+                        setStatusFilter(next);
+                      }}
+                      className="inline-flex items-center"
+                      title={
+                        isCoarsePointer
+                          ? undefined
+                          : statusFilter === "all"
+                            ? "Status filter: All"
+                            : statusFilter === "known"
+                              ? "Status filter: Known"
+                              : statusFilter === "study"
+                                ? "Status filter: Study"
+                                : "Status filter: Unknown"
+                      }
+                      aria-label={
+                        statusFilter === "all"
+                          ? "Status filter all"
+                          : statusFilter === "known"
+                            ? "Status filter known"
+                            : statusFilter === "study"
+                              ? "Status filter study"
+                              : "Status filter unknown"
+                      }
+                    >
+                      <svg
+                        viewBox="0 0 20 20"
+                        className="h-3.5 w-3.5"
+                        fill={
+                          statusFilter === "all"
+                            ? "#806252"
+                            : statusFilter === "known"
+                              ? "#15803d"
+                              : statusFilter === "study"
+                                ? "#1d4ed8"
+                                : "#b91c1c"
+                        }
+                        aria-hidden="true"
+                      >
+                        <path d="M2.5 4.5A1.5 1.5 0 0 1 4 3h12a1.5 1.5 0 0 1 1.2 2.4L12 12v4.25a.75.75 0 0 1-1.11.66l-2-1.11a.75.75 0 0 1-.39-.66V12L2.8 5.4a1.5 1.5 0 0 1-.3-.9Z" />
+                      </svg>
+                    </button>
+                  ) : null}
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -268,7 +348,11 @@ export function CharacterTable({
                         <button
                           onClick={() => {
                             if (isPending) return;
-                            row.status === "known" ? onSetStudy(row.character) : onSetKnown(row.character);
+                            if (row.status === "known") {
+                              onSetStudy(row.character);
+                            } else {
+                              onSetKnown(row.character);
+                            }
                           }}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full border transition ${
                             row.status === "known"
