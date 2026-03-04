@@ -12,6 +12,7 @@ function useMilestoneThreshold(knownCount: number, threshold: number, storageKey
   const [initialized, setInitialized] = useState(false);
   const previousCountRef = useRef<number | null>(null);
   const armedRef = useRef(false);
+  const armedAtRef = useRef<number>(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -27,6 +28,7 @@ function useMilestoneThreshold(knownCount: number, threshold: number, storageKey
       // Treat the first ready value as baseline to avoid triggering on initial hydration/login sync.
       previousCountRef.current = knownCount;
       armedRef.current = true;
+      armedAtRef.current = Date.now();
       if (!isSeen && knownCount >= threshold && typeof window !== "undefined") {
         // If already past threshold before this browser saw it, mark as seen silently.
         window.localStorage.setItem(storageKey, "1");
@@ -36,6 +38,17 @@ function useMilestoneThreshold(knownCount: number, threshold: number, storageKey
     }
     const prev = previousCountRef.current;
     if (prev == null) return;
+
+    // Guard against first-load hydration races where count jumps from placeholder 0 to server value.
+    const armedRecently = Date.now() - armedAtRef.current < 5000;
+    if (!isSeen && prev === 0 && knownCount >= threshold && armedRecently) {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(storageKey, "1");
+      }
+      setIsSeen(true);
+      previousCountRef.current = knownCount;
+      return;
+    }
 
     if (!isSeen && prev < threshold && knownCount >= threshold) {
       setShowMilestone(true);

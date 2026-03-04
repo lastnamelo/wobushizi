@@ -11,6 +11,8 @@ const LOCAL_USER_ID = "local-user";
 const STATE_KEY = "wobushizi:character_states";
 const LOG_KEY = "wobushizi:log_events";
 let ensuredProfileId: string | null = null;
+const reconciledUserIds = new Set<string>();
+const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v1";
 
 type StoredState = Record<string, CharacterStateRow>;
 export interface LocalLogEvent {
@@ -43,6 +45,84 @@ function normalizeRowsByCanonical(rows: CharacterStateRow[]): CharacterStateRow[
   return [...byCanonical.values()].sort((a, b) => a.character.localeCompare(b.character, "zh-Hans-CN"));
 }
 
+function needsCanonicalReconcile(rows: CharacterStateRow[]): boolean {
+  const seenCanonical = new Set<string>();
+  for (const row of rows) {
+    const canonical = getCanonicalCharacter(row.character);
+    if (row.character !== canonical) return true;
+    if (seenCanonical.has(canonical)) return true;
+    seenCanonical.add(canonical);
+  }
+  return false;
+}
+
+async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
+  if (!supabase || reconciledUserIds.has(userId)) return;
+  if (typeof window !== "undefined") {
+    const key = `wobushizi:reconciled_user_v1:${userId}`;
+    if (window.localStorage.getItem(key) === "1") {
+      reconciledUserIds.add(userId);
+      return;
+    }
+  }
+
+  const { data, error } = await supabase
+    .from("character_states")
+    .select("user_id,character,status,last_seen_at,created_at")
+    .eq("user_id", userId);
+  if (error) throw error;
+
+  const rows = (data ?? []) as CharacterStateRow[];
+  if (!needsCanonicalReconcile(rows)) {
+    reconciledUserIds.add(userId);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(`wobushizi:reconciled_user_v1:${userId}`, "1");
+    }
+    return;
+  }
+
+  const normalized = normalizeRowsByCanonical(rows);
+  const { error: deleteError } = await supabase.from("character_states").delete().eq("user_id", userId);
+  if (deleteError) throw deleteError;
+
+  if (normalized.length > 0) {
+    const { error: insertError } = await supabase
+      .from("character_states")
+      .insert(
+        normalized.map((row) => ({
+          user_id: userId,
+          character: row.character,
+          status: row.status,
+          last_seen_at: row.last_seen_at,
+          created_at: row.created_at
+        }))
+      );
+    if (insertError) throw insertError;
+  }
+
+  reconciledUserIds.add(userId);
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(`wobushizi:reconciled_user_v1:${userId}`, "1");
+  }
+}
+
+function maybeReconcileLocalStates(): void {
+  if (typeof window === "undefined") return;
+  if (window.localStorage.getItem(LOCAL_RECONCILE_KEY) === "1") return;
+  const rows = Object.values(readStates());
+  if (!needsCanonicalReconcile(rows)) {
+    window.localStorage.setItem(LOCAL_RECONCILE_KEY, "1");
+    return;
+  }
+  const normalized = normalizeRowsByCanonical(rows);
+  const next: StoredState = {};
+  for (const row of normalized) {
+    next[row.character] = row;
+  }
+  writeStates(next);
+  window.localStorage.setItem(LOCAL_RECONCILE_KEY, "1");
+}
+
 function buildCanonicalLogRows(
   uniqueChars: string[],
   knownSet: Set<string>,
@@ -69,6 +149,7 @@ function buildCanonicalLogRows(
   const rows: Array<{ character: string; status: CharacterStatus; action: "skipped" | "logged_known" | "queued_study" }> = [];
 
   for (const [character, summary] of aggregate.entries()) {
+    // If any seen variant is explicitly deselected in this log, treat canonical as study.
     const status: CharacterStatus = summary.deselectedCount > 0 ? "study" : "known";
     const action =
       status === "study" ? "queued_study" : summary.alreadyKnown ? "skipped" : "logged_known";
@@ -109,6 +190,7 @@ async function getAuthUser() {
 
   if (ensuredProfileId !== user.id) {
     await ensureProfile(supabase, user);
+    await maybeReconcileSupabaseStates(user.id);
     ensuredProfileId = user.id;
   }
   return user;
@@ -125,6 +207,7 @@ export async function fetchKnownCountLocal(): Promise<number> {
     const rows = await fetchAllCharacterStates(supabase, user.id);
     return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
   }
+  maybeReconcileLocalStates();
 
   return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === "known").length;
 }
@@ -150,6 +233,7 @@ export async function fetchCharacterStatesForCharsLocal(
     }
     return result;
   }
+  maybeReconcileLocalStates();
 
   const byCanonical = new Map(
     normalizeRowsByCanonical(Object.values(readStates())).map((row) => [row.character, row])
@@ -171,6 +255,7 @@ export async function fetchCharacterStatesByStatusLocal(
     const rows = await fetchAllCharacterStates(supabase, user.id);
     return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
   }
+  maybeReconcileLocalStates();
 
   return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === status);
 }
@@ -180,6 +265,7 @@ export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[
   if (user && supabase) {
     return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
   }
+  maybeReconcileLocalStates();
 
   return normalizeRowsByCanonical(Object.values(readStates()));
 }

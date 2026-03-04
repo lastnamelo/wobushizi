@@ -8,6 +8,9 @@ All notable project changes are tracked here.
 - Updated Home/Bank/Master pie stats to count canonical known characters.
 - Canonicalized character-state persistence and log aggregation to reduce duplicate known entries (e.g., `180/174`).
 - Matched Master-list action toggle behavior to Bank with delayed fade/remove animation in filtered views.
+- Added one-time per-user reconciliation for canonical character states (Supabase + local mode).
+- Fixed Master-list status/toggle mapping to use canonical keys so toggles reliably move characters into Known.
+- Hardened milestone popup behavior against first-load hydration race conditions.
 
 ## 2026-02-17
 - Improved modal navigation, hover tooltips, milestone behavior, and data updates.

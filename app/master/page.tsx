@@ -17,7 +17,7 @@ import {
   fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
-import { getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
+import { getCanonicalCharacter, getHanziData, lookupHanziEntry } from "@/lib/hanzidb";
 import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
@@ -96,7 +96,7 @@ export default function MasterPage() {
           Boolean(String(row.alternate_characters ?? "").trim());
         if (hasTradAltOnly && !hasTradAlt) return false;
 
-        const status = stateMap.get(row.character) ?? "none";
+        const status = stateMap.get(getCanonicalCharacter(row.character)) ?? "none";
         const hsk = typeof row.hsk_level === "number" ? String(row.hsk_level) : "unknown";
 
         if (statusFilter !== "all" && status !== statusFilter) return false;
@@ -125,7 +125,9 @@ export default function MasterPage() {
       .map((row) =>
         toDisplayRow(
           row,
-          transientStatusMap.get(row.character) ?? stateMap.get(row.character) ?? "none"
+          transientStatusMap.get(getCanonicalCharacter(row.character)) ??
+            stateMap.get(getCanonicalCharacter(row.character)) ??
+            "none"
         )
       )
       .sort((a, b) => {
@@ -184,17 +186,18 @@ export default function MasterPage() {
   }, [stateMap]);
 
   async function setStatus(character: string, status: CharacterStatus) {
-    if (pendingMoves.has(character)) return;
+    const canonical = getCanonicalCharacter(character);
+    if (pendingMoves.has(canonical)) return;
     setMessage(null);
-    setPendingMoves((prev) => new Set(prev).add(character));
+    setPendingMoves((prev) => new Set(prev).add(canonical));
 
     try {
-      await setCharacterStatusLocal(character, status);
+      await setCharacterStatusLocal(canonical, status);
 
       // Flip the toggle immediately for visual feedback.
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
-        next.set(character, status);
+        next.set(canonical, status);
         return next;
       });
 
@@ -203,13 +206,13 @@ export default function MasterPage() {
 
       setStateMap((prev) => {
         const next = new Map(prev);
-        next.set(character, status);
+        next.set(canonical, status);
         return next;
       });
 
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
-        next.delete(character);
+        next.delete(canonical);
         return next;
       });
 
@@ -220,13 +223,13 @@ export default function MasterPage() {
       setMessage(msg);
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
-        next.delete(character);
+        next.delete(canonical);
         return next;
       });
     } finally {
       setPendingMoves((prev) => {
         const next = new Set(prev);
-        next.delete(character);
+        next.delete(canonical);
         return next;
       });
     }
@@ -360,6 +363,7 @@ export default function MasterPage() {
               </thead>
               <tbody>
                 {visibleRows.map((row) => {
+                  const canonical = getCanonicalCharacter(row.character);
                   const pinyinAlt = String(row.pinyin_alternates ?? "")
                     .split("|")
                     .map((s) => s.trim())
@@ -370,7 +374,7 @@ export default function MasterPage() {
                   <tr
                     key={row.character}
                     className={`border-b border-stone-100 text-center transition-opacity duration-500 ease-out ${
-                      pendingMoves.has(row.character) ? "opacity-55" : "opacity-100"
+                      pendingMoves.has(canonical) ? "opacity-55" : "opacity-100"
                     }`}
                   >
                     <td className="py-1 text-base md:py-1 md:text-lg">
@@ -422,7 +426,7 @@ export default function MasterPage() {
                           row.status === "known"
                             ? "border-emerald-600 bg-emerald-600"
                             : "border-stone-300 bg-stone-300"
-                        } ${pendingMoves.has(row.character) ? "opacity-70" : ""}`}
+                        } ${pendingMoves.has(canonical) ? "opacity-70" : ""}`}
                         title={
                           isCoarsePointer
                             ? undefined
@@ -431,7 +435,7 @@ export default function MasterPage() {
                               : "Switch to known"
                         }
                         aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
-                        disabled={pendingMoves.has(row.character)}
+                        disabled={pendingMoves.has(canonical)}
                       >
                         <span
                           className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
