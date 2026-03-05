@@ -13,7 +13,7 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
-  fetchCharacterStatesByStatusLocal,
+  fetchAllCharacterStatesLocal,
   fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
@@ -68,12 +68,9 @@ export default function BankPage() {
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [knownRows, studyRows, count] = await Promise.all([
-        fetchCharacterStatesByStatusLocal("known"),
-        fetchCharacterStatesByStatusLocal("study"),
-        fetchKnownCountLocal()
-      ]);
-
+      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const knownRows = allRows.filter((row) => row.status === "known");
+      const studyRows = allRows.filter((row) => row.status === "study");
       setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
       setKnownCount(count);
       setLoading(false);
@@ -99,46 +96,19 @@ export default function BankPage() {
 
     try {
       await setCharacterStatusLocal(character, status);
-
-      // First flip the switch in place so the user can see the state change.
-      setTabData((prev) => ({
-        known: prev.known.map((row) => (row.character === character ? { ...row, status } : row)),
-        study: prev.study.map((row) => (row.character === character ? { ...row, status } : row))
-      }));
-
-      // Keep it visible briefly, then move it out of the current list.
-      await new Promise((resolve) => setTimeout(resolve, 420));
-
-      setTabData((prev) => {
-        const from = status === "known" ? "study" : "known";
-        const to = status === "known" ? "known" : "study";
-        const found = prev[from].find((row) => row.character === character);
-        const payload = found ?? enrichRows([{ user_id: "local-user", character, status, last_seen_at: null }])[0];
-
-        return {
-          known:
-            to === "known"
-              ? [...prev.known.filter((r) => r.character !== character), { ...payload, status: "known" }]
-              : prev.known.filter((r) => r.character !== character),
-          study:
-            to === "study"
-              ? [...prev.study.filter((r) => r.character !== character), { ...payload, status: "study" }]
-              : prev.study.filter((r) => r.character !== character)
-        };
-      });
-
-      const count = await fetchKnownCountLocal();
+      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const knownRows = allRows.filter((row) => row.status === "known");
+      const studyRows = allRows.filter((row) => row.status === "study");
+      setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
       setKnownCount(count);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
 
       // Restore canonical state if optimistic update path failed.
-      const [knownRows, studyRows, count] = await Promise.all([
-        fetchCharacterStatesByStatusLocal("known"),
-        fetchCharacterStatesByStatusLocal("study"),
-        fetchKnownCountLocal()
-      ]);
+      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const knownRows = allRows.filter((row) => row.status === "known");
+      const studyRows = allRows.filter((row) => row.status === "study");
       setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
       setKnownCount(count);
     } finally {
