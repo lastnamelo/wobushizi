@@ -11,6 +11,7 @@ import {
   fetchCharacterStatesForChars,
 } from "@/lib/db";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
+import { User } from "@supabase/supabase-js";
 
 const LOCAL_USER_ID = "local-user";
 const STATE_KEY = "wobushizi:character_states";
@@ -115,19 +116,25 @@ async function getAuthUser() {
   if (!isSupabaseConfigured || !supabase) return null;
   const { data, error } = await supabase.auth.getUser();
   if (error) {
-    // No authenticated session is valid in demo/browse mode; fall back to local persistence.
-    if (/auth session missing/i.test(error.message)) {
-      return null;
-    }
     throw error;
   }
   const user = data.user;
-  if (!user) return null;
+  if (!user) {
+    throw new Error("Login required: no active auth session.");
+  }
 
   if (ensuredProfileId !== user.id) {
     await ensureProfile(supabase, user);
     await maybeReconcileSupabaseStates(user.id);
     ensuredProfileId = user.id;
+  }
+  return user;
+}
+
+async function requireAuthUser(): Promise<User> {
+  const user = await getAuthUser();
+  if (!user) {
+    throw new Error("Login required: no active auth session.");
   }
   return user;
 }
@@ -138,6 +145,13 @@ export async function ensureLocalProfile(): Promise<void> {
 }
 
 export async function fetchKnownCountLocal(): Promise<number> {
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const rows = await fetchAllCharacterStates(supabase, user.id);
+    return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
+  }
+
   const user = await getAuthUser();
   if (user && supabase) {
     const rows = await fetchAllCharacterStates(supabase, user.id);
@@ -156,6 +170,20 @@ export async function fetchCharacterStatesForCharsLocal(
     canonicalByInput.set(ch, getCanonicalCharacter(ch));
   }
   const uniqueCanonical = [...new Set(canonicalByInput.values())];
+
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const canonicalMap = await fetchCharacterStatesForChars(supabase, user.id, uniqueCanonical);
+    const normalized = normalizeRowsByCanonical([...canonicalMap.values()]);
+    const byCanonical = new Map(normalized.map((row) => [row.character, row]));
+    const result = new Map<string, CharacterStateRow>();
+    for (const [input, canonical] of canonicalByInput.entries()) {
+      const row = byCanonical.get(canonical);
+      if (row) result.set(input, row);
+    }
+    return result;
+  }
 
   const user = await getAuthUser();
   if (user && supabase) {
@@ -186,6 +214,13 @@ export async function fetchCharacterStatesForCharsLocal(
 export async function fetchCharacterStatesByStatusLocal(
   status: CharacterStatus
 ): Promise<CharacterStateRow[]> {
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const rows = await fetchAllCharacterStates(supabase, user.id);
+    return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
+  }
+
   const user = await getAuthUser();
   if (user && supabase) {
     const rows = await fetchAllCharacterStates(supabase, user.id);
@@ -197,6 +232,12 @@ export async function fetchCharacterStatesByStatusLocal(
 }
 
 export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[]> {
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
+  }
+
   const user = await getAuthUser();
   if (user && supabase) {
     return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
@@ -212,6 +253,24 @@ export async function setCharacterStatusLocal(
   timestamp = new Date().toISOString()
 ): Promise<void> {
   const canonical = getCanonicalCharacter(character);
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { error } = await supabase
+      .from("character_states")
+      .upsert(
+        {
+          user_id: user.id,
+          character: canonical,
+          status,
+          last_seen_at: timestamp
+        },
+        { onConflict: "user_id,character" }
+      );
+    if (error) throw error;
+    return;
+  }
+
   const user = await getAuthUser();
   if (user && supabase) {
     const { error } = await supabase
@@ -247,6 +306,50 @@ export async function applyLogLocal(
   selectedSet: Set<string>
 ): Promise<void> {
   const now = new Date().toISOString();
+  if (isSupabaseConfigured) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { data: logEvent, error: logError } = await supabase
+      .from("log_events")
+      .insert({
+        user_id: user.id,
+        source_text: sourceText
+      })
+      .select("id")
+      .single();
+    if (logError) throw logError;
+
+    if (uniqueChars.length > 0) {
+      const canonicalRows = buildCanonicalLogRows(uniqueChars, knownSet, selectedSet);
+      const stateRows = canonicalRows.map((row) => ({
+        user_id: user.id,
+        character: row.character,
+        status: row.status,
+        last_seen_at: now
+      }));
+
+      const { error: upsertError } = await supabase
+        .from("character_states")
+        .upsert(stateRows, { onConflict: "user_id,character" });
+      if (upsertError) throw upsertError;
+
+      const eventItemRows = canonicalRows.map((row) => {
+        return {
+          log_event_id: logEvent.id,
+          user_id: user.id,
+          character: row.character,
+          action: row.action,
+          created_at: now
+        };
+      });
+
+      const { error: eventItemsError } = await supabase.from("log_event_items").insert(eventItemRows);
+      if (eventItemsError) throw eventItemsError;
+    }
+
+    return;
+  }
+
   const user = await getAuthUser();
 
   if (user && supabase) {
