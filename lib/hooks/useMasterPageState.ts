@@ -85,20 +85,6 @@ export function useMasterPageState() {
     if (pendingMoves.has(canonical)) return;
     setMessage(null);
     setPendingMoves((prev) => new Set(prev).add(canonical));
-    const previousStatus = stateMap.get(canonical);
-
-    // Optimistic UI update so the table reacts instantly.
-    setStateMap((prev) => {
-      const next = new Map(prev);
-      next.set(canonical, status);
-      return next;
-    });
-    setKnownCount((prev) => {
-      const wasKnown = previousStatus === "known";
-      const isKnown = status === "known";
-      if (wasKnown === isKnown) return prev;
-      return prev + (isKnown ? 1 : -1);
-    });
 
     try {
       await setCharacterStatusLocal(canonical, status);
@@ -108,22 +94,16 @@ export function useMasterPageState() {
       if (persisted !== status) {
         throw new Error("Update did not persist. Please refresh and sign in again.");
       }
+      setStateMap((prev) => {
+        const next = new Map(prev);
+        next.set(canonical, status);
+        return next;
+      });
+      const count = await fetchKnownCountLocal();
+      setKnownCount(count);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
-      // Roll back optimistic state on failure.
-      setStateMap((prev) => {
-        const next = new Map(prev);
-        if (previousStatus) next.set(canonical, previousStatus);
-        else next.delete(canonical);
-        return next;
-      });
-      setKnownCount((prev) => {
-        const wasKnown = previousStatus === "known";
-        const isKnown = status === "known";
-        if (wasKnown === isKnown) return prev;
-        return prev + (wasKnown ? 1 : -1);
-      });
     } finally {
       setPendingMoves((prev) => {
         const next = new Set(prev);
