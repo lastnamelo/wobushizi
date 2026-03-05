@@ -166,7 +166,7 @@ export default function BankPage() {
               onSetKnown={(ch) => moveStatus(ch, "known")}
               onSetStudy={(ch) => moveStatus(ch, "study")}
               pendingCharacters={pendingMoves}
-              toggleDelayMs={180}
+              toggleDelayMs={80}
               defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
               helperText="Click any character to view definitions and more."
             />
