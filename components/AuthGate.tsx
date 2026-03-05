@@ -1,21 +1,30 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import {
+  canUseTesterBypass,
+  isTesterBypassEnabled,
+  setTesterBypassEnabled
+} from "@/lib/localStore";
 import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 export function AuthGate() {
   const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
   const [hydrated, setHydrated] = useState(false);
+  const [bypassEnabled, setBypassEnabled] = useState(false);
+  const [showBypassTrigger, setShowBypassTrigger] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [sentMsg, setSentMsg] = useState<string | null>(null);
 
   useEffect(() => {
     setHydrated(true);
+    setBypassEnabled(isTesterBypassEnabled());
+    setShowBypassTrigger(canUseTesterBypass());
   }, []);
 
   if (!hydrated) return null;
-  if (!isSupabaseConfigured || user) return null;
+  if (!isSupabaseConfigured || user || bypassEnabled) return null;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -33,6 +42,19 @@ export function AuthGate() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-4">
       <div className="relative w-full max-w-md rounded-2xl border border-line bg-white p-5 shadow-card">
+        {showBypassTrigger ? (
+          <button
+            type="button"
+            onClick={() => {
+              setTesterBypassEnabled(true);
+              setBypassEnabled(true);
+              window.location.reload();
+            }}
+            className="absolute left-1 top-1 h-6 w-6 opacity-0"
+            aria-label="Enable local tester bypass"
+            title="Local bypass"
+          />
+        ) : null}
         <h2 className="text-base font-medium text-stone-900">Welcome to 我不识字</h2>
         <p className="mt-2 text-sm leading-6 text-stone-700">
           This app helps you track progress toward Chinese literacy one character at a time. Sign in with

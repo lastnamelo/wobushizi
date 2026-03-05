@@ -14,9 +14,10 @@ import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
+  fetchCharacterStatesForCharsLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
-import { lookupHanziEntry } from "@/lib/hanzidb";
+import { getCanonicalCharacter, lookupHanziEntry } from "@/lib/hanzidb";
 import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { CharacterStateRow, EnrichedCharacter } from "@/lib/types";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
@@ -89,12 +90,19 @@ export default function BankPage() {
   );
 
   async function moveStatus(character: string, status: "known" | "study") {
-    if (pendingMoves.has(character)) return;
+    const canonical = getCanonicalCharacter(character);
+    if (pendingMoves.has(canonical)) return;
     setMessage(null);
-    setPendingMoves((prev) => new Set(prev).add(character));
+    setPendingMoves((prev) => new Set(prev).add(canonical));
 
     try {
-      await setCharacterStatusLocal(character, status);
+      await setCharacterStatusLocal(canonical, status);
+      // Match master behavior: verify write before applying refreshed view state.
+      const verify = await fetchCharacterStatesForCharsLocal([canonical]);
+      const persisted = verify.get(canonical)?.status;
+      if (persisted !== status) {
+        throw new Error("Update did not persist. Please refresh and sign in again.");
+      }
       const allRows = await fetchAllCharacterStatesLocal();
       const knownRows = allRows.filter((row) => row.status === "known");
       const studyRows = allRows.filter((row) => row.status === "study");
@@ -113,7 +121,7 @@ export default function BankPage() {
     } finally {
       setPendingMoves((prev) => {
         const next = new Set(prev);
-        next.delete(character);
+        next.delete(canonical);
         return next;
       });
     }

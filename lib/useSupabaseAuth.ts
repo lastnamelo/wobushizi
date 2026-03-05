@@ -22,7 +22,9 @@ export function useSupabaseAuth() {
       .then(({ data, error: userError }) => {
         if (!mounted) return;
         if (userError) {
-          setError(userError.message);
+          if (!/auth session missing/i.test(userError.message)) {
+            setError(userError.message);
+          }
         }
         setUser(data.user ?? null);
         setLoading(false);

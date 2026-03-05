@@ -19,6 +19,7 @@ let ensuredProfileId: string | null = null;
 const reconciledUserIds = new Set<string>();
 const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v2";
 const RECONCILE_VERSION = "v2";
+const TESTER_BYPASS_KEY = "wobushizi:tester_bypass_local_v1";
 
 type StoredState = Record<string, CharacterStateRow>;
 export interface LocalLogEvent {
@@ -26,6 +27,33 @@ export interface LocalLogEvent {
   source_text: string;
   created_at: string;
   items: Array<{ character: string; action: string; created_at: string }>;
+}
+
+function localHostName(): string {
+  if (typeof window === "undefined") return "";
+  return window.location.hostname || "";
+}
+
+export function canUseTesterBypass(): boolean {
+  const host = localHostName();
+  return host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local");
+}
+
+export function isTesterBypassEnabled(): boolean {
+  if (typeof window === "undefined") return false;
+  if (!canUseTesterBypass()) return false;
+  return window.localStorage.getItem(TESTER_BYPASS_KEY) === "1";
+}
+
+export function setTesterBypassEnabled(enabled: boolean): void {
+  if (typeof window === "undefined") return;
+  if (!canUseTesterBypass()) return;
+  if (enabled) window.localStorage.setItem(TESTER_BYPASS_KEY, "1");
+  else window.localStorage.removeItem(TESTER_BYPASS_KEY);
+}
+
+function shouldUseSupabase(): boolean {
+  return isSupabaseConfigured && !isTesterBypassEnabled();
 }
 
 async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
@@ -113,15 +141,17 @@ function writeStates(states: StoredState): void {
 }
 
 async function getAuthUser() {
+  if (isTesterBypassEnabled()) return null;
   if (!isSupabaseConfigured || !supabase) return null;
   const { data, error } = await supabase.auth.getUser();
   if (error) {
+    if (/auth session missing/i.test(error.message)) {
+      return null;
+    }
     throw error;
   }
   const user = data.user;
-  if (!user) {
-    throw new Error("Login required: no active auth session.");
-  }
+  if (!user) return null;
 
   if (ensuredProfileId !== user.id) {
     await ensureProfile(supabase, user);
@@ -145,7 +175,7 @@ export async function ensureLocalProfile(): Promise<void> {
 }
 
 export async function fetchKnownCountLocal(): Promise<number> {
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     const rows = await fetchAllCharacterStates(supabase, user.id);
@@ -170,7 +200,7 @@ export async function fetchCharacterStatesForCharsLocal(
     canonicalByInput.set(ch, getCanonicalCharacter(ch));
   }
 
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
@@ -211,7 +241,7 @@ export async function fetchCharacterStatesForCharsLocal(
 export async function fetchCharacterStatesByStatusLocal(
   status: CharacterStatus
 ): Promise<CharacterStateRow[]> {
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     const rows = await fetchAllCharacterStates(supabase, user.id);
@@ -229,7 +259,7 @@ export async function fetchCharacterStatesByStatusLocal(
 }
 
 export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[]> {
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
@@ -252,7 +282,7 @@ export async function setCharacterStatusLocal(
   const canonical = getCanonicalCharacter(character);
   const family = getCharacterFamily(canonical);
   const variantChars = family.filter((ch) => ch !== canonical);
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     if (variantChars.length > 0) {
@@ -324,7 +354,7 @@ export async function applyLogLocal(
   selectedSet: Set<string>
 ): Promise<void> {
   const now = new Date().toISOString();
-  if (isSupabaseConfigured) {
+  if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
     const { data: logEvent, error: logError } = await supabase
