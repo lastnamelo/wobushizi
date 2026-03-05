@@ -26,6 +26,12 @@ function setVariantMapping(key: string, row: HanzidbEntry): void {
     return;
   }
 
+  // If we already have an exact mapping for this key, do not let
+  // alternate/traditional references override it.
+  if (existing.character === key && row.character !== key) {
+    return;
+  }
+
   const existingScore = rowScoreForVariant(existing, key);
   const nextScore = rowScoreForVariant(row, key);
   if (nextScore > existingScore) {
