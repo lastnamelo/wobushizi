@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Session, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 export function useSupabaseAuth() {
@@ -18,13 +18,13 @@ export function useSupabaseAuth() {
     let mounted = true;
 
     supabase.auth
-      .getSession()
-      .then(({ data, error: sessionError }) => {
+      .getUser()
+      .then(({ data, error: userError }) => {
         if (!mounted) return;
-        if (sessionError) {
-          setError(sessionError.message);
+        if (userError) {
+          setError(userError.message);
         }
-        setUser((data.session as Session | null)?.user ?? null);
+        setUser(data.user ?? null);
         setLoading(false);
       })
       .catch((err: Error) => {
