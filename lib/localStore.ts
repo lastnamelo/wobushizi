@@ -7,6 +7,7 @@ import {
 } from "@/lib/stateCanonical";
 import {
   ensureProfile,
+  fetchCharacterStatesForChars,
   fetchAllCharacterStates,
 } from "@/lib/db";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
@@ -20,6 +21,14 @@ const reconciledUserIds = new Set<string>();
 const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v2";
 const RECONCILE_VERSION = "v2";
 const TESTER_BYPASS_KEY = "wobushizi:tester_bypass_local_v1";
+const LOCAL_CACHE_KEY = "local";
+
+type StateCacheEntry = {
+  key: string;
+  rows: CharacterStateRow[];
+};
+
+let stateCache: StateCacheEntry | null = null;
 
 type StoredState = Record<string, CharacterStateRow>;
 export interface LocalLogEvent {
@@ -27,6 +36,74 @@ export interface LocalLogEvent {
   source_text: string;
   created_at: string;
   items: Array<{ character: string; action: string; created_at: string }>;
+}
+
+function getSupabaseCacheKey(userId: string): string {
+  return `supabase:${userId}`;
+}
+
+function readStateCache(key: string): CharacterStateRow[] | null {
+  if (!stateCache || stateCache.key !== key) return null;
+  return stateCache.rows;
+}
+
+function writeStateCache(key: string, rows: CharacterStateRow[]): void {
+  stateCache = { key, rows };
+}
+
+function clearStateCache(): void {
+  stateCache = null;
+}
+
+function mergeRowIntoCache(
+  key: string,
+  userId: string,
+  canonical: string,
+  status: CharacterStatus,
+  timestamp: string,
+  variantChars: string[]
+): void {
+  const cached = readStateCache(key);
+  if (!cached) return;
+
+  const byChar = new Map(cached.map((row) => [row.character, row]));
+  for (const ch of variantChars) {
+    byChar.delete(ch);
+  }
+  const existing = byChar.get(canonical);
+  byChar.set(canonical, {
+    user_id: userId,
+    character: canonical,
+    status,
+    last_seen_at: timestamp,
+    created_at: existing?.created_at ?? timestamp
+  });
+
+  writeStateCache(key, normalizeRowsByCanonical([...byChar.values()]));
+}
+
+function mergeCanonicalRowsIntoCache(
+  key: string,
+  userId: string,
+  rows: Array<{ character: string; status: CharacterStatus }>,
+  timestamp: string
+): void {
+  const cached = readStateCache(key);
+  if (!cached) return;
+  const byChar = new Map(cached.map((row) => [row.character, row]));
+
+  for (const row of rows) {
+    const existing = byChar.get(row.character);
+    byChar.set(row.character, {
+      user_id: userId,
+      character: row.character,
+      status: row.status,
+      last_seen_at: timestamp,
+      created_at: existing?.created_at ?? timestamp
+    });
+  }
+
+  writeStateCache(key, normalizeRowsByCanonical([...byChar.values()]));
 }
 
 function localHostName(): string {
@@ -50,6 +127,7 @@ export function setTesterBypassEnabled(enabled: boolean): void {
   if (!canUseTesterBypass()) return;
   if (enabled) window.localStorage.setItem(TESTER_BYPASS_KEY, "1");
   else window.localStorage.removeItem(TESTER_BYPASS_KEY);
+  clearStateCache();
 }
 
 function shouldUseSupabase(): boolean {
@@ -175,15 +253,8 @@ export async function ensureLocalProfile(): Promise<void> {
 }
 
 export async function fetchKnownCountLocal(): Promise<number> {
-  if (shouldUseSupabase()) {
-    const user = await requireAuthUser();
-    if (!supabase) throw new Error("Supabase client not available.");
-    const rows = await fetchAllCharacterStates(supabase, user.id);
-    return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
-  }
-  maybeReconcileLocalStates();
-
-  return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === "known").length;
+  const rows = await fetchAllCharacterStatesLocal();
+  return rows.filter((row) => row.status === "known").length;
 }
 
 export async function fetchCharacterStatesForCharsLocal(
@@ -197,8 +268,23 @@ export async function fetchCharacterStatesForCharsLocal(
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
-    const byCanonical = new Map(normalized.map((row) => [row.character, row]));
+    const cacheKey = getSupabaseCacheKey(user.id);
+    const cached = readStateCache(cacheKey);
+    const byCanonical = new Map((cached ?? []).map((row) => [row.character, row]));
+    const uniqueCanonical = [...new Set(canonicalByInput.values())];
+    const missingCanonical = uniqueCanonical.filter((canonical) => !byCanonical.has(canonical));
+
+    if (missingCanonical.length > 0) {
+      const fetched = await fetchCharacterStatesForChars(supabase, user.id, missingCanonical);
+      const normalizedFetched = normalizeRowsByCanonical([...fetched.values()]);
+      for (const row of normalizedFetched) {
+        byCanonical.set(row.character, row);
+      }
+      if (cached) {
+        writeStateCache(cacheKey, normalizeRowsByCanonical([...byCanonical.values()]));
+      }
+    }
+
     const result = new Map<string, CharacterStateRow>();
     for (const [input, canonical] of canonicalByInput.entries()) {
       const row = byCanonical.get(canonical);
@@ -223,26 +309,27 @@ export async function fetchCharacterStatesForCharsLocal(
 export async function fetchCharacterStatesByStatusLocal(
   status: CharacterStatus
 ): Promise<CharacterStateRow[]> {
-  if (shouldUseSupabase()) {
-    const user = await requireAuthUser();
-    if (!supabase) throw new Error("Supabase client not available.");
-    const rows = await fetchAllCharacterStates(supabase, user.id);
-    return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
-  }
-  maybeReconcileLocalStates();
-
-  return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === status);
+  const rows = await fetchAllCharacterStatesLocal();
+  return rows.filter((row) => row.status === status);
 }
 
 export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[]> {
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
+    const cacheKey = getSupabaseCacheKey(user.id);
+    const cached = readStateCache(cacheKey);
+    if (cached) return cached;
+    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
+    writeStateCache(cacheKey, normalized);
+    return normalized;
   }
   maybeReconcileLocalStates();
-
-  return normalizeRowsByCanonical(Object.values(readStates()));
+  const cached = readStateCache(LOCAL_CACHE_KEY);
+  if (cached) return cached;
+  const normalized = normalizeRowsByCanonical(Object.values(readStates()));
+  writeStateCache(LOCAL_CACHE_KEY, normalized);
+  return normalized;
 }
 
 export async function setCharacterStatusLocal(
@@ -276,6 +363,7 @@ export async function setCharacterStatusLocal(
         { onConflict: "user_id,character" }
       );
     if (error) throw error;
+    mergeRowIntoCache(getSupabaseCacheKey(user.id), user.id, canonical, status, timestamp, variantChars);
     return;
   }
 
@@ -291,6 +379,7 @@ export async function setCharacterStatusLocal(
     created_at: states[canonical]?.created_at ?? timestamp
   };
   writeStates(states);
+  mergeRowIntoCache(LOCAL_CACHE_KEY, LOCAL_USER_ID, canonical, status, timestamp, variantChars);
 }
 
 export async function applyLogLocal(
@@ -339,6 +428,7 @@ export async function applyLogLocal(
 
       const { error: eventItemsError } = await supabase.from("log_event_items").insert(eventItemRows);
       if (eventItemsError) throw eventItemsError;
+      mergeCanonicalRowsIntoCache(getSupabaseCacheKey(user.id), user.id, canonicalRows, now);
     }
 
     return;
@@ -358,6 +448,7 @@ export async function applyLogLocal(
   }
 
   writeStates(states);
+  mergeCanonicalRowsIntoCache(LOCAL_CACHE_KEY, LOCAL_USER_ID, canonicalRows, now);
 
   if (typeof window !== "undefined") {
     const raw = window.localStorage.getItem(LOG_KEY);
@@ -439,9 +530,11 @@ export async function resetLocalProgress(): Promise<void> {
     if (itemsDel.error) throw itemsDel.error;
     if (logsDel.error) throw logsDel.error;
     if (statesDel.error) throw statesDel.error;
+    clearStateCache();
   }
 
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(STATE_KEY);
   window.localStorage.removeItem(LOG_KEY);
+  clearStateCache();
 }
