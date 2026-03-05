@@ -2,6 +2,21 @@
 
 All notable project changes are tracked here.
 
+## 2026-03-05
+- Fixed known/study/master count drift by deriving counts from the same normalized row snapshot used for table data.
+- Reworked auth + local testing flow:
+  - added localhost-only tester bypass support in data layer,
+  - added invisible bypass trigger in auth modal,
+  - suppressed noisy `auth session missing` UI errors,
+  - prevented auth modal flicker during route changes.
+- Cleaned auth/source-selection logic so `Login` explicitly disables local bypass before magic-link flow.
+- Tuned toggle interaction and animation behavior across Bank and Master:
+  - restored visible bank toggle motion with a short hold,
+  - sped up shared table fade timing.
+- Performance improvements for large tables and frequent navigation:
+  - added in-memory character-state cache (local + per-user Supabase),
+  - replaced full-fetch character verification path with targeted character reads.
+
 ## 2026-02-26
 - Fixed HSK mini pie completion logic to use per-level denominators (full slice at level completion).
 - Canonicalized HSK counting by simplified character to prevent variant double-counting.
