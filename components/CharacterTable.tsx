@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
@@ -20,6 +20,7 @@ interface CharacterTableProps {
   defaultStatusFilter?: "all" | "known" | "study" | "none";
   hideUnknownHskByDefault?: boolean;
   onFilteredCountChange?: (count: number) => void;
+  toggleDelayMs?: number;
 }
 
 export function CharacterTable({
@@ -34,7 +35,8 @@ export function CharacterTable({
   statusFilterOptions,
   defaultStatusFilter = "all",
   hideUnknownHskByDefault = false,
-  onFilteredCountChange
+  onFilteredCountChange,
+  toggleDelayMs = 0
 }: CharacterTableProps) {
   const [search, setSearch] = useState("");
   const [hskFilter, setHskFilter] = useState<string>("all");
@@ -42,6 +44,8 @@ export function CharacterTable({
   const [statusFilter, setStatusFilter] = useState<"all" | "known" | "study" | "none">(defaultStatusFilter);
   const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
   const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(defaultSortBy);
+  const [toggleIntent, setToggleIntent] = useState<Record<string, "known" | "study">>({});
+  const toggleTimersRef = useRef<Record<string, number>>({});
   const activeSortBy = forcedSortBy ?? sortBy;
   const { isCoarsePointer } = useDeviceCapabilities();
 
@@ -131,6 +135,30 @@ export function CharacterTable({
   useEffect(() => {
     onFilteredCountChange?.(filtered.length);
   }, [filtered.length, onFilteredCountChange]);
+
+  useEffect(() => {
+    setToggleIntent((prev) => {
+      if (!Object.keys(prev).length) return prev;
+      const byChar = new Map(rows.map((row) => [row.character, row.status]));
+      const next: Record<string, "known" | "study"> = {};
+      for (const [character, intent] of Object.entries(prev)) {
+        const actual = byChar.get(character);
+        if (actual && actual !== intent) {
+          next[character] = intent;
+        }
+      }
+      return next;
+    });
+  }, [rows]);
+
+  useEffect(() => {
+    const timers = toggleTimersRef.current;
+    return () => {
+      for (const timer of Object.values(timers)) {
+        window.clearTimeout(timer);
+      }
+    };
+  }, []);
 
   const detailIndex = useMemo(() => {
     if (!detailState) return -1;
@@ -284,6 +312,7 @@ export function CharacterTable({
             ) : (
               filtered.map((row, idx) => {
                 const isPending = pendingCharacters?.has(row.character) ?? false;
+                const displayStatus = toggleIntent[row.character] ?? row.status;
                 const variants = new Set<string>();
                 if (row.traditional_character) variants.add(row.traditional_character);
                 if (row.alternate_characters) {
@@ -348,29 +377,39 @@ export function CharacterTable({
                         <button
                           onClick={() => {
                             if (isPending) return;
-                            if (row.status === "known") {
-                              onSetStudy(row.character);
+                            const nextStatus: "known" | "study" = row.status === "known" ? "study" : "known";
+                            setToggleIntent((prev) => ({ ...prev, [row.character]: nextStatus }));
+                            const run = () => {
+                              if (nextStatus === "known") {
+                                onSetKnown(row.character);
+                              } else {
+                                onSetStudy(row.character);
+                              }
+                            };
+                            if (toggleDelayMs > 0) {
+                              const timer = window.setTimeout(run, toggleDelayMs);
+                              toggleTimersRef.current[row.character] = timer;
                             } else {
-                              onSetKnown(row.character);
+                              run();
                             }
                           }}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full border transition ${
-                            row.status === "known"
+                            displayStatus === "known"
                               ? "border-emerald-600 bg-emerald-600"
                               : "border-stone-300 bg-stone-300"
                           } ${isPending ? "opacity-70" : ""}`}
                           title={
                             isCoarsePointer
                               ? undefined
-                              : row.status === "known"
+                              : displayStatus === "known"
                                 ? "Switch to study"
                                 : "Switch to known"
                           }
-                          aria-label={row.status === "known" ? "Known (on)" : "Known (off)"}
+                          aria-label={displayStatus === "known" ? "Known (on)" : "Known (off)"}
                         >
                           <span
                             className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
-                              row.status === "known" ? "translate-x-6" : "translate-x-1"
+                              displayStatus === "known" ? "translate-x-6" : "translate-x-1"
                             } duration-300 ease-out`}
                           />
                         </button>
