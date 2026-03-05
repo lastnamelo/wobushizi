@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
+  fetchCharacterStatesForCharsLocal,
   fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
@@ -21,7 +22,6 @@ export function useMasterPageState() {
   const [stateMap, setStateMap] = useState<Map<string, CharacterStatus>>(new Map());
   const [message, setMessage] = useState<string | null>(null);
   const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
-  const [transientStatusMap, setTransientStatusMap] = useState<Map<string, CharacterStatus>>(new Map());
   const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
   const { showMilestone: showMilestone1000, dismissMilestone: dismissMilestone1000 } =
     useMilestone1000(knownCount, !loading);
@@ -53,7 +53,7 @@ export function useMasterPageState() {
     () =>
       allRows.map((row) => {
         const canonical = getCanonicalCharacter(row.character);
-        const status = transientStatusMap.get(canonical) ?? stateMap.get(canonical);
+        const status = stateMap.get(canonical);
         return {
           character: canonical,
           status,
@@ -69,7 +69,7 @@ export function useMasterPageState() {
           definition: row.definition ? String(row.definition) : ""
         };
       }),
-    [stateMap, transientStatusMap]
+    [stateMap]
   );
 
   const knownStats = useMemo(
@@ -85,43 +85,44 @@ export function useMasterPageState() {
     if (pendingMoves.has(canonical)) return;
     setMessage(null);
     setPendingMoves((prev) => new Set(prev).add(canonical));
-    const previousStatus = transientStatusMap.get(canonical) ?? stateMap.get(canonical);
+    const previousStatus = stateMap.get(canonical);
+
+    // Optimistic UI update so the table reacts instantly.
+    setStateMap((prev) => {
+      const next = new Map(prev);
+      next.set(canonical, status);
+      return next;
+    });
+    setKnownCount((prev) => {
+      const wasKnown = previousStatus === "known";
+      const isKnown = status === "known";
+      if (wasKnown === isKnown) return prev;
+      return prev + (isKnown ? 1 : -1);
+    });
 
     try {
       await setCharacterStatusLocal(canonical, status);
-
-      setTransientStatusMap((prev) => {
-        const next = new Map(prev);
-        next.set(canonical, status);
-        return next;
-      });
-
-      // Commit locally after successful write so filters don't bounce from stale re-fetch.
+      // Verify persistence using the same path other pages read from.
+      const verify = await fetchCharacterStatesForCharsLocal([canonical]);
+      const persisted = verify.get(canonical)?.status;
+      if (persisted !== status) {
+        throw new Error("Update did not persist. Please refresh and sign in again.");
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to update status.";
+      setMessage(msg);
+      // Roll back optimistic state on failure.
       setStateMap((prev) => {
         const next = new Map(prev);
-        next.set(canonical, status);
+        if (previousStatus) next.set(canonical, previousStatus);
+        else next.delete(canonical);
         return next;
       });
       setKnownCount((prev) => {
         const wasKnown = previousStatus === "known";
         const isKnown = status === "known";
         if (wasKnown === isKnown) return prev;
-        return prev + (isKnown ? 1 : -1);
-      });
-
-      await new Promise((resolve) => setTimeout(resolve, 420));
-      setTransientStatusMap((prev) => {
-        const next = new Map(prev);
-        next.delete(canonical);
-        return next;
-      });
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Failed to update status.";
-      setMessage(msg);
-      setTransientStatusMap((prev) => {
-        const next = new Map(prev);
-        next.delete(canonical);
-        return next;
+        return prev + (wasKnown ? 1 : -1);
       });
     } finally {
       setPendingMoves((prev) => {
