@@ -70,6 +70,22 @@ export function getCanonicalCharacter(character: string): string {
   return String(match.character);
 }
 
+export function getCharacterFamily(character: string): string[] {
+  const match = byAnyVariant.get(character);
+  if (!match?.character) return [character];
+  const family = new Set<string>([String(match.character)]);
+  const traditional =
+    typeof match.traditional_character === "string" ? match.traditional_character.trim() : "";
+  if (traditional) family.add(traditional);
+  if (typeof match.alternate_characters === "string") {
+    for (const alt of match.alternate_characters.split("|")) {
+      const trimmed = alt.trim();
+      if (trimmed) family.add(trimmed);
+    }
+  }
+  return [...family];
+}
+
 export function getHskColor(level: number | null | undefined): string {
   return getHskTextColor(level);
 }

@@ -1,5 +1,5 @@
 import { CharacterStateRow, CharacterStatus } from "@/lib/types";
-import { getCanonicalCharacter } from "@/lib/hanzidb";
+import { getCanonicalCharacter, getCharacterFamily } from "@/lib/hanzidb";
 import {
   buildCanonicalLogRows,
   needsCanonicalReconcile,
@@ -18,7 +18,8 @@ const STATE_KEY = "wobushizi:character_states";
 const LOG_KEY = "wobushizi:log_events";
 let ensuredProfileId: string | null = null;
 const reconciledUserIds = new Set<string>();
-const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v1";
+const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v2";
+const RECONCILE_VERSION = "v2";
 
 type StoredState = Record<string, CharacterStateRow>;
 export interface LocalLogEvent {
@@ -31,7 +32,7 @@ export interface LocalLogEvent {
 async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
   if (!supabase || reconciledUserIds.has(userId)) return;
   if (typeof window !== "undefined") {
-    const key = `wobushizi:reconciled_user_v1:${userId}`;
+    const key = `wobushizi:reconciled_user_${RECONCILE_VERSION}:${userId}`;
     if (window.localStorage.getItem(key) === "1") {
       reconciledUserIds.add(userId);
       return;
@@ -48,7 +49,7 @@ async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
   if (!needsCanonicalReconcile(rows)) {
     reconciledUserIds.add(userId);
     if (typeof window !== "undefined") {
-      window.localStorage.setItem(`wobushizi:reconciled_user_v1:${userId}`, "1");
+      window.localStorage.setItem(`wobushizi:reconciled_user_${RECONCILE_VERSION}:${userId}`, "1");
     }
     return;
   }
@@ -74,7 +75,7 @@ async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
 
   reconciledUserIds.add(userId);
   if (typeof window !== "undefined") {
-    window.localStorage.setItem(`wobushizi:reconciled_user_v1:${userId}`, "1");
+    window.localStorage.setItem(`wobushizi:reconciled_user_${RECONCILE_VERSION}:${userId}`, "1");
   }
 }
 
@@ -253,9 +254,19 @@ export async function setCharacterStatusLocal(
   timestamp = new Date().toISOString()
 ): Promise<void> {
   const canonical = getCanonicalCharacter(character);
+  const family = getCharacterFamily(canonical);
+  const variantChars = family.filter((ch) => ch !== canonical);
   if (isSupabaseConfigured) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
+    if (variantChars.length > 0) {
+      const { error: deleteVariantsError } = await supabase
+        .from("character_states")
+        .delete()
+        .eq("user_id", user.id)
+        .in("character", variantChars);
+      if (deleteVariantsError) throw deleteVariantsError;
+    }
     const { error } = await supabase
       .from("character_states")
       .upsert(
@@ -273,6 +284,14 @@ export async function setCharacterStatusLocal(
 
   const user = await getAuthUser();
   if (user && supabase) {
+    if (variantChars.length > 0) {
+      const { error: deleteVariantsError } = await supabase
+        .from("character_states")
+        .delete()
+        .eq("user_id", user.id)
+        .in("character", variantChars);
+      if (deleteVariantsError) throw deleteVariantsError;
+    }
     const { error } = await supabase
       .from("character_states")
       .upsert(
@@ -289,6 +308,9 @@ export async function setCharacterStatusLocal(
   }
 
   const states = readStates();
+  for (const ch of variantChars) {
+    delete states[ch];
+  }
   states[canonical] = {
     user_id: LOCAL_USER_ID,
     character: canonical,
