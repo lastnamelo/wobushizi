@@ -23,7 +23,7 @@ export function AuthGate() {
     setShowBypassTrigger(canUseTesterBypass());
   }, []);
 
-  if (!hydrated) return null;
+  if (!hydrated || loading) return null;
   if (!isSupabaseConfigured || user || bypassEnabled) return null;
 
   async function onSubmit(e: FormEvent) {
