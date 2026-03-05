@@ -77,14 +77,28 @@ export async function fetchAllCharacterStates(
   client: SupabaseClient,
   userId: string
 ): Promise<CharacterStateRow[]> {
-  const { data, error } = await client
-    .from("character_states")
-    .select("user_id,character,status,last_seen_at,created_at")
-    .eq("user_id", userId);
+  const pageSize = 1000;
+  let from = 0;
+  const all: CharacterStateRow[] = [];
 
-  if (error) {
-    throw error;
+  while (true) {
+    const to = from + pageSize - 1;
+    const { data, error } = await client
+      .from("character_states")
+      .select("user_id,character,status,last_seen_at,created_at")
+      .eq("user_id", userId)
+      .order("character", { ascending: true })
+      .range(from, to);
+
+    if (error) {
+      throw error;
+    }
+
+    const chunk = (data ?? []) as CharacterStateRow[];
+    all.push(...chunk);
+    if (chunk.length < pageSize) break;
+    from += pageSize;
   }
 
-  return (data ?? []) as CharacterStateRow[];
+  return all;
 }
