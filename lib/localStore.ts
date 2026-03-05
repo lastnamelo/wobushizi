@@ -8,7 +8,6 @@ import {
 import {
   ensureProfile,
   fetchAllCharacterStates,
-  fetchCharacterStatesForChars,
 } from "@/lib/db";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 import { User } from "@supabase/supabase-js";
@@ -170,13 +169,11 @@ export async function fetchCharacterStatesForCharsLocal(
   for (const ch of characters) {
     canonicalByInput.set(ch, getCanonicalCharacter(ch));
   }
-  const uniqueCanonical = [...new Set(canonicalByInput.values())];
 
   if (isSupabaseConfigured) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    const canonicalMap = await fetchCharacterStatesForChars(supabase, user.id, uniqueCanonical);
-    const normalized = normalizeRowsByCanonical([...canonicalMap.values()]);
+    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
     const byCanonical = new Map(normalized.map((row) => [row.character, row]));
     const result = new Map<string, CharacterStateRow>();
     for (const [input, canonical] of canonicalByInput.entries()) {
@@ -188,8 +185,7 @@ export async function fetchCharacterStatesForCharsLocal(
 
   const user = await getAuthUser();
   if (user && supabase) {
-    const canonicalMap = await fetchCharacterStatesForChars(supabase, user.id, uniqueCanonical);
-    const normalized = normalizeRowsByCanonical([...canonicalMap.values()]);
+    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
     const byCanonical = new Map(normalized.map((row) => [row.character, row]));
     const result = new Map<string, CharacterStateRow>();
     for (const [input, canonical] of canonicalByInput.entries()) {
