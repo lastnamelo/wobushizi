@@ -85,6 +85,7 @@ export function useMasterPageState() {
     if (pendingMoves.has(canonical)) return;
     setMessage(null);
     setPendingMoves((prev) => new Set(prev).add(canonical));
+    const previousStatus = transientStatusMap.get(canonical) ?? stateMap.get(canonical);
 
     try {
       await setCharacterStatusLocal(canonical, status);
@@ -95,10 +96,20 @@ export function useMasterPageState() {
         return next;
       });
 
+      // Commit locally after successful write so filters don't bounce from stale re-fetch.
+      setStateMap((prev) => {
+        const next = new Map(prev);
+        next.set(canonical, status);
+        return next;
+      });
+      setKnownCount((prev) => {
+        const wasKnown = previousStatus === "known";
+        const isKnown = status === "known";
+        if (wasKnown === isKnown) return prev;
+        return prev + (isKnown ? 1 : -1);
+      });
+
       await new Promise((resolve) => setTimeout(resolve, 420));
-
-      await hydrateFromStore();
-
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
         next.delete(canonical);
@@ -107,7 +118,6 @@ export function useMasterPageState() {
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
-      await hydrateFromStore();
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
         next.delete(canonical);
