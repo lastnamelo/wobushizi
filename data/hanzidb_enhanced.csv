@@ -266,7 +266,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 265,区,qū,ōu,,,,,,,"area, district, region, ward",匸,23.2,4,4.0,94.0,區,False,區
 266,保,bǎo,,,,,,,,"protect, safeguard, defend, care",人,9.7,9,4.0,1562.0,,True,
 267,至,zhì,,,,,,,,"reach, arrive; extremely, very",至,133.0,6,4.0,410.0,,True,
-268,队,duì,,,,,,,,"team, group; army unit",阜,170.2,4,4.0,180.0,隊,False,隊
+268,队,duì,zhuì,,,,,,,"team, group; army unit",阜,170.2,4,4.0,180.0,隊,False,隊
 269,形,xíng,,,,,,,,"form, shape, appearance",彡,59.4,7,5.0,604.0,,True,
 270,社,shè,,,,,,,,"god of the soil and altars to him; group of families; company, society",示,113.3,7,4.0,890.0,,True,
 271,便,biàn,pián,,,,,,,"convenience, ease; expedient",人,9.7,9,2.0,1556.0,,True,
@@ -398,7 +398,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 397,备,bèi,,,,,,,,"prepare, ready, perfect",夂,34.5,8,2.0,1200.0,備,False,備
 398,兵,bīng,,,,,,,,"soldier, troops",八,12.5,7,5.0,768.0,,True,
 399,连,lián,,,,,,,,"join, connect; continuous; even",辵,162.4,7,4.0,708.0,連,False,連
-400,调,diào,tiáo|zhōu,,,,,,,"transfer, move, change; tune",言,149.8,10,3.0,2123.0,調,False,調
+400,调,diào,tiáo,,,,,,,"transfer, move, change; tune",言,149.8,10,3.0,2123.0,調,False,調
 401,深,shēn,,,,,,,,"deep; depth; far; very, extreme",水,85.8,11,4.0,2432.0,,True,
 402,商,shāng,,,,,,,,"commerce, business, trade",口,30.8,11,1.0,2391.0,,True,
 403,算,suàn,,,,,,,,"count, calculate, figure; plan",竹,118.8,14,3.0,3121.0,,True,
@@ -646,7 +646,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 645,拿,ná,,,,,,,,"take, hold, grasp; bring; with",手,64.6,10,3.0,1983.0,,True,
 646,脑,nǎo,,,,,,,,brain,肉,130.6,10,1.0,2001.0,腦,False,腦
 647,预,yù,,,,,,,,"prepare, arrange; in advance",頁,181.4,10,4.0,2148.0,預,False,預
-648,谁,shuí,,,,,,,,who? whom? whose? anyone?,言,149.8,10,1.0,2122.0,誰,False,誰
+648,谁,shuí,shéi,,,,,,,who? whom? whose? anyone?,言,149.8,10,1.0,2122.0,誰,False,誰
 649,益,yì,,,,,,,,"profit, benefit; advantage",皿,108.5,10,5.0,2055.0,,True,
 650,阳,yáng,,,,,,,,,阜,170.4,6,3.0,572.0,陽,False,陽
 651,若,ruò,rě,,,,,,,"if, supposing, assuming; similar",艸,140.5,8,6.0,1002.0,,True,
@@ -1527,7 +1527,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 1526,储,chǔ,,,,,,,,"save money, store, reserve; heir",人,9.1,12,6.0,2697.0,儲,False,儲
 1527,飘,piāo,,,,,,,,"whirlwind, cyclone; floating",風,182.11,15,5.0,3221.0,飄,False,飄
 1528,桑,sāng,,,,,,,,mulberry tree; surname,木,75.6,10,6.0,2149.0,,True,
-1529,闲,xián,,,,,,,,"fence, guard; defend; idle time",門,169.4,7,5.0,846.0,閒,False,閒
+1529,闲,xián,jiān|jiàn,,,,,,,"fence, guard; defend; idle time",門,169.4,7,5.0,846.0,閒,False,閒
 1530,惨,cǎn,,,,,,,,"sad, pitiful, wretched; cruel",心,61.8,11,6.0,2449.0,慘,False,慘
 1531,洁,jié,,,,,,,,"clean, purify, pure",水,85.6,9,6.0,1663.0,潔,False,潔
 1532,踪,zōng,,,,,,,,"footprints, traces, tracks",足,157.8,15,6.0,3244.0,蹤,False,蹤
@@ -1567,7 +1567,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 1566,戒,jiè,,,,,,,,"warn, caution, admonish",戈,62.3,7,5.0,606.0,,True,
 1567,驾,jià,,,,,,,,"to drive, sail, fly; a cart, carriage",馬,187.5,8,5.0,1332.0,駕,False,駕
 1568,漂,piào,piāo|piǎo,,,,,,,"float, drift; tossed about",水,85.11,14,1.0,3163.0,,True,
-1569,饮,yǐn,,,,,,,,drink; swallow; kind of drink,食,184.4,7,3.0,824.0,飲,False,飲
+1569,饮,yǐn,yìn,,,,,,,drink; swallow; kind of drink,食,184.4,7,3.0,824.0,飲,False,飲
 1570,曹,cáo,,,,,,,,ministry officials; surname,曰,73.7,11,,2233.0,,True,
 1571,朵,duǒ,,,,,,,,cluster of flowers; earlobe,木,75.2,6,3.0,497.0,,True,
 1572,仔,zǐ,zī|zǎi,,,,,,,"small thing, child; young animal",人,9.3,5,4.0,276.0,,True,
@@ -2049,7 +2049,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 2048,羞,xiū,,,,,,,,"disgrace, shame; ashamed; shy",羊,123.5,10,4.0,2049.0,,True,
 2049,瞪,dèng,,,,,,,,stare at,目,109.12,17,6.0,3406.0,,True,
 2050,吊,diào,,,,,,,,"condole, mourn, pity; hang",口,30.3,6,6.0,428.0,,True,
-2051,贾,jiǎ,gǔ,,,,,,,"surname; merchant; buy, trade",貝,154.6,10,,1856.0,賈,False,賈
+2051,贾,jiǎ,gǔ|jià,,,,,,,"surname; merchant; buy, trade",貝,154.6,10,,1856.0,賈,False,賈
 2052,漏,lòu,,,,,,,,"leak, drip; funnel; hour glass",水,85.11,14,5.0,3168.0,,True,
 2053,斑,bān,,,,,,,,"mottled, striped, freckle",文,67.8,12,6.0,2505.0,,True,
 2054,涛,tāo,,,,,,,,large waves,水,85.7,10,6.0,2065.0,濤,False,濤
@@ -2180,7 +2180,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 2179,账,zhàng,,,,,,,,"accounts; bill, debt; credit",貝,154.4,8,5.0,1114.0,賬,False,賬
 2180,萍,píng,,,,,,,,"duckweed; wandering, traveling",艸,140.8,11,,2211.0,,True,
 2181,逢,féng,,,,,,,,"come upon, happen meet; flatter",辵,162.7,10,6.0,2007.0,,True,
-2182,赚,zhuàn,,,,,,,,"make money, earn; gain, profit",貝,154.1,14,4.0,3112.0,賺,False,賺
+2182,赚,zhuàn,zuàn,,,,,,,"make money, earn; gain, profit",貝,154.1,14,4.0,3112.0,賺,False,賺
 2183,撑,chēng,,,,,,,,"prop up, support; brace",手,64.12,15,6.0,3196.0,撐,False,撐
 2184,翔,xiáng,,,,,,,,"soar, glide, hover; detailed",羽,124.6,12,6.0,2739.0,,True,
 2185,倡,chàng,chāng,,,,,,,"guide, leader; lead, introduce",人,9.8,10,5.0,1963.0,,True,
@@ -2260,7 +2260,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 2259,焰,yàn,,,,,,,,"flame, blaze; glowing, blazing",火,86.8,12,6.0,2748.0,,True,
 2260,耍,shuǎ,,,,,,,,"frolic, play, amuse, play with",而,126.3,9,6.0,1457.0,,True,
 2261,俯,fǔ,,,,,,,,"bow down, face down, look down",人,9.8,10,6.0,1966.0,,True,
-2262,厘,lí,,,,,,,,thousandth part of tael,厂,27.7,9,5.0,1448.0,釐,False,釐
+2262,厘,lí,xǐ|xī,,,,,,,thousandth part of tael,厂,27.7,9,5.0,1448.0,釐,False,釐
 2263,愣,lèng,,,,,,,,be in a daze,心,61.9,12,6.0,2774.0,,True,
 2264,厦,shà,xià,,,,,,,"big building, mansion",厂,27.1,12,5.0,2588.0,廈,False,廈
 2265,恳,kěn,,,,,,,,"sincere, earnest, cordial",心,61.6,10,5.0,2130.0,懇,False,懇
@@ -2762,7 +2762,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 2761,暇,xiá,,,,,,,,"leisure, relaxation, spare time",日,72.9,13,,2910.0,,True,
 2762,溯,sù,,,,,,,,"go upstream, go against current; formerly",水,85.1,13,,3017.0,,True,
 2763,鳞,lín,,,,,,,,fish scales,魚,195.12,20,,3483.0,鱗,False,鱗
-2764,酿,niàng,,,,,,,,"brew, ferment",酉,164.7,14,6.0,3088.0,釀,False,釀
+2764,酿,niàng,niáng,,,,,,,"brew, ferment",酉,164.7,14,6.0,3088.0,釀,False,釀
 2765,茵,yīn,,,,,,,,"a cushion, mattress; wormwood; Skimmia japon",艸,140.6,9,,1410.0,,True,
 2766,愕,è,,,,,,,,"startled, alarmed, astonished",心,61.9,12,,2773.0,,True,
 2767,瞅,chǒu,,,,,,,,"see, look, gaze at",目,109.9,14,,3101.0,,True,
@@ -3076,7 +3076,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 3075,晦,huì,,,,,,,,"dark, unclear, obscure; night",日,72.7,11,,2269.0,,True,
 3076,醋,cù,,,,,,,,"vinegar; jealousy, envy",酉,164.8,15,5.0,3222.0,,True,
 3077,壕,háo,,,,,,,,"trench, ditch, channel, moat",土,32.14,17,,6201.0,,True,
-3078,锯,jù,,,,,,,,a saw; to saw; amputate,金,167.8,13,,2944.0,鋸,False,鋸
+3078,锯,jù,jū,,,,,,,a saw; to saw; amputate,金,167.8,13,,2944.0,鋸,False,鋸
 3079,夭,yāo,,,,,,,,"young, fresh-looking; die young",大,37.1,4,,126.0,,True,
 3080,咦,yí,,,,,,,,exclamation of surprise,口,30.6,9,,4202.0,,True,
 3081,侈,chǐ,,,,,,,,"luxurious, extravagant",人,9.6,8,6.0,1152.0,,True,
@@ -3267,7 +3267,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 3266,烘,hōng,,,,,,,,"bake, roast; dry by fire",火,86.6,10,6.0,2058.0,,True,
 3267,璋,zhāng,,,,,,,,jade plaything; jade ornament,玉,96.11,15,,5856.0,,True,
 3268,亢,kàng,,,,,,,,"high, proud; violent, excessive; skilled; name",亠,8.2,4,,162.0,,True,
-3269,轧,yà,,,,,,,,crush by weight; grind,車,159.1,5,,224.0,軋,False,軋
+3269,轧,yà,zhá|gá,,,,,,,crush by weight; grind,車,159.1,5,,224.0,軋,False,軋
 3270,赂,lù,,,,,,,,bribe; give present,貝,154.6,10,6.0,1926.0,賂,False,賂
 3271,蝗,huáng,,,,,,,,kind of locust,虫,142.9,15,,3250.0,,True,
 3272,榆,yú,,,,,,,,elm tree,木,75.9,13,,2869.0,,True,
@@ -3851,7 +3851,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 3850,湍,tuān,,,,,,,,"rapid water current, rapids",水,85.9,12,,5283.0,,True,
 3851,屹,yì,,,,,,,,to rise high; to stand erect,山,46.3,6,,435.0,,True,
 3852,遐,xiá,,,,,,,,"afar, distant; old, advanced in",辵,162.9,12,,5315.0,,True,
-3853,轲,kē,,,,,,,,axle; personal name of mencius,車,159.5,9,,4179.0,軻,False,軻
+3853,轲,kē,kě,,,,,,,axle; personal name of mencius,車,159.5,9,,4179.0,軻,False,軻
 3854,镯,zhuó,,,,,,,,"bracelet, armband; small bell",金,167.13,18,,6346.0,鐲,False,鐲
 3855,缰,jiāng,,,,,,,,"reins, bridle",糸,120.13,16,,3386.0,繮,False,繮|韁
 3856,桦,huà,,,,,,,,type of birch,木,75.6,10,,1842.0,樺,False,樺
@@ -4044,7 +4044,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 4043,蚪,dǒu,,,,,,,,tadpole,虫,142.4,10,,1902.0,,True,
 4044,蜻,qīng,,,,,,,,dragonfly,虫,142.8,14,,3105.0,,True,
 4045,郸,dān,,,,,,,,county in Hebei province,邑,163.8,10,,4636.0,鄲,False,鄲
-4046,轶,yì,,,,,,,,"rush forth; surpass, excel",車,159.5,9,,4181.0,軼,False,軼
+4046,轶,yì,dié,,,,,,,"rush forth; surpass, excel",車,159.5,9,,4181.0,軼,False,軼
 4047,狰,zhēng,,,,,,,,"fierce-looking, ferocious",犬,94.6,9,,1603.0,猙,False,猙
 4048,楣,méi,,,,,,,,crossbeam above or under gate,木,75.9,13,,5406.0,,True,
 4049,捋,lǚ,luō,,,,,,,to pluck; to gather in the fingers; to rub; to scrape off,手,64.7,10,,4422.0,,True,
@@ -4795,7 +4795,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 4794,剐,guǎ,,,,,,,,"cut, cut flesh from bones",刀,18.7,9,,4216.0,剮,False,剮
 4795,畦,qí,,,,,,,,sections in vegetable farm,田,102.6,11,,4827.0,,True,
 4796,陂,bēi,pí|pō,,,,,,,"dam, embankment; reservoir",阜,170.5,7,,3804.0,,True,
-4797,闶,kāng,,,,,,,,door,門,169.4,7,,6609.0,閌,False,閌
+4797,闶,kāng,kàng,,,,,,,door,門,169.4,7,,6609.0,閌,False,閌
 4798,阄,jiū,,,,,,,,lots (to be drawn); draw lots,門,169.7,10,,4630.0,鬮,False,鬮
 4799,祚,zuò,,,,,,,,"throne; bless; blessing, happiness",示,113.5,9,,4367.0,,True,
 4800,鹘,gǔ,hú,,,,,,,a kind of pigeon; treron permagna,鳥,196.1,14,,5732.0,鶻,False,鶻
@@ -4832,7 +4832,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 4831,绌,chù,,,,,,,,"sew, stitch; insufficient",糸,120.5,8,,4080.0,絀,False,絀
 4832,桠,yā,,,,,,,,the forking branch of a tree,木,75.6,10,,6958.0,椏,False,椏
 4833,袈,jiā,,,,,,,,Buddhist cassock,衣,145.5,11,,5023.0,,True,
-4834,鎗,qiāng,,,,,,,,"rifle, small arms, hand gun",金,167.1,18,,,,True,
+4834,鎗,qiāng,chēng,,,,,,,"rifle, small arms, hand gun",金,167.1,18,,,,True,
 4835,薮,sǒu,,,,,,,,"marsh, swamp; wild country",艸,140.13,16,,6053.0,藪,False,藪
 4836,揿,qìn,,,,,,,,press,手,64.9,12,,5069.0,撳,False,撳
 4837,杲,gǎo,,,,,,,,bright sun; brilliant; high,木,75.4,8,,3899.0,,True,
@@ -4949,7 +4949,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 4948,蹴,cù,,,,,,,,kick; tread on; leap; solemn,足,157.12,19,,6387.0,,True,
 4949,砒,pī,,,,,,,,arsenic,石,112.4,9,,4167.0,,True,
 4950,痈,yōng,,,,,,,,"carbuncle, sore, ulcer, abscess",疒,104.5,10,,4618.0,癰,False,癰
-4951,镏,liú,,,,,,,,distil; lutetium; surname,金,167.1,15,,5950.0,鎦,False,鎦
+4951,镏,liú,liù,,,,,,,distil; lutetium; surname,金,167.1,15,,5950.0,鎦,False,鎦
 4952,羯,jié,,,,,,,,"wether, castrated ram; deer skin",羊,123.9,15,,5987.0,,True,
 4953,豕,shǐ,,,,,,,,"a pig, boar; KangXi radical 152",豕,152.0,7,,3688.0,,True,
 4954,鲂,fáng,,,,,,,,bream,魚,195.4,12,,5237.0,魴,False,魴
@@ -5005,7 +5005,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5004,诹,zōu,,,,,,,,"consult, confer; select, choose",言,149.8,10,,4668.0,諏,False,諏
 5005,啭,zhuàn,,,,,,,,"sing, chirp, warble, twitter",口,30.8,11,,4826.0,囀,False,囀
 5006,饧,táng,,,,,,,,"sugar, syrup; malt sugar; sticky",食,184.3,6,,3622.0,餳,False,餳
-5007,镉,gé,,,,,,,,cadmium,金,167.1,15,,5947.0,鎘,False,鎘
+5007,镉,gé,lì,,,,,,,cadmium,金,167.1,15,,5947.0,鎘,False,鎘
 5008,鸪,gū,,,,,,,,species of Taiwan pigeon,鳥,196.5,10,,4445.0,鴣,False,鴣
 5009,蛩,qióng,,,,,,,,"cricket, locust; anxious",虫,142.6,12,,5072.0,,True,
 5010,蠖,huò,,,,,,,,inch-worm; looper caterpiller,虫,142.14,19,,6390.0,,True,
@@ -5089,7 +5089,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5088,潆,yíng,,,,,,,,tiny stream; swirl around,水,85.11,14,,7724.0,瀠,False,瀠
 5089,汨,mì,,,,,,,,Mi(luo) river in Hunan province where Qu Yuan drowned himself; to sink; used (erroneously) for,水,85.4,7,,3774.0,,True,
 5090,胍,guā,,,,,,,,,肉,130.5,9,,4284.0,,True,
-5091,阏,è,,,,,,,,"block, obstruct, stop up",門,169.8,11,,4951.0,閼,False,閼
+5091,阏,è,yān,,,,,,,"block, obstruct, stop up",門,169.8,11,,4951.0,閼,False,閼
 5092,钤,qián,,,,,,,,"lock, latch; stamp, seal",金,167.4,9,,4243.0,鈐,False,鈐
 5093,鹜,wù,,,,,,,,duck,鳥,196.9,14,,5840.0,鶩,False,鶩
 5094,鬈,quán,,,,,,,,fine growth of hair curly hair,髟,190.8,18,,6312.0,,True,
@@ -5177,7 +5177,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5176,鄣,zhāng,,,,,,,,"name of an ancient city in N. Jiangsu, near Shandong",邑,163.11,13,,7578.0,,True,
 5177,呋,fū,,,,,,,,,口,30.4,7,,3698.0,,True,
 5178,婺,wù,,,,,,,,name of a star,女,38.9,12,,5326.0,,True,
-5179,绱,shàng,,,,,,,,the piece of leather used for soles on Chinese shoes; a patch,糸,120.8,11,,5031.0,鞝,False,鞝
+5179,绱,shàng,zhǎng,,,,,,,the piece of leather used for soles on Chinese shoes; a patch,糸,120.8,11,,5031.0,鞝,False,鞝
 5180,瓯,ōu,,,,,,,,"bowl, cup; small tray",瓦,98.4,8,,3890.0,甌,False,甌
 5181,旃,zhān,,,,,,,,silk banner with bent pole,方,70.6,10,,4628.0,,True,
 5182,锶,sī,,,,,,,,strontium,金,167.9,14,,5735.0,鍶,False,鍶
@@ -5299,7 +5299,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5298,魍,wǎng,,,,,,,,"demons, mountain spirits",鬼,194.8,17,,6266.0,,True,
 5299,缁,zī,,,,,,,,black silk,糸,120.8,11,,5040.0,緇,False,緇
 5300,槊,shuò,,,,,,,,"spear, lance",木,75.1,14,,5796.0,,True,
-5301,跞,lì,,,,,,,,"walk, move",足,157.5,12,,5137.0,躒,False,躒
+5301,跞,lì,luò,,,,,,,"walk, move",足,157.5,12,,5137.0,躒,False,躒
 5302,醚,mí,,,,,,,,ether,酉,164.1,16,,6071.0,,True,
 5303,吒,zhā,zhà,,,,,,,"shout, roar, bellow; scold",口,30.3,6,,6531.0,,True,
 5304,枳,zhǐ,,,,,,,,trifoliate orange; hedge thorn; (Cant.) a plug,木,75.5,9,,4150.0,,True,
@@ -5320,7 +5320,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5319,苕,sháo,tiáo,,,,,,,rush plant,艸,140.5,8,,3873.0,,True,
 5320,菀,wǎn,,,,,,,,luxuriance of growth,艸,140.8,11,,4766.0,,True,
 5321,骠,biāo,piào,,,,,,,"charger, steed; swift, valiant",馬,187.11,14,,5841.0,驃,False,驃
-5322,袷,jiá,,,,,,,,lined garment,衣,145.6,11,,5000.0,,True,
+5322,袷,jiá,jié|qiā,,,,,,,lined garment,衣,145.6,11,,5000.0,,True,
 5323,跹,xiān,,,,,,,,"wander about, walk around; revolve",足,157.6,13,,5457.0,躚,False,躚
 5324,瘘,lòu,,,,,,,,"fistula, sore, ulcer, goiter",疒,104.9,14,,5783.0,瘻,False,瘻
 5325,騔,gé,,,,,,,,,馬,187.9,19,,,,True,
@@ -5353,7 +5353,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5352,蠊,lián,,,,,,,,,虫,142.13,19,,6393.0,,True,
 5353,笊,zhào,,,,,,,,"ladle, bamboo skimmer",竹,118.4,10,,4558.0,,True,
 5354,莸,yóu,,,,,,,,caryopteris divaricata,艸,140.7,10,,4439.0,蕕,False,蕕
-5355,饴,yí,,,,,,,,sweet-meats; sweet-cakes; syrup,食,184.5,8,,3993.0,飴,False,飴
+5355,饴,yí,sì,,,,,,,sweet-meats; sweet-cakes; syrup,食,184.5,8,,3993.0,飴,False,飴
 5356,阃,kǔn,,,,,,,,,門,169.7,10,,4629.0,閫,False,閫
 5357,浯,wú,,,,,,,,name of a river in Shandong,水,85.7,10,,4645.0,,True,
 5358,枇,pí,,,,,,,,loquat,木,75.4,8,,3875.0,,True,
@@ -5526,7 +5526,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5525,樗,chū,,,,,,,,"Ailanthus glandulosa or A. altissima, a kind of tree useless as timber",木,75.11,15,,5886.0,,True,
 5526,鲰,zōu,,,,,,,,small fish; small; minnow,魚,195.8,16,,7887.0,鯫,False,鯫
 5527,節,jié,,,,,,,,"knot, node, joint; section",竹,118.7,13,,,,True,
-5528,诶,éi,,,,,,,,an exclamation of confirmation,言,149.7,9,,,誒,False,誒
+5528,诶,éi,ēi|ěi|èi|xī,,,,,,,an exclamation of confirmation,言,149.7,9,,,誒,False,誒
 5529,薜,bì,,,,,,,,"evergreen shrubs, ligusticum",艸,140.13,16,,6054.0,,True,
 5530,铧,huá,,,,,,,,"spade, shovel, plowshare",金,167.6,11,,4875.0,鏵,False,鏵
 5531,裥,jiǎn,,,,,,,,folds,衣,145.7,12,,5307.0,襉,False,襉
@@ -5707,7 +5707,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5706,戆,gàng,zhuàng,,,,,,,"stupid, simple, simple-minded",心,61.21,25,,6498.0,戇,False,戇
 5707,蜉,fú,,,,,,,,mayfly; kind of large insect,虫,142.7,13,,5462.0,,True,
 5708,喾,kù,,,,,,,,emperor,口,30.9,12,,5301.0,嚳,False,嚳
-5709,铍,pī,,,,,,,,beryllium,金,167.5,10,,4545.0,鈹,False,鈹
+5709,铍,pī,pí,,,,,,,beryllium,金,167.5,10,,4545.0,鈹,False,鈹
 5710,陉,xíng,,,,,,,,"defile, mountain pass, gorge",阜,170.5,7,,3805.0,陘,False,陘
 5711,薹,tái,,,,,,,,"cyperus rotundus, type of sedge",艸,140.14,17,,6205.0,,True,
 5712,肷,qiǎn,,,,,,,,area between waist and hips,肉,130.4,8,,6711.0,,True,
@@ -5740,8 +5740,8 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5739,喁,yóng,,,,,,,,"the mouth of a fish at the surface of the water, gasping for breath",口,30.9,12,,5152.0,,True,
 5740,嫘,léi,,,,,,,,surname,女,38.11,14,,5835.0,,True,
 5741,罟,gǔ,,,,,,,,net; snare; pressure come or go,网,122.5,10,,4523.0,,True,
-5742,钌,liǎo,,,,,,,,ruthenium,金,167.2,7,,3723.0,釕,False,釕
-5743,裼,tì,,,,,,,,,衣,145.8,13,,7603.0,,True,
+5742,钌,liǎo,liào,,,,,,,ruthenium,金,167.2,7,,3723.0,釕,False,釕
+5743,裼,tì,xī,,,,,,,,衣,145.8,13,,7603.0,,True,
 5744,愦,kuì,,,,,,,,"confused, troubled, muddle-headed",心,61.9,12,,5296.0,憒,False,憒
 5745,蝽,chūn,,,,,,,,bedbug,虫,142.9,15,,5920.0,,True,
 5746,雖,suī,,,,,,,,"although, even if",隹,172.9,17,,,,True,
@@ -5760,7 +5760,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5759,婧,jìng,,,,,,,,modest; supple,女,38.8,11,,5016.0,,True,
 5760,暌,kuí,,,,,,,,in opposition; distant from; separated,日,72.9,13,,5451.0,,True,
 5761,罱,lǎn,,,,,,,,fishing net,网,122.9,14,,5724.0,,True,
-5762,镞,zú,,,,,,,,"arrowhead, barb; swift, quick",金,167.11,16,,6118.0,鏃,False,鏃
+5762,镞,zú,chuò,,,,,,,"arrowhead, barb; swift, quick",金,167.11,16,,6118.0,鏃,False,鏃
 5763,蹰,chú,,,,,,,,"hesitate, waver, falter",足,157.12,19,,6383.0,躕,False,躕
 5764,陟,zhì,,,,,,,,"climb, scale, ascend; proceed",阜,170.7,9,,4381.0,,True,
 5765,鳔,biào,,,,,,,,swimming bladder of fish,魚,195.11,19,,6404.0,鰾,False,鰾
@@ -5786,7 +5786,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5785,榱,cuī,,,,,,,,rafter,木,75.1,14,,5666.0,,True,
 5786,罾,zēng,,,,,,,,"a large square net, lowered and raised from the bank of the river",网,122.12,17,,6239.0,,True,
 5787,铳,chòng,,,,,,,,"ancient weapon, blunderbuss",金,167.5,11,,4885.0,銃,False,銃
-5788,裎,chéng,,,,,,,,to take off the clothes and expose the body. to carry in the girdle,衣,145.7,12,,5306.0,,True,
+5788,裎,chéng,chěng,,,,,,,to take off the clothes and expose the body. to carry in the girdle,衣,145.7,12,,5306.0,,True,
 5789,鳚,wèi,,,,,,,,"general term of a kind of fish, a snake-like fish",魚,195.11,19,,8044.0,䲁,False,䲁
 5790,眦,zì,,,,,,,,"corner of the eyes, eyesockets",目,109.5,11,,4810.0,眥,False,眥
 5791,璎,yīng,,,,,,,,a necklace made of precious stones,玉,96.11,15,,5854.0,瓔,False,瓔
@@ -5835,7 +5835,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5834,曛,xūn,,,,,,,,twilight; sunset,日,72.14,18,,6329.0,,True,
 5835,蛲,náo,,,,,,,,worms,虫,142.6,12,,5143.0,蟯,False,蟯
 5836,鹾,cuó,,,,,,,,salty; salt,鹵,197.9,16,,7857.0,鹺,False,鹺
-5837,隹,zhuī,,,,,,,,bird; KangXi radical 172,隹,172.0,8,,6699.0,,True,
+5837,隹,zhuī,cuī|wéi,,,,,,,bird; KangXi radical 172,隹,172.0,8,,6699.0,,True,
 5838,犸,mà,,,,,,,,mammoth,犬,94.3,6,,3618.0,獁,False,獁
 5839,衄,nǜ,,,,,,,,"epistaxis, nosebleed; to be defeated",血,143.4,10,,4582.0,,True,
 5840,觀,guān,,,,,,,,"see, observe, view; appearance",見,147.18,24,,,,True,
@@ -5910,7 +5910,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5909,瞽,gǔ,,,,,,,,blind; blind musician; stupid,目,109.13,18,,6314.0,,True,
 5910,钇,yǐ,,,,,,,,yttrium,金,167.1,6,,3597.0,釔,False,釔
 5911,鹪,jiāo,,,,,,,,wren,鳥,196.12,17,,6263.0,鷦,False,鷦
-5912,鞔,mán,,,,,,,,sides or uppers of shoes to stretch a skin on a frame for a drum; (Cant.) to cover,革,177.7,16,,7839.0,,True,
+5912,鞔,mán,mèn,,,,,,,sides or uppers of shoes to stretch a skin on a frame for a drum; (Cant.) to cover,革,177.7,16,,7839.0,,True,
 5913,缡,lí,,,,,,,,a bridal veil; to tie; to bind,糸,120.1,13,,5616.0,縭,False,縭
 5914,铯,sè,,,,,,,,cesium,金,167.6,11,,4882.0,銫,False,銫
 5915,鲚,jì,,,,,,,,anchovy,魚,195.6,14,,5770.0,鱭,False,鱭
@@ -5964,7 +5964,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5963,轫,rèn,,,,,,,,a block that keeps a wheel from moving,車,159.3,7,,3691.0,軔,False,軔
 5964,褰,qiān,,,,,,,,,衣,145.1,16,,6182.0,,True,
 5965,炱,tái,,,,,,,,soot,火,86.5,9,,4391.0,,True,
-5966,醍,tí,,,,,,,,essential oil of butter,酉,164.9,16,,6070.0,,True,
+5966,醍,tí,tǐ,,,,,,,essential oil of butter,酉,164.9,16,,6070.0,,True,
 5967,锱,zī,,,,,,,,8 oz; an ancient unit of weight,金,167.8,13,,5492.0,錙,False,錙
 5968,篁,huáng,,,,,,,,bamboo grove; bamboo,竹,118.9,15,,5957.0,,True,
 5969,葚,rèn,,,,,,,,mulberry fruit,艸,140.9,12,,5080.0,,True,
@@ -6116,7 +6116,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6115,缌,sī,,,,,,,,coarse cotton cloth used for mourning,糸,120.9,12,,5334.0,緦,False,緦
 6116,飏,yáng,,,,,,,,"soar, fly, float; scatter",風,182.9,7,,6607.0,颺,False,颺
 6117,锞,kè,,,,,,,,ingot; acrobatic move,金,167.8,13,,5486.0,錁,False,錁
-6118,趵,bào,,,,,,,,noise of tramping feet,足,157.3,10,,4504.0,,True,
+6118,趵,bào,bō,,,,,,,noise of tramping feet,足,157.3,10,,4504.0,,True,
 6119,跖,zhí,,,,,,,,sole (of the foot),足,157.5,12,,5135.0,蹠,False,蹠
 6120,跬,kuǐ,,,,,,,,to step; a stride equal to half a pace,足,157.6,13,,5452.0,,True,
 6121,僬,jiāo,,,,,,,,clever; alert in mind pigmies,人,9.12,14,,7693.0,,True,
@@ -6155,7 +6155,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6154,莨,làng,,,,,,,,"herb, Scopolia japonica",艸,140.7,10,,4444.0,,True,
 6155,尻,kāo,,,,,,,,"end of spine; buttocks, sacrum",尸,44.2,5,,3558.0,,True,
 6156,罨,yǎn,,,,,,,,medical compress; fish net,网,122.8,13,,5477.0,,True,
-6157,锔,jū,,,,,,,,curium,金,167.7,12,,5189.0,鋦,False,鋦
+6157,锔,jū,jú,,,,,,,curium,金,167.7,12,,5189.0,鋦,False,鋦
 6158,筲,shāo,,,,,,,,"basket, bucket",竹,118.7,13,,5503.0,,True,
 6159,妣,bǐ,,,,,,,,,女,38.4,7,,3809.0,,True,
 6160,砘,dùn,,,,,,,,a kind of farm tool,石,112.4,9,,4166.0,,True,
@@ -6174,7 +6174,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6173,豇,jiāng,,,,,,,,a small kidney bean,豆,151.3,10,,4468.0,,True,
 6174,鲵,ní,,,,,,,,Cryptobranchus japonicus; a salamander,魚,195.8,16,,6144.0,鯢,False,鯢
 6175,蘧,qú,,,,,,,,a plant which resembles wheat but has no edible grain,艸,140.17,19,,6372.0,,True,
-6176,阚,hǎn,,,,,,,,"glance, peep; roar, growl",門,169.11,14,,5789.0,闞,False,闞
+6176,阚,hǎn,kàn,,,,,,,"glance, peep; roar, growl",門,169.11,14,,5789.0,闞,False,闞
 6177,悝,kuī,,,,,,,,"to laugh at to pity; afflicted, sad",心,61.7,10,,4661.0,,True,
 6178,铌,ní,,,,,,,,niobium,金,167.5,10,,4544.0,鈮,False,鈮
 6179,預,yù,,,,,,,,"prepare, arrange; in advance",頁,181.4,13,,,,True,
@@ -6186,9 +6186,9 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6185,蓍,shī,,,,,,,,"milfoil, plant used in divination",艸,140.1,13,,5369.0,,True,
 6186,蕹,wèng,,,,,,,,Ipomoea aquatica used as a vegetable,艸,140.13,16,,7844.0,,True,
 6187,岜,bā,,,,,,,,rock mountain,山,46.4,7,,6596.0,,True,
-6188,钐,shān,,,,,,,,samarium,金,167.3,8,,6689.0,釤,False,釤
+6188,钐,shān,shàn,,,,,,,samarium,金,167.3,8,,6689.0,釤,False,釤
 6189,锬,tán,,,,,,,,long spear,金,167.8,13,,7536.0,錟,False,錟
-6190,镪,qiāng,,,,,,,,"coins, money, wealth",金,167.12,17,,6251.0,鏹,False,鏹
+6190,镪,qiāng,qiǎng,,,,,,,"coins, money, wealth",金,167.12,17,,6251.0,鏹,False,鏹
 6191,绡,xiāo,,,,,,,,raw silk fabric,糸,120.7,10,,4701.0,綃,False,綃
 6192,檎,qín,,,,,,,,small red apple,木,75.13,16,,6060.0,,True,
 6193,穀,gǔ,,,,,,,,"corn, grain, cereal; lucky",禾,115.1,15,,,,True,
@@ -6227,7 +6227,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6226,锎,kāi,,,,,,,,caesium,金,167.7,12,,7381.0,鐦,False,鐦
 6227,舳,zhú,,,,,,,,stern of ship,舟,137.5,11,,7203.0,,True,
 6228,缋,huì,,,,,,,,"draw, sketch, paint",糸,120.9,12,,,繢,False,繢
-6229,镗,tāng,,,,,,,,boring tool,金,167.11,16,,6113.0,鏜,False,鏜
+6229,镗,tāng,táng,,,,,,,boring tool,金,167.11,16,,6113.0,鏜,False,鏜
 6230,褙,bèi,,,,,,,,paper or cloth pasted together,衣,145.9,14,,5820.0,,True,
 6231,耋,dié,,,,,,,,,老,125.6,12,,5070.0,,True,
 6232,聬,wěng,,,,,,,,,耳,128.1,16,,,,True,
@@ -6356,7 +6356,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6355,坼,chè,,,,,,,,"split, tear, open",土,32.5,8,,3846.0,,True,
 6356,璺,wèn,,,,,,,,"a crack, as in porcelain",玉,96.14,20,,6439.0,,True,
 6357,栊,lóng,,,,,,,,"cage, pen; set of bars",木,75.5,9,,4143.0,櫳,False,櫳
-6358,镝,dī,,,,,,,,dysprosium,金,167.11,16,,6117.0,鏑,False,鏑
+6358,镝,dī,dí,,,,,,,dysprosium,金,167.11,16,,6117.0,鏑,False,鏑
 6359,疔,dīng,,,,,,,,"carbuncle, boil, ulcer",疒,104.2,7,,3758.0,,True,
 6360,瘰,luǒ,,,,,,,,"scrofula, swellings",疒,104.11,16,,6154.0,,True,
 6361,谮,zèn,,,,,,,,to slander,言,149.12,14,,5818.0,譖,False,譖
@@ -6399,7 +6399,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6398,烀,hū,,,,,,,,simmer,火,86.5,9,,4328.0,,True,
 6399,镔,bīn,,,,,,,,high quality iron,金,167.1,15,,5953.0,鑌,False,鑌
 6400,珉,mín,,,,,,,,stone resembling jade,玉,96.5,9,,4091.0,,True,
-6401,鞬,jiān,,,,,,,,a quiver on a horse; a store,革,177.9,17,,6207.0,,True,
+6401,鞬,jiān,jiàn,,,,,,,a quiver on a horse; a store,革,177.9,17,,6207.0,,True,
 6402,範,fàn,,,,,,,,"pattern, model, rule, law",竹,118.9,15,,,,True,
 6403,膠,jiāo,,,,,,,,"glue, gum, resin, rubber",肉,130.11,15,,,,True,
 6404,眾,zhòng,,,,,,,,"masses, people, multitude, crowd",目,109.6,11,,,,True,
@@ -6458,7 +6458,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6457,扃,jiōng,,,,,,,,a door bar placed outside a door,戶,63.5,9,,4359.0,,True,
 6458,磻,pán,bō,,,,,,,a tributary of the Wei river in Shanxi,石,112.12,17,,7931.0,,True,
 6459,郗,xī,,,,,,,,city under the Chou Dyn. a surname,邑,163.7,9,,4273.0,,True,
-6460,阇,dū,,,,,,,,a Buddhist high priest,門,169.9,11,,4945.0,闍,False,闍
+6460,阇,dū,shé,,,,,,,a Buddhist high priest,門,169.9,11,,4945.0,闍,False,闍
 6461,腈,jīng,,,,,,,,an organic compound,肉,130.8,12,,5227.0,,True,
 6462,铈,shì,,,,,,,,cerium,金,167.5,10,,4540.0,鈰,False,鈰
 6463,臥,wò,,,,,,,,lie down; crouch,臣,131.2,8,,,,True,
@@ -6489,7 +6489,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6488,铖,chéng,,,,,,,,,金,167.6,11,,7181.0,鋮,False,鋮
 6489,粞,xī,,,,,,,,to mash rice,米,119.6,12,,5269.0,,True,
 6490,撙,zǔn,,,,,,,,"economize; abide by, comply with",手,64.12,15,,5866.0,,True,
-6491,铊,tā,,,,,,,,thallium,金,167.5,10,,4542.0,鉈,False,鉈
+6491,铊,tā,tuó,,,,,,,thallium,金,167.5,10,,4542.0,鉈,False,鉈
 6492,圹,kuàng,,,,,,,,"tomb, grave: prairie; open wilderness",土,32.3,6,,3574.0,壙,False,壙
 6493,菝,bá,,,,,,,,,艸,140.8,11,,7120.0,,True,
 6494,迴,huí,,,,,,,,"revolve, rotate; curving, zigzag",辵,162.6,9,,,,True,
@@ -6562,7 +6562,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6561,踰,yú,,,,,,,,"exceed, transgress; cross over",足,157.9,16,,,,True,
 6562,搦,nuò,,,,,,,,"grasp, seize, take in hand",手,64.1,13,,5365.0,,True,
 6563,帻,zé,,,,,,,,turban; conical cap,巾,50.8,11,,4855.0,幘,False,幘
-6564,铦,xiān,,,,,,,,"sharp, keen-edged; a kind of hoe",金,167.6,11,,,銛,False,銛
+6564,铦,xiān,kuò|tiǎn|guā,,,,,,,"sharp, keen-edged; a kind of hoe",金,167.6,11,,,銛,False,銛
 6565,鲴,gù,,,,,,,,fish guts,魚,195.8,16,,6143.0,鯝,False,鯝
 6566,髫,tiáo,,,,,,,,,髟,190.5,15,,5860.0,,True,
 6567,盡,jǐn,,,,,,,,"exhaust, use up; deplete",皿,108.9,14,,,,True,
@@ -6695,7 +6695,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6694,臍,qí,,,,,,,,abdominal area of crab; navel,肉,130.14,18,,,,True,
 6695,膩,nì,,,,,,,,"greasy, oily, dirty; smooth",肉,130.12,16,,,,True,
 6696,諸,zhū,,,,,,,,"several, various",言,149.9,15,,,,True,
-6697,讉,yí,,,,,,,,,言,149.16,22,,,,True,
+6697,讉,yí,tuī,,,,,,,,言,149.16,22,,,,True,
 6698,鎯,láng,,,,,,,,large hammer,金,167.1,16,,,,True,
 6699,脒,mǐ,,,,,,,,open; throw away,肉,130.6,10,,4596.0,,True,
 6700,箬,ruò,,,,,,,,the cuticle of the bamboo a broad-leaved bamboo,竹,118.9,14,,5747.0,,True,
@@ -6704,7 +6704,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6703,颃,háng,,,,,,,,fly down or downward,頁,181.4,10,,4624.0,頏,False,頏
 6704,蒹,jiān,,,,,,,,"reed, phragmites communis",艸,140.1,13,,5387.0,,True,
 6705,瞍,sǒu,,,,,,,,blind; no pupil in the eye,目,109.1,14,,7670.0,,True,
-6706,铫,diào,,,,,,,,large hoe; surname; a spear,金,167.6,11,,4879.0,銚,False,銚
+6706,铫,diào,tiáo|yáo,,,,,,,large hoe; surname; a spear,金,167.6,11,,4879.0,銚,False,銚
 6707,蒐,sōu,,,,,,,,"collect, gather, assemble; seek; spring hunt; assemble for war",艸,140.1,12,,7313.0,,True,
 6708,蹻,juē,,,,,,,,to raise the feet; to cross the legs; brave; sandals,足,157.12,19,,,,True,
 6709,幞,fú,,,,,,,,turban,巾,50.12,15,,5939.0,,True,
@@ -6832,7 +6832,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6831,纩,kuàng,,,,,,,,cotton; silk,糸,120.3,6,,6554.0,纊,False,纊
 6832,蓮,lián,,,,,,,,"lotus, water lily; paradise",艸,140.11,13,,,,True,
 6833,唛,mà,,,,,,,,mark,口,30.7,10,,4494.0,嘜,False,嘜
-6834,袓,jù,,,,,,,,,衣,145.5,10,,,,True,
+6834,袓,jù,jiē,,,,,,,,衣,145.5,10,,,,True,
 6835,祂,tā,,,,,,,,"he (honorific form, generally used for the Abrahamic God)",示,113.3,7,,,,True,
 6836,轎,jiào,,,,,,,,"sedan-chair, palanquin",車,159.12,19,,,,True,
 6837,紀,jì,,,,,,,,"record, annal, historical account",糸,120.3,9,,,,True,
@@ -6872,7 +6872,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6871,綱,gāng,,,,,,,,"heavy rope, hawser; main points",糸,120.8,14,,,,True,
 6872,膮,xiāo,,,,,,,,,肉,130.12,16,,,,True,
 6873,謹,jǐn,,,,,,,,"prudent, cautious; attentive",言,149.11,18,,,,True,
-6874,铪,hā,,,,,,,,hafnium,金,167.6,11,,4878.0,鉿,False,鉿
+6874,铪,hā,kē,,,,,,,hafnium,金,167.6,11,,4878.0,鉿,False,鉿
 6875,鹼,jiǎn,,,,,,,,"alkaline, alkali, lye, salt",鹵,197.13,24,,,,True,
 6876,簳,gǎn,,,,,,,,,竹,118.13,19,,,,True,
 6877,終,zhōng,,,,,,,,"end; finally, in the end",糸,120.5,11,,,,True,
@@ -6886,7 +6886,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6885,汆,cuān,,,,,,,,to parboil; hot water kettle; to boil,水,85.2,6,,3612.0,,True,
 6886,硃,zhū,,,,,,,,a red mole; cinnabar,石,112.6,11,,,,True,
 6887,仝,tóng,,,,,,,,"together, same; surname",人,9.3,5,,6513.0,,True,
-6888,趽,fàng,,,,,,,,,足,157.4,11,,,,True,
+6888,趽,fàng,fāng|páng,,,,,,,,足,157.4,11,,,,True,
 6889,堍,tù,,,,,,,,,土,32.8,11,,4730.0,,True,
 6890,揸,zhā,,,,,,,,"handful; to grasp, seize, pick up with fingers; (Cant.) to take, carry",手,64.9,12,,5062.0,,True,
 6891,忭,biàn,,,,,,,,delighted; pleased,心,61.4,7,,3792.0,,True,
@@ -6947,11 +6947,11 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 6946,仂,lè,,,,,,,,surplus or excess; remainder,人,9.2,4,,3517.0,,True,
 6947,雲,yún,,,,,,,,clouds; Yunnan province,雨,173.4,12,,,,True,
 6948,顗,yǐ,,,,,,,,quiet,頁,181.1,19,,,,True,
-6949,蟫,yín,,,,,,,,silverfish,虫,142.12,18,,7999.0,,True,
+6949,蟫,yín,xún,,,,,,,silverfish,虫,142.12,18,,7999.0,,True,
 6950,蕺,jí,,,,,,,,,艸,140.13,15,,5878.0,,True,
 6951,骃,yīn,,,,,,,,grey horse,馬,187.6,9,,6918.0,駰,False,駰
 6952,蔀,bù,,,,,,,,screen,艸,140.11,13,,7487.0,,True,
-6953,诪,zhōu,,,,,,,,"deceive, cheat; hurried, bustling",言,149.14,9,,,譸,False,譸
+6953,诪,zhōu,chóu,,,,,,,"deceive, cheat; hurried, bustling",言,149.14,9,,,譸,False,譸
 6954,猹,chá,,,,,,,,wild animal mentioned in short story by Lu Xun,犬,94.9,12,,5240.0,,True,
 6955,鋬,pàn,,,,,,,,,金,167.7,15,,,,True,
 6956,盤,pán,,,,,,,,"tray, plate, dish; examine",皿,108.1,15,,,,True,
@@ -7002,7 +7002,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7001,鞡,la,,,,,,,,leg warmer,革,177.8,17,,6206.0,,True,
 7002,缻,fǒu,,,,,,,,"pottery, earthenware",缶,121.5,10,,,,True,
 7003,輳,còu,,,,,,,,hubs of wheel; converge around,車,159.9,16,,,,True,
-7004,闆,bǎn,,,,,,,,"boss, the owner, person in charge",門,169.9,17,,,,True,
+7004,闆,bǎn,pàn,,,,,,,"boss, the owner, person in charge",門,169.9,17,,,,True,
 7005,铼,lái,,,,,,,,rhenium,金,167.7,12,,5179.0,錸,False,錸
 7006,紤,jiǔ,,,,,,,,,糸,120.4,10,,,,True,
 7007,翹,qiào,,,,,,,,"turn up, lift, elevate, raise",羽,124.12,18,,,,True,
@@ -7027,7 +7027,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7026,茈,cí,,,,,,,,a plant yielding a red dye,艸,140.5,9,,6787.0,,True,
 7027,肏,cào,,,,,,,,"copulate, expletive (fuck)",肉,130.2,8,,,,True,
 7028,萩,qiū,,,,,,,,scandent hop; tree,艸,140.9,12,,7312.0,,True,
-7029,跐,cī,,,,,,,,"to trample, to step, to walk on the ball of the foot",足,157.5,13,,5455.0,,True,
+7029,跐,cī,cǐ,,,,,,,"to trample, to step, to walk on the ball of the foot",足,157.5,13,,5455.0,,True,
 7030,蹅,chǎ,,,,,,,,"to tread on, walk through",足,157.9,16,,7863.0,,True,
 7031,瞢,méng,,,,,,,,eyesight obscured; to feel ashamed,目,109.11,15,,5879.0,,True,
 7032,罽,jì,,,,,,,,a kind of woolen fabric,网,122.12,17,,6238.0,,True,
@@ -7059,7 +7059,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7058,訊,xùn,,,,,,,,inquire; ask; examine; reproach,言,149.3,10,,,,True,
 7059,馬,mǎ,,,,,,,,horse; surname; KangXi radical 187,馬,187.0,10,,,,True,
 7060,諹,yáng,,,,,,,,,言,149.9,16,,,,True,
-7061,誖,bèi,,,,,,,,obstinate; disorderly; perverse,言,149.7,14,,,,True,
+7061,誖,bèi,bó,,,,,,,obstinate; disorderly; perverse,言,149.7,14,,,,True,
 7062,蕅,ǒu,,,,,,,,,艸,140.12,15,,,,True,
 7063,鰨,tǎ,,,,,,,,sole,魚,195.1,21,,,,True,
 7064,睒,shǎn,,,,,,,,"to glance at, to peep; glittering; to shine",目,109.8,13,,,,True,
@@ -7094,7 +7094,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7093,絅,jiōng,,,,,,,,"unlined garment, dust coat",糸,120.5,11,,,,True,
 7094,纁,xūn,,,,,,,,"light red, pink",糸,120.14,20,,,,True,
 7095,葰,suī,,,,,,,,,艸,140.9,12,,7314.0,,True,
-7096,郇,huán,,,,,,,,an ancient feudal State in Shaanxi,邑,163.6,8,,3984.0,,True,
+7096,郇,huán,xún,,,,,,,an ancient feudal State in Shaanxi,邑,163.6,8,,3984.0,,True,
 7097,躄,bì,,,,,,,,"cripple, lame",足,157.13,20,,,,True,
 7098,茼,tóng,,,,,,,,Chrysanthemum coronarium,艸,140.6,9,,4114.0,,True,
 7099,洧,wěi,,,,,,,,name of a river in honan,水,85.6,9,,4333.0,,True,
@@ -7102,7 +7102,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7101,澉,gǎn,,,,,,,,to wash name of a place,水,85.12,14,,5811.0,,True,
 7102,鎭,zhèn,,,,,,,,"town, market place; suppress",金,167.1,18,,,,True,
 7103,铏,xíng,,,,,,,,sacrificial cauldron,金,167.6,11,,7176.0,鉶,False,鉶
-7104,閤,gé,,,,,,,,small side door; chamber,門,169.6,14,,,,True,
+7104,閤,gé,hé,,,,,,,small side door; chamber,門,169.6,14,,,,True,
 7105,赆,jìn,,,,,,,,farewell present,貝,154.6,10,,7003.0,贐,False,贐
 7106,赇,qiú,,,,,,,,bribe,貝,154.7,11,,4862.0,賕,False,賕
 7107,顣,cù,,,,,,,,frown,頁,181.11,20,,,,True,
@@ -7135,7 +7135,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7134,鄬,wéi,,,,,,,,place in Henan province,邑,163.12,14,,,,True,
 7135,釤,shàn,,,,,,,,samarium,金,167.3,11,,,,True,
 7136,鍵,jiàn,,,,,,,,"door bolt, lock bolt; key",金,167.9,16,,,,True,
-7137,閮,tíng,,,,,,,,,門,169.7,14,,,,True,
+7137,閮,tíng,tǐng,,,,,,,,門,169.7,14,,,,True,
 7138,隻,zhī,,,,,,,,"single, one of pair, lone",隹,172.2,10,,,,True,
 7139,飽,bǎo,,,,,,,,,食,184.5,13,,,,True,
 7140,齒,chǐ,,,,,,,,"teeth; gears, cogs; age; KangXi radical 211",齒,211.0,15,,,,True,
@@ -7186,10 +7186,10 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7185,颥,rú,,,,,,,,the temporal bone,頁,181.14,20,,8055.0,顬,False,顬
 7186,篚,fěi,,,,,,,,round or oval covered-baskets with short legs,竹,118.1,16,,7877.0,,True,
 7187,鳘,mǐn,,,,,,,,codfish,魚,195.11,19,,8038.0,鰵,False,鰵
-7188,䥺,yé,,,,,,,,(same as,,,12,,,釾,False,釾
+7188,䥺,yé,yá,,,,,,,(same as,,,12,,,釾,False,釾
 7189,虒,sī,,,,,,,,an amphibious beast resembling a tiger with one horn; place name,虍,141.4,10,,7023.0,,True,
 7190,裈,kūn,,,,,,,,"trousers, pants, shorts, drawers",衣,145.6,11,,7252.0,褌,False,褌
-7191,遆,tí,,,,,,,,,辵,162.9,12,,7419.0,,True,
+7191,遆,tí,dì,,,,,,,,辵,162.9,12,,7419.0,,True,
 7192,麑,ní,,,,,,,,"fawn, young deer",鹿,198.8,19,,8046.0,,True,
 7193,粚,lí,,,,,,,,,米,119.5,11,,,,True,
 7194,託,tuō,,,,,,,,"entrust, rely on; commission",言,149.3,10,,,,True,
@@ -7230,7 +7230,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7229,溻,tā,,,,,,,,wet,水,85.1,13,,5575.0,,True,
 7230,骯,āng,,,,,,,,dirty,骨,188.4,13,,,,True,
 7231,礡,bó,,,,,,,,"fill, extend",石,112.14,18,,,,True,
-7232,袉,tuó,,,,,,,,,衣,145.5,10,,,,True,
+7232,袉,tuó,tuō,,,,,,,,衣,145.5,10,,,,True,
 7233,訚,yín,,,,,,,,speak gently; respectful,言,149.3,10,,4631.0,誾,False,誾
 7234,谉,shěn,,,,,,,,,言,149.8,10,,,讅,False,讅
 7235,莛,tíng,,,,,,,,"stalks of grasses, etc.",艸,140.7,9,,4117.0,,True,
@@ -7254,7 +7254,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7253,唪,fěng,,,,,,,,"to recite, to intone or chant",口,30.8,11,,7155.0,,True,
 7254,庳,bì,,,,,,,,a low-built house,广,53.8,11,,7222.0,,True,
 7255,殪,yì,,,,,,,,"die; kill, exterminate",歹,78.12,16,,6075.0,,True,
-7256,隃,shù,,,,,,,,to exceed; a state in Shanxi province,阜,170.9,11,,7261.0,,True,
+7256,隃,shù,yú|yáo,,,,,,,to exceed; a state in Shanxi province,阜,170.9,11,,7261.0,,True,
 7257,糈,xǔ,,,,,,,,sacrificial rice; rations; pay,米,119.9,15,,7808.0,,True,
 7258,鲄,hé,gě,,,,,,,,魚,195.5,13,,,魺,False,魺
 7259,龜,guī,jūn|qiū,,,,,,,turtle or tortoise; cuckold,龜,213.0,17,,,,True,
@@ -7470,7 +7470,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7469,菉,lù,,,,,,,,the green bamboo; greenish bamboo,艸,140.8,11,,7133.0,,True,
 7470,袚,bō,,,,,,,,greave; knee-pads; buskins,衣,145.5,10,,,,True,
 7471,褋,dié,,,,,,,,,衣,145.9,14,,,,True,
-7472,贠,yuán,,,,,,,,"member; personnel, staff member",貝,154.2,6,,,貟,False,貟
+7472,贠,yuán,yún|yùn,,,,,,,"member; personnel, staff member",貝,154.2,6,,,貟,False,貟
 7473,跡,jī,,,,,,,,"search, track, trace",足,157.6,13,,,,True,
 7474,踦,yǐ,,,,,,,,the shin; to pierce; to touch,足,157.8,15,,7770.0,,True,
 7475,遯,dùn,,,,,,,,"deceive, hide, conceal; flee",辵,162.11,14,,,,True,
@@ -7515,7 +7515,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7514,財,cái,,,,,,,,"wealth, valuables, riches",貝,154.3,10,,,,True,
 7515,贏,yíng,,,,,,,,"win; surplus, gain, profit",貝,154.13,20,,,,True,
 7516,軅,yan,,,,,,,,,身,158.12,19,,,,True,
-7517,軓,fàn,,,,,,,,,車,159.3,10,,,,True,
+7517,軓,fàn,guǐ,,,,,,,,車,159.3,10,,,,True,
 7518,釙,pò,,,,,,,,polonium,金,167.2,10,,,,True,
 7519,鉄,zhí,,,,,,,,"iron; strong, solid, firm",金,167.5,13,,,,True,
 7520,錆,qiāng,,,,,,,,the color of a mineral,金,167.8,16,,,,True,
@@ -7569,7 +7569,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7568,踡,quán,,,,,,,,"curled, coiled",足,157.8,15,,,,True,
 7569,揞,ǎn,,,,,,,,to cover (with the hand),手,64.9,12,,,,True,
 7570,遝,tà,,,,,,,,"mixed, abundant, assorted",辵,162.1,13,,,,True,
-7571,酂,cuó,,,,,,,,collect; small administration,邑,163.16,18,,8005.0,酇,False,酇
+7571,酂,cuó,zàn,,,,,,,collect; small administration,邑,163.16,18,,8005.0,酇,False,酇
 7572,酇,zàn,,,,,,,,collect; small administration,邑,163.19,21,,,,True,
 7573,醜,chǒu,,,,,,,,"ugly looking, homely; disgraceful",酉,164.1,16,,,,True,
 7574,檑,léi,,,,,,,,,木,75.13,17,,7925.0,,True,
@@ -7619,13 +7619,13 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7618,覗,sì,,,,,,,,peek,見,147.5,12,,,,True,
 7619,詩,shī,,,,,,,,"poetry; poem, verse, ode",言,149.6,13,,,,True,
 7620,諥,zhòng,,,,,,,,,言,149.9,16,,,,True,
-7621,跂,qí,,,,,,,,"creeping, crawling",足,157.4,11,,7163.0,,True,
+7621,跂,qí,qǐ,,,,,,,"creeping, crawling",足,157.4,11,,7163.0,,True,
 7622,辵,chuò,,,,,,,,walk; walking; KangXi radical 162,辵,162.0,7,,,,True,
 7623,邅,zhān,,,,,,,,"hesitant, faltering",辵,162.13,16,,,,True,
 7624,醨,lí,,,,,,,,dregs of wine,酉,164.11,17,,7928.0,,True,
 7625,頍,kuǐ,,,,,,,,,頁,181.4,13,,,,True,
 7626,疰,zhù,,,,,,,,,疒,104.5,10,,7042.0,,True,
-7627,觜,zī,,,,,,,,beak,角,148.6,13,,7515.0,,True,
+7627,觜,zī,zuǐ,,,,,,,beak,角,148.6,13,,7515.0,,True,
 7628,鴿,gē,,,,,,,,"pigeon, dove; Columba species (various)",鳥,196.6,17,,,,True,
 7629,笭,líng,,,,,,,,bamboo screen,竹,118.5,11,,,,True,
 7630,糷,làn,,,,,,,,,米,119.21,26,,,,True,
@@ -7771,8 +7771,8 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7770,帱,chóu,,,,,,,,cover up; curtain,巾,50.7,10,,6996.0,幬,False,幬
 7771,鈇,fū,,,,,,,,an ax; a hatchet,金,167.4,12,,,,True,
 7772,缲,qiāo,,,,,,,,to reel,糸,120.13,16,,6193.0,繰,False,繰
-7773,雚,guàn,,,,,,,,a heron; small cup,隹,172.1,17,,,,True,
-7774,雟,xī,,,,,,,,sparrow; revolve; place name,隹,172.1,18,,,,True,
+7773,雚,guàn,huán,,,,,,,a heron; small cup,隹,172.1,17,,,,True,
+7774,雟,xī,guī,,,,,,,sparrow; revolve; place name,隹,172.1,18,,,,True,
 7775,韺,yīng,,,,,,,,music,音,180.9,17,,,,True,
 7776,頵,yūn,,,,,,,,(Cant.),頁,181.7,16,,,,True,
 7777,顝,kuī,,,,,,,,,頁,181.1,18,,,,True,
@@ -7825,13 +7825,13 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7824,跅,tuò,,,,,,,,"careless, lax; dissolute",足,157.5,12,,,,True,
 7825,踆,cūn,,,,,,,,squat,足,157.7,14,,,,True,
 7826,蹔,zàn,,,,,,,,temporary; fleeting; ephemeral,足,157.11,18,,,,True,
-7827,軐,xìn,,,,,,,,,車,159.3,10,,,,True,
+7827,軐,xìn,xiàn,,,,,,,,車,159.3,10,,,,True,
 7828,轪,dài,,,,,,,,,車,159.3,7,,6585.0,軑,False,軑
 7829,鄤,màn,,,,,,,,place in Henan province,邑,163.11,13,,,,True,
 7830,醰,tán,,,,,,,,bitter taste in wine; rich; full flavoured,酉,164.12,19,,,,True,
 7831,鑟,dú,,,,,,,,,金,167.15,23,,,,True,
-7832,铔,yà,,,,,,,,soft steel; ammonium,金,167.8,11,,,錏,False,錏
-7833,閛,pēng,,,,,,,,,門,169.5,13,,,,True,
+7832,铔,yà,yā,,,,,,,soft steel; ammonium,金,167.8,11,,,錏,False,錏
+7833,閛,pēng,pèng,,,,,,,,門,169.5,13,,,,True,
 7834,陙,chún,,,,,,,,,阜,170.7,9,,,,True,
 7835,霳,lóng,,,,,,,,,雨,173.12,19,,,,True,
 7836,顑,kǎn,,,,,,,,yellow,頁,181.9,18,,,,True,
@@ -7953,7 +7953,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7952,茊,zī,,,,,,,,,艸,140.5,8,,,,True,
 7953,菫,jǐn,,,,,,,,"celery, aconite",艸,140.8,11,,,,True,
 7954,蓞,dàn,,,,,,,,,艸,140.1,16,,,,True,
-7955,酦,fā,,,,,,,,"fermentation, brewing",酉,164.6,12,,7336.0,醱,False,醱
+7955,酦,fā,pō,,,,,,,"fermentation, brewing",酉,164.6,12,,7336.0,醱,False,醱
 7956,醾,mí,,,,,,,,,酉,164.17,24,,8102.0,,True,
 7957,锳,yīng,,,,,,,,,金,167.8,13,,7531.0,鍈,False,鍈
 7958,钶,ē,,,,,,,,columbium,金,167.5,10,,,鈳,False,鈳
@@ -7976,7 +7976,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7975,藗,sù,,,,,,,,,艸,140.15,17,,,,True,
 7976,藧,huàn,,,,,,,,,艸,140.15,18,,,,True,
 7977,袵,rèn,,,,,,,,lapel; hidden lapel of coat,衣,145.6,11,,,,True,
-7978,裯,chóu,,,,,,,,coverlet; bedspread,衣,145.8,13,,,,True,
+7978,裯,chóu,dāo,,,,,,,coverlet; bedspread,衣,145.8,13,,,,True,
 7979,褵,lí,,,,,,,,bridal veil,衣,145.11,15,,,,True,
 7980,襆,fú,,,,,,,,hood or cowl,衣,145.12,17,,,,True,
 7981,詤,huǎng,,,,,,,,to make wild statements to lie; to misstate; lies falsehood,言,149.6,13,,,,True,
@@ -8049,11 +8049,11 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8048,蜑,dàn,,,,,,,,egg,虫,142.7,12,,,,True,
 8049,衂,niù,,,,,,,,to be defeated,血,143.3,9,,,,True,
 8050,衋,xì,,,,,,,,,血,143.18,24,,,,True,
-8051,袿,guī,,,,,,,,gown,衣,145.6,11,,,,True,
+8051,袿,guī,guà,,,,,,,gown,衣,145.6,11,,,,True,
 8052,訕,shàn,,,,,,,,"abuse, slander; vilify; ridicule",言,149.3,10,,,,True,
 8053,訝,yà,,,,,,,,"express surprise, be surprised",言,149.4,11,,,,True,
 8054,詠,yǒng,,,,,,,,"sing, hum, chant",言,149.5,12,,,,True,
-8055,誳,qū,,,,,,,,,言,149.8,15,,,,True,
+8055,誳,qū,juè,,,,,,,,言,149.8,15,,,,True,
 8056,諆,qī,,,,,,,,to cheat,言,149.8,15,,,,True,
 8057,讱,rèn,,,,,,,,"hesitate to say, reluctant to speak",言,149.3,5,,6521.0,訒,False,訒
 8058,軃,duǒ,,,,,,,,,身,158.12,19,,,,True,
@@ -8082,7 +8082,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8081,翯,hè,,,,,,,,glistening plumage; reflection of the sun on water,羽,124.1,16,,7915.0,,True,
 8082,莚,yán,,,,,,,,"bamboo mat; feast, banquet",艸,140.7,9,,,,True,
 8083,萗,cè,,,,,,,,,艸,140.8,11,,,,True,
-8084,転,zhuǎn,,,,,,,,"shift, move, turn",車,159.4,11,,,,True,
+8084,転,zhuǎn,zhuàn,,,,,,,"shift, move, turn",車,159.4,11,,,,True,
 8085,鄷,fēng,,,,,,,,,邑,163.13,15,,,,True,
 8086,靭,rèn,,,,,,,,"strong and pliable, resilient",革,177.3,12,,,,True,
 8087,馉,gǔ,,,,,,,,,食,184.1,12,,7411.0,餶,False,餶
@@ -8150,9 +8150,9 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8149,螚,nài,,,,,,,,,虫,142.1,16,,,,True,
 8150,螤,zhōng,,,,,,,,,虫,142.1,16,,,,True,
 8151,袇,rán,,,,,,,,,衣,145.4,9,,,,True,
-8152,袌,bào,,,,,,,,,衣,145.5,11,,,,True,
-8153,袔,hè,,,,,,,,,衣,145.5,10,,,,True,
-8154,袦,nà,,,,,,,,,衣,145.5,10,,,,True,
+8152,袌,bào,páo|pào,,,,,,,,衣,145.5,11,,,,True,
+8153,袔,hè,kè,,,,,,,,衣,145.5,10,,,,True,
+8154,袦,nà,jué,,,,,,,,衣,145.5,10,,,,True,
 8155,袨,xuàn,,,,,,,,,衣,145.5,10,,,,True,
 8156,覂,fěng,,,,,,,,to throw a rider,襾,146.5,10,,,,True,
 8157,訃,fù,,,,,,,,obituary; give notice of death,言,149.2,9,,,,True,
@@ -8273,7 +8273,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8272,蒃,zhuàn,,,,,,,,,艸,140.9,12,,,,True,
 8273,虗,xū,,,,,,,,,虍,141.5,11,,,,True,
 8274,蜌,bì,,,,,,,,,虫,142.7,13,,,,True,
-8275,跘,pán,,,,,,,,,足,157.5,12,,,,True,
+8275,跘,pán,bàn,,,,,,,,足,157.5,12,,,,True,
 8276,鞦,qiū,,,,,,,,leather stap; swing,革,177.9,18,,,,True,
 8277,驄,cōng,,,,,,,,horse with a bluish white color,馬,187.11,21,,,,True,
 8278,鷭,fán,,,,,,,,,鳥,196.12,23,,,,True,
@@ -8302,7 +8302,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8301,搌,zhǎn,,,,,,,,to wipe tears; to bind,手,64.1,13,,7483.0,,True,
 8302,擗,pǐ,,,,,,,,to beat the breast,手,64.13,16,,,,True,
 8303,哳,zhā,,,,,,,,,口,30.7,10,,6986.0,,True,
-8304,鋻,jiàn,,,,,,,,,金,167.8,16,,,,True,
+8304,鋻,jiàn,jiān,,,,,,,,金,167.8,16,,,,True,
 8305,楗,jiàn,,,,,,,,"bar of door, bolt of lock",木,75.9,12,,7333.0,,True,
 8306,韂,chàn,,,,,,,,a saddle-flap. trappings,革,177.13,22,,8088.0,,True,
 8307,飆,biāo,,,,,,,,"whirlwind, stormy gale",風,182.12,21,,,,True,
@@ -8348,14 +8348,14 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8347,衼,zhī,,,,,,,,,衣,145.4,9,,,,True,
 8348,褦,nài,,,,,,,,"stupid, dull, ignorant, doltish; (Cant.) to tie up, bind",衣,145.1,15,,,,True,
 8349,襶,dài,,,,,,,,ignorant; naive; unsophisticated,衣,145.18,22,,,,True,
-8350,覐,jué,,,,,,,,"to sleep; to realize, feel",見,147.4,11,,,,True,
+8350,覐,jué,jiào,,,,,,,"to sleep; to realize, feel",見,147.4,11,,,,True,
 8351,詯,huì,,,,,,,,,言,149.6,13,,,,True,
 8352,誴,cóng,,,,,,,,,言,149.8,15,,,,True,
 8353,諓,jiàn,,,,,,,,flattering,言,149.8,15,,,,True,
 8354,謧,lí,,,,,,,,,言,149.11,17,,,,True,
 8355,謪,shāng,,,,,,,,to consult; to deliberate; commerce,言,149.11,18,,,,True,
 8356,譁,huá,,,,,,,,"noise, uproar; clamor, hubbub",言,149.12,17,,,,True,
-8357,貤,yí,,,,,,,,"steps, grade, strata; series",貝,154.3,10,,,,True,
+8357,貤,yí,yì,,,,,,,"steps, grade, strata; series",貝,154.3,10,,,,True,
 8358,赪,chēng,,,,,,,,deep red,赤,155.6,13,,7479.0,赬,False,赬
 8359,踖,jí,,,,,,,,"trample on, tread on",足,157.8,15,,,,True,
 8360,軆,tǐ,,,,,,,,"body; group, class, body, unit",身,158.13,20,,,,True,
@@ -8365,7 +8365,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8364,醖,yùn,,,,,,,,liquor,酉,164.9,16,,,醞,False,醞
 8365,屺,qǐ,,,,,,,,a hill with trees or grass-- some give the opposite meaning,山,46.3,6,,3594.0,,True,
 8366,鍑,fù,,,,,,,,,金,167.9,17,,,,True,
-8367,鏉,shòu,,,,,,,,,金,167.11,19,,,,True,
+8367,鏉,shòu,sōu,,,,,,,,金,167.11,19,,,,True,
 8368,雊,gòu,,,,,,,,the crow of a male pheasant,隹,172.5,13,,7564.0,,True,
 8369,顓,zhuān,,,,,,,,"good, honest; simple; respectful",頁,181.9,18,,,,True,
 8370,飐,zhǎn,,,,,,,,sway in wind,風,182.5,9,,6872.0,颭,False,颭
@@ -8396,7 +8396,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8395,聺,qié,,,,,,,,,耳,128.14,20,,,,True,
 8396,褹,yì,,,,,,,,,衣,145.11,16,,,,True,
 8397,訟,sòng,,,,,,,,"accuse; argue, dispute; litigate",言,149.4,11,,,,True,
-8398,鏕,lù,,,,,,,,,金,167.11,19,,,,True,
+8398,鏕,lù,áo,,,,,,,,金,167.11,19,,,,True,
 8399,齆,wèng,,,,,,,,stuffed nose,鼻,209.1,24,,,,True,
 8400,盫,ān,,,,,,,,,皿,108.13,18,,,,True,
 8401,矎,xuān,,,,,,,,,目,109.15,19,,,,True,
@@ -8477,7 +8477,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8476,褎,xiù,,,,,,,,sleeve; ample flowing robes,衣,145.9,14,,,,True,
 8477,襫,shì,,,,,,,,raincoat,衣,145.15,20,,8070.0,,True,
 8478,覈,hé,,,,,,,,"investigate, consider, examine",襾,146.13,19,,,,True,
-8479,觭,jī,,,,,,,,one turning up and one turning down,角,148.8,15,,7804.0,,True,
+8479,觭,jī,qí,,,,,,,one turning up and one turning down,角,148.8,15,,7804.0,,True,
 8480,訆,jiào,,,,,,,,,言,149.2,9,,,,True,
 8481,訏,xū,,,,,,,,"boast, exaggerate; great, broad",言,149.3,10,,,,True,
 8482,訽,gòu,,,,,,,,blame,言,149.5,12,,,,True,
@@ -8487,7 +8487,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8486,貑,jiā,,,,,,,,,豸,153.9,16,,,,True,
 8487,跱,zhì,,,,,,,,stop,足,157.6,13,,7522.0,,True,
 8488,坶,mǔ,,,,,,,,,土,32.5,8,,,,True,
-8489,躘,lóng,,,,,,,,to walk,足,157.16,23,,,,True,
+8489,躘,lóng,lǒng,,,,,,,to walk,足,157.16,23,,,,True,
 8490,輖,zhōu,,,,,,,,,車,159.8,15,,,,True,
 8491,轇,jiāo,,,,,,,,"complicated, confused; dispute",車,159.11,18,,,,True,
 8492,轋,hún,,,,,,,,,車,159.11,17,,,,True,
@@ -8571,9 +8571,9 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8570,誡,jiè,,,,,,,,"warn, admonish; warning",言,149.7,14,,,,True,
 8571,貎,ní,,,,,,,,lion; wild beast; wild horse,豸,153.8,15,,,,True,
 8572,賄,huì,,,,,,,,"bribe; bribes; riches, wealth",貝,154.6,13,,,,True,
-8573,跰,pián,,,,,,,,,足,157.6,13,,,,True,
+8573,跰,pián,bèng,,,,,,,,足,157.6,13,,,,True,
 8574,踥,qiè,,,,,,,,,足,157.8,15,,,,True,
-8575,迆,yí,,,,,,,,wind; walk out of straight path,辵,162.3,6,,,,True,
+8575,迆,yí,yǐ,,,,,,,wind; walk out of straight path,辵,162.3,6,,,,True,
 8576,逕,jìng,,,,,,,,"pass by, approach; direct",辵,162.7,10,,,,True,
 8577,逤,suò,,,,,,,,,辵,162.7,10,,,,True,
 8578,鏢,biāo,,,,,,,,"dart, spear, harpoon; escort",金,167.11,19,,,,True,
@@ -8589,7 +8589,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8588,缷,xiè,,,,,,,,lay down; retire from office,缶,121.2,8,,,,True,
 8589,虙,fú,,,,,,,,,虍,141.5,11,,,,True,
 8590,齗,yín,,,,,,,,gums (of the teeth); to dispute,齒,211.4,19,,,,True,
-8591,裓,gé,,,,,,,,,衣,145.7,12,,,,True,
+8591,裓,gé,jiē,,,,,,,,衣,145.7,12,,,,True,
 8592,铹,láo,,,,,,,,lawrencium (Lr),金,167.7,12,,7374.0,鐒,False,鐒
 8593,睙,liè,,,,,,,,,目,109.8,13,,,,True,
 8594,矟,shuò,,,,,,,,lance,矛,110.7,12,,,,True,
@@ -8669,8 +8669,8 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8668,贂,chěn,,,,,,,,,貝,154.11,18,,,,True,
 8669,贉,dàn,,,,,,,,earnest money; silk label on books,貝,154.12,19,,,,True,
 8670,趤,dàng,,,,,,,,,走,156.8,15,,,,True,
-8671,趯,tì,,,,,,,,jump,走,156.14,21,,8078.0,,True,
-8672,趶,kù,,,,,,,,,足,157.3,10,,,,True,
+8671,趯,tì,yuè,,,,,,,jump,走,156.14,21,,8078.0,,True,
+8672,趶,kù,kuà|wù,,,,,,,,足,157.3,10,,,,True,
 8673,跔,jū,,,,,,,,numb feet; to limp,足,157.5,12,,,,True,
 8674,踴,yǒng,,,,,,,,"leap, jump",足,157.9,16,,,,True,
 8675,蹆,tuǐ,,,,,,,,(Cant.) to move in a straight line,足,157.1,16,,,,True,
@@ -8688,7 +8688,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8687,鈴,líng,,,,,,,,bell,金,167.5,13,,,,True,
 8688,鈺,yù,,,,,,,,rare treasure,金,167.5,13,,,,True,
 8689,鉂,shǐ,,,,,,,,,金,167.5,13,,,,True,
-8690,銊,xù,,,,,,,,,金,167.6,14,,,,True,
+8690,銊,xù,huì,,,,,,,,金,167.6,14,,,,True,
 8691,銘,míng,,,,,,,,"inscribe, engrave; unforgettably",金,167.6,14,,,,True,
 8692,鋤,chú,,,,,,,,hoe; eradicate,金,167.7,15,,,,True,
 8693,鋭,ruì,,,,,,,,sharp,金,167.7,15,,,,True,
@@ -8718,7 +8718,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8717,頒,bān,,,,,,,,"confer, bestow; publish, promulgate",頁,181.4,13,,,,True,
 8718,頤,yí,,,,,,,,cheeks; jaw; chin; rear; to nourish,頁,181.7,16,,,,True,
 8719,顛,diān,,,,,,,,"top, peak, summit; upset",頁,181.1,19,,,,True,
-8720,飳,tǒu,,,,,,,,,食,184.5,13,,,,True,
+8720,飳,tǒu,zhù,,,,,,,,食,184.5,13,,,,True,
 8721,飸,tāo,,,,,,,,,食,184.5,14,,,,True,
 8722,餆,yáo,,,,,,,,,食,184.6,14,,,,True,
 8723,館,guǎn,,,,,,,,public building,食,184.8,16,,,,True,
@@ -8761,12 +8761,12 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8760,蠥,niè,,,,,,,,,虫,142.16,22,,,,True,
 8761,軷,bá,,,,,,,,sacrifice,車,159.5,12,,,,True,
 8762,鄮,mào,,,,,,,,,邑,163.12,14,,,,True,
-8763,釱,dì,,,,,,,,fetters; to fetter,金,167.3,11,,,,True,
+8763,釱,dì,dài,,,,,,,fetters; to fetter,金,167.3,11,,,,True,
 8764,銦,yīn,,,,,,,,indium,金,167.6,14,,,,True,
 8765,錣,zhuì,,,,,,,,armor neckplates,金,167.8,16,,,,True,
 8766,鑢,lǜ,,,,,,,,"file, rasp; file; polish; (Cant.) to cut",金,167.15,23,,,,True,
-8767,钑,jí,,,,,,,,spear,金,167.3,8,,,鈒,False,鈒
-8768,饟,xiǎng,,,,,,,,rations and pay for soldiers; dried rice,食,184.17,25,,,,True,
+8767,钑,jí,sà|xì,,,,,,,spear,金,167.3,8,,,鈒,False,鈒
+8768,饟,xiǎng,náng,,,,,,,rations and pay for soldiers; dried rice,食,184.17,25,,,,True,
 8769,鯅,shān,,,,,,,,,魚,195.7,17,,,,True,
 8770,鼊,bì,,,,,,,,,黽,205.13,26,,,,True,
 8771,䴖,jīng,,,,,,,,a kind of water bird,,,19,,7465.0,鶄,False,鶄
@@ -8798,7 +8798,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8797,詒,yí,,,,,,,,"bequeath, pass on to future generations",言,149.5,12,,,,True,
 8798,鉔,zā,,,,,,,,,金,167.5,13,,,,True,
 8799,鏱,zhang,,,,,,,,,金,167.11,19,,,,True,
-8800,隺,hú,,,,,,,,a bird flying high ambition,隹,172.2,10,,7081.0,,True,
+8800,隺,hú,hè,,,,,,,a bird flying high ambition,隹,172.2,10,,7081.0,,True,
 8801,饜,yàn,,,,,,,,,食,184.14,23,,,,True,
 8802,荘,zhuāng,,,,,,,,"village, hamlet; villa; surname",艸,140.6,9,,,,True,
 8803,蒻,ruò,,,,,,,,rushes,艸,140.1,13,,7490.0,,True,
@@ -8934,9 +8934,9 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8933,巛,chuān,,,,,,,,river; KangXi radical 47,巛,47.0,3,,,,True,
 8934,鐴,bì,,,,,,,,,金,167.13,21,,,,True,
 8935,鑵,guàn,,,,,,,,jar; can,金,167.18,25,,,,True,
-8936,隩,ào,,,,,,,,"profound, subtle; warm",阜,170.13,14,,7741.0,,True,
+8936,隩,ào,yù,,,,,,,"profound, subtle; warm",阜,170.13,14,,7741.0,,True,
 8937,颺,yáng,,,,,,,,"soar, fly, float; scatter",風,182.9,18,,,,True,
-8938,飮,yǐn,,,,,,,,drink; swallow; kind of drink,食,184.4,13,,,,True,
+8938,飮,yǐn,yìn,,,,,,,drink; swallow; kind of drink,食,184.4,13,,,,True,
 8939,飰,fàn,,,,,,,,,食,184.4,12,,,,True,
 8940,餇,tóng,,,,,,,,food,食,184.6,14,,,,True,
 8941,饐,yì,,,,,,,,"spoiled, rotten, sour",食,184.12,20,,,,True,
@@ -8991,15 +8991,15 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 8990,讌,yàn,,,,,,,,"a feast, banquet; to entertain, feast",言,149.16,23,,,,True,
 8991,豗,huī,,,,,,,,clamour,豕,152.3,10,,,,True,
 8992,豷,yì,,,,,,,,,豕,152.12,19,,,,True,
-8993,貗,jù,,,,,,,,,豸,153.11,18,,,,True,
+8993,貗,jù,lóu,,,,,,,,豸,153.11,18,,,,True,
 8994,貣,tè,,,,,,,,,貝,154.3,10,,,,True,
-8995,賯,xiōng,,,,,,,,,貝,154.9,16,,,,True,
+8995,賯,xiōng,mín,,,,,,,,貝,154.9,16,,,,True,
 8996,贋,yàn,,,,,,,,false; counterfeit; bogus; sham,貝,154.12,19,,,,True,
 8997,冱,hù,,,,,,,,"freezing; stopped up, closed off",冫,15.4,6,,6544.0,,True,
 8998,輀,ér,,,,,,,,hearse,車,159.6,13,,,,True,
 8999,蒈,kǎi,,,,,,,,an organic compound,艸,140.9,12,,7308.0,,True,
 9000,轓,fān,,,,,,,,,車,159.12,19,,,,True,
-9001,迋,wàng,,,,,,,,"travel, go to; deceive; scare",辵,162.4,7,,,,True,
+9001,迋,wàng,kuāng,,,,,,,"travel, go to; deceive; scare",辵,162.4,7,,,,True,
 9002,逓,dì,,,,,,,,"hand over, deliver; substitute",辵,162.7,10,,,,True,
 9003,鄺,kuàng,,,,,,,,surname,邑,163.15,16,,,,True,
 9004,酳,yìn,,,,,,,,,酉,164.7,14,,,,True,
@@ -9145,7 +9145,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9144,讜,dǎng,,,,,,,,"counsel, advice; speak out",言,149.2,27,,,,True,
 9145,趝,jiàn,,,,,,,,to pursue; to follow up,走,156.8,15,,,,True,
 9146,趡,cuǐ,,,,,,,,place,走,156.8,15,,,,True,
-9147,跾,shū,,,,,,,,,足,157.7,14,,,,True,
+9147,跾,shū,chōu,,,,,,,,足,157.7,14,,,,True,
 9148,踀,chù,,,,,,,,,足,157.7,14,,,,True,
 9149,踸,chěn,,,,,,,,,足,157.9,16,,,,True,
 9150,蹡,qiāng,,,,,,,,to limp; walking; in motion,足,157.11,18,,,,True,
@@ -9161,14 +9161,14 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9160,轥,lìn,,,,,,,,,車,159.2,26,,,,True,
 9161,逷,tì,,,,,,,,"distant, far away",辵,162.8,11,,,,True,
 9162,遈,shí,,,,,,,,,辵,162.9,12,,,,True,
-9163,邌,lí,,,,,,,,to walk slowly; to parade,辵,162.15,18,,,,True,
+9163,邌,lí,chí,,,,,,,to walk slowly; to parade,辵,162.15,18,,,,True,
 9164,鄟,zhuān,,,,,,,,,邑,163.11,13,,,,True,
 9165,醎,xián,,,,,,,,,酉,164.9,16,,,,True,
 9166,釭,gāng,,,,,,,,tire of wheel; band,金,167.3,11,,,,True,
 9167,鈸,bó,,,,,,,,cymbals,金,167.5,13,,,,True,
 9168,怊,chāo,,,,,,,,,心,61.5,8,,6725.0,,True,
 9169,銌,zùn,,,,,,,,,金,167.6,14,,,,True,
-9170,鋂,méi,,,,,,,,bit cup,金,167.7,15,,,,True,
+9170,鋂,méi,méng,,,,,,,bit cup,金,167.7,15,,,,True,
 9171,鋎,hàn,,,,,,,,,金,167.7,15,,,,True,
 9172,鍐,zōng,,,,,,,,"a headstall, ornament on a bride",金,167.9,17,,,,True,
 9173,鎴,xí,,,,,,,,,金,167.1,18,,,,True,
@@ -9180,7 +9180,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9179,霣,yǔn,,,,,,,,fall,雨,173.1,18,,,,True,
 9180,靃,huò,,,,,,,,,雨,173.16,24,,,,True,
 9181,韍,fú,,,,,,,,a leather knee-pad worn during sacrifices,韋,178.5,14,,,,True,
-9182,颩,biāo,,,,,,,,,風,182.3,12,,,,True,
+9182,颩,biāo,diū,,,,,,,,風,182.3,12,,,,True,
 9183,飦,zhān,,,,,,,,"well-boiled congee or gruel; thick, rich",食,184.3,11,,,,True,
 9184,餔,bù,,,,,,,,eat; dinner time; sunset,食,184.7,15,,,,True,
 9185,駋,zhāo,,,,,,,,,馬,187.5,15,,,,True,
@@ -9268,7 +9268,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9267,蠚,hē,,,,,,,,,虫,142.15,20,,,,True,
 9268,袽,rú,,,,,,,,clothes,衣,145.6,11,,,,True,
 9269,裶,fēi,,,,,,,,,衣,145.8,13,,,,True,
-9270,裺,yǎn,,,,,,,,,衣,145.8,13,,,,True,
+9270,裺,yǎn,ān,,,,,,,,衣,145.8,13,,,,True,
 9271,褣,róng,,,,,,,,,衣,145.1,15,,,,True,
 9272,褸,lǚ,,,,,,,,"lapel, collar; tattered, threadbare",衣,145.11,16,,,,True,
 9273,詅,líng,,,,,,,,to sell,言,149.5,12,,,,True,
@@ -9296,16 +9296,16 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9295,醁,lù,,,,,,,,a kind of green-colored wine,酉,164.8,15,,,,True,
 9296,醕,chún,,,,,,,,,酉,164.9,16,,,,True,
 9297,醥,piǎo,,,,,,,,,酉,164.11,18,,,,True,
-9298,釪,huá,,,,,,,,an alms bowl; a small bell,金,167.3,11,,,,True,
+9298,釪,huá,yú,,,,,,,an alms bowl; a small bell,金,167.3,11,,,,True,
 9299,鈵,bǐng,,,,,,,,,金,167.5,13,,,,True,
 9300,銒,xíng,,,,,,,,,金,167.6,14,,,,True,
 9301,銙,kuǎ,,,,,,,,,金,167.6,14,,,,True,
-9302,鋺,yuǎn,,,,,,,,a metal bowl,金,167.8,16,,,,True,
+9302,鋺,yuǎn,yuān|wǎn|wān,,,,,,,a metal bowl,金,167.8,16,,,,True,
 9303,錗,nèi,,,,,,,,,金,167.8,16,,,,True,
 9304,錥,yù,,,,,,,,,金,167.8,16,,,,True,
 9305,鍓,jí,,,,,,,,,金,167.9,17,,,,True,
 9306,鍟,xīng,,,,,,,,(Cant.) rust,金,167.9,17,,,,True,
-9307,鎍,suǒ,,,,,,,,chain; wire,金,167.1,18,,,,True,
+9307,鎍,suǒ,sè,,,,,,,chain; wire,金,167.1,18,,,,True,
 9308,鎘,lì,,,,,,,,cadmium,金,167.1,18,,,,True,
 9309,鏿,chēng,,,,,,,,,金,167.12,20,,,,True,
 9310,鐎,jiāo,,,,,,,,,金,167.12,20,,,,True,
@@ -9313,14 +9313,14 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9312,鐿,yì,,,,,,,,ytterbium,金,167.13,21,,,,True,
 9313,鑊,huò,,,,,,,,"cauldron, large iron pot; a wok",金,167.14,21,,,,True,
 9314,锧,zhì,,,,,,,,"tungsten, wolfram",金,167.15,13,,7532.0,鑕,False,鑕
-9315,閧,hòng,,,,,,,,"boisterous; clamor, noise",門,169.6,14,,,,True,
-9316,闛,táng,,,,,,,,,門,169.11,19,,,,True,
+9315,閧,hòng,xiàng,,,,,,,"boisterous; clamor, noise",門,169.6,14,,,,True,
+9316,闛,táng,tāng|chāng,,,,,,,,門,169.11,19,,,,True,
 9317,隝,dǎo,,,,,,,,"dock, entrenchment, low wall",阜,170.11,13,,,,True,
 9318,隥,dèng,,,,,,,,,阜,170.12,14,,,,True,
 9319,隦,jiǎo,,,,,,,,,阜,170.13,15,,,,True,
 9320,靄,ǎi,,,,,,,,"cloudy sky, haze; calm, peaceful",雨,173.16,24,,,,True,
 9321,靱,rèn,,,,,,,,"strong and pliable, resilient",革,177.3,12,,,,True,
-9322,鞪,mù,,,,,,,,,革,177.9,18,,,,True,
+9322,鞪,mù,móu,,,,,,,,革,177.9,18,,,,True,
 9323,鞺,tāng,,,,,,,,the sound of drums,革,177.11,20,,,,True,
 9324,鞿,jī,,,,,,,,,革,177.12,21,,,,True,
 9325,韟,gāo,,,,,,,,,韋,178.1,19,,,,True,
@@ -9369,7 +9369,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9368,葏,jīng,,,,,,,,,艸,140.9,12,,,,True,
 9369,蠅,yíng,,,,,,,,flies,虫,142.13,19,,,,True,
 9370,詛,zǔ,,,,,,,,"curse; swear, pledge",言,149.5,12,,,,True,
-9371,誽,nì,,,,,,,,,言,149.8,15,,,,True,
+9371,誽,nì,ná,,,,,,,,言,149.8,15,,,,True,
 9372,諂,chǎn,,,,,,,,"flatter, truckle, toady",言,149.8,15,,,,True,
 9373,賂,lù,,,,,,,,bribe; give present,貝,154.6,13,,,,True,
 9374,輧,píng,,,,,,,,curtained carriage used by women,車,159.8,15,,,,True,
@@ -9392,7 +9392,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9391,粧,zhuāng,,,,,,,,toilet; make-up; dress up; adorn,米,119.6,12,,,,True,
 9392,蕣,shùn,,,,,,,,hibiscus,艸,140.12,15,,,,True,
 9393,觓,qiú,,,,,,,,,角,148.2,9,,,,True,
-9394,趹,jué,,,,,,,,,足,157.4,11,,,,True,
+9394,趹,jué,guì,,,,,,,,足,157.4,11,,,,True,
 9395,鄍,míng,,,,,,,,a town in Shandong province,邑,163.1,12,,,,True,
 9396,鈡,zhōng,,,,,,,,,金,167.4,12,,,,True,
 9397,羭,yú,,,,,,,,good,羊,123.9,15,,,,True,
@@ -9529,12 +9529,12 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9528,蠗,zhuó,,,,,,,,,虫,142.14,20,,,,True,
 9529,蠝,léi,,,,,,,,,虫,142.15,21,,,,True,
 9530,蠟,là,,,,,,,,"wax; candle; waxy, glazed",虫,142.15,21,,,,True,
-9531,袘,yí,,,,,,,,,衣,145.5,10,,,,True,
+9531,袘,yí,yì,,,,,,,,衣,145.5,10,,,,True,
 9532,褜,pao,,,,,,,,,衣,145.9,15,,,,True,
 9533,褨,suǒ,,,,,,,,,衣,145.1,14,,,,True,
 9534,襾,yà,,,,,,,,cover; KangXi radical 146,襾,146.0,6,,,,True,
 9535,覊,jī,,,,,,,,"halter; restrain, hold, control",襾,146.19,25,,,,True,
-9536,覚,jué,,,,,,,,to wake up from sleep; conscious,見,147.5,12,,,,True,
+9536,覚,jué,jiào,,,,,,,to wake up from sleep; conscious,見,147.5,12,,,,True,
 9537,覛,mì,,,,,,,,,見,147.6,13,,,,True,
 9538,覟,zhì,,,,,,,,,見,147.7,14,,,,True,
 9539,覠,jūn,,,,,,,,,見,147.7,14,,,,True,
@@ -9569,8 +9569,8 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9568,贊,zàn,,,,,,,,"help, support, assist, aid",貝,154.12,19,,,,True,
 9569,贌,pu,,,,,,,,,貝,154.12,19,,,,True,
 9570,趪,huáng,,,,,,,,,走,156.12,18,,,,True,
-9571,跁,bà,,,,,,,,"trample on, tread on; search for; (Cant.) to squat down",足,157.4,11,,,,True,
-9572,跈,niǎn,,,,,,,,,足,157.5,12,,,,True,
+9571,跁,bà,páo,,,,,,,"trample on, tread on; search for; (Cant.) to squat down",足,157.4,11,,,,True,
+9572,跈,niǎn,jiàn|chén,,,,,,,,足,157.5,12,,,,True,
 9573,跒,qiǎ,,,,,,,,,足,157.5,12,,,,True,
 9574,蹖,chōng,,,,,,,,,足,157.11,18,,,,True,
 9575,軀,qū,,,,,,,,body,身,158.11,18,,,,True,
@@ -9591,7 +9591,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9590,醆,zhǎn,,,,,,,,wine cup; muddy wine,酉,164.8,15,,,,True,
 9591,醞,yùn,,,,,,,,"liquor, spirits, wine; ferment",酉,164.1,17,,,,True,
 9592,醽,líng,,,,,,,,kind of wine,酉,164.17,24,,,,True,
-9593,釥,qiǎo,,,,,,,,,金,167.3,11,,,,True,
+9593,釥,qiǎo,jiǎo,,,,,,,,金,167.3,11,,,,True,
 9594,鈂,chén,,,,,,,,,金,167.4,12,,,,True,
 9595,鈽,bū,,,,,,,,plutonium,金,167.5,13,,,,True,
 9596,鉍,bì,,,,,,,,bismuth,金,167.5,13,,,,True,
@@ -9601,7 +9601,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9600,鋇,bèi,,,,,,,,barium,金,167.7,15,,,,True,
 9601,鋒,fēng,,,,,,,,"point of spear, sharp point",金,167.7,15,,,,True,
 9602,鋰,lǐ,,,,,,,,lithium,金,167.7,15,,,,True,
-9603,鋷,zuì,,,,,,,,,金,167.8,16,,,,True,
+9603,鋷,zuì,niè,,,,,,,,金,167.8,16,,,,True,
 9604,錠,dìng,,,,,,,,"spindle, slab, cake, tablet",金,167.8,16,,,,True,
 9605,錦,jǐn,,,,,,,,"brocade, tapestry; embroidered",金,167.8,16,,,,True,
 9606,鎲,tǎng,,,,,,,,,金,167.1,18,,,,True,
@@ -9624,7 +9624,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9623,陻,yīn,,,,,,,,"small hill, mound; bury; dam",阜,170.9,11,,,,True,
 9624,霂,mù,,,,,,,,"fine rain, drizzle",雨,173.7,15,,,,True,
 9625,靵,niǔ,,,,,,,,,革,177.4,13,,,,True,
-9626,鞊,jié,,,,,,,,,革,177.6,15,,,,True,
+9626,鞊,jié,jí,,,,,,,,革,177.6,15,,,,True,
 9627,鞛,běng,,,,,,,,,革,177.8,17,,,,True,
 9628,韓,hán,,,,,,,,fence; surname; Korea,韋,178.8,17,,,,True,
 9629,韴,zá,,,,,,,,,音,180.4,13,,,,True,
@@ -9736,7 +9736,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9735,绗,háng,,,,,,,,baste,糸,120.6,9,,4396.0,絎,False,絎
 9736,鐷,yè,,,,,,,,,金,167.13,20,,,,True,
 9737,閽,hūn,,,,,,,,"gatekeeper; gate, door",門,169.8,16,,,,True,
-9738,闟,xì,,,,,,,,peacefully; quietly,門,169.12,20,,,,True,
+9738,闟,xì,sè|tà,,,,,,,peacefully; quietly,門,169.12,20,,,,True,
 9739,韮,jiǔ,,,,,,,,"scallion, leek",韭,179.4,12,,,,True,
 9740,騣,zōng,,,,,,,,mane,馬,187.9,19,,,,True,
 9741,髧,dàn,,,,,,,,"long hair; (Cant.) to hang down, droop",髟,190.4,14,,,,True,
@@ -9775,14 +9775,14 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9774,薭,bai,,,,,,,,,艸,140.14,16,,,,True,
 9775,虲,xiā,,,,,,,,,虫,142.2,8,,,,True,
 9776,蠩,zhū,,,,,,,,a toad,虫,142.16,21,,,,True,
-9777,覵,jiàn,,,,,,,,steal look; peep at; spy on,見,147.12,19,,,,True,
+9777,覵,jiàn,biǎn,,,,,,,steal look; peep at; spy on,見,147.12,19,,,,True,
 9778,註,zhù,,,,,,,,explain; annotate; make entry,言,149.5,12,,,,True,
 9779,詄,dié,,,,,,,,,言,149.5,12,,,,True,
 9780,譗,zhá,,,,,,,,,言,149.12,19,,,,True,
 9781,趰,ěr,,,,,,,,,走,156.14,21,,,,True,
 9782,軧,dǐ,,,,,,,,,車,159.5,12,,,,True,
 9783,岍,qiān,,,,,,,,,山,46.6,7,,6593.0,,True,
-9784,鉼,bǐng,,,,,,,,plate; (Cant.) a penny,金,167.8,14,,,,True,
+9784,鉼,bǐng,píng,,,,,,,plate; (Cant.) a penny,金,167.8,14,,,,True,
 9785,鋪,pù,,,,,,,,"spread out, arrange; shop, store; place to sleep, bed",金,167.7,15,,,,True,
 9786,鞻,lóu,,,,,,,,,革,177.11,20,,,,True,
 9787,颵,shāo,,,,,,,,,風,182.7,16,,,,True,
@@ -9800,8 +9800,8 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9799,竈,zào,,,,,,,,furnace; kitchen stove,穴,116.16,21,,,,True,
 9800,聶,niè,,,,,,,,whisper; surname,耳,128.12,18,,,,True,
 9801,蕒,mǎi,,,,,,,,a plant name,艸,140.12,15,,,,True,
-9802,説,shuō,,,,,,,,speak,言,149.7,14,,,,True,
-9803,趌,jí,,,,,,,,(Cant.) to order someone to leave,走,156.6,13,,,,True,
+9802,説,shuō,shuì|yuè,,,,,,,speak,言,149.7,14,,,,True,
+9803,趌,jí,jié,,,,,,,(Cant.) to order someone to leave,走,156.6,13,,,,True,
 9804,踄,bù,,,,,,,,,足,157.7,14,,,,True,
 9805,鑰,yào,,,,,,,,key; lock,金,167.17,25,,,,True,
 9806,隣,lín,,,,,,,,neighbor; neighboring; adjacent,阜,170.12,14,,,,True,
@@ -9842,7 +9842,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9841,螧,qi,,,,,,,,,虫,142.1,16,,,,True,
 9842,蟅,zhè,,,,,,,,,虫,142.11,17,,,,True,
 9843,蟢,xǐ,,,,,,,,caulk; a spider,虫,142.12,18,,,,True,
-9844,貒,tuān,,,,,,,,,豸,153.9,16,,,,True,
+9844,貒,tuān,tuàn,,,,,,,,豸,153.9,16,,,,True,
 9845,銫,sè,,,,,,,,cesium,金,167.6,14,,,,True,
 9846,関,guān,,,,,,,,frontier pass; close; relation,門,169.6,14,,,,True,
 9847,礤,cǎ,,,,,,,,,石,112.15,19,,,,True,
@@ -9881,7 +9881,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9880,躭,dān,,,,,,,,to delay; to loiter; to hinder,身,158.4,11,,,,True,
 9881,迍,zhūn,,,,,,,,"falter, hesitate",辵,162.4,7,,,,True,
 9882,釿,jīn,,,,,,,,,金,167.4,12,,,,True,
-9883,鏸,huì,,,,,,,,,金,167.12,20,,,,True,
+9883,鏸,huì,suì|ruì,,,,,,,,金,167.12,20,,,,True,
 9884,颻,yáo,,,,,,,,"floating in air, drifting with wind",風,182.1,19,,,,True,
 9885,餟,zhuì,,,,,,,,libation,食,184.8,16,,,,True,
 9886,餫,yùn,,,,,,,,dumpling; supply,食,184.9,17,,,,True,

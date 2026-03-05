@@ -110,34 +110,89 @@ python3 /Users/lastnamelo/wobushizi.com/scripts/convert_hanzidb_csv.py \
 
 ## File Map (Beginner-Friendly)
 
-Current project file categories (excluding `node_modules`, `.next`, `.git`):
+UI Pages (/Users/lastnamelo/wobushizi.com/app)
 
-- UI pages/routes (`/app`): 9
-  - Screen-level routes (`home`, `bank`, `master`, `about`, `contact`)
+  page.tsx: Home flow (paste text, load, log complete view).
+  page.tsx: Known Bank + Study Bank page.
+  page.tsx: Master List page.
+  page.tsx: About page.
+  page.tsx: Contact page.
+  layout.tsx: Shared app shell used on all pages.
+  globals.css: Global styles.
+  route.ts: Download/export endpoint for master list.
+  /Users/lastnamelo/wobushizi.com/app/.DS_Store: macOS metadata file (not app logic).
 
-- UI components (`/components`): 12
-  - Reusable visual blocks (table, logo, progress bar, modals, nav)
+UI Components (/Users/lastnamelo/wobushizi.com/components)
 
-- App logic/hooks/helpers (`/lib`): 17
-  - Data logic, parsing, local storage, Supabase bridge, shared hooks
+  AuthGate.tsx: Login popup / auth gate logic in UI.
+  BankQuickNav.tsx: Main toggle navigation (Home/Known/Study/Master).
+  CharacterDetailModal.tsx: Character popup card.
+  CharacterTable.tsx: Shared table used by banks/master (search/filter/sort/toggle).
+  HskMiniPies.tsx: HSK pie-chart summary.
+  Logo.tsx: Top logo.
+  Milestone500Modal.tsx, Milestone1000Modal.tsx, Milestone2500Modal.tsx: milestone popups.
+  ProgressBar.tsx: known-progress bar.
+  TextLoader.tsx: colored clickable characters in loaded text view.
+  TopRightTextNav.tsx: top-right links (About/Contact/Login).
 
-- Static assets/content (`/public`): 6
-  - Logo and starter passage `.txt` files
+App Logic / Data Helpers (/Users/lastnamelo/wobushizi.com/lib)
 
-- Dataset files (`/data`): 2
-  - Hanzi source/runtime datasets
+  localStore.ts: local persistence + read/write character states.
+  stateCanonical.ts: canonical mapping logic (trad/simp treated as one base char where needed).
+  hanzidb.ts: loads/queries your hanzi dataset.
+  pinyin.ts: pinyin normalization/tokenization for search.
+  cjk.ts: Chinese-character parsing helpers.
+  hskCounts.ts: HSK count aggregation.
+  hskStyles.ts: HSK color mapping.
+  types.ts: shared TypeScript types.
+  starterPassages.ts: starter passage cycle config.
+  useDeviceCapabilities.ts: one hook for hover/coarse-pointer/iPad behavior.
+  useMilestone500.ts: milestone trigger hooks (500/1000/2500).
+  useSupabaseAuth.ts: auth session/sign-in helpers.
+  supabaseClient.ts: Supabase client initialization.
+  db.ts: DB-related helper layer.
+  useHomePageState.ts: extracted state/actions for Home page.
+  useMasterPageState.ts: extracted state/actions for Master page.
+  lib/.DS_Store: macOS metadata.
 
-- SQL schema (`/sql`): 1
-  - Supabase schema and RLS setup
+Static Public Content (/Users/lastnamelo/wobushizi.com/public)
 
-- Utility scripts (`/scripts`): 1
-  - CSV/JSON conversion tooling
+  wobushizi-logo.png: logo image.
+  *.txt: editable starter passages users can auto-load.
+  .DS_Store files: macOS metadata.
 
-- CI workflow (`/.github/workflows`): 1
-  - GitHub Actions lint check
+Dataset Files (/Users/lastnamelo/wobushizi.com/data)
 
-- Root config/docs files: 18
-  - `package.json`, `tsconfig`, `tailwind`, `README`, `CHANGELOG`, etc.
+  hanzidb.json: main dataset used by the app.
+  hanzidb_enhanced.csv: editable/source-style dataset snapshot.
+
+Database Schema (/Users/lastnamelo/wobushizi.com/sql)
+  schema.sql: Supabase tables/RLS schema.
+
+Scripts (/Users/lastnamelo/wobushizi.com/scripts)
+
+  convert_hanzidb_csv.py: convert CSV data into app-usable JSON format.
+
+CI / Automation (/Users/lastnamelo/wobushizi.com/.github)
+
+  lint.yml: runs lint checks automatically on push/PR.
+
+Root Config + Docs (wobushizi.com)
+
+  package.json: project scripts + dependencies.
+  package-lock.json: exact dependency versions.
+  tsconfig.json: TypeScript settings.
+  tailwind.config.ts, postcss.config.js: styling/build config.
+  next.config.mjs, next-env.d.ts: Next.js config/types.
+  .eslintrc.json: lint rules.
+  .gitignore: files Git should ignore.
+  .env.example: template env vars.
+  .env.local: your local secrets/settings.
+  README.md: setup/use docs.
+  CHANGELOG.md: release history.
+  CNAME: custom domain for GitHub Pages style setup.
+  hanzidb.json (root): extra dataset copy (likely legacy/duplicate).
+  index.html, .gitkeep, .DS_Store: misc/metadata.
 
 ## Quality Checks
 
