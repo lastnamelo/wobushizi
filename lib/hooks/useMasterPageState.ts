@@ -28,16 +28,20 @@ export function useMasterPageState() {
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
     useMilestone2500(knownCount, !loading);
 
+  async function hydrateFromStore() {
+    const [states, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+    const map = new Map<string, CharacterStatus>();
+    for (const row of states) {
+      map.set(row.character, row.status);
+    }
+    setStateMap(map);
+    setKnownCount(count);
+  }
+
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [states, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
-      const map = new Map<string, CharacterStatus>();
-      for (const row of states) {
-        map.set(row.character, row.status);
-      }
-      setStateMap(map);
-      setKnownCount(count);
+      await hydrateFromStore();
       setLoading(false);
     })().catch((err: Error) => {
       setMessage(err.message);
@@ -93,23 +97,17 @@ export function useMasterPageState() {
 
       await new Promise((resolve) => setTimeout(resolve, 420));
 
-      setStateMap((prev) => {
-        const next = new Map(prev);
-        next.set(canonical, status);
-        return next;
-      });
+      await hydrateFromStore();
 
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
         next.delete(canonical);
         return next;
       });
-
-      const count = await fetchKnownCountLocal();
-      setKnownCount(count);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
+      await hydrateFromStore();
       setTransientStatusMap((prev) => {
         const next = new Map(prev);
         next.delete(canonical);
