@@ -331,7 +331,7 @@ export function CharacterTable({
                 return (
                   <tr
                     key={`${row.character}-${row.pinyin || ""}-${idx}`}
-                    className={`border-b border-stone-100 text-center align-middle transition-opacity duration-500 ease-out ${
+                    className={`border-b border-stone-100 text-center align-middle transition-opacity duration-200 ease-out ${
                       isPending ? "opacity-55" : "opacity-100"
                     }`}
                   >
