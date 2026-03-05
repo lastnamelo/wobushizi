@@ -14,7 +14,6 @@ import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
-  fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
@@ -68,11 +67,11 @@ export default function BankPage() {
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const allRows = await fetchAllCharacterStatesLocal();
       const knownRows = allRows.filter((row) => row.status === "known");
       const studyRows = allRows.filter((row) => row.status === "study");
       setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
-      setKnownCount(count);
+      setKnownCount(knownRows.length);
       setLoading(false);
     })().catch((err: Error) => {
       setMessage(err.message);
@@ -96,21 +95,21 @@ export default function BankPage() {
 
     try {
       await setCharacterStatusLocal(character, status);
-      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const allRows = await fetchAllCharacterStatesLocal();
       const knownRows = allRows.filter((row) => row.status === "known");
       const studyRows = allRows.filter((row) => row.status === "study");
       setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
-      setKnownCount(count);
+      setKnownCount(knownRows.length);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
 
       // Restore canonical state if optimistic update path failed.
-      const [allRows, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+      const allRows = await fetchAllCharacterStatesLocal();
       const knownRows = allRows.filter((row) => row.status === "known");
       const studyRows = allRows.filter((row) => row.status === "study");
       setTabData({ known: enrichRows(knownRows), study: enrichRows(studyRows) });
-      setKnownCount(count);
+      setKnownCount(knownRows.length);
     } finally {
       setPendingMoves((prev) => {
         const next = new Set(prev);

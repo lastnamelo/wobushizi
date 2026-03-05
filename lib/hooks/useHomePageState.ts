@@ -7,7 +7,6 @@ import {
   ensureLocalProfile,
   fetchCharacterStatesByStatusLocal,
   fetchCharacterStatesForCharsLocal,
-  fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { lookupHanziEntry } from "@/lib/hanzidb";
@@ -67,8 +66,8 @@ export function useHomePageState() {
     useMilestone2500(knownCount, !loading);
 
   async function refreshKnownSnapshot() {
-    const [count, knownRows] = await Promise.all([fetchKnownCountLocal(), fetchCharacterStatesByStatusLocal("known")]);
-    setKnownCount(count);
+    const knownRows = await fetchCharacterStatesByStatusLocal("known");
+    setKnownCount(knownRows.length);
     setKnownCharsForPies(knownRows.map((row) => row.character));
   }
 

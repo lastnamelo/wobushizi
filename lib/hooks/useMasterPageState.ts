@@ -5,7 +5,6 @@ import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
   fetchCharacterStatesForCharsLocal,
-  fetchKnownCountLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getCanonicalCharacter, getHanziData } from "@/lib/hanzidb";
@@ -29,13 +28,13 @@ export function useMasterPageState() {
     useMilestone2500(knownCount, !loading);
 
   async function hydrateFromStore() {
-    const [states, count] = await Promise.all([fetchAllCharacterStatesLocal(), fetchKnownCountLocal()]);
+    const states = await fetchAllCharacterStatesLocal();
     const map = new Map<string, CharacterStatus>();
     for (const row of states) {
       map.set(row.character, row.status);
     }
     setStateMap(map);
-    setKnownCount(count);
+    setKnownCount(states.filter((row) => row.status === "known").length);
   }
 
   useEffect(() => {
@@ -99,8 +98,8 @@ export function useMasterPageState() {
         next.set(canonical, status);
         return next;
       });
-      const count = await fetchKnownCountLocal();
-      setKnownCount(count);
+      const states = await fetchAllCharacterStatesLocal();
+      setKnownCount(states.filter((row) => row.status === "known").length);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
       setMessage(msg);
