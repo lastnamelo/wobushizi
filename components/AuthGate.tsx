@@ -11,6 +11,7 @@ import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 export function AuthGate() {
   const { isSupabaseConfigured, user, loading, error, signInWithEmail } = useSupabaseAuth();
   const [hydrated, setHydrated] = useState(false);
+  const [bypassReady, setBypassReady] = useState(false);
   const [bypassEnabled, setBypassEnabled] = useState(false);
   const [showBypassTrigger, setShowBypassTrigger] = useState(false);
   const [email, setEmail] = useState("");
@@ -18,12 +19,13 @@ export function AuthGate() {
   const [sentMsg, setSentMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    setHydrated(true);
     setBypassEnabled(isTesterBypassEnabled());
     setShowBypassTrigger(canUseTesterBypass());
+    setBypassReady(true);
+    setHydrated(true);
   }, []);
 
-  if (!hydrated || loading) return null;
+  if (!hydrated || !bypassReady || loading) return null;
   if (!isSupabaseConfigured || user || bypassEnabled) return null;
 
   async function onSubmit(e: FormEvent) {

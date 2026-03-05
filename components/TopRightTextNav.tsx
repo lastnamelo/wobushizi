@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
+import { canUseTesterBypass, isTesterBypassEnabled, setTesterBypassEnabled } from "@/lib/localStore";
 import { useSupabaseAuth } from "@/lib/useSupabaseAuth";
 
 export function TopRightTextNav() {
@@ -10,6 +11,7 @@ export function TopRightTextNav() {
   const [email, setEmail] = useState("");
   const [sentMsg, setSentMsg] = useState<string | null>(null);
   const [authBusy, setAuthBusy] = useState(false);
+  const [bypassEnabled, setBypassEnabled] = useState(false);
 
   async function handleLoginSubmit(e: FormEvent) {
     e.preventDefault();
@@ -26,13 +28,21 @@ export function TopRightTextNav() {
   }
 
   useEffect(() => {
+    if (canUseTesterBypass()) {
+      setBypassEnabled(isTesterBypassEnabled());
+    }
+
     function openLoginPanel() {
+      if (bypassEnabled) {
+        setTesterBypassEnabled(false);
+        setBypassEnabled(false);
+      }
       setShowLogin(true);
     }
 
     window.addEventListener("wobushizi:open-login", openLoginPanel);
     return () => window.removeEventListener("wobushizi:open-login", openLoginPanel);
-  }, []);
+  }, [bypassEnabled]);
 
   return (
     <div className="pointer-events-none absolute inset-x-0 top-3 z-30 sm:top-6">
@@ -47,6 +57,10 @@ export function TopRightTextNav() {
         {!user ? (
           <button
             onClick={() => {
+              if (bypassEnabled) {
+                setTesterBypassEnabled(false);
+                setBypassEnabled(false);
+              }
               if (!isSupabaseConfigured) {
                 setSentMsg("Login unavailable: Supabase env vars are missing.");
                 return;

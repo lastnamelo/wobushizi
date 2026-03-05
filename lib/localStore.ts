@@ -181,12 +181,6 @@ export async function fetchKnownCountLocal(): Promise<number> {
     const rows = await fetchAllCharacterStates(supabase, user.id);
     return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
   }
-
-  const user = await getAuthUser();
-  if (user && supabase) {
-    const rows = await fetchAllCharacterStates(supabase, user.id);
-    return normalizeRowsByCanonical(rows).filter((row) => row.status === "known").length;
-  }
   maybeReconcileLocalStates();
 
   return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === "known").length;
@@ -203,18 +197,6 @@ export async function fetchCharacterStatesForCharsLocal(
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
-    const byCanonical = new Map(normalized.map((row) => [row.character, row]));
-    const result = new Map<string, CharacterStateRow>();
-    for (const [input, canonical] of canonicalByInput.entries()) {
-      const row = byCanonical.get(canonical);
-      if (row) result.set(input, row);
-    }
-    return result;
-  }
-
-  const user = await getAuthUser();
-  if (user && supabase) {
     const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
     const byCanonical = new Map(normalized.map((row) => [row.character, row]));
     const result = new Map<string, CharacterStateRow>();
@@ -247,12 +229,6 @@ export async function fetchCharacterStatesByStatusLocal(
     const rows = await fetchAllCharacterStates(supabase, user.id);
     return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
   }
-
-  const user = await getAuthUser();
-  if (user && supabase) {
-    const rows = await fetchAllCharacterStates(supabase, user.id);
-    return normalizeRowsByCanonical(rows).filter((row) => row.status === status);
-  }
   maybeReconcileLocalStates();
 
   return normalizeRowsByCanonical(Object.values(readStates())).filter((row) => row.status === status);
@@ -262,11 +238,6 @@ export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
-  }
-
-  const user = await getAuthUser();
-  if (user && supabase) {
     return normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
   }
   maybeReconcileLocalStates();
@@ -285,31 +256,6 @@ export async function setCharacterStatusLocal(
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    if (variantChars.length > 0) {
-      const { error: deleteVariantsError } = await supabase
-        .from("character_states")
-        .delete()
-        .eq("user_id", user.id)
-        .in("character", variantChars);
-      if (deleteVariantsError) throw deleteVariantsError;
-    }
-    const { error } = await supabase
-      .from("character_states")
-      .upsert(
-        {
-          user_id: user.id,
-          character: canonical,
-          status,
-          last_seen_at: timestamp
-        },
-        { onConflict: "user_id,character" }
-      );
-    if (error) throw error;
-    return;
-  }
-
-  const user = await getAuthUser();
-  if (user && supabase) {
     if (variantChars.length > 0) {
       const { error: deleteVariantsError } = await supabase
         .from("character_states")
@@ -398,50 +344,6 @@ export async function applyLogLocal(
     return;
   }
 
-  const user = await getAuthUser();
-
-  if (user && supabase) {
-    const { data: logEvent, error: logError } = await supabase
-      .from("log_events")
-      .insert({
-        user_id: user.id,
-        source_text: sourceText
-      })
-      .select("id")
-      .single();
-    if (logError) throw logError;
-
-    if (uniqueChars.length > 0) {
-      const canonicalRows = buildCanonicalLogRows(uniqueChars, knownSet, selectedSet);
-      const stateRows = canonicalRows.map((row) => ({
-        user_id: user.id,
-        character: row.character,
-        status: row.status,
-        last_seen_at: now
-      }));
-
-      const { error: upsertError } = await supabase
-        .from("character_states")
-        .upsert(stateRows, { onConflict: "user_id,character" });
-      if (upsertError) throw upsertError;
-
-      const eventItemRows = canonicalRows.map((row) => {
-        return {
-          log_event_id: logEvent.id,
-          user_id: user.id,
-          character: row.character,
-          action: row.action,
-          created_at: now
-        };
-      });
-
-      const { error: eventItemsError } = await supabase.from("log_event_items").insert(eventItemRows);
-      if (eventItemsError) throw eventItemsError;
-    }
-
-    return;
-  }
-
   const states = readStates();
 
   const canonicalRows = buildCanonicalLogRows(uniqueChars, knownSet, selectedSet);
@@ -471,8 +373,9 @@ export async function applyLogLocal(
 }
 
 export async function fetchLogEventsLocal(): Promise<LocalLogEvent[]> {
-  const user = await getAuthUser();
-  if (user && supabase) {
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
     const [{ data: logs, error: logsError }, { data: items, error: itemsError }] = await Promise.all([
       supabase
         .from("log_events")
@@ -524,8 +427,9 @@ export async function fetchLogEventsLocal(): Promise<LocalLogEvent[]> {
 }
 
 export async function resetLocalProgress(): Promise<void> {
-  const user = await getAuthUser();
-  if (user && supabase) {
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
     const [itemsDel, logsDel, statesDel] = await Promise.all([
       supabase.from("log_event_items").delete().eq("user_id", user.id),
       supabase.from("log_events").delete().eq("user_id", user.id),
