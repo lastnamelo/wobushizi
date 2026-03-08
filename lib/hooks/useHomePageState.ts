@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { extractUniqueChineseChars } from "@/lib/cjk";
 import {
   applyLogLocal,
   ensureLocalProfile,
+  fetchKnownCountLocal,
   fetchCharacterStatesByStatusLocal,
   fetchCharacterStatesForCharsLocal,
   setCharacterStatusLocal
 } from "@/lib/localStore";
-import { lookupHanziEntry } from "@/lib/hanzidb";
-import { countHskLevelsFromCharacters } from "@/lib/hskCounts";
 import { STARTER_PASSAGES, bumpStarterPassageIndex, getNextStarterPassageIndex } from "@/lib/starterPassages";
 import { EnrichedCharacter } from "@/lib/types";
 import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMilestone500";
@@ -18,7 +17,50 @@ import { useMilestone1000, useMilestone2500, useMilestone500 } from "@/lib/useMi
 export type HomeMode = "input" | "review" | "result";
 export const MAX_INPUT_CHARS = 2000;
 
-function enrich(character: string): EnrichedCharacter {
+type HskStats = {
+  1: number;
+  2: number;
+  3: number;
+  4: number;
+  5: number;
+  6: number;
+  unknown: number;
+};
+
+const EMPTY_HSK_STATS: HskStats = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, unknown: 0 };
+
+let lookupHanziEntryFn:
+  | ((character: string) => {
+      character?: unknown;
+      traditional_character?: unknown;
+      alternate_characters?: unknown;
+      pinyin?: unknown;
+      pinyin_alternates?: unknown;
+      hsk_level?: unknown;
+      frequency?: unknown;
+      definition?: unknown;
+    } | undefined)
+  | null = null;
+let countHskLevelsFromCharactersFn: ((characters: string[]) => HskStats) | null = null;
+
+async function getLookupHanziEntry() {
+  if (!lookupHanziEntryFn) {
+    const mod = await import("@/lib/hanzidb");
+    lookupHanziEntryFn = mod.lookupHanziEntry;
+  }
+  return lookupHanziEntryFn;
+}
+
+async function getCountHskLevelsFromCharacters() {
+  if (!countHskLevelsFromCharactersFn) {
+    const mod = await import("@/lib/hskCounts");
+    countHskLevelsFromCharactersFn = mod.countHskLevelsFromCharacters as (characters: string[]) => HskStats;
+  }
+  return countHskLevelsFromCharactersFn;
+}
+
+async function enrich(character: string): Promise<EnrichedCharacter> {
+  const lookupHanziEntry = await getLookupHanziEntry();
   const meta = lookupHanziEntry(character);
   return {
     character: meta?.character ? String(meta.character) : character,
@@ -42,7 +84,7 @@ export function useHomePageState() {
   const [mode, setMode] = useState<HomeMode>("input");
   const [knownSet, setKnownSet] = useState<Set<string>>(new Set());
   const [studySet, setStudySet] = useState<Set<string>>(new Set());
-  const [knownCharsForPies, setKnownCharsForPies] = useState<string[]>([]);
+  const [hskStats, setHskStats] = useState<HskStats>(EMPTY_HSK_STATS);
   const [uniqueChars, setUniqueChars] = useState<string[]>([]);
   const [selectedSet, setSelectedSet] = useState<Set<string>>(new Set());
   const [isSaving, setIsSaving] = useState(false);
@@ -65,25 +107,39 @@ export function useHomePageState() {
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
     useMilestone2500(knownCount, !loading);
 
-  async function refreshKnownSnapshot() {
-    const knownRows = await fetchCharacterStatesByStatusLocal("known");
-    setKnownCount(knownRows.length);
-    setKnownCharsForPies(knownRows.map((row) => row.character));
-  }
-
-  useEffect(() => {
-    (async () => {
-      await ensureLocalProfile();
-      await refreshKnownSnapshot();
-      setLoading(false);
-    })().catch((err: Error) => {
-      setMessage(err.message);
-      setLoading(false);
-    });
+  const refreshKnownCount = useCallback(async () => {
+    const count = await fetchKnownCountLocal();
+    setKnownCount(count);
   }, []);
 
+  const refreshKnownStats = useCallback(async () => {
+    const knownRows = await fetchCharacterStatesByStatusLocal("known");
+    const countHskLevelsFromCharacters = await getCountHskLevelsFromCharacters();
+    setHskStats(countHskLevelsFromCharacters(knownRows.map((row) => row.character)));
+  }, []);
+
+  const refreshKnownSnapshot = useCallback(async (includeStats = true) => {
+    await refreshKnownCount();
+    if (includeStats) {
+      await refreshKnownStats();
+    }
+  }, [refreshKnownCount, refreshKnownStats]);
+
+  useEffect(() => {
+    // Render shell immediately; hydrate counts/stats in background.
+    setLoading(false);
+    (async () => {
+      await ensureLocalProfile();
+      await refreshKnownSnapshot(false);
+      refreshKnownStats().catch(() => {
+        // Do not block the page if stats fail; count is the critical value.
+      });
+    })().catch((err: Error) => {
+      setMessage(err.message);
+    });
+  }, [refreshKnownSnapshot, refreshKnownStats]);
+
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
-  const hskStats = useMemo(() => countHskLevelsFromCharacters(knownCharsForPies), [knownCharsForPies]);
   const newToYouCount = useMemo(
     () => uniqueChars.filter((ch) => !knownSet.has(ch) && !studySet.has(ch)).length,
     [uniqueChars, knownSet, studySet]
@@ -180,12 +236,16 @@ export function useHomePageState() {
     try {
       await applyLogLocal(text, uniqueChars, knownSet, selectedSet);
 
-      const newKnown = uniqueChars
-        .filter((ch) => !knownSet.has(ch) && selectedSet.has(ch))
-        .map((ch) => ({ ...enrich(ch), status: "known" as const }));
-      const queuedStudy = uniqueChars
-        .filter((ch) => !selectedSet.has(ch))
-        .map((ch) => ({ ...enrich(ch), status: "study" as const }));
+      const newKnown = await Promise.all(
+        uniqueChars
+          .filter((ch) => !knownSet.has(ch) && selectedSet.has(ch))
+          .map(async (ch) => ({ ...(await enrich(ch)), status: "known" as const }))
+      );
+      const queuedStudy = await Promise.all(
+        uniqueChars
+          .filter((ch) => !selectedSet.has(ch))
+          .map(async (ch) => ({ ...(await enrich(ch)), status: "study" as const }))
+      );
 
       const dedupeByCharacter = (list: EnrichedCharacter[]) => {
         const map = new Map<string, EnrichedCharacter>();
@@ -240,6 +300,7 @@ export function useHomePageState() {
     if (!detailState || !results) return;
     await setCharacterStatusLocal(detailState.character, status);
     await refreshKnownSnapshot();
+    const detailEnriched = await enrich(detailState.character);
 
     setResults((prev) => {
       if (!prev || !detailState) return prev;
@@ -248,7 +309,7 @@ export function useHomePageState() {
         ...prev.queuedStudy.map((r) => ({ ...r, status: "study" as const }))
       ];
       const byChar = new Map(all.map((r) => [r.character, r]));
-      const entry = byChar.get(detailState.character) ?? enrich(detailState.character);
+      const entry = byChar.get(detailState.character) ?? detailEnriched;
       byChar.set(detailState.character, { ...entry, status });
       const nextKnown = [...byChar.values()].filter((r) => r.status === "known");
       const nextStudy = [...byChar.values()].filter((r) => r.status === "study");

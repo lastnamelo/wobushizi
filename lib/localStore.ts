@@ -1,14 +1,9 @@
 import { CharacterStateRow, CharacterStatus } from "@/lib/types";
-import { getCanonicalCharacter, getCharacterFamily } from "@/lib/hanzidb";
-import {
-  buildCanonicalLogRows,
-  needsCanonicalReconcile,
-  normalizeRowsByCanonical
-} from "@/lib/stateCanonical";
 import {
   ensureProfile,
   fetchCharacterStatesForChars,
   fetchAllCharacterStates,
+  fetchKnownCount,
 } from "@/lib/db";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 import { User } from "@supabase/supabase-js";
@@ -31,12 +26,31 @@ type StateCacheEntry = {
 let stateCache: StateCacheEntry | null = null;
 
 type StoredState = Record<string, CharacterStateRow>;
+type CanonicalLogRow = {
+  character: string;
+  status: CharacterStatus;
+  action: "skipped" | "logged_known" | "queued_study";
+};
+type CanonicalUtils = {
+  getCanonicalCharacter: (character: string) => string;
+  getCharacterFamily: (character: string) => string[];
+  normalizeRowsByCanonical: (rows: CharacterStateRow[]) => CharacterStateRow[];
+  needsCanonicalReconcile: (rows: CharacterStateRow[]) => boolean;
+  buildCanonicalLogRows: (
+    uniqueChars: string[],
+    knownSet: Set<string>,
+    selectedSet: Set<string>
+  ) => CanonicalLogRow[];
+};
+
 export interface LocalLogEvent {
   id: string;
   source_text: string;
   created_at: string;
   items: Array<{ character: string; action: string; created_at: string }>;
 }
+
+let canonicalUtilsPromise: Promise<CanonicalUtils> | null = null;
 
 function getSupabaseCacheKey(userId: string): string {
   return `supabase:${userId}`;
@@ -53,6 +67,25 @@ function writeStateCache(key: string, rows: CharacterStateRow[]): void {
 
 function clearStateCache(): void {
   stateCache = null;
+}
+
+function sortRows(rows: CharacterStateRow[]): CharacterStateRow[] {
+  return [...rows].sort((a, b) => a.character.localeCompare(b.character, "zh-Hans-CN"));
+}
+
+async function getCanonicalUtils(): Promise<CanonicalUtils> {
+  if (!canonicalUtilsPromise) {
+    canonicalUtilsPromise = Promise.all([import("@/lib/hanzidb"), import("@/lib/stateCanonical")]).then(
+      ([hanzidb, stateCanonical]) => ({
+        getCanonicalCharacter: hanzidb.getCanonicalCharacter,
+        getCharacterFamily: hanzidb.getCharacterFamily,
+        normalizeRowsByCanonical: stateCanonical.normalizeRowsByCanonical,
+        needsCanonicalReconcile: stateCanonical.needsCanonicalReconcile,
+        buildCanonicalLogRows: stateCanonical.buildCanonicalLogRows
+      })
+    );
+  }
+  return canonicalUtilsPromise;
 }
 
 function mergeRowIntoCache(
@@ -79,7 +112,7 @@ function mergeRowIntoCache(
     created_at: existing?.created_at ?? timestamp
   });
 
-  writeStateCache(key, normalizeRowsByCanonical([...byChar.values()]));
+  writeStateCache(key, sortRows([...byChar.values()]));
 }
 
 function mergeCanonicalRowsIntoCache(
@@ -103,7 +136,7 @@ function mergeCanonicalRowsIntoCache(
     });
   }
 
-  writeStateCache(key, normalizeRowsByCanonical([...byChar.values()]));
+  writeStateCache(key, sortRows([...byChar.values()]));
 }
 
 function localHostName(): string {
@@ -151,6 +184,7 @@ async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
   if (error) throw error;
 
   const rows = (data ?? []) as CharacterStateRow[];
+  const { needsCanonicalReconcile, normalizeRowsByCanonical } = await getCanonicalUtils();
   if (!needsCanonicalReconcile(rows)) {
     reconciledUserIds.add(userId);
     if (typeof window !== "undefined") {
@@ -184,10 +218,11 @@ async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
   }
 }
 
-function maybeReconcileLocalStates(): void {
+async function maybeReconcileLocalStates(): Promise<void> {
   if (typeof window === "undefined") return;
   if (window.localStorage.getItem(LOCAL_RECONCILE_KEY) === "1") return;
   const rows = Object.values(readStates());
+  const { needsCanonicalReconcile, normalizeRowsByCanonical } = await getCanonicalUtils();
   if (!needsCanonicalReconcile(rows)) {
     window.localStorage.setItem(LOCAL_RECONCILE_KEY, "1");
     return;
@@ -253,13 +288,24 @@ export async function ensureLocalProfile(): Promise<void> {
 }
 
 export async function fetchKnownCountLocal(): Promise<number> {
-  const rows = await fetchAllCharacterStatesLocal();
-  return rows.filter((row) => row.status === "known").length;
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    return fetchKnownCount(supabase, user.id);
+  }
+
+  const rows = Object.values(readStates());
+  let count = 0;
+  for (const row of rows) {
+    if (row.status === "known") count += 1;
+  }
+  return count;
 }
 
 export async function fetchCharacterStatesForCharsLocal(
   characters: string[]
 ): Promise<Map<string, CharacterStateRow>> {
+  const { getCanonicalCharacter, normalizeRowsByCanonical } = await getCanonicalUtils();
   const canonicalByInput = new Map<string, string>();
   for (const ch of characters) {
     canonicalByInput.set(ch, getCanonicalCharacter(ch));
@@ -292,7 +338,7 @@ export async function fetchCharacterStatesForCharsLocal(
     }
     return result;
   }
-  maybeReconcileLocalStates();
+  await maybeReconcileLocalStates();
 
   const byCanonical = new Map(
     normalizeRowsByCanonical(Object.values(readStates())).map((row) => [row.character, row])
@@ -320,16 +366,16 @@ export async function fetchAllCharacterStatesLocal(): Promise<CharacterStateRow[
     const cacheKey = getSupabaseCacheKey(user.id);
     const cached = readStateCache(cacheKey);
     if (cached) return cached;
-    const normalized = normalizeRowsByCanonical(await fetchAllCharacterStates(supabase, user.id));
-    writeStateCache(cacheKey, normalized);
-    return normalized;
+    const rows = sortRows(await fetchAllCharacterStates(supabase, user.id));
+    writeStateCache(cacheKey, rows);
+    return rows;
   }
-  maybeReconcileLocalStates();
+  await maybeReconcileLocalStates();
   const cached = readStateCache(LOCAL_CACHE_KEY);
   if (cached) return cached;
-  const normalized = normalizeRowsByCanonical(Object.values(readStates()));
-  writeStateCache(LOCAL_CACHE_KEY, normalized);
-  return normalized;
+  const rows = sortRows(Object.values(readStates()));
+  writeStateCache(LOCAL_CACHE_KEY, rows);
+  return rows;
 }
 
 export async function setCharacterStatusLocal(
@@ -337,6 +383,7 @@ export async function setCharacterStatusLocal(
   status: CharacterStatus,
   timestamp = new Date().toISOString()
 ): Promise<void> {
+  const { getCanonicalCharacter, getCharacterFamily } = await getCanonicalUtils();
   const canonical = getCanonicalCharacter(character);
   const family = getCharacterFamily(canonical);
   const variantChars = family.filter((ch) => ch !== canonical);
@@ -388,6 +435,7 @@ export async function applyLogLocal(
   knownSet: Set<string>,
   selectedSet: Set<string>
 ): Promise<void> {
+  const { buildCanonicalLogRows } = await getCanonicalUtils();
   const now = new Date().toISOString();
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();

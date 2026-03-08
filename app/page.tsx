@@ -1,20 +1,28 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { AuthGate } from "@/components/AuthGate";
-import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { HskMiniPies } from "@/components/HskMiniPies";
 import { Logo } from "@/components/Logo";
 import { Milestone1000Modal } from "@/components/Milestone1000Modal";
 import { Milestone2500Modal } from "@/components/Milestone2500Modal";
 import { Milestone500Modal } from "@/components/Milestone500Modal";
 import { ProgressBar } from "@/components/ProgressBar";
-import { TextLoader } from "@/components/TextLoader";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { useHomePageState, MAX_INPUT_CHARS } from "@/lib/hooks/useHomePageState";
 import { EnrichedCharacter } from "@/lib/types";
 import { useDeviceCapabilities } from "@/lib/useDeviceCapabilities";
+
+const TextLoader = dynamic(
+  () => import("@/components/TextLoader").then((mod) => mod.TextLoader),
+  { ssr: false }
+);
+const CharacterDetailModal = dynamic(
+  () => import("@/components/CharacterDetailModal").then((mod) => mod.CharacterDetailModal),
+  { ssr: false }
+);
 
 export default function HomePage() {
   const {

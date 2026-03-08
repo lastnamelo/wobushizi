@@ -20,6 +20,7 @@ export function BankQuickNav({ active, onSelectBankTab }: BankQuickNavProps) {
         <Link
           key={item.key}
           href={item.href}
+          prefetch={false}
           onClick={() => {
             if ((item.key === "character" || item.key === "study") && onSelectBankTab) onSelectBankTab(item.key);
           }}
