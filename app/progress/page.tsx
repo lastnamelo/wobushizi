@@ -44,21 +44,19 @@ function todayLocalDay(): string {
   return `${y}-${m}-${day}`;
 }
 
-function buildDailyKnownSeries(
+function buildDailyAddedSeries(
   logEvents: Awaited<ReturnType<typeof fetchLogEventsLocal>>,
   currentKnown: number
 ): DailyPoint[] {
-  const byDayNet = new Map<string, number>();
+  const byDayAdded = new Map<string, number>();
   const activityDays = new Set<string>();
   for (const event of logEvents) {
     activityDays.add(toLocalDay(event.created_at));
     for (const item of event.items) {
       const day = toLocalDay(item.created_at);
       activityDays.add(day);
-      const delta =
-        item.action === "logged_known" ? 1 : item.action === "queued_study" ? -1 : 0;
-      if (delta !== 0) {
-        byDayNet.set(day, (byDayNet.get(day) ?? 0) + delta);
+      if (item.action === "logged_known") {
+        byDayAdded.set(day, (byDayAdded.get(day) ?? 0) + 1);
       }
     }
   }
@@ -69,15 +67,11 @@ function buildDailyKnownSeries(
     return [{ day: todayLocalDay(), count: currentKnown }];
   }
 
-  const totalNet = [...byDayNet.values()].reduce((sum, v) => sum + v, 0);
-  let running = currentKnown - totalNet;
-
   const series: DailyPoint[] = [];
   let cursor = keys[0];
   const last = keys[keys.length - 1];
   while (cursor <= last) {
-    running += byDayNet.get(cursor) ?? 0;
-    series.push({ day: cursor, count: Math.max(0, running) });
+    series.push({ day: cursor, count: byDayAdded.get(cursor) ?? 0 });
     cursor = dayPlusOne(cursor);
   }
   return series;
@@ -94,7 +88,7 @@ export default function ProgressPage() {
       await ensureLocalProfile();
       const [count, logEvents] = await Promise.all([fetchKnownCountLocal(), fetchLogEventsLocal()]);
       setKnownCount(count);
-      setDailyPoints(buildDailyKnownSeries(logEvents, count));
+      setDailyPoints(buildDailyAddedSeries(logEvents, count));
       setLoading(false);
     })().catch((err: Error) => {
       if (!isExpectedSignedOutError(err)) {
