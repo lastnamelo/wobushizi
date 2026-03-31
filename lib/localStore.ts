@@ -167,6 +167,11 @@ function shouldUseSupabase(): boolean {
   return isSupabaseConfigured && !isTesterBypassEnabled();
 }
 
+export function isExpectedSignedOutError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false;
+  return /login required: no active auth session|auth session missing/i.test(error.message);
+}
+
 async function maybeReconcileSupabaseStates(userId: string): Promise<void> {
   if (!supabase || reconciledUserIds.has(userId)) return;
   if (typeof window !== "undefined") {

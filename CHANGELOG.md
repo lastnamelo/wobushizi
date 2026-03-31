@@ -2,6 +2,17 @@
 
 All notable project changes are tracked here.
 
+## 2026-03-30
+- Suppressed expected signed-out auth errors across Home/Bank/Master so the red `auth session missing` message no longer appears behind the login gate.
+- Kept unexpected/runtime errors visible while filtering only pre-login session-missing noise.
+- Patched canonical variant rows for common simplified merges:
+  - `发` -> `發|髮`
+  - `干` -> `乾|幹`
+  - `后` -> `後|后`
+  - `里` -> `裡|裏`
+  - `只` -> `隻|只`
+  - `面` -> `麵|面`
+
 ## 2026-03-05
 - Fixed known/study/master count drift by deriving counts from the same normalized row snapshot used for table data.
 - Reworked auth + local testing flow:

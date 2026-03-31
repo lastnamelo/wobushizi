@@ -202,7 +202,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 201,解,jiě,jiè|xiè,,,,,,,"loosen, unfasten, untie; explain",角,148.6,13,3.0,2981.0,,True,
 202,水,shuǐ,,,,,,,,"water, liquid, lotion, juice",水,85.0,4,1.0,117.0,,True,
 203,名,míng,,,,,,,,"name, rank, title, position",口,30.3,6,1.0,505.0,,True,
-204,真,zhēn,,,,,,,,"real, actual, true, genuine",目,109.5,10,2.0,1832.0,,True,
+204,真,zhēn,,,,,,,,"real, actual, true, genuine",目,109.5,10,2.0,1832.0,,True,眞
 205,论,lùn,lún,,,,,,,debate; discuss; discourse,言,149.4,6,4.0,556.0,論,False,論
 206,处,chù,chǔ,,,,,,,"place, locale; department",夂,34.2,5,4.0,294.0,處,False,處
 207,走,zǒu,,,,,,,,"walk, go on foot; run; leave",走,156.0,7,2.0,625.0,,True,
@@ -428,7 +428,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 427,病,bìng,,,,,,,,"illness, sickness, disease",疒,104.5,10,2.0,2027.0,,True,
 428,息,xī,,,,,,,,"rest, put stop to, end, cease",心,61.6,10,2.0,1973.0,,True,
 429,究,jiū,,,,,,,,"examine, investigate",穴,116.2,7,4.0,881.0,,True,
-430,线,xiàn,,,,,,,,"line, thread, wire; clue",糸,120.5,8,4.0,1336.0,線,False,線
+430,线,xiàn,,,,,,,,"line, thread, wire; clue",糸,120.5,8,4.0,1336.0,線,False,綫|線
 431,似,shì,sì,,,,,,,"resemble, similar to; as if, seem",人,9.5,6,5.0,481.0,,True,
 432,官,guān,,,,,,,,"official, public servant",宀,40.5,8,5.0,1281.0,,True,
 433,火,huǒ,,,,,,,,"fire, flame; burn; anger, rage",火,86.0,4,2.0,164.0,,True,
@@ -5647,7 +5647,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 5646,绲,gǔn,,,,,,,,cord; woven belt; hem; hemming,糸,120.8,11,,5033.0,緄,False,緄
 5647,膻,shān,dàn,,,,,,,a rank odor; a technical term from Chinese medicine for the center of the chest,肉,130.13,17,,6273.0,羶,False,羶
 5648,焐,wù,,,,,,,,,火,86.7,11,,4956.0,,True,
-5649,裡,lǐ,,,,,,,,"inside, interior, within",衣,145.7,12,,,,True,
+5649,裡,lǐ,,,,,,,,"inside, interior, within",衣,145.7,12,,,,True,裏
 5650,葎,lǜ,,,,,,,,Humulus japonicus,艸,140.9,12,,7315.0,,True,
 5651,亓,qí,,,,,,,,"(archaic form) his, her, its, their; that",二,7.2,4,,3508.0,,True,
 5652,倮,luǒ,,,,,,,,"bare, naked, uncovered",人,9.8,10,,7016.0,,True,
@@ -7430,7 +7430,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 7429,粡,tóng,,,,,,,,,米,119.6,12,,,,True,
 7430,粣,cè,,,,,,,,,米,119.5,11,,,,True,
 7431,綖,yán,,,,,,,,the hanging flap in the front of a hat,糸,120.7,12,,,,True,
-7432,裏,lǐ,,,,,,,,"inside, interior, within",衣,145.7,13,,,,True,
+7432,裏,lǐ,,,,,,,,"inside, interior, within",衣,145.7,13,,,,True,裡
 7433,刭,jǐng,,,,,,,,cut throat,刀,18.5,7,,3818.0,剄,False,剄
 7434,跼,jú,,,,,,,,"bent, stooped, crouched; contract",足,157.7,14,,,,True,
 7435,蒇,chǎn,,,,,,,,"finish, complete; solve; complete",艸,140.9,12,,7307.0,蕆,False,蕆
@@ -9763,7 +9763,7 @@ frequency_rank,character,pinyin,pinyin_alternates,common_word_1,common_word_1_pi
 9762,雘,wò,,,,,,,,dye made from red soil; ochre,隹,172.1,17,,,,True,
 9763,鯽,zéi,,,,,,,,"Carassius auratus, crucian carp",魚,195.9,18,,,,True,
 9764,䓖,qióng,,,,,,,,(simplified form of,艸,140.7,13,,6955.0,藭,False,藭
-9765,眞,zhēn,,,,,,,,"real, actual, true, genuine",目,109.5,10,,,,True,
+9765,眞,zhēn,,,,,,,,"real, actual, true, genuine",目,109.5,10,,,,True,真
 9766,睴,gùn,,,,,,,,,目,109.9,14,,,,True,
 9767,瞡,guǐ,,,,,,,,,目,109.11,16,,,,True,
 9768,砏,bīn,,,,,,,,,石,112.4,9,,,,True,

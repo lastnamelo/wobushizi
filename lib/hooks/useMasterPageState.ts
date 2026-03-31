@@ -5,6 +5,7 @@ import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
   fetchCharacterStatesForCharsLocal,
+  isExpectedSignedOutError,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getCanonicalCharacter, getHanziData } from "@/lib/hanzidb";
@@ -43,7 +44,9 @@ export function useMasterPageState() {
       await hydrateFromStore();
       setLoading(false);
     })().catch((err: Error) => {
-      setMessage(err.message);
+      if (!isExpectedSignedOutError(err)) {
+        setMessage(err.message);
+      }
       setLoading(false);
     });
   }, []);
@@ -102,7 +105,9 @@ export function useMasterPageState() {
       setKnownCount(states.filter((row) => row.status === "known").length);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
-      setMessage(msg);
+      if (!isExpectedSignedOutError(err)) {
+        setMessage(msg);
+      }
     } finally {
       setPendingMoves((prev) => {
         const next = new Set(prev);

@@ -2410,6 +2410,7 @@
   },
   {
     "character": "真",
+    "alternate_characters": "眞",
     "pinyin": "zhēn",
     "definition": "real, actual, true, genuine",
     "hsk_level": 2,
@@ -5136,7 +5137,7 @@
   {
     "character": "线",
     "traditional_character": "線",
-    "alternate_characters": "線",
+    "alternate_characters": "綫|線",
     "pinyin": "xiàn",
     "definition": "line, thread, wire; clue",
     "hsk_level": 4,
@@ -63666,6 +63667,7 @@
   },
   {
     "character": "裡",
+    "alternate_characters": "裏",
     "pinyin": "lǐ",
     "definition": "inside, interior, within",
     "frequency": 5649,
@@ -81460,6 +81462,7 @@
   },
   {
     "character": "裏",
+    "alternate_characters": "裡",
     "pinyin": "lǐ",
     "definition": "inside, interior, within",
     "frequency": 7432,
@@ -102175,6 +102178,7 @@
   },
   {
     "character": "眞",
+    "alternate_characters": "真",
     "pinyin": "zhēn",
     "definition": "real, actual, true, genuine",
     "frequency": 9765,

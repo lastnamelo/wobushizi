@@ -8,6 +8,7 @@ import {
   fetchKnownCountLocal,
   fetchCharacterStatesByStatusLocal,
   fetchCharacterStatesForCharsLocal,
+  isExpectedSignedOutError,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { STARTER_PASSAGES, bumpStarterPassageIndex, getNextStarterPassageIndex } from "@/lib/starterPassages";
@@ -135,7 +136,9 @@ export function useHomePageState() {
         // Do not block the page if stats fail; count is the critical value.
       });
     })().catch((err: Error) => {
-      setMessage(err.message);
+      if (!isExpectedSignedOutError(err)) {
+        setMessage(err.message);
+      }
     });
   }, [refreshKnownSnapshot, refreshKnownStats]);
 

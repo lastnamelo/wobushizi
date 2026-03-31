@@ -15,6 +15,7 @@ import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
   fetchCharacterStatesForCharsLocal,
+  isExpectedSignedOutError,
   setCharacterStatusLocal
 } from "@/lib/localStore";
 import { getCanonicalCharacter, lookupHanziEntry } from "@/lib/hanzidb";
@@ -75,7 +76,9 @@ export default function BankPage() {
       setKnownCount(knownRows.length);
       setLoading(false);
     })().catch((err: Error) => {
-      setMessage(err.message);
+      if (!isExpectedSignedOutError(err)) {
+        setMessage(err.message);
+      }
       setLoading(false);
     });
   }, []);
@@ -110,7 +113,9 @@ export default function BankPage() {
       setKnownCount(knownRows.length);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to update status.";
-      setMessage(msg);
+      if (!isExpectedSignedOutError(err)) {
+        setMessage(msg);
+      }
 
       // Restore canonical state if optimistic update path failed.
       const allRows = await fetchAllCharacterStatesLocal();
