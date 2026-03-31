@@ -45,6 +45,7 @@ export function CharacterTable({
   const [detailState, setDetailState] = useState<{ character: string; status?: "known" | "study" } | null>(null);
   const [sortBy, setSortBy] = useState<"character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc">(defaultSortBy);
   const [toggleIntent, setToggleIntent] = useState<Record<string, "known" | "study">>({});
+  const [flashRows, setFlashRows] = useState<EnrichedCharacter[] | null>(null);
   const toggleTimersRef = useRef<Record<string, number>>({});
   const activeSortBy = forcedSortBy ?? sortBy;
   const { isCoarsePointer } = useDeviceCapabilities();
@@ -152,6 +153,11 @@ export function CharacterTable({
   }, [rows]);
 
   useEffect(() => {
+    if (!flashRows) return;
+    setFlashRows(null);
+  }, [activeSortBy, flashRows, hasTradAltOnly, hskFilter, rows, search, statusFilter]);
+
+  useEffect(() => {
     const timers = toggleTimersRef.current;
     return () => {
       for (const timer of Object.values(timers)) {
@@ -162,16 +168,35 @@ export function CharacterTable({
 
   const detailIndex = useMemo(() => {
     if (!detailState) return -1;
-    return filtered.findIndex((row) => row.character === detailState.character);
-  }, [detailState, filtered]);
+    const activeRows = flashRows ?? filtered;
+    return activeRows.findIndex((row) => row.character === detailState.character);
+  }, [detailState, filtered, flashRows]);
+
+  const activeRows = flashRows ?? filtered;
 
   function moveDetail(step: -1 | 1) {
     if (!detailState || detailIndex < 0) return;
     const nextIndex = detailIndex + step;
-    if (nextIndex < 0 || nextIndex >= filtered.length) return;
-    const nextRow = filtered[nextIndex];
+    if (nextIndex < 0 || nextIndex >= activeRows.length) return;
+    const nextRow = activeRows[nextIndex];
     if (!nextRow) return;
     setDetailState({ character: nextRow.character, status: nextRow.status });
+  }
+
+  function startFlashcards() {
+    if (filtered.length === 0) return;
+    const shuffled = [...filtered];
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = shuffled[i];
+      shuffled[i] = shuffled[j]!;
+      shuffled[j] = tmp!;
+    }
+    setFlashRows(shuffled);
+    const first = shuffled[0];
+    if (first) {
+      setDetailState({ character: first.character, status: first.status });
+    }
   }
 
   return (
@@ -181,14 +206,24 @@ export function CharacterTable({
           {helperText}
         </p>
       ) : null}
-      <div className="mb-2">
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search character or pinyin..."
-          className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
-        />
-      </div>
+        <div className="mb-2">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search character or pinyin..."
+            className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
+          />
+        </div>
+        <div className="mb-2 flex justify-end">
+          <button
+            type="button"
+            onClick={startFlashcards}
+            disabled={filtered.length === 0}
+            className="text-xs text-stone-700 hover:underline disabled:opacity-40"
+          >
+            Study Flashcards
+          </button>
+        </div>
       <div className="overflow-x-auto rounded-xl">
         <table className="w-full table-fixed text-xs md:text-sm">
           <thead className="sticky top-0 z-10 bg-white">
@@ -439,8 +474,11 @@ export function CharacterTable({
         onPrev={() => moveDetail(-1)}
         onNext={() => moveDetail(1)}
         canPrev={detailIndex > 0}
-        canNext={detailIndex >= 0 && detailIndex < filtered.length - 1}
-        onClose={() => setDetailState(null)}
+        canNext={detailIndex >= 0 && detailIndex < activeRows.length - 1}
+        onClose={() => {
+          setDetailState(null);
+          setFlashRows(null);
+        }}
       />
     </section>
   );

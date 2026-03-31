@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { AuthGate } from "@/components/AuthGate";
 import { HskMiniPies } from "@/components/HskMiniPies";
@@ -27,6 +27,8 @@ const CharacterDetailModal = dynamic(
 );
 
 export default function HomePage() {
+  const [studyRowsView, setStudyRowsView] = useState<EnrichedCharacter[]>([]);
+  const [studyFlashRows, setStudyFlashRows] = useState<EnrichedCharacter[] | null>(null);
   const {
     loading,
     knownCount,
@@ -52,7 +54,6 @@ export default function HomePage() {
     knownInPassageCount,
     toStudyCount,
     modalRows,
-    detailIndex,
     showMilestone,
     dismissMilestone,
     showMilestone1000,
@@ -94,6 +95,62 @@ export default function HomePage() {
     detailState && mode === "result"
       ? quickAddWordsByCharacter.find((entry) => entry.character === detailState.character)?.words ?? []
       : [];
+
+  useEffect(() => {
+    if (mode !== "result" || !results) {
+      setStudyRowsView([]);
+      setStudyFlashRows(null);
+      return;
+    }
+    setStudyRowsView(results.queuedStudy);
+    setStudyFlashRows(null);
+  }, [mode, results]);
+
+  function shuffleStudyRows() {
+    const sourceRows = studyRowsView.length > 0 ? studyRowsView : results?.queuedStudy ?? [];
+    if (sourceRows.length === 0) return;
+    const next = [...sourceRows];
+    for (let i = next.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = next[i];
+      next[i] = next[j]!;
+      next[j] = tmp!;
+    }
+    setStudyRowsView(next);
+    setStudyFlashRows(next);
+    const first = next[0];
+    if (first) {
+      setDetailState({ character: first.character, status: "study", source: "study" });
+    }
+  }
+
+  const activeModalRows = studyFlashRows ?? modalRows;
+  const activeDetailIndex = useMemo(() => {
+    if (!detailState) return -1;
+    return activeModalRows.findIndex((row) => row.character === detailState.character);
+  }, [activeModalRows, detailState]);
+
+  function moveDetailWithinActiveRows(step: -1 | 1) {
+    if (studyFlashRows) {
+      if (!detailState || activeDetailIndex < 0) return;
+      const nextIndex = activeDetailIndex + step;
+      if (nextIndex < 0 || nextIndex >= activeModalRows.length) return;
+      const nextRow = activeModalRows[nextIndex];
+      if (!nextRow) return;
+      setDetailState((prev) =>
+        prev
+          ? {
+              ...prev,
+              character: nextRow.character,
+              status: nextRow.status,
+              source: "study"
+            }
+          : prev
+      );
+      return;
+    }
+    moveDetail(step);
+  }
 
   return (
     <main className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 md:py-4">
@@ -217,9 +274,16 @@ export default function HomePage() {
 
             {mode === "result" && results ? (
               <div className="space-y-4">
-                <p className="text-center text-xs text-stone-600 md:text-sm">
-                  Click any character to view definitions and more.
-                </p>
+                <div className="flex items-center justify-between gap-3 text-xs text-stone-600 md:text-sm">
+                  <p>Click any character to view definitions and more.</p>
+                  <button
+                    type="button"
+                    onClick={shuffleStudyRows}
+                    className="text-stone-800 hover:underline"
+                  >
+                    Study Flashcards
+                  </button>
+                </div>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
                     <h3 className="mb-3 text-base font-medium">
@@ -237,7 +301,7 @@ export default function HomePage() {
                       Added to study ({results.queuedStudy.length})
                     </h3>
                     <CharacterCloud
-                      rows={results.queuedStudy}
+                      rows={studyRowsView}
                       empty="No study-queued characters in this event."
                       disableTitleTooltips={isCoarsePointer}
                       onPickCharacter={(character) => setDetailState({ character, status: "study", source: "study" })}
@@ -273,11 +337,14 @@ export default function HomePage() {
             status={detailState?.status}
             quickAddSuggestions={currentQuickAddSuggestions}
             onSetStatus={setDetailStatus}
-            onPrev={() => moveDetail(-1)}
-            onNext={() => moveDetail(1)}
-            canPrev={detailIndex > 0}
-            canNext={detailIndex >= 0 && detailIndex < modalRows.length - 1}
-            onClose={() => setDetailState(null)}
+            onPrev={() => moveDetailWithinActiveRows(-1)}
+            onNext={() => moveDetailWithinActiveRows(1)}
+            canPrev={activeDetailIndex > 0}
+            canNext={activeDetailIndex >= 0 && activeDetailIndex < activeModalRows.length - 1}
+            onClose={() => {
+              setDetailState(null);
+              setStudyFlashRows(null);
+            }}
           />
         </>
       ) : null}
