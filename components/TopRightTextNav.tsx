@@ -54,6 +54,9 @@ export function TopRightTextNav() {
         <Link href="/contact" className="hover:underline">
           Contact
         </Link>
+        <Link href="/progress" className="hover:underline">
+          Progress
+        </Link>
         {!user ? (
           <button
             onClick={() => {
