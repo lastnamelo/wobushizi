@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useMemo } from "react";
 import { BankQuickNav } from "@/components/BankQuickNav";
 import { AuthGate } from "@/components/AuthGate";
 import { HskMiniPies } from "@/components/HskMiniPies";
@@ -10,6 +11,7 @@ import { Milestone2500Modal } from "@/components/Milestone2500Modal";
 import { Milestone500Modal } from "@/components/Milestone500Modal";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
+import { isChineseChar } from "@/lib/cjk";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { useHomePageState, MAX_INPUT_CHARS } from "@/lib/hooks/useHomePageState";
 import { EnrichedCharacter } from "@/lib/types";
@@ -66,6 +68,32 @@ export default function HomePage() {
     setDetailStatus
   } = useHomePageState();
   const { isCoarsePointer } = useDeviceCapabilities();
+  const quickAddWordsByCharacter = useMemo(() => {
+    if (!results || mode !== "result") return [];
+    const studyChars = new Set(results.queuedStudy.map((row) => row.character));
+    if (studyChars.size === 0) return [];
+
+    const byCharacter = new Map<string, string[]>();
+    const words = extractHintWords(text);
+    for (const word of words) {
+      const charsInWord = [...new Set([...word].filter((ch) => studyChars.has(ch)))];
+      for (const ch of charsInWord) {
+        const list = byCharacter.get(ch) ?? [];
+        if (!list.includes(word) && list.length < 3) {
+          list.push(word);
+          byCharacter.set(ch, list);
+        }
+      }
+    }
+
+    return [...byCharacter.entries()]
+      .map(([character, words]) => ({ character, words }))
+      .sort((a, b) => a.character.localeCompare(b.character, "zh-Hans-CN"));
+  }, [mode, results, text]);
+  const currentQuickAddSuggestions =
+    detailState && mode === "result"
+      ? quickAddWordsByCharacter.find((entry) => entry.character === detailState.character)?.words ?? []
+      : [];
 
   return (
     <main className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 md:py-4">
@@ -243,6 +271,7 @@ export default function HomePage() {
           <CharacterDetailModal
             character={detailState?.character ?? null}
             status={detailState?.status}
+            quickAddSuggestions={currentQuickAddSuggestions}
             onSetStatus={setDetailStatus}
             onPrev={() => moveDetail(-1)}
             onNext={() => moveDetail(1)}
@@ -254,6 +283,40 @@ export default function HomePage() {
       ) : null}
     </main>
   );
+}
+
+function extractHintWords(text: string): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  const pushWord = (word: string) => {
+    const chars = [...word];
+    if (chars.length < 2 || chars.length > 4) return;
+    if (!chars.every((ch) => isChineseChar(ch))) return;
+    if (seen.has(word)) return;
+    seen.add(word);
+    out.push(word);
+  };
+
+  if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
+    const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
+    for (const seg of segmenter.segment(text)) {
+      pushWord(seg.segment);
+    }
+  }
+
+  if (out.length > 0) return out;
+
+  const chunks = text.match(/[\p{Script=Han}]{2,}/gu) ?? [];
+  for (const chunk of chunks) {
+    const chars = [...chunk];
+    const maxLen = Math.min(4, chars.length);
+    for (let len = 2; len <= maxLen; len += 1) {
+      for (let i = 0; i <= chars.length - len; i += 1) {
+        pushWord(chars.slice(i, i + len).join(""));
+      }
+    }
+  }
+  return out;
 }
 
 function CharacterCloud({

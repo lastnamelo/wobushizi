@@ -1,4 +1,4 @@
-import { CharacterStateRow, CharacterStatus } from "@/lib/types";
+import { CharacterStateRow, CharacterStatus, CharacterWordRow } from "@/lib/types";
 import {
   ensureProfile,
   fetchCharacterStatesForChars,
@@ -11,6 +11,7 @@ import { User } from "@supabase/supabase-js";
 const LOCAL_USER_ID = "local-user";
 const STATE_KEY = "wobushizi:character_states";
 const LOG_KEY = "wobushizi:log_events";
+const WORDS_KEY = "wobushizi:character_words";
 let ensuredProfileId: string | null = null;
 const reconciledUserIds = new Set<string>();
 const LOCAL_RECONCILE_KEY = "wobushizi:local_reconciled_v2";
@@ -26,6 +27,7 @@ type StateCacheEntry = {
 let stateCache: StateCacheEntry | null = null;
 
 type StoredState = Record<string, CharacterStateRow>;
+type StoredWords = CharacterWordRow[];
 type CanonicalLogRow = {
   character: string;
   status: CharacterStatus;
@@ -256,6 +258,22 @@ function readStates(): StoredState {
 function writeStates(states: StoredState): void {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(STATE_KEY, JSON.stringify(states));
+}
+
+function readWords(): StoredWords {
+  if (typeof window === "undefined") return [];
+  const raw = window.localStorage.getItem(WORDS_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw) as StoredWords;
+  } catch {
+    return [];
+  }
+}
+
+function writeWords(words: StoredWords): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(WORDS_KEY, JSON.stringify(words));
 }
 
 async function getAuthUser() {
@@ -570,24 +588,129 @@ export async function fetchLogEventsLocal(): Promise<LocalLogEvent[]> {
   }
 }
 
+export async function fetchCharacterWordsLocal(character: string): Promise<CharacterWordRow[]> {
+  const { getCanonicalCharacter } = await getCanonicalUtils();
+  const canonical = getCanonicalCharacter(character);
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { data, error } = await supabase
+      .from("user_character_words")
+      .select("id,user_id,character,word,note,source,created_at")
+      .eq("user_id", user.id)
+      .eq("character", canonical)
+      .order("created_at", { ascending: true })
+      .limit(3);
+    if (error) throw error;
+    return (data ?? []) as CharacterWordRow[];
+  }
+
+  return readWords()
+    .filter((row) => row.character === canonical)
+    .sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
+    .slice(0, 3);
+}
+
+export async function addCharacterWordLocal(
+  character: string,
+  word: string,
+  note = "",
+  source: "manual" | "quick_add" = "manual"
+): Promise<void> {
+  const cleanedWord = word.trim();
+  const cleanedNote = note.trim();
+  if (!cleanedWord) throw new Error("Word cannot be empty.");
+
+  const { getCanonicalCharacter } = await getCanonicalUtils();
+  const canonical = getCanonicalCharacter(character);
+
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { data: existingRows, error: existingErr } = await supabase
+      .from("user_character_words")
+      .select("id,word")
+      .eq("user_id", user.id)
+      .eq("character", canonical)
+      .order("created_at", { ascending: true });
+    if (existingErr) throw existingErr;
+
+    const existing = existingRows ?? [];
+    if (existing.some((row) => String(row.word).trim() === cleanedWord)) {
+      return;
+    }
+    if (existing.length >= 3) {
+      throw new Error("You can save up to 3 words per character. Remove one to add another.");
+    }
+
+    const { error } = await supabase.from("user_character_words").insert({
+      user_id: user.id,
+      character: canonical,
+      word: cleanedWord,
+      note: cleanedNote || null,
+      source
+    });
+    if (error) throw error;
+    return;
+  }
+
+  const words = readWords();
+  const existing = words
+    .filter((row) => row.character === canonical)
+    .sort((a, b) => (a.created_at > b.created_at ? 1 : -1));
+  if (existing.some((row) => row.word.trim() === cleanedWord)) return;
+  if (existing.length >= 3) {
+    throw new Error("You can save up to 3 words per character. Remove one to add another.");
+  }
+  words.push({
+    id: crypto.randomUUID(),
+    user_id: LOCAL_USER_ID,
+    character: canonical,
+    word: cleanedWord,
+    note: cleanedNote || null,
+    source,
+    created_at: new Date().toISOString()
+  });
+  writeWords(words);
+}
+
+export async function removeCharacterWordLocal(id: string): Promise<void> {
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { error } = await supabase
+      .from("user_character_words")
+      .delete()
+      .eq("id", id)
+      .eq("user_id", user.id);
+    if (error) throw error;
+    return;
+  }
+  const words = readWords().filter((row) => row.id !== id);
+  writeWords(words);
+}
+
 export async function resetLocalProgress(): Promise<void> {
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
-    const [itemsDel, logsDel, statesDel] = await Promise.all([
+    const [itemsDel, logsDel, statesDel, wordsDel] = await Promise.all([
       supabase.from("log_event_items").delete().eq("user_id", user.id),
       supabase.from("log_events").delete().eq("user_id", user.id),
-      supabase.from("character_states").delete().eq("user_id", user.id)
+      supabase.from("character_states").delete().eq("user_id", user.id),
+      supabase.from("user_character_words").delete().eq("user_id", user.id)
     ]);
 
     if (itemsDel.error) throw itemsDel.error;
     if (logsDel.error) throw logsDel.error;
     if (statesDel.error) throw statesDel.error;
+    if (wordsDel.error) throw wordsDel.error;
     clearStateCache();
   }
 
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(STATE_KEY);
   window.localStorage.removeItem(LOG_KEY);
+  window.localStorage.removeItem(WORDS_KEY);
   clearStateCache();
 }

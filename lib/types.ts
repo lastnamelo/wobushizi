@@ -49,3 +49,13 @@ export interface EnrichedCharacter {
   frequency?: number | null;
   definition?: string;
 }
+
+export interface CharacterWordRow {
+  id: string;
+  user_id: string;
+  character: string;
+  word: string;
+  note?: string | null;
+  source?: "manual" | "quick_add";
+  created_at: string;
+}
