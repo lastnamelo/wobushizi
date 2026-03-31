@@ -9,8 +9,8 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
+  fetchAllCharacterStatesLocal,
   fetchKnownCountLocal,
-  fetchLogEventsLocal,
   isExpectedSignedOutError,
 } from "@/lib/localStore";
 
@@ -44,34 +44,32 @@ function todayLocalDay(): string {
   return `${y}-${m}-${day}`;
 }
 
-function buildDailyAddedSeries(
-  logEvents: Awaited<ReturnType<typeof fetchLogEventsLocal>>,
+function buildCumulativeKnownSeries(
+  knownRows: Array<{ created_at?: string; last_seen_at: string | null }>,
   currentKnown: number
 ): DailyPoint[] {
-  const byDayAdded = new Map<string, number>();
-  const activityDays = new Set<string>();
-  for (const event of logEvents) {
-    activityDays.add(toLocalDay(event.created_at));
-    for (const item of event.items) {
-      const day = toLocalDay(item.created_at);
-      activityDays.add(day);
-      if (item.action === "logged_known") {
-        byDayAdded.set(day, (byDayAdded.get(day) ?? 0) + 1);
-      }
-    }
+  const byDayNewKnown = new Map<string, number>();
+
+  for (const row of knownRows) {
+    const sourceTs = row.created_at ?? row.last_seen_at;
+    if (!sourceTs) continue;
+    const day = toLocalDay(sourceTs);
+    byDayNewKnown.set(day, (byDayNewKnown.get(day) ?? 0) + 1);
   }
 
-  const keys = [...activityDays].sort();
+  const keys = [...byDayNewKnown.keys()].sort();
   if (keys.length === 0) {
     if (currentKnown <= 0) return [];
     return [{ day: todayLocalDay(), count: currentKnown }];
   }
 
   const series: DailyPoint[] = [];
+  let running = 0;
   let cursor = keys[0];
   const last = keys[keys.length - 1];
   while (cursor <= last) {
-    series.push({ day: cursor, count: byDayAdded.get(cursor) ?? 0 });
+    running += byDayNewKnown.get(cursor) ?? 0;
+    series.push({ day: cursor, count: running });
     cursor = dayPlusOne(cursor);
   }
   return series;
@@ -86,9 +84,10 @@ export default function ProgressPage() {
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [count, logEvents] = await Promise.all([fetchKnownCountLocal(), fetchLogEventsLocal()]);
+      const [count, allStates] = await Promise.all([fetchKnownCountLocal(), fetchAllCharacterStatesLocal()]);
       setKnownCount(count);
-      setDailyPoints(buildDailyAddedSeries(logEvents, count));
+      const knownRows = allStates.filter((row) => row.status === "known");
+      setDailyPoints(buildCumulativeKnownSeries(knownRows, count));
       setLoading(false);
     })().catch((err: Error) => {
       if (!isExpectedSignedOutError(err)) {
