@@ -49,17 +49,21 @@ function buildDailyKnownSeries(
   currentKnown: number
 ): DailyPoint[] {
   const byDayNet = new Map<string, number>();
+  const activityDays = new Set<string>();
   for (const event of logEvents) {
+    activityDays.add(toLocalDay(event.created_at));
     for (const item of event.items) {
       const day = toLocalDay(item.created_at);
+      activityDays.add(day);
       const delta =
         item.action === "logged_known" ? 1 : item.action === "queued_study" ? -1 : 0;
-      if (delta === 0) continue;
-      byDayNet.set(day, (byDayNet.get(day) ?? 0) + delta);
+      if (delta !== 0) {
+        byDayNet.set(day, (byDayNet.get(day) ?? 0) + delta);
+      }
     }
   }
 
-  const keys = [...byDayNet.keys()].sort();
+  const keys = [...activityDays].sort();
   if (keys.length === 0) {
     if (currentKnown <= 0) return [];
     return [{ day: todayLocalDay(), count: currentKnown }];
