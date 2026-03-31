@@ -201,10 +201,24 @@ export function CharacterTable({
 
   return (
     <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
-      {helperText ? (
-        <p className="mb-2 text-left text-xs text-stone-600 md:text-sm">
-          {helperText}
-        </p>
+      {helperText || onSetStudy ? (
+        <div className="mb-2 flex items-center justify-between gap-3">
+          {helperText ? (
+            <p className="text-left text-xs text-stone-600 md:text-sm">
+              {helperText}
+            </p>
+          ) : (
+            <span />
+          )}
+          <button
+            type="button"
+            onClick={startFlashcards}
+            disabled={filtered.length === 0}
+            className="shrink-0 text-xs text-stone-700 hover:underline disabled:opacity-40"
+          >
+            Study Flashcards
+          </button>
+        </div>
       ) : null}
         <div className="mb-2">
           <input
@@ -213,16 +227,6 @@ export function CharacterTable({
             placeholder="Search character or pinyin..."
             className="w-full min-w-0 rounded-lg border border-line bg-stone-50 px-3 py-1.5 text-sm outline-none focus:border-stone-400"
           />
-        </div>
-        <div className="mb-2 flex justify-end">
-          <button
-            type="button"
-            onClick={startFlashcards}
-            disabled={filtered.length === 0}
-            className="text-xs text-stone-700 hover:underline disabled:opacity-40"
-          >
-            Study Flashcards
-          </button>
         </div>
       <div className="overflow-x-auto rounded-xl">
         <table className="w-full table-fixed text-xs md:text-sm">
