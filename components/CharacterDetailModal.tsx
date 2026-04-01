@@ -5,6 +5,7 @@ import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { addCharacterWordLocal, fetchCharacterWordsLocal, removeCharacterWordLocal } from "@/lib/localStore";
 import { CharacterStatus } from "@/lib/types";
+import { useDeviceCapabilities } from "@/lib/useDeviceCapabilities";
 
 interface CharacterDetailModalProps {
   character: string | null;
@@ -44,6 +45,7 @@ export function CharacterDetailModal({
   const prevCharacterRef = useRef<string | null>(null);
   const clearAnimationTimerRef = useRef<number | null>(null);
   const navTimerRef = useRef<number | null>(null);
+  const { isCoarsePointer } = useDeviceCapabilities();
 
   useEffect(() => {
     if (!character) return;
@@ -76,12 +78,26 @@ export function CharacterDetailModal({
   }, []);
 
   useEffect(() => {
+    if (!character) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [character]);
+
+  useEffect(() => {
     const prevCharacter = prevCharacterRef.current;
     prevCharacterRef.current = character;
     if (!character || !prevCharacter || prevCharacter === character) return;
     const dir = pendingSlideDirRef.current;
     pendingSlideDirRef.current = null;
     if (!dir) return;
+    if (isCoarsePointer) {
+      setCardAnimationClass("");
+      setIsTransitioning(false);
+      return;
+    }
     setCardAnimationClass(dir === "left" ? "animate-wobu-card-enter-left" : "animate-wobu-card-enter-right");
     if (clearAnimationTimerRef.current != null) {
       window.clearTimeout(clearAnimationTimerRef.current);
@@ -90,12 +106,20 @@ export function CharacterDetailModal({
       setCardAnimationClass("");
       setIsTransitioning(false);
     }, 280);
-  }, [character]);
+  }, [character, isCoarsePointer]);
 
   const requestMove = useCallback((direction: "left" | "right") => {
     if (isTransitioning) return;
     const canMove = direction === "left" ? canNext : canPrev;
     if (!canMove) return;
+    if (isCoarsePointer) {
+      if (direction === "left") {
+        onNext?.();
+      } else {
+        onPrev?.();
+      }
+      return;
+    }
     setIsTransitioning(true);
     pendingSlideDirRef.current = direction;
     setCardAnimationClass(direction === "left" ? "animate-wobu-card-exit-left" : "animate-wobu-card-exit-right");
@@ -109,7 +133,7 @@ export function CharacterDetailModal({
         onPrev?.();
       }
     }, 180);
-  }, [isTransitioning, canNext, canPrev, onNext, onPrev]);
+  }, [isTransitioning, canNext, canPrev, onNext, onPrev, isCoarsePointer]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -209,19 +233,7 @@ export function CharacterDetailModal({
     touchStartPointRef.current = null;
     if (!start || !touch) return;
     const deltaX = touch.clientX - start.x;
-    const deltaY = touch.clientY - start.y;
     const absX = Math.abs(deltaX);
-    const absY = Math.abs(deltaY);
-
-    if (absY > absX && absY >= 36 && onSetStatus) {
-      e.stopPropagation();
-      if (deltaY < 0) {
-        void onSetStatus("known");
-      } else {
-        void onSetStatus("study");
-      }
-      return;
-    }
 
     if (absX < 40) return;
     if (deltaX < 0) requestMove("left");
