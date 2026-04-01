@@ -65,6 +65,7 @@ All notable project changes are tracked here.
 - Improved quick-add word suggestions for traditional passages by matching against canonical characters.
 - Restored a white card behind the Progress chart and switched the weekly metric to characters.
 - Added directional card clicks and vertical mobile swipes for faster flashcard study actions.
+- Simplified mobile bank/master chrome and smoothed the modal side-transition animation.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.

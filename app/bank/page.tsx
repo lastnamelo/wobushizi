@@ -161,7 +161,7 @@ export default function BankPage() {
       {!loading ? (
         <section className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
           <div className="w-full">
-            <p className="mb-1 text-right text-xs leading-none text-stone-600">
+            <p className="mb-1 hidden text-right text-xs leading-none text-stone-600 md:block">
               {currentRows.length.toLocaleString()} characters
             </p>
             <CharacterTable
@@ -174,6 +174,7 @@ export default function BankPage() {
               toggleDelayMs={80}
               defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
               helperText="Click any character to view definitions and more."
+              hideHelperOnMobile
             />
           </div>
 

@@ -16,6 +16,7 @@ interface CharacterTableProps {
   defaultSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   forcedSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   helperText?: string;
+  hideHelperOnMobile?: boolean;
   statusFilterOptions?: Array<"all" | "known" | "study" | "none">;
   defaultStatusFilter?: "all" | "known" | "study" | "none";
   hideUnknownHskByDefault?: boolean;
@@ -32,6 +33,7 @@ export function CharacterTable({
   defaultSortBy = "frequency_rank_asc",
   forcedSortBy,
   helperText,
+  hideHelperOnMobile = false,
   statusFilterOptions,
   defaultStatusFilter = "all",
   hideUnknownHskByDefault = false,
@@ -199,7 +201,7 @@ export function CharacterTable({
       {helperText || onSetStudy ? (
         <div className="mb-2 flex items-center justify-between gap-3">
           {helperText ? (
-            <p className="text-left text-xs text-stone-600 md:text-sm">
+            <p className={`${hideHelperOnMobile ? "hidden md:block" : "block"} text-left text-xs text-stone-600 md:text-sm`}>
               {helperText}
             </p>
           ) : (

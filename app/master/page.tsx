@@ -54,7 +54,7 @@ export default function MasterPage() {
       {!loading ? (
         <div className="mx-auto mt-3 w-full max-w-4xl md:mt-6">
           <div className="w-full">
-            <p className="mb-1 text-right text-xs leading-none text-stone-600">
+            <p className="mb-1 hidden text-right text-xs leading-none text-stone-600 md:block">
               {visibleCount.toLocaleString()} characters
             </p>
             <CharacterTable
@@ -65,6 +65,7 @@ export default function MasterPage() {
               pendingCharacters={pendingMoves}
               defaultSortBy="frequency_rank_asc"
               helperText="Click any character to view definitions and more."
+              hideHelperOnMobile
               statusFilterOptions={["all", "known", "none"]}
               defaultStatusFilter="all"
               hideUnknownHskByDefault

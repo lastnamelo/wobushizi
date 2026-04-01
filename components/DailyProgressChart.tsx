@@ -16,13 +16,13 @@ function formatDayLabel(day: string): string {
 
 export function DailyProgressChart({ points }: DailyProgressChartProps) {
   const width = 760;
-  const height = 260;
-  const margin = { top: 18, right: 16, bottom: 40, left: 48 };
+  const height = 280;
+  const margin = { top: 18, right: 16, bottom: 40, left: 44 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
   const maxY = Math.max(1, ...points.map((p) => p.count));
-  const yTickCount = 4;
+  const yTickCount = 3;
   const yTicks = Array.from({ length: yTickCount + 1 }, (_, i) =>
     Math.round((maxY / yTickCount) * i)
   );
@@ -40,10 +40,13 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
     .map((p, i) => `${xFor(i)},${yFor(p.count)}`)
     .join(" ");
 
-  const xLabelStep = Math.max(1, Math.ceil(points.length / 6));
+  const xLabelStep = Math.max(1, Math.ceil(points.length / 4));
 
   return (
-      <svg viewBox={`0 0 ${width} ${height}`} className="h-[260px] w-full">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="h-[240px] w-full md:h-[280px]"
+      >
         <line
           x1={margin.left}
           y1={margin.top + innerHeight}
@@ -73,7 +76,7 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           );
         })}
 
-        <polyline fill="none" stroke="#7d7369" strokeWidth="2.8" points={polylinePoints} />
+        <polyline fill="none" stroke="#7d7369" strokeWidth="4" points={polylinePoints} />
 
         {points.map((point, i) => {
           const x = xFor(i);
@@ -81,14 +84,13 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           return (
             <g key={`${point.day}-${i}`}>
               {showLabel ? (
-                <text x={x} y={margin.top + innerHeight + 16} textAnchor="middle" fontSize="10" fill="#6d5b4e">
+                <text x={x} y={margin.top + innerHeight + 18} textAnchor="middle" fontSize="10" fill="#6d5b4e">
                   {formatDayLabel(point.day)}
                 </text>
               ) : null}
             </g>
           );
         })}
-
       </svg>
   );
 }

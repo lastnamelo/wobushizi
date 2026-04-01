@@ -101,7 +101,7 @@ export function CharacterDetailModal({
     }
     clearAnimationTimerRef.current = window.setTimeout(() => {
       setCardAnimationClass("");
-    }, 220);
+    }, 300);
   }, [character]);
 
   if (!character) return null;
@@ -273,6 +273,12 @@ export function CharacterDetailModal({
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
+        {cardAnimationClass ? (
+          <div
+            className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-white animate-wobu-card-veil"
+            aria-hidden="true"
+          />
+        ) : null}
         {face !== 2 ? (
           <>
             <button
