@@ -68,6 +68,7 @@ All notable project changes are tracked here.
 - Simplified mobile bank/master chrome and smoothed the modal side-transition animation.
 - Removed the top-right login control and kept only the persistent nav links.
 - Tuned the modal staged slide timing to reduce swap flicker during card-to-card navigation.
+- Improved Progress chart readability and trimmed duplicate client-side state work on Home/Progress.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.

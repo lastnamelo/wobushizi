@@ -1,11 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CharacterDetailModal } from "@/components/CharacterDetailModal";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { EnrichedCharacter } from "@/lib/types";
 import { useDeviceCapabilities } from "@/lib/useDeviceCapabilities";
+
+const CharacterDetailModal = dynamic(
+  () => import("@/components/CharacterDetailModal").then((mod) => mod.CharacterDetailModal),
+  { ssr: false }
+);
 
 interface CharacterTableProps {
   rows: EnrichedCharacter[];
@@ -201,17 +206,19 @@ export function CharacterTable({
       {helperText || onSetStudy ? (
         <div className="mb-2 flex items-center justify-between gap-3">
           {helperText ? (
-            <p className={`${hideHelperOnMobile ? "hidden md:block" : "block"} text-left text-xs text-stone-600 md:text-sm`}>
+            <p
+              className={`${hideHelperOnMobile ? "hidden md:block" : "block"} min-w-0 flex-1 text-left text-xs text-stone-600 md:text-sm`}
+            >
               {helperText}
             </p>
           ) : (
-            <span />
+            <span className="flex-1" />
           )}
           <button
             type="button"
             onClick={startFlashcards}
             disabled={filtered.length === 0}
-            className="shrink-0 text-xs text-stone-700 hover:underline disabled:opacity-40"
+            className="ml-auto shrink-0 text-right text-xs text-stone-700 hover:underline disabled:opacity-40"
           >
             Study Flashcards
           </button>

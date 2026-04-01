@@ -5,8 +5,7 @@ import { extractUniqueChineseChars } from "@/lib/cjk";
 import {
   applyLogLocal,
   ensureLocalProfile,
-  fetchKnownCountLocal,
-  fetchCharacterStatesByStatusLocal,
+  fetchAllCharacterStatesLocal,
   fetchCharacterStatesForCharsLocal,
   isExpectedSignedOutError,
   setCharacterStatusLocal
@@ -108,31 +107,20 @@ export function useHomePageState() {
   const { showMilestone: showMilestone2500, dismissMilestone: dismissMilestone2500 } =
     useMilestone2500(knownCount, !loading);
 
-  const refreshKnownCount = useCallback(async () => {
-    const count = await fetchKnownCountLocal();
-    setKnownCount(count);
-  }, []);
-
-  const refreshKnownStats = useCallback(async () => {
-    const knownRows = await fetchCharacterStatesByStatusLocal("known");
+  const refreshKnownSnapshot = useCallback(async () => {
+    const allRows = await fetchAllCharacterStatesLocal();
+    const knownRows = allRows.filter((row) => row.status === "known");
+    setKnownCount(knownRows.length);
     const countHskLevelsFromCharacters = await getCountHskLevelsFromCharacters();
     setHskStats(countHskLevelsFromCharacters(knownRows.map((row) => row.character)));
   }, []);
-
-  const refreshKnownSnapshot = useCallback(async (includeStats = true) => {
-    await refreshKnownCount();
-    if (includeStats) {
-      await refreshKnownStats();
-    }
-  }, [refreshKnownCount, refreshKnownStats]);
 
   useEffect(() => {
     // Render shell immediately; hydrate counts/stats in background.
     setLoading(false);
     (async () => {
       await ensureLocalProfile();
-      await refreshKnownSnapshot(false);
-      refreshKnownStats().catch(() => {
+      refreshKnownSnapshot().catch(() => {
         // Do not block the page if stats fail; count is the critical value.
       });
     })().catch((err: Error) => {
@@ -140,7 +128,7 @@ export function useHomePageState() {
         setMessage(err.message);
       }
     });
-  }, [refreshKnownSnapshot, refreshKnownStats]);
+  }, [refreshKnownSnapshot]);
 
   const selectedCount = useMemo(() => selectedSet.size, [selectedSet]);
   const newToYouCount = useMemo(

@@ -10,7 +10,6 @@ import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
   fetchAllCharacterStatesLocal,
-  fetchKnownCountLocal,
   isExpectedSignedOutError,
   resetLocalProgress,
 } from "@/lib/localStore";
@@ -87,10 +86,10 @@ export default function ProgressPage() {
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [count, allStates] = await Promise.all([fetchKnownCountLocal(), fetchAllCharacterStatesLocal()]);
-      setKnownCount(count);
+      const allStates = await fetchAllCharacterStatesLocal();
       const knownRows = allStates.filter((row) => row.status === "known");
-      setDailyPoints(buildCumulativeKnownSeries(knownRows, count));
+      setKnownCount(knownRows.length);
+      setDailyPoints(buildCumulativeKnownSeries(knownRows, knownRows.length));
       if (knownRows.length === 0) {
         setAvgCharactersPerWeek(0);
       } else {
@@ -142,7 +141,7 @@ export default function ProgressPage() {
         ) : null}
 
         {!loading && dailyPoints.length > 0 ? (
-          <div className="mt-1 rounded-2xl border border-line bg-white p-4 shadow-card">
+          <div className="mt-1 rounded-2xl border border-line bg-white px-2 py-2 shadow-card md:px-3 md:py-3">
             <DailyProgressChart points={dailyPoints} />
           </div>
         ) : null}

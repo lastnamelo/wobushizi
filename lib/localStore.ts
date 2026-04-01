@@ -314,10 +314,16 @@ export async function fetchKnownCountLocal(): Promise<number> {
   if (shouldUseSupabase()) {
     const user = await requireAuthUser();
     if (!supabase) throw new Error("Supabase client not available.");
+    const cacheKey = getSupabaseCacheKey(user.id);
+    const cached = readStateCache(cacheKey);
+    if (cached) {
+      return cached.filter((row) => row.status === "known").length;
+    }
     return fetchKnownCount(supabase, user.id);
   }
 
-  const rows = Object.values(readStates());
+  const cached = readStateCache(LOCAL_CACHE_KEY);
+  const rows = cached ?? Object.values(readStates());
   let count = 0;
   for (const row of rows) {
     if (row.status === "known") count += 1;

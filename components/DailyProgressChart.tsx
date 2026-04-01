@@ -16,8 +16,8 @@ function formatDayLabel(day: string): string {
 
 export function DailyProgressChart({ points }: DailyProgressChartProps) {
   const width = 760;
-  const height = 280;
-  const margin = { top: 18, right: 16, bottom: 40, left: 44 };
+  const height = 360;
+  const margin = { top: 20, right: 18, bottom: 52, left: 50 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -40,12 +40,12 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
     .map((p, i) => `${xFor(i)},${yFor(p.count)}`)
     .join(" ");
 
-  const xLabelStep = Math.max(1, Math.ceil(points.length / 4));
+  const xLabelStep = Math.max(1, Math.ceil(points.length / 5));
 
   return (
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        className="h-[240px] w-full md:h-[280px]"
+        className="h-[340px] w-full md:h-[380px]"
       >
         <line
           x1={margin.left}
@@ -69,14 +69,14 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           return (
             <g key={`y-${tick}`}>
               <line x1={margin.left} y1={y} x2={margin.left + innerWidth} y2={y} stroke="#efe8df" strokeWidth="1" />
-              <text x={margin.left - 8} y={y + 4} textAnchor="end" fontSize="11" fill="#6d5b4e">
+              <text x={margin.left - 10} y={y + 5} textAnchor="end" fontSize="13" fill="#6d5b4e">
                 {tick}
               </text>
             </g>
           );
         })}
 
-        <polyline fill="none" stroke="#7d7369" strokeWidth="4" points={polylinePoints} />
+        <polyline fill="none" stroke="#7d7369" strokeWidth="4.6" points={polylinePoints} />
 
         {points.map((point, i) => {
           const x = xFor(i);
@@ -84,7 +84,7 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           return (
             <g key={`${point.day}-${i}`}>
               {showLabel ? (
-                <text x={x} y={margin.top + innerHeight + 18} textAnchor="middle" fontSize="10" fill="#6d5b4e">
+                <text x={x} y={margin.top + innerHeight + 24} textAnchor="middle" fontSize="12" fill="#6d5b4e">
                   {formatDayLabel(point.day)}
                 </text>
               ) : null}
