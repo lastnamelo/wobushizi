@@ -94,8 +94,16 @@ export function CharacterDetailModal({
     pendingSlideDirRef.current = null;
     if (!dir) return;
     if (isCoarsePointer) {
-      setCardAnimationClass("");
-      setIsTransitioning(false);
+      setCardAnimationClass(
+        dir === "left" ? "animate-wobu-card-mobile-left" : "animate-wobu-card-mobile-right"
+      );
+      if (clearAnimationTimerRef.current != null) {
+        window.clearTimeout(clearAnimationTimerRef.current);
+      }
+      clearAnimationTimerRef.current = window.setTimeout(() => {
+        setCardAnimationClass("");
+        setIsTransitioning(false);
+      }, 180);
       return;
     }
     setCardAnimationClass(dir === "left" ? "animate-wobu-card-enter-left" : "animate-wobu-card-enter-right");
@@ -113,6 +121,8 @@ export function CharacterDetailModal({
     const canMove = direction === "left" ? canNext : canPrev;
     if (!canMove) return;
     if (isCoarsePointer) {
+      setIsTransitioning(true);
+      pendingSlideDirRef.current = direction;
       if (direction === "left") {
         onNext?.();
       } else {

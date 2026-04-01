@@ -70,6 +70,7 @@ All notable project changes are tracked here.
 - Tuned the modal staged slide timing to reduce swap flicker during card-to-card navigation.
 - Improved Progress chart readability and trimmed duplicate client-side state work on Home/Progress.
 - Disabled background scrolling while cards are open and removed mobile swipe-to-toggle behavior.
+- Added a mobile-specific Progress chart layout and moved the weekly average metric above the chart.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.

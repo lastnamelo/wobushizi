@@ -82,6 +82,28 @@ select {
   }
 }
 
+@keyframes wobu-card-mobile-left {
+  0% {
+    opacity: 0.72;
+    transform: translateX(26px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes wobu-card-mobile-right {
+  0% {
+    opacity: 0.72;
+    transform: translateX(-26px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .animate-wobu-card-exit-left {
   animation: wobu-card-exit-left 210ms cubic-bezier(0.55, 0, 0.75, 0);
   will-change: transform, opacity;
@@ -99,5 +121,15 @@ select {
 
 .animate-wobu-card-enter-right {
   animation: wobu-card-enter-right 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.animate-wobu-card-mobile-left {
+  animation: wobu-card-mobile-left 170ms ease-out;
+  will-change: transform, opacity;
+}
+
+.animate-wobu-card-mobile-right {
+  animation: wobu-card-mobile-right 170ms ease-out;
   will-change: transform, opacity;
 }
