@@ -59,10 +59,12 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
     : Math.max(1, Math.ceil(points.length / 5));
 
   return (
+    <div className="overflow-hidden rounded-2xl bg-white">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className={isMobile ? "h-[420px] w-full" : "h-[340px] w-full md:h-[380px]"}
       >
+        <rect x="0" y="0" width={width} height={height} fill="#ffffff" />
         <line
           x1={margin.left}
           y1={margin.top + innerHeight}
@@ -124,5 +126,6 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           );
         })}
       </svg>
+    </div>
   );
 }

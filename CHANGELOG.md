@@ -71,6 +71,7 @@ All notable project changes are tracked here.
 - Improved Progress chart readability and trimmed duplicate client-side state work on Home/Progress.
 - Disabled background scrolling while cards are open and removed mobile swipe-to-toggle behavior.
 - Added a mobile-specific Progress chart layout and moved the weekly average metric above the chart.
+- Removed the extra Progress card wrapper and let the chart own its white background.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.

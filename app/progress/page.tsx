@@ -141,7 +141,7 @@ export default function ProgressPage() {
         ) : null}
 
         {!loading && dailyPoints.length > 0 ? (
-          <div className="mt-1 rounded-2xl border border-line bg-white px-2 py-2 shadow-card md:px-3 md:py-3">
+          <div className="mt-1">
             <p className="mb-2 text-sm text-stone-600">
               Average characters added per week: {avgCharactersPerWeek}
             </p>
