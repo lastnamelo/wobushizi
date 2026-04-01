@@ -73,7 +73,7 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           );
         })}
 
-        <polyline fill="none" stroke="#7d7369" strokeWidth="2" points={polylinePoints} />
+        <polyline fill="none" stroke="#7d7369" strokeWidth="2.8" points={polylinePoints} />
 
         {points.map((point, i) => {
           const x = xFor(i);

@@ -9,7 +9,6 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
-  fetchAllCharacterWordsLocal,
   fetchAllCharacterStatesLocal,
   fetchKnownCountLocal,
   isExpectedSignedOutError,
@@ -80,7 +79,7 @@ function buildCumulativeKnownSeries(
 export default function ProgressPage() {
   const [knownCount, setKnownCount] = useState(0);
   const [dailyPoints, setDailyPoints] = useState<DailyPoint[]>([]);
-  const [avgWordsPerWeek, setAvgWordsPerWeek] = useState(0);
+  const [avgCharactersPerWeek, setAvgCharactersPerWeek] = useState(0);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const [resetMsg, setResetMsg] = useState<string | null>(null);
@@ -88,22 +87,22 @@ export default function ProgressPage() {
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [count, allStates, words] = await Promise.all([
-        fetchKnownCountLocal(),
-        fetchAllCharacterStatesLocal(),
-        fetchAllCharacterWordsLocal()
-      ]);
+      const [count, allStates] = await Promise.all([fetchKnownCountLocal(), fetchAllCharacterStatesLocal()]);
       setKnownCount(count);
       const knownRows = allStates.filter((row) => row.status === "known");
       setDailyPoints(buildCumulativeKnownSeries(knownRows, count));
-      if (words.length === 0) {
-        setAvgWordsPerWeek(0);
+      if (knownRows.length === 0) {
+        setAvgCharactersPerWeek(0);
       } else {
-        const first = words[0]?.created_at ? new Date(words[0].created_at) : new Date();
+        const firstSource = knownRows
+          .map((row) => row.created_at ?? row.last_seen_at)
+          .filter(Boolean)
+          .sort()[0];
+        const first = firstSource ? new Date(firstSource) : new Date();
         const now = new Date();
         const diffMs = Math.max(1, now.getTime() - first.getTime());
         const weeks = Math.max(1, diffMs / (1000 * 60 * 60 * 24 * 7));
-        setAvgWordsPerWeek(Math.round(words.length / weeks));
+        setAvgCharactersPerWeek(Math.round(knownRows.length / weeks));
       }
       setLoading(false);
     })().catch((err: Error) => {
@@ -120,7 +119,7 @@ export default function ProgressPage() {
     await resetLocalProgress();
     setKnownCount(0);
     setDailyPoints([]);
-    setAvgWordsPerWeek(0);
+    setAvgCharactersPerWeek(0);
     setResetMsg("Progress reset to 0.");
   }
 
@@ -143,14 +142,16 @@ export default function ProgressPage() {
         ) : null}
 
         {!loading && dailyPoints.length > 0 ? (
-          <div className="mt-1">
+          <div className="mt-1 rounded-2xl border border-line bg-white p-4 shadow-card">
             <DailyProgressChart points={dailyPoints} />
           </div>
         ) : null}
 
         {!loading ? (
           <div className="mt-3 flex items-center justify-between gap-3">
-            <p className="text-sm text-stone-600">Average words added per week: {avgWordsPerWeek}</p>
+            <p className="text-sm text-stone-600">
+              Average characters added per week: {avgCharactersPerWeek}
+            </p>
             <button
               onClick={handleReset}
               className="min-w-32 whitespace-nowrap rounded-xl bg-stone-900 px-5 py-2 text-sm text-white hover:bg-stone-800"
