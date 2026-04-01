@@ -14,9 +14,10 @@ interface TextLoaderProps {
   showWordHints?: boolean;
 }
 
-function getWordHintSegmentMap(text: string): Map<number, number> {
-  const segmentByIndex = new Map<number, number>();
+function getWordHintSegmentMap(text: string): Map<number, { id: number; text: string }> {
+  const segmentByIndex = new Map<number, { id: number; text: string }>();
   let segmentId = 0;
+  const chars = [...text];
 
   // Prefer native Chinese segmentation when available. This stays light-weight and local.
   if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
@@ -40,10 +41,23 @@ function getWordHintSegmentMap(text: string): Map<number, number> {
       if (start == null) continue;
 
       for (let i = 0; i < pointLen; i += 1) {
-        segmentByIndex.set(start + i, segmentId);
+        segmentByIndex.set(start + i, { id: segmentId, text: segment });
       }
       segmentId += 1;
     }
+  }
+
+  // Supplement with 2-char windows where segmenter did not tag a char.
+  for (let i = 0; i < chars.length - 1; i += 1) {
+    if (segmentByIndex.has(i) || segmentByIndex.has(i + 1)) continue;
+    const a = chars[i];
+    const b = chars[i + 1];
+    if (!a || !b) continue;
+    if (!isChineseChar(a) || !isChineseChar(b)) continue;
+    const word = `${a}${b}`;
+    segmentByIndex.set(i, { id: segmentId, text: word });
+    segmentByIndex.set(i + 1, { id: segmentId, text: word });
+    segmentId += 1;
   }
 
   return segmentByIndex;
@@ -60,7 +74,7 @@ export const TextLoader = memo(function TextLoader({
   const { enableHoverTooltip } = useDeviceCapabilities();
 
   const wordHintSegments = useMemo(() => {
-    if (!showWordHints) return new Map<number, number>();
+    if (!showWordHints) return new Map<number, { id: number; text: string }>();
     return getWordHintSegmentMap(text);
   }, [showWordHints, text]);
 
@@ -78,15 +92,26 @@ export const TextLoader = memo(function TextLoader({
           const isSelected = selected.has(ch);
           const pinyin = typeof info?.pinyin === "string" ? info.pinyin : "";
           const tooltipText = pinyin || (isKnown ? "Previously known" : "No pinyin");
-          const segmentId = wordHintSegments.get(idx);
-          const nextSegmentId = wordHintSegments.get(idx + 1);
-          const hasWordHint = segmentId != null;
-          const isWordEnd = hasWordHint && nextSegmentId !== segmentId;
+          const segment = wordHintSegments.get(idx);
+          const nextSegment = wordHintSegments.get(idx + 1);
+          const hasWordHint = segment != null;
+          const isWordEnd = hasWordHint && nextSegment?.id !== segment?.id;
 
           return (
             <span
               key={`${ch}-${idx}`}
-              onClick={() => onToggle(ch)}
+              onClick={(e) => {
+                if (showWordHints && e.shiftKey && segment?.text) {
+                  const encoded = encodeURIComponent(segment.text);
+                  window.open(
+                    `https://translate.google.com/?sl=zh-CN&tl=en&text=${encoded}&op=translate`,
+                    "_blank",
+                    "noopener,noreferrer"
+                  );
+                  return;
+                }
+                onToggle(ch);
+              }}
               className="inline-block cursor-pointer px-0.5 text-xl transition"
               style={{
                 color: colorValue,

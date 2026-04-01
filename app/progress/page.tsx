@@ -9,9 +9,11 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import {
   ensureLocalProfile,
+  fetchAllCharacterWordsLocal,
   fetchAllCharacterStatesLocal,
   fetchKnownCountLocal,
   isExpectedSignedOutError,
+  resetLocalProgress,
 } from "@/lib/localStore";
 
 type DailyPoint = {
@@ -78,16 +80,31 @@ function buildCumulativeKnownSeries(
 export default function ProgressPage() {
   const [knownCount, setKnownCount] = useState(0);
   const [dailyPoints, setDailyPoints] = useState<DailyPoint[]>([]);
+  const [avgWordsPerWeek, setAvgWordsPerWeek] = useState(0);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
+  const [resetMsg, setResetMsg] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       await ensureLocalProfile();
-      const [count, allStates] = await Promise.all([fetchKnownCountLocal(), fetchAllCharacterStatesLocal()]);
+      const [count, allStates, words] = await Promise.all([
+        fetchKnownCountLocal(),
+        fetchAllCharacterStatesLocal(),
+        fetchAllCharacterWordsLocal()
+      ]);
       setKnownCount(count);
       const knownRows = allStates.filter((row) => row.status === "known");
       setDailyPoints(buildCumulativeKnownSeries(knownRows, count));
+      if (words.length === 0) {
+        setAvgWordsPerWeek(0);
+      } else {
+        const first = words[0]?.created_at ? new Date(words[0].created_at) : new Date();
+        const now = new Date();
+        const diffMs = Math.max(1, now.getTime() - first.getTime());
+        const weeks = Math.max(1, diffMs / (1000 * 60 * 60 * 24 * 7));
+        setAvgWordsPerWeek(Math.round(words.length / weeks));
+      }
       setLoading(false);
     })().catch((err: Error) => {
       if (!isExpectedSignedOutError(err)) {
@@ -96,6 +113,16 @@ export default function ProgressPage() {
       setLoading(false);
     });
   }, []);
+
+  async function handleReset() {
+    const ok = window.confirm("Reset all progress to 0? This will clear known/study, logs, and saved words.");
+    if (!ok) return;
+    await resetLocalProgress();
+    setKnownCount(0);
+    setDailyPoints([]);
+    setAvgWordsPerWeek(0);
+    setResetMsg("Progress reset to 0.");
+  }
 
   return (
     <main className="relative mx-auto min-h-screen max-w-5xl px-4 py-6 sm:px-6 md:py-4">
@@ -120,6 +147,19 @@ export default function ProgressPage() {
             <DailyProgressChart points={dailyPoints} />
           </div>
         ) : null}
+
+        {!loading ? (
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <p className="text-sm text-stone-600">Average words added per week: {avgWordsPerWeek}</p>
+            <button
+              onClick={handleReset}
+              className="min-w-32 whitespace-nowrap rounded-xl bg-stone-900 px-5 py-2 text-sm text-white hover:bg-stone-800"
+            >
+              Reset Progress
+            </button>
+          </div>
+        ) : null}
+        {resetMsg ? <p className="mt-2 text-right text-sm text-stone-600">{resetMsg}</p> : null}
 
         {message ? <p className="mt-2 text-sm text-rose-700">{message}</p> : null}
       </section>

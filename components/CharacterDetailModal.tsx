@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, TouchEvent, useEffect, useRef, useState } from "react";
 import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { addCharacterWordLocal, fetchCharacterWordsLocal, removeCharacterWordLocal } from "@/lib/localStore";
@@ -37,6 +37,7 @@ export function CharacterDetailModal({
   const [message, setMessage] = useState<string | null>(null);
   const [quickAddBusyWord, setQuickAddBusyWord] = useState<string | null>(null);
   const [quickAddNotes, setQuickAddNotes] = useState<Record<string, string>>({});
+  const touchStartXRef = useRef<number | null>(null);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -103,6 +104,28 @@ export function CharacterDetailModal({
     return false;
   }
 
+  function openGoogleTranslate(word: string) {
+    const encoded = encodeURIComponent(word.trim());
+    if (!encoded) return;
+    window.open(`https://translate.google.com/?sl=zh-CN&tl=en&text=${encoded}&op=translate`, "_blank", "noopener,noreferrer");
+  }
+
+  function onTouchStart(e: TouchEvent<HTMLDivElement>) {
+    const x = e.changedTouches?.[0]?.clientX;
+    touchStartXRef.current = typeof x === "number" ? x : null;
+  }
+
+  function onTouchEnd(e: TouchEvent<HTMLDivElement>) {
+    const startX = touchStartXRef.current;
+    const endX = e.changedTouches?.[0]?.clientX;
+    touchStartXRef.current = null;
+    if (startX == null || typeof endX !== "number") return;
+    const delta = endX - startX;
+    if (Math.abs(delta) < 40) return;
+    if (delta < 0 && canNext) onNext?.();
+    if (delta > 0 && canPrev) onPrev?.();
+  }
+
   async function handleAddWord(e: FormEvent) {
     e.preventDefault();
     if (!character || !wordInput.trim() || wordsAtCap || busy) return;
@@ -162,10 +185,30 @@ export function CharacterDetailModal({
           if (shouldIgnoreCycleClick(e.target)) return;
           cycleFace();
         }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
       >
         <button
+          type="button"
+          onClick={onPrev}
+          disabled={!canPrev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
+          aria-label="Previous character"
+        >
+          {"<"}
+        </button>
+        <button
+          type="button"
+          onClick={onNext}
+          disabled={!canNext}
+          className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
+          aria-label="Next character"
+        >
+          {">"}
+        </button>
+        <button
           onClick={onClose}
-          className="absolute right-3 top-2 text-sm text-[#806252] hover:text-stone-800"
+          className="absolute right-3 top-1 text-lg text-[#806252] hover:text-stone-800"
           aria-label="Close"
         >
           x
@@ -184,7 +227,7 @@ export function CharacterDetailModal({
             onClick={() => setFace(1)}
             className={face === 1 ? "px-1 font-semibold text-stone-900" : "px-1 text-stone-700 hover:text-stone-900"}
           >
-            Words
+            Reveal
           </button>
           <span className="text-[10px] text-stone-400">•</span>
           <button
@@ -192,14 +235,14 @@ export function CharacterDetailModal({
             onClick={() => setFace(2)}
             className={face === 2 ? "px-1 font-semibold text-stone-900" : "px-1 text-stone-700 hover:text-stone-900"}
           >
-            Reveal
+            Words
           </button>
         </div>
         <div className="mt-5 min-h-[240px]">
         {face === 0 ? (
           <div className="flex min-h-[240px] flex-col items-center justify-center text-center">
             <div className="text-6xl text-stone-900">{displayChar}</div>
-            <p className="mt-3 text-sm text-stone-600">as in</p>
+            <p className="mt-5 text-sm text-[#806252]">as in</p>
             {words.length > 0 ? (
               <p className="mt-1 text-sm text-stone-700">{words.map((entry) => entry.word).join(" / ")}</p>
             ) : (
@@ -208,8 +251,9 @@ export function CharacterDetailModal({
           </div>
         ) : null}
 
-        {face === 1 ? (
+        {face === 2 ? (
           <div className="flex min-h-[240px] flex-col justify-start space-y-3 text-center">
+            <div className="text-3xl text-stone-900">{displayChar}</div>
             <div className="rounded-xl border border-line bg-stone-50 p-3">
               <form onSubmit={handleAddWord} className="space-y-2">
                 <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
@@ -243,9 +287,14 @@ export function CharacterDetailModal({
                     const isBusy = quickAddBusyWord === normalized;
                     return (
                       <div key={normalized} className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
-                        <div className="h-9 truncate border-b border-line px-1 text-center text-sm leading-9 text-stone-800">
+                        <button
+                          type="button"
+                          onClick={() => openGoogleTranslate(normalized)}
+                          className="h-9 truncate border-b border-line px-1 text-center text-sm leading-9 text-stone-800 hover:underline"
+                          title="Open in Google Translate"
+                        >
                           {normalized}
-                        </div>
+                        </button>
                         <input
                           value={quickAddNotes[normalized] ?? ""}
                           onChange={(e) =>
@@ -299,7 +348,7 @@ export function CharacterDetailModal({
           </div>
         ) : null}
 
-        {face === 2 ? (
+        {face === 1 ? (
           <div className="flex min-h-[240px] flex-col justify-center space-y-2 text-sm text-stone-700">
             <div className="mb-3">
               <div className="text-4xl text-stone-900">{displayChar}</div>
@@ -350,30 +399,6 @@ export function CharacterDetailModal({
             </button>
           </div>
         ) : null}
-
-        <div className="mt-4 flex items-center justify-between">
-          <button
-            type="button"
-            onClick={onPrev}
-            disabled={!canPrev}
-            className="px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-35"
-            aria-label="Previous character"
-          >
-            {"<"}
-          </button>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-stone-600">next word</span>
-            <button
-              type="button"
-              onClick={onNext}
-              disabled={!canNext}
-              className="px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-35"
-              aria-label="Next character"
-            >
-              {">"}
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

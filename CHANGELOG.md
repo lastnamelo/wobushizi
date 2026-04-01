@@ -50,6 +50,13 @@ All notable project changes are tracked here.
 - Improved home textarea placeholder with clearer paste examples.
 - Synced passage content updates and removed older starter passage files.
 
+## 2026-03-31
+- Reworked flashcard modal flow with side arrows, card-face cycling, and swipe navigation.
+- Expanded quick-add word suggestions so logged known and study characters can both suggest passage words.
+- Improved word-hint extraction and added Google Translate shortcuts from hint words and quick-add suggestions.
+- Updated Progress page with cumulative chart styling changes, average words per week, and moved Reset Progress there.
+- Tightened mobile viewport behavior and removed reset controls from About.
+
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.
 - Required login flow updates and spam-folder guidance for auth email.

@@ -6,11 +6,10 @@ import { BankQuickNav } from "@/components/BankQuickNav";
 import { Logo } from "@/components/Logo";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
-import { ensureLocalProfile, fetchKnownCountLocal, resetLocalProgress } from "@/lib/localStore";
+import { ensureLocalProfile, fetchKnownCountLocal } from "@/lib/localStore";
 
 export default function AboutPage() {
   const [knownCount, setKnownCount] = useState(0);
-  const [resetMsg, setResetMsg] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -19,15 +18,6 @@ export default function AboutPage() {
       setKnownCount(count);
     })();
   }, []);
-
-  async function handleReset() {
-    const ok = window.confirm("Reset all progress to 0? This will clear known/study and logs on this browser.");
-    if (!ok) return;
-
-    await resetLocalProgress();
-    setKnownCount(0);
-    setResetMsg("Progress reset to 0.");
-  }
 
   return (
     <main className="relative mx-auto min-h-screen max-w-5xl px-4 py-6 sm:px-6 md:py-4">
@@ -85,14 +75,7 @@ export default function AboutPage() {
           </a>{" "}
           多音字 list; website built with OpenAI tools, and logo is original by me.
         </p>
-        <button
-          onClick={handleReset}
-          className="min-w-32 whitespace-nowrap rounded-xl bg-stone-900 px-5 py-2 text-sm text-white hover:bg-stone-800"
-        >
-          Reset Progress
-        </button>
       </div>
-      {resetMsg ? <p className="mt-2 text-right text-sm text-stone-600">{resetMsg}</p> : null}
     </main>
   );
 }

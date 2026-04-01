@@ -43,7 +43,6 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
   const xLabelStep = Math.max(1, Math.ceil(points.length / 6));
 
   return (
-    <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
       <svg viewBox={`0 0 ${width} ${height}`} className="h-[260px] w-full">
         <line
           x1={margin.left}
@@ -74,15 +73,13 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
           );
         })}
 
-        <polyline fill="none" stroke="#6b96cf" strokeWidth="2" points={polylinePoints} />
+        <polyline fill="none" stroke="#7d7369" strokeWidth="2" points={polylinePoints} />
 
         {points.map((point, i) => {
           const x = xFor(i);
-          const y = yFor(point.count);
           const showLabel = i % xLabelStep === 0 || i === points.length - 1;
           return (
             <g key={`${point.day}-${i}`}>
-              <circle cx={x} cy={y} r="3.2" fill="#6b96cf" />
               {showLabel ? (
                 <text x={x} y={margin.top + innerHeight + 16} textAnchor="middle" fontSize="10" fill="#6d5b4e">
                   {formatDayLabel(point.day)}
@@ -93,6 +90,5 @@ export function DailyProgressChart({ points }: DailyProgressChartProps) {
         })}
 
       </svg>
-    </div>
   );
 }

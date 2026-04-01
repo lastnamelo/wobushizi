@@ -71,13 +71,16 @@ export default function HomePage() {
   const { isCoarsePointer } = useDeviceCapabilities();
   const quickAddWordsByCharacter = useMemo(() => {
     if (!results || mode !== "result") return [];
-    const studyChars = new Set(results.queuedStudy.map((row) => row.character));
-    if (studyChars.size === 0) return [];
+    const resultChars = new Set([
+      ...results.newKnown.map((row) => row.character),
+      ...results.queuedStudy.map((row) => row.character)
+    ]);
+    if (resultChars.size === 0) return [];
 
     const byCharacter = new Map<string, string[]>();
     const words = extractHintWords(text);
     for (const word of words) {
-      const charsInWord = [...new Set([...word].filter((ch) => studyChars.has(ch)))];
+      const charsInWord = [...new Set([...word].filter((ch) => resultChars.has(ch)))];
       for (const ch of charsInWord) {
         const list = byCharacter.get(ch) ?? [];
         if (!list.includes(word) && list.length < 3) {
@@ -364,6 +367,7 @@ function extractHintWords(text: string): string[] {
     out.push(word);
   };
 
+  // Use segmenter results first when available.
   if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
     const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
     for (const seg of segmenter.segment(text)) {
@@ -371,8 +375,7 @@ function extractHintWords(text: string): string[] {
     }
   }
 
-  if (out.length > 0) return out;
-
+  // Add simple 2-4 character windows as a fallback supplement.
   const chunks = text.match(/[\p{Script=Han}]{2,}/gu) ?? [];
   for (const chunk of chunks) {
     const chars = [...chunk];
@@ -383,7 +386,7 @@ function extractHintWords(text: string): string[] {
       }
     }
   }
-  return out;
+  return out.slice(0, 300);
 }
 
 function CharacterCloud({

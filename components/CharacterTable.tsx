@@ -153,11 +153,6 @@ export function CharacterTable({
   }, [rows]);
 
   useEffect(() => {
-    if (!flashRows) return;
-    setFlashRows(null);
-  }, [activeSortBy, flashRows, hasTradAltOnly, hskFilter, rows, search, statusFilter]);
-
-  useEffect(() => {
     const timers = toggleTimersRef.current;
     return () => {
       for (const timer of Object.values(timers)) {

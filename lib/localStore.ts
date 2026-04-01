@@ -611,6 +611,22 @@ export async function fetchCharacterWordsLocal(character: string): Promise<Chara
     .slice(0, 3);
 }
 
+export async function fetchAllCharacterWordsLocal(): Promise<CharacterWordRow[]> {
+  if (shouldUseSupabase()) {
+    const user = await requireAuthUser();
+    if (!supabase) throw new Error("Supabase client not available.");
+    const { data, error } = await supabase
+      .from("user_character_words")
+      .select("id,user_id,character,word,note,source,created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: true });
+    if (error) throw error;
+    return (data ?? []) as CharacterWordRow[];
+  }
+
+  return readWords().sort((a, b) => (a.created_at > b.created_at ? 1 : -1));
+}
+
 export async function addCharacterWordLocal(
   character: string,
   word: string,
