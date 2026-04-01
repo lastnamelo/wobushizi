@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, TouchEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, TouchEvent, useCallback, useEffect, useRef, useState } from "react";
 import { lookupHanziEntry } from "@/lib/hanzidb";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { addCharacterWordLocal, fetchCharacterWordsLocal, removeCharacterWordLocal } from "@/lib/localStore";
@@ -38,28 +38,12 @@ export function CharacterDetailModal({
   const [quickAddBusyWord, setQuickAddBusyWord] = useState<string | null>(null);
   const [quickAddNotes, setQuickAddNotes] = useState<Record<string, string>>({});
   const [cardAnimationClass, setCardAnimationClass] = useState("");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const touchStartPointRef = useRef<{ x: number; y: number } | null>(null);
   const pendingSlideDirRef = useRef<"left" | "right" | null>(null);
   const prevCharacterRef = useRef<string | null>(null);
   const clearAnimationTimerRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
-      if (event.key === "ArrowLeft" && canPrev) onPrev?.();
-      if (event.key === "ArrowRight" && canNext) onNext?.();
-      if (event.key === "ArrowUp" && onSetStatus) {
-        event.preventDefault();
-        void onSetStatus("known");
-      }
-      if (event.key === "ArrowDown" && onSetStatus) {
-        event.preventDefault();
-        void onSetStatus("study");
-      }
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [canNext, canPrev, onClose, onNext, onPrev, onSetStatus]);
+  const navTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!character) return;
@@ -85,6 +69,9 @@ export function CharacterDetailModal({
       if (clearAnimationTimerRef.current != null) {
         window.clearTimeout(clearAnimationTimerRef.current);
       }
+      if (navTimerRef.current != null) {
+        window.clearTimeout(navTimerRef.current);
+      }
     };
   }, []);
 
@@ -95,14 +82,58 @@ export function CharacterDetailModal({
     const dir = pendingSlideDirRef.current;
     pendingSlideDirRef.current = null;
     if (!dir) return;
-    setCardAnimationClass(dir === "left" ? "animate-wobu-card-left" : "animate-wobu-card-right");
+    setCardAnimationClass(dir === "left" ? "animate-wobu-card-enter-left" : "animate-wobu-card-enter-right");
     if (clearAnimationTimerRef.current != null) {
       window.clearTimeout(clearAnimationTimerRef.current);
     }
     clearAnimationTimerRef.current = window.setTimeout(() => {
       setCardAnimationClass("");
-    }, 300);
+      setIsTransitioning(false);
+    }, 280);
   }, [character]);
+
+  const requestMove = useCallback((direction: "left" | "right") => {
+    if (isTransitioning) return;
+    const canMove = direction === "left" ? canNext : canPrev;
+    if (!canMove) return;
+    setIsTransitioning(true);
+    pendingSlideDirRef.current = direction;
+    setCardAnimationClass(direction === "left" ? "animate-wobu-card-exit-left" : "animate-wobu-card-exit-right");
+    if (navTimerRef.current != null) {
+      window.clearTimeout(navTimerRef.current);
+    }
+    navTimerRef.current = window.setTimeout(() => {
+      if (direction === "left") {
+        onNext?.();
+      } else {
+        onPrev?.();
+      }
+    }, 180);
+  }, [isTransitioning, canNext, canPrev, onNext, onPrev]);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        requestMove("right");
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        requestMove("left");
+      }
+      if (event.key === "ArrowUp" && onSetStatus) {
+        event.preventDefault();
+        void onSetStatus("known");
+      }
+      if (event.key === "ArrowDown" && onSetStatus) {
+        event.preventDefault();
+        void onSetStatus("study");
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onClose, onSetStatus, requestMove]);
 
   if (!character) return null;
 
@@ -136,9 +167,8 @@ export function CharacterDetailModal({
       setFace(1);
       return;
     }
-    if (face === 1 && canNext) {
-      pendingSlideDirRef.current = "left";
-      onNext?.();
+    if (face === 1) {
+      requestMove("left");
     }
   }
 
@@ -147,9 +177,8 @@ export function CharacterDetailModal({
       setFace(0);
       return;
     }
-    if (face === 0 && canPrev) {
-      pendingSlideDirRef.current = "right";
-      onPrev?.();
+    if (face === 0) {
+      requestMove("right");
     }
   }
 
@@ -195,14 +224,8 @@ export function CharacterDetailModal({
     }
 
     if (absX < 40) return;
-    if (deltaX < 0 && canNext) {
-      pendingSlideDirRef.current = "left";
-      onNext?.();
-    }
-    if (deltaX > 0 && canPrev) {
-      pendingSlideDirRef.current = "right";
-      onPrev?.();
-    }
+    if (deltaX < 0) requestMove("left");
+    if (deltaX > 0) requestMove("right");
   }
 
   async function handleAddWord(e: FormEvent) {
@@ -273,21 +296,12 @@ export function CharacterDetailModal({
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {cardAnimationClass ? (
-          <div
-            className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-white animate-wobu-card-veil"
-            aria-hidden="true"
-          />
-        ) : null}
         {face !== 2 ? (
           <>
             <button
               type="button"
-              onClick={() => {
-                pendingSlideDirRef.current = "right";
-                onPrev?.();
-              }}
-              disabled={!canPrev}
+              onClick={() => requestMove("right")}
+              disabled={!canPrev || isTransitioning}
               className="absolute left-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
               aria-label="Previous character"
             >
@@ -295,11 +309,8 @@ export function CharacterDetailModal({
             </button>
             <button
               type="button"
-              onClick={() => {
-                pendingSlideDirRef.current = "left";
-                onNext?.();
-              }}
-              disabled={!canNext}
+              onClick={() => requestMove("left")}
+              disabled={!canNext || isTransitioning}
               className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
               aria-label="Next character"
             >

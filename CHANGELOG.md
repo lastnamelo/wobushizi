@@ -67,6 +67,7 @@ All notable project changes are tracked here.
 - Added directional card clicks and vertical mobile swipes for faster flashcard study actions.
 - Simplified mobile bank/master chrome and smoothed the modal side-transition animation.
 - Removed the top-right login control and kept only the persistent nav links.
+- Tuned the modal staged slide timing to reduce swap flicker during card-to-card navigation.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.
