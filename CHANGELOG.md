@@ -57,6 +57,13 @@ All notable project changes are tracked here.
 - Updated Progress page with cumulative chart styling changes, average words per week, and moved Reset Progress there.
 - Tightened mobile viewport behavior and removed reset controls from About.
 
+## 2026-03-31
+- Refined flashcard modal to a Front/Back flow with words opened from the front card.
+- Added side-arrow, swipe, wraparound, and keyboard navigation for modal study flow.
+- Updated modal motion to use whole-card slide transitions instead of flip animation.
+- Fixed Study table modal navigation so toggled characters can continue through a stable filtered snapshot.
+- Improved quick-add word suggestions for traditional passages by matching against canonical characters.
+
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.
 - Required login flow updates and spam-folder guidance for auth email.

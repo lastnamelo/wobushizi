@@ -37,17 +37,29 @@ export function CharacterDetailModal({
   const [message, setMessage] = useState<string | null>(null);
   const [quickAddBusyWord, setQuickAddBusyWord] = useState<string | null>(null);
   const [quickAddNotes, setQuickAddNotes] = useState<Record<string, string>>({});
+  const [cardAnimationClass, setCardAnimationClass] = useState("");
   const touchStartXRef = useRef<number | null>(null);
+  const pendingSlideDirRef = useRef<"left" | "right" | null>(null);
+  const prevCharacterRef = useRef<string | null>(null);
+  const clearAnimationTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
       if (event.key === "ArrowLeft" && canPrev) onPrev?.();
       if (event.key === "ArrowRight" && canNext) onNext?.();
+      if (event.key === "ArrowUp" && onSetStatus) {
+        event.preventDefault();
+        void onSetStatus("known");
+      }
+      if (event.key === "ArrowDown" && onSetStatus) {
+        event.preventDefault();
+        void onSetStatus("study");
+      }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [canNext, canPrev, onClose, onNext, onPrev]);
+  }, [canNext, canPrev, onClose, onNext, onPrev, onSetStatus]);
 
   useEffect(() => {
     if (!character) return;
@@ -66,6 +78,30 @@ export function CharacterDetailModal({
         setMessage(err.message);
       })
       .finally(() => setBusy(false));
+  }, [character]);
+
+  useEffect(() => {
+    return () => {
+      if (clearAnimationTimerRef.current != null) {
+        window.clearTimeout(clearAnimationTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const prevCharacter = prevCharacterRef.current;
+    prevCharacterRef.current = character;
+    if (!character || !prevCharacter || prevCharacter === character) return;
+    const dir = pendingSlideDirRef.current;
+    pendingSlideDirRef.current = null;
+    if (!dir) return;
+    setCardAnimationClass(dir === "left" ? "animate-wobu-card-left" : "animate-wobu-card-right");
+    if (clearAnimationTimerRef.current != null) {
+      window.clearTimeout(clearAnimationTimerRef.current);
+    }
+    clearAnimationTimerRef.current = window.setTimeout(() => {
+      setCardAnimationClass("");
+    }, 220);
   }, [character]);
 
   if (!character) return null;
@@ -93,9 +129,14 @@ export function CharacterDetailModal({
   const visibleQuickAddSuggestions = quickAddSuggestions.filter(
     (word) => !savedWordSet.has(word.trim())
   );
+  const wordsGridClass = "grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2rem] items-center gap-3";
 
   function cycleFace() {
-    setFace((prev) => (prev === 2 ? 0 : ((prev + 1) as 0 | 1 | 2)));
+    setFace((prev) => {
+      if (prev === 0) return 1;
+      if (prev === 1) return 0;
+      return prev;
+    });
   }
 
   function shouldIgnoreCycleClick(target: EventTarget | null): boolean {
@@ -122,8 +163,14 @@ export function CharacterDetailModal({
     if (startX == null || typeof endX !== "number") return;
     const delta = endX - startX;
     if (Math.abs(delta) < 40) return;
-    if (delta < 0 && canNext) onNext?.();
-    if (delta > 0 && canPrev) onPrev?.();
+    if (delta < 0 && canNext) {
+      pendingSlideDirRef.current = "left";
+      onNext?.();
+    }
+    if (delta > 0 && canPrev) {
+      pendingSlideDirRef.current = "right";
+      onPrev?.();
+    }
   }
 
   async function handleAddWord(e: FormEvent) {
@@ -179,7 +226,7 @@ export function CharacterDetailModal({
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/35 p-4" onClick={onClose}>
       <div
-        className="relative w-full max-w-md rounded-2xl border border-line bg-white p-5 text-center shadow-card"
+        className={`relative w-full max-w-md rounded-2xl border border-line bg-white p-5 text-center shadow-card ${cardAnimationClass}`}
         onClick={(e) => {
           e.stopPropagation();
           if (shouldIgnoreCycleClick(e.target)) return;
@@ -188,24 +235,34 @@ export function CharacterDetailModal({
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        <button
-          type="button"
-          onClick={onPrev}
-          disabled={!canPrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
-          aria-label="Previous character"
-        >
-          {"<"}
-        </button>
-        <button
-          type="button"
-          onClick={onNext}
-          disabled={!canNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
-          aria-label="Next character"
-        >
-          {">"}
-        </button>
+        {face !== 2 ? (
+          <>
+            <button
+              type="button"
+              onClick={() => {
+                pendingSlideDirRef.current = "right";
+                onPrev?.();
+              }}
+              disabled={!canPrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
+              aria-label="Previous character"
+            >
+              {"<"}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                pendingSlideDirRef.current = "left";
+                onNext?.();
+              }}
+              disabled={!canNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-4 text-2xl leading-none text-stone-400 hover:text-stone-600 disabled:opacity-20"
+              aria-label="Next character"
+            >
+              {">"}
+            </button>
+          </>
+        ) : null}
         <button
           onClick={onClose}
           className="absolute right-3 top-1 text-lg text-[#806252] hover:text-stone-800"
@@ -219,7 +276,7 @@ export function CharacterDetailModal({
             onClick={() => setFace(0)}
             className={face === 0 ? "px-1 font-semibold text-stone-900" : "px-1 text-stone-700 hover:text-stone-900"}
           >
-            Character
+            Front
           </button>
           <span className="text-[10px] text-stone-400">•</span>
           <button
@@ -227,15 +284,7 @@ export function CharacterDetailModal({
             onClick={() => setFace(1)}
             className={face === 1 ? "px-1 font-semibold text-stone-900" : "px-1 text-stone-700 hover:text-stone-900"}
           >
-            Reveal
-          </button>
-          <span className="text-[10px] text-stone-400">•</span>
-          <button
-            type="button"
-            onClick={() => setFace(2)}
-            className={face === 2 ? "px-1 font-semibold text-stone-900" : "px-1 text-stone-700 hover:text-stone-900"}
-          >
-            Words
+            Back
           </button>
         </div>
         <div className="mt-5 min-h-[240px]">
@@ -244,36 +293,63 @@ export function CharacterDetailModal({
             <div className="text-6xl text-stone-900">{displayChar}</div>
             <p className="mt-5 text-sm text-[#806252]">as in</p>
             {words.length > 0 ? (
-              <p className="mt-1 text-sm text-stone-700">{words.map((entry) => entry.word).join(" / ")}</p>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFace(2);
+                }}
+                className="mt-1 text-sm text-stone-700 hover:underline"
+              >
+                {words.map((entry) => entry.word).join(" / ")}
+              </button>
             ) : (
-              <p className="mt-1 text-sm italic text-stone-500">no words saved</p>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFace(2);
+                }}
+                className="mt-1 text-sm italic text-stone-500 hover:underline"
+              >
+                no words saved
+              </button>
             )}
           </div>
         ) : null}
 
         {face === 2 ? (
           <div className="flex min-h-[240px] flex-col justify-start space-y-3 text-center">
-            <div className="text-3xl text-stone-900">{displayChar}</div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFace(0);
+              }}
+              className="text-3xl text-stone-900"
+            >
+              {displayChar}
+            </button>
             <div className="rounded-xl border border-line bg-stone-50 p-3">
-              <form onSubmit={handleAddWord} className="space-y-2">
-                <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
+              <form onSubmit={handleAddWord} className="w-full space-y-2">
+                <div className={wordsGridClass}>
                   <input
                     value={wordInput}
                     onChange={(e) => setWordInput(e.target.value)}
                     placeholder="Word"
-                    className="h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
+                    className="min-w-0 h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
                     disabled={busy || wordsAtCap}
                   />
                   <input
                     value={noteInput}
                     onChange={(e) => setNoteInput(e.target.value)}
                     placeholder="Definition"
-                    className="h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
+                    className="min-w-0 h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
                     disabled={busy || wordsAtCap}
                   />
                   <button
                     type="submit"
-                    className="h-9 w-9 text-lg leading-none text-stone-700 hover:text-stone-900"
+                    className="h-9 w-8 text-lg leading-none text-stone-700 hover:text-stone-900"
                   >
                     +
                   </button>
@@ -286,11 +362,11 @@ export function CharacterDetailModal({
                     const normalized = word.trim();
                     const isBusy = quickAddBusyWord === normalized;
                     return (
-                      <div key={normalized} className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
+                      <div key={normalized} className={wordsGridClass}>
                         <button
                           type="button"
                           onClick={() => openGoogleTranslate(normalized)}
-                          className="h-9 truncate border-b border-line px-1 text-center text-sm leading-9 text-stone-800 hover:underline"
+                          className="min-w-0 h-9 truncate border-b border-line px-1 text-center text-sm leading-9 text-stone-800 hover:underline"
                           title="Open in Google Translate"
                         >
                           {normalized}
@@ -301,13 +377,13 @@ export function CharacterDetailModal({
                             setQuickAddNotes((prev) => ({ ...prev, [normalized]: e.target.value }))
                           }
                           placeholder="Definition"
-                          className="h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
+                          className="min-w-0 h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
                           disabled={wordsAtCap || Boolean(quickAddBusyWord)}
                         />
                         <button
                           type="button"
                           onClick={() => handleQuickAddWord(normalized)}
-                          className="h-9 w-9 text-lg leading-none text-stone-700 hover:text-stone-900"
+                          className="h-9 w-8 text-lg leading-none text-stone-700 hover:text-stone-900"
                         >
                           {isBusy ? "…" : "+"}
                         </button>
@@ -326,16 +402,16 @@ export function CharacterDetailModal({
               ) : (
                 <ul className="space-y-2">
                   {words.map((entry) => (
-                    <li key={entry.id} className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
-                      <p className="h-9 truncate px-1 text-sm leading-9 text-stone-900">
+                    <li key={entry.id} className={wordsGridClass}>
+                      <p className="min-w-0 h-9 truncate px-1 text-sm leading-9 text-stone-900">
                         {entry.word}
                       </p>
-                      <p className="h-9 truncate px-1 text-sm leading-9 text-stone-600">
+                      <p className="min-w-0 h-9 truncate px-1 text-sm leading-9 text-stone-600">
                         {entry.note || "-"}
                       </p>
                       <button
                         onClick={() => handleRemoveWord(entry.id)}
-                        className="px-2 text-sm text-stone-500 hover:text-stone-800"
+                        className="w-8 px-1 text-sm text-stone-500 hover:text-stone-800"
                         aria-label="Remove word"
                       >
                         x

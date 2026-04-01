@@ -160,8 +160,8 @@ export function useHomePageState() {
 
   function moveDetail(step: -1 | 1) {
     if (!detailState || detailIndex < 0) return;
-    const nextIndex = detailIndex + step;
-    if (nextIndex < 0 || nextIndex >= modalRows.length) return;
+    if (modalRows.length === 0) return;
+    const nextIndex = (detailIndex + step + modalRows.length) % modalRows.length;
     const nextRow = modalRows[nextIndex];
     if (!nextRow) return;
     setDetailState({

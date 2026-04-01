@@ -171,8 +171,8 @@ export function CharacterTable({
 
   function moveDetail(step: -1 | 1) {
     if (!detailState || detailIndex < 0) return;
-    const nextIndex = detailIndex + step;
-    if (nextIndex < 0 || nextIndex >= activeRows.length) return;
+    if (activeRows.length === 0) return;
+    const nextIndex = (detailIndex + step + activeRows.length) % activeRows.length;
     const nextRow = activeRows[nextIndex];
     if (!nextRow) return;
     setDetailState({ character: nextRow.character, status: nextRow.status });
@@ -371,7 +371,10 @@ export function CharacterTable({
                   >
                     <td className="py-1 text-base md:py-1 md:text-lg">
                       <button
-                        onClick={() => setDetailState({ character: row.character, status: row.status })}
+                        onClick={() => {
+                          setFlashRows([...filtered]);
+                          setDetailState({ character: row.character, status: row.status });
+                        }}
                         className="hover:underline"
                         title={isCoarsePointer ? undefined : "View details"}
                       >
@@ -468,12 +471,19 @@ export function CharacterTable({
           } else {
             onSetStudy?.(detailState.character);
           }
+          setFlashRows((prev) =>
+            prev
+              ? prev.map((row) =>
+                  row.character === detailState.character ? { ...row, status } : row
+                )
+              : prev
+          );
           setDetailState((prev) => (prev ? { ...prev, status } : prev));
         }}
         onPrev={() => moveDetail(-1)}
         onNext={() => moveDetail(1)}
-        canPrev={detailIndex > 0}
-        canNext={detailIndex >= 0 && detailIndex < activeRows.length - 1}
+        canPrev={activeRows.length > 1}
+        canNext={activeRows.length > 1}
         onClose={() => {
           setDetailState(null);
           setFlashRows(null);

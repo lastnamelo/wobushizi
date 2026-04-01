@@ -12,6 +12,7 @@ import { Milestone500Modal } from "@/components/Milestone500Modal";
 import { ProgressBar } from "@/components/ProgressBar";
 import { TopRightTextNav } from "@/components/TopRightTextNav";
 import { isChineseChar } from "@/lib/cjk";
+import { getCanonicalCharacter } from "@/lib/hanzidb";
 import { getHskColorValue } from "@/lib/hskStyles";
 import { useHomePageState, MAX_INPUT_CHARS } from "@/lib/hooks/useHomePageState";
 import { EnrichedCharacter } from "@/lib/types";
@@ -80,12 +81,18 @@ export default function HomePage() {
     const byCharacter = new Map<string, string[]>();
     const words = extractHintWords(text);
     for (const word of words) {
-      const charsInWord = [...new Set([...word].filter((ch) => resultChars.has(ch)))];
-      for (const ch of charsInWord) {
-        const list = byCharacter.get(ch) ?? [];
+      const canonicalCharsInWord = [
+        ...new Set(
+          [...word]
+            .map((ch) => getCanonicalCharacter(ch))
+            .filter((canonical) => resultChars.has(canonical))
+        )
+      ];
+      for (const canonical of canonicalCharsInWord) {
+        const list = byCharacter.get(canonical) ?? [];
         if (!list.includes(word) && list.length < 3) {
           list.push(word);
-          byCharacter.set(ch, list);
+          byCharacter.set(canonical, list);
         }
       }
     }
@@ -136,8 +143,8 @@ export default function HomePage() {
   function moveDetailWithinActiveRows(step: -1 | 1) {
     if (studyFlashRows) {
       if (!detailState || activeDetailIndex < 0) return;
-      const nextIndex = activeDetailIndex + step;
-      if (nextIndex < 0 || nextIndex >= activeModalRows.length) return;
+      if (activeModalRows.length === 0) return;
+      const nextIndex = (activeDetailIndex + step + activeModalRows.length) % activeModalRows.length;
       const nextRow = activeModalRows[nextIndex];
       if (!nextRow) return;
       setDetailState((prev) =>
@@ -342,8 +349,8 @@ export default function HomePage() {
             onSetStatus={setDetailStatus}
             onPrev={() => moveDetailWithinActiveRows(-1)}
             onNext={() => moveDetailWithinActiveRows(1)}
-            canPrev={activeDetailIndex > 0}
-            canNext={activeDetailIndex >= 0 && activeDetailIndex < activeModalRows.length - 1}
+            canPrev={activeModalRows.length > 1}
+            canNext={activeModalRows.length > 1}
             onClose={() => {
               setDetailState(null);
               setStudyFlashRows(null);
