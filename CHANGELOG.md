@@ -66,6 +66,7 @@ All notable project changes are tracked here.
 - Restored a white card behind the Progress chart and switched the weekly metric to characters.
 - Added directional card clicks and vertical mobile swipes for faster flashcard study actions.
 - Simplified mobile bank/master chrome and smoothed the modal side-transition animation.
+- Removed the top-right login control and kept only the persistent nav links.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.
