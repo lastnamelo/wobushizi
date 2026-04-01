@@ -64,6 +64,7 @@ All notable project changes are tracked here.
 - Fixed Study table modal navigation so toggled characters can continue through a stable filtered snapshot.
 - Improved quick-add word suggestions for traditional passages by matching against canonical characters.
 - Restored a white card behind the Progress chart and switched the weekly metric to characters.
+- Added directional card clicks and vertical mobile swipes for faster flashcard study actions.
 
 ## 2026-02-16
 - Refined onboarding copy, tester bypass behavior, and login flow guidance.

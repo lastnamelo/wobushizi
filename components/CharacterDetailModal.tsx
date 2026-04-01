@@ -38,7 +38,7 @@ export function CharacterDetailModal({
   const [quickAddBusyWord, setQuickAddBusyWord] = useState<string | null>(null);
   const [quickAddNotes, setQuickAddNotes] = useState<Record<string, string>>({});
   const [cardAnimationClass, setCardAnimationClass] = useState("");
-  const touchStartXRef = useRef<number | null>(null);
+  const touchStartPointRef = useRef<{ x: number; y: number } | null>(null);
   const pendingSlideDirRef = useRef<"left" | "right" | null>(null);
   const prevCharacterRef = useRef<string | null>(null);
   const clearAnimationTimerRef = useRef<number | null>(null);
@@ -131,12 +131,26 @@ export function CharacterDetailModal({
   );
   const wordsGridClass = "grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2rem] items-center gap-3";
 
-  function cycleFace() {
-    setFace((prev) => {
-      if (prev === 0) return 1;
-      if (prev === 1) return 0;
-      return prev;
-    });
+  function stepForward() {
+    if (face === 0) {
+      setFace(1);
+      return;
+    }
+    if (face === 1 && canNext) {
+      pendingSlideDirRef.current = "left";
+      onNext?.();
+    }
+  }
+
+  function stepBackward() {
+    if (face === 1) {
+      setFace(0);
+      return;
+    }
+    if (face === 0 && canPrev) {
+      pendingSlideDirRef.current = "right";
+      onPrev?.();
+    }
   }
 
   function shouldIgnoreCycleClick(target: EventTarget | null): boolean {
@@ -152,22 +166,40 @@ export function CharacterDetailModal({
   }
 
   function onTouchStart(e: TouchEvent<HTMLDivElement>) {
-    const x = e.changedTouches?.[0]?.clientX;
-    touchStartXRef.current = typeof x === "number" ? x : null;
+    const touch = e.changedTouches?.[0];
+    if (!touch) {
+      touchStartPointRef.current = null;
+      return;
+    }
+    touchStartPointRef.current = { x: touch.clientX, y: touch.clientY };
   }
 
   function onTouchEnd(e: TouchEvent<HTMLDivElement>) {
-    const startX = touchStartXRef.current;
-    const endX = e.changedTouches?.[0]?.clientX;
-    touchStartXRef.current = null;
-    if (startX == null || typeof endX !== "number") return;
-    const delta = endX - startX;
-    if (Math.abs(delta) < 40) return;
-    if (delta < 0 && canNext) {
+    const start = touchStartPointRef.current;
+    const touch = e.changedTouches?.[0];
+    touchStartPointRef.current = null;
+    if (!start || !touch) return;
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (absY > absX && absY >= 36 && onSetStatus) {
+      e.stopPropagation();
+      if (deltaY < 0) {
+        void onSetStatus("known");
+      } else {
+        void onSetStatus("study");
+      }
+      return;
+    }
+
+    if (absX < 40) return;
+    if (deltaX < 0 && canNext) {
       pendingSlideDirRef.current = "left";
       onNext?.();
     }
-    if (delta > 0 && canPrev) {
+    if (deltaX > 0 && canPrev) {
       pendingSlideDirRef.current = "right";
       onPrev?.();
     }
@@ -230,7 +262,13 @@ export function CharacterDetailModal({
         onClick={(e) => {
           e.stopPropagation();
           if (shouldIgnoreCycleClick(e.target)) return;
-          cycleFace();
+          const card = e.currentTarget.getBoundingClientRect();
+          const isLeftHalf = e.clientX < card.left + card.width / 2;
+          if (isLeftHalf) {
+            stepBackward();
+          } else {
+            stepForward();
+          }
         }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
