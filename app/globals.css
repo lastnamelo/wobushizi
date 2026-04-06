@@ -44,8 +44,8 @@ select {
     transform: translateX(0) scale(1);
   }
   100% {
-    opacity: 0.2;
-    transform: translateX(-54px) scale(0.992);
+    opacity: 0.08;
+    transform: translateX(-72px) scale(0.988);
   }
 }
 
@@ -55,15 +55,15 @@ select {
     transform: translateX(0) scale(1);
   }
   100% {
-    opacity: 0.2;
-    transform: translateX(54px) scale(0.992);
+    opacity: 0.08;
+    transform: translateX(72px) scale(0.988);
   }
 }
 
 @keyframes wobu-card-enter-left {
   0% {
-    opacity: 0.2;
-    transform: translateX(54px) scale(0.992);
+    opacity: 0.22;
+    transform: translateX(72px) scale(0.988);
   }
   100% {
     opacity: 1;
@@ -73,8 +73,8 @@ select {
 
 @keyframes wobu-card-enter-right {
   0% {
-    opacity: 0.2;
-    transform: translateX(-54px) scale(0.992);
+    opacity: 0.22;
+    transform: translateX(-72px) scale(0.988);
   }
   100% {
     opacity: 1;
@@ -84,52 +84,52 @@ select {
 
 @keyframes wobu-card-mobile-left {
   0% {
-    opacity: 0.72;
-    transform: translateX(26px);
+    opacity: 0.24;
+    transform: translateX(44px) scale(0.99);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 
 @keyframes wobu-card-mobile-right {
   0% {
-    opacity: 0.72;
-    transform: translateX(-26px);
+    opacity: 0.24;
+    transform: translateX(-44px) scale(0.99);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 
 .animate-wobu-card-exit-left {
-  animation: wobu-card-exit-left 210ms cubic-bezier(0.55, 0, 0.75, 0);
+  animation: wobu-card-exit-left 250ms cubic-bezier(0.55, 0, 0.75, 0);
   will-change: transform, opacity;
 }
 
 .animate-wobu-card-exit-right {
-  animation: wobu-card-exit-right 210ms cubic-bezier(0.55, 0, 0.75, 0);
+  animation: wobu-card-exit-right 250ms cubic-bezier(0.55, 0, 0.75, 0);
   will-change: transform, opacity;
 }
 
 .animate-wobu-card-enter-left {
-  animation: wobu-card-enter-left 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: wobu-card-enter-left 340ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }
 
 .animate-wobu-card-enter-right {
-  animation: wobu-card-enter-right 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: wobu-card-enter-right 340ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }
 
 .animate-wobu-card-mobile-left {
-  animation: wobu-card-mobile-left 170ms ease-out;
+  animation: wobu-card-mobile-left 240ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }
 
 .animate-wobu-card-mobile-right {
-  animation: wobu-card-mobile-right 170ms ease-out;
+  animation: wobu-card-mobile-right 240ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }

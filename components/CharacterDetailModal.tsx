@@ -41,6 +41,9 @@ export function CharacterDetailModal({
   const [cardAnimationClass, setCardAnimationClass] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const touchStartPointRef = useRef<{ x: number; y: number } | null>(null);
+  const touchLongPressTimerRef = useRef<number | null>(null);
+  const suppressTapRef = useRef(false);
+  const modalCardRef = useRef<HTMLDivElement | null>(null);
   const pendingSlideDirRef = useRef<"left" | "right" | null>(null);
   const prevCharacterRef = useRef<string | null>(null);
   const clearAnimationTimerRef = useRef<number | null>(null);
@@ -74,6 +77,9 @@ export function CharacterDetailModal({
       if (navTimerRef.current != null) {
         window.clearTimeout(navTimerRef.current);
       }
+      if (touchLongPressTimerRef.current != null) {
+        window.clearTimeout(touchLongPressTimerRef.current);
+      }
     };
   }, []);
 
@@ -81,6 +87,9 @@ export function CharacterDetailModal({
     if (!character) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    window.setTimeout(() => {
+      modalCardRef.current?.focus();
+    }, 0);
     return () => {
       document.body.style.overflow = previousOverflow;
     };
@@ -103,7 +112,7 @@ export function CharacterDetailModal({
       clearAnimationTimerRef.current = window.setTimeout(() => {
         setCardAnimationClass("");
         setIsTransitioning(false);
-      }, 180);
+      }, 260);
       return;
     }
     setCardAnimationClass(dir === "left" ? "animate-wobu-card-enter-left" : "animate-wobu-card-enter-right");
@@ -113,7 +122,7 @@ export function CharacterDetailModal({
     clearAnimationTimerRef.current = window.setTimeout(() => {
       setCardAnimationClass("");
       setIsTransitioning(false);
-    }, 280);
+    }, 360);
   }, [character, isCoarsePointer]);
 
   const requestMove = useCallback((direction: "left" | "right") => {
@@ -142,7 +151,7 @@ export function CharacterDetailModal({
       } else {
         onPrev?.();
       }
-    }, 180);
+    }, 220);
   }, [isTransitioning, canNext, canPrev, onNext, onPrev, isCoarsePointer]);
 
   useEffect(() => {
@@ -156,18 +165,18 @@ export function CharacterDetailModal({
         event.preventDefault();
         requestMove("left");
       }
-      if (event.key === "ArrowUp" && onSetStatus) {
+      if (event.key === "ArrowUp") {
         event.preventDefault();
-        void onSetStatus("known");
+        setFace(2);
       }
-      if (event.key === "ArrowDown" && onSetStatus) {
+      if (event.key === "ArrowDown") {
         event.preventDefault();
-        void onSetStatus("study");
+        setFace(2);
       }
     }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose, onSetStatus, requestMove]);
+    document.addEventListener("keydown", onKeyDown, true);
+    return () => document.removeEventListener("keydown", onKeyDown, true);
+  }, [onClose, requestMove]);
 
   if (!character) return null;
 
@@ -196,26 +205,6 @@ export function CharacterDetailModal({
   );
   const wordsGridClass = "grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2rem] items-center gap-3";
 
-  function stepForward() {
-    if (face === 0) {
-      setFace(1);
-      return;
-    }
-    if (face === 1) {
-      requestMove("left");
-    }
-  }
-
-  function stepBackward() {
-    if (face === 1) {
-      setFace(0);
-      return;
-    }
-    if (face === 0) {
-      requestMove("right");
-    }
-  }
-
   function shouldIgnoreCycleClick(target: EventTarget | null): boolean {
     if (!(target instanceof HTMLElement)) return false;
     if (target.closest("button, input, textarea, select, a, label")) return true;
@@ -235,16 +224,47 @@ export function CharacterDetailModal({
       return;
     }
     touchStartPointRef.current = { x: touch.clientX, y: touch.clientY };
+    suppressTapRef.current = false;
+    if (touchLongPressTimerRef.current != null) {
+      window.clearTimeout(touchLongPressTimerRef.current);
+    }
+    touchLongPressTimerRef.current = window.setTimeout(() => {
+      suppressTapRef.current = true;
+    }, 360);
+  }
+
+  function onTouchMove(e: TouchEvent<HTMLDivElement>) {
+    const start = touchStartPointRef.current;
+    const touch = e.changedTouches?.[0];
+    if (!start || !touch) return;
+    const deltaX = Math.abs(touch.clientX - start.x);
+    const deltaY = Math.abs(touch.clientY - start.y);
+    if (deltaX > 12 || deltaY > 12) {
+      if (touchLongPressTimerRef.current != null) {
+        window.clearTimeout(touchLongPressTimerRef.current);
+        touchLongPressTimerRef.current = null;
+      }
+    }
   }
 
   function onTouchEnd(e: TouchEvent<HTMLDivElement>) {
+    if (touchLongPressTimerRef.current != null) {
+      window.clearTimeout(touchLongPressTimerRef.current);
+      touchLongPressTimerRef.current = null;
+    }
     const start = touchStartPointRef.current;
     const touch = e.changedTouches?.[0];
     touchStartPointRef.current = null;
-    if (!start || !touch) return;
+    if (suppressTapRef.current || !start || !touch) return;
     const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
     const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
 
+    if (absY >= 40 && absY > absX && deltaY < 0) {
+      setFace(2);
+      return;
+    }
     if (absX < 40) return;
     if (deltaX < 0) requestMove("left");
     if (deltaX > 0) requestMove("right");
@@ -303,19 +323,31 @@ export function CharacterDetailModal({
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/35 p-4" onClick={onClose}>
       <div
-        className={`relative w-full max-w-md rounded-2xl border border-line bg-white p-5 text-center shadow-card ${cardAnimationClass}`}
+        ref={modalCardRef}
+        tabIndex={-1}
+        className={`relative w-full max-w-md rounded-2xl border border-line p-5 text-center shadow-card ${face === 0 ? "bg-[#fbfaf7]" : "bg-white"} ${cardAnimationClass}`}
+        onPointerDown={() => modalCardRef.current?.focus()}
         onClick={(e) => {
           e.stopPropagation();
+          if (suppressTapRef.current) {
+            suppressTapRef.current = false;
+            return;
+          }
           if (shouldIgnoreCycleClick(e.target)) return;
           const card = e.currentTarget.getBoundingClientRect();
-          const isLeftHalf = e.clientX < card.left + card.width / 2;
-          if (isLeftHalf) {
-            stepBackward();
-          } else {
-            stepForward();
+          const relativeX = e.clientX - card.left;
+          const relativeY = e.clientY - card.top;
+          const inBottomHalf = relativeY >= card.height / 2;
+          const awayFromToggle = Math.abs(relativeX - card.width / 2) > 64;
+          if (!inBottomHalf || !awayFromToggle) return;
+          if (face === 2) {
+            setFace(0);
+            return;
           }
+          setFace((currentFace) => (currentFace === 0 ? 1 : 0));
         }}
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         {face !== 2 ? (
@@ -367,7 +399,7 @@ export function CharacterDetailModal({
         <div className="mt-5 min-h-[240px]">
         {face === 0 ? (
           <div className="flex min-h-[240px] flex-col items-center justify-center text-center">
-            <div className="text-6xl text-stone-900">{displayChar}</div>
+            <div className="select-text text-6xl text-stone-900">{displayChar}</div>
             <p className="mt-5 text-sm text-[#806252]">as in</p>
             {words.length > 0 ? (
               <button
@@ -421,6 +453,9 @@ export function CharacterDetailModal({
                     value={noteInput}
                     onChange={(e) => setNoteInput(e.target.value)}
                     placeholder="Definition"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
                     className="min-w-0 h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
                     disabled={busy || wordsAtCap}
                   />
@@ -454,6 +489,9 @@ export function CharacterDetailModal({
                             setQuickAddNotes((prev) => ({ ...prev, [normalized]: e.target.value }))
                           }
                           placeholder="Definition"
+                          autoCapitalize="none"
+                          autoCorrect="off"
+                          spellCheck={false}
                           className="min-w-0 h-9 border-b border-line bg-transparent px-1 text-center text-sm outline-none focus:border-stone-500"
                           disabled={wordsAtCap || Boolean(quickAddBusyWord)}
                         />
@@ -504,8 +542,8 @@ export function CharacterDetailModal({
         {face === 1 ? (
           <div className="flex min-h-[240px] flex-col justify-center space-y-2 text-sm text-stone-700">
             <div className="mb-3">
-              <div className="text-4xl text-stone-900">{displayChar}</div>
-              <div className="mt-1 text-sm text-stone-700">{pinyinDisplay}</div>
+              <div className="select-text text-4xl text-stone-900">{displayChar}</div>
+              <div className="mt-1 select-text text-sm text-stone-700">{pinyinDisplay}</div>
             </div>
             <div className="flex items-center justify-center gap-2">
               <span className="font-semibold text-[#806252]">HSK</span>

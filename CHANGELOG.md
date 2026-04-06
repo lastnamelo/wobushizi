@@ -2,6 +2,19 @@
 
 All notable project changes are tracked here.
 
+## 2026-04-06
+- Reworked flashcard modal controls to separate navigation from face changes:
+  - next/previous now rely on swipes or side arrows,
+  - bottom tap zones flip `Front`/`Back`,
+  - bottom taps from `Words` return to `Front`.
+- Added mobile-friendly long-press/select behavior and made front/back card text selectable for copy workflows.
+- Disabled auto-capitalization/autocorrect in word-definition inputs on the card.
+- Changed modal keyboard/touch shortcuts:
+  - `Up` and swipe-up now open `Words`,
+  - hardware keyboard handling now focuses the modal card and listens on `document` for better iPad support.
+- Slowed and widened flashcard side-transition motion and added a subtle tinted front face to better distinguish card changes.
+- Removed the remaining white chart wrapper/background so the Progress chart now sits directly on the page.
+
 ## 2026-03-30
 - Suppressed expected signed-out auth errors across Home/Bank/Master so the red `auth session missing` message no longer appears behind the login gate.
 - Kept unexpected/runtime errors visible while filtering only pre-login session-missing noise.
