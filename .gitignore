@@ -1,6 +1,7 @@
 .next
 .next_broken_*
 node_modules
+tiles/
 .env.local
 .DS_Store
 npm-debug.log*
