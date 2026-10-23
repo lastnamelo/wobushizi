@@ -2,6 +2,12 @@
 
 All notable project changes are tracked here.
 
+## 2026-10-23
+- Added Study Bank CSV export with characters, primary/alternate pinyin, and definitions, with UTF-8 support for Excel.
+- Added Copy to clipboard for the full study list as a single block of characters.
+- Centered the export and copy controls alongside Study Flashcards.
+- Reduced navigation font size and spacing on small screens so Login/Log out clears the progress bar.
+
 ## 2026-04-06
 - Reworked flashcard modal controls to separate navigation from face changes:
   - next/previous now rely on swipes or side arrows,

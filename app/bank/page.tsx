@@ -51,6 +51,7 @@ export default function BankPage() {
   });
   const [knownCount, setKnownCount] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
+  const [exportMessage, setExportMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"character" | "study">("character");
   const [pendingMoves, setPendingMoves] = useState<Set<string>>(new Set());
   const { showMilestone, dismissMilestone } = useMilestone500(knownCount, !loading);
@@ -91,6 +92,54 @@ export default function BankPage() {
     () => countHskLevelsFromCharacters(tabData.known.map((row) => row.character)),
     [tabData.known]
   );
+
+  const studyExportRows = useMemo(
+    () => [...tabData.study].sort((a, b) =>
+      (a.hsk_level ?? Infinity) - (b.hsk_level ?? Infinity) ||
+      (a.frequency ?? Infinity) - (b.frequency ?? Infinity) ||
+      a.character.localeCompare(b.character, "zh-Hans-CN")
+    ),
+    [tabData.study]
+  );
+
+  function exportStudyList() {
+    // Quote every cell and neutralize formula prefixes for spreadsheet imports.
+    const csvCell = (value: string) => {
+      const safe = /^[\s]*[=+@-]/.test(value) ? `'${value}` : value;
+      return `"${safe.replace(/"/g, '""')}"`;
+    };
+    const rows = [
+      ["Character", "Pinyin", "Definition"],
+      ...studyExportRows.map((row) => [
+        row.character,
+        [row.pinyin, ...(row.pinyin_alternates ?? "").split("|")]
+          .map((value) => value?.trim()).filter(Boolean).join(" / "),
+        row.definition ?? ""
+      ])
+    ];
+    // The BOM helps Excel recognize Chinese text as UTF-8.
+    const blob = new Blob(["\uFEFF", rows.map((row) => row.map(csvCell).join(",")).join("\r\n")], {
+      type: "text/csv;charset=utf-8;"
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `wobushizi-study-list-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setExportMessage("Study list downloaded.");
+  }
+
+  async function copyStudyCharacters() {
+    try {
+      await navigator.clipboard.writeText(studyExportRows.map((row) => row.character).join(""));
+      setExportMessage(`${studyExportRows.length} characters copied.`);
+    } catch {
+      setExportMessage("Could not copy. Please allow clipboard access and try again.");
+    }
+  }
 
   async function moveStatus(character: string, status: "known" | "study") {
     const canonical = getCanonicalCharacter(character);
@@ -146,6 +195,7 @@ export default function BankPage() {
         active={activeTab}
         onSelectBankTab={(tab) => {
           setActiveTab(tab);
+          setExportMessage(null);
           window.history.replaceState(null, "", `/bank?tab=${tab}`);
         }}
       />
@@ -175,7 +225,22 @@ export default function BankPage() {
               defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
               helperText="Click any character to view definitions and more."
               hideHelperOnMobile
+              studyActions={activeTab === "study" ? (
+                <>
+                  <button type="button" onClick={exportStudyList} disabled={studyExportRows.length === 0}
+                    className="hover:underline disabled:opacity-40">
+                    Export study CSV
+                  </button>
+                  <button type="button" onClick={copyStudyCharacters} disabled={studyExportRows.length === 0}
+                    className="hover:underline disabled:opacity-40">
+                    Copy to clipboard
+                  </button>
+                </>
+              ) : undefined}
             />
+            {activeTab === "study" ? (
+              <p role="status" className="mt-1 text-center text-xs text-stone-600">{exportMessage}</p>
+            ) : null}
           </div>
 
           {message ? <p className="mt-3 text-sm text-rose-700">{message}</p> : null}

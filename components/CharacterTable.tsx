@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { getHskMutedBgValue, normalizeHskLevel } from "@/lib/hskStyles";
 import { normalizePinyin, tokenizePinyin } from "@/lib/pinyin";
 import { EnrichedCharacter } from "@/lib/types";
@@ -22,6 +22,7 @@ interface CharacterTableProps {
   forcedSortBy?: "character" | "hsk" | "frequency_rank_asc" | "frequency_rank_desc";
   helperText?: string;
   hideHelperOnMobile?: boolean;
+  studyActions?: ReactNode;
   statusFilterOptions?: Array<"all" | "known" | "study" | "none">;
   defaultStatusFilter?: "all" | "known" | "study" | "none";
   hideUnknownHskByDefault?: boolean;
@@ -39,6 +40,7 @@ export function CharacterTable({
   forcedSortBy,
   helperText,
   hideHelperOnMobile = false,
+  studyActions,
   statusFilterOptions,
   defaultStatusFilter = "all",
   hideUnknownHskByDefault = false,
@@ -204,7 +206,7 @@ export function CharacterTable({
   return (
     <section className="rounded-2xl border border-line bg-white p-4 shadow-card">
       {helperText || onSetStudy ? (
-        <div className="mb-2 flex items-center justify-between gap-3">
+        <div className={`mb-2 flex gap-3 ${studyActions ? "flex-col" : "items-center justify-between"}`}>
           {helperText ? (
             <p
               className={`${hideHelperOnMobile ? "hidden md:block" : "block"} min-w-0 flex-1 text-left text-xs text-stone-600 md:text-sm`}
@@ -214,14 +216,17 @@ export function CharacterTable({
           ) : (
             <span className="flex-1" />
           )}
+          <div className={studyActions ? "flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-stone-700" : "ml-auto shrink-0"}>
           <button
             type="button"
             onClick={startFlashcards}
             disabled={filtered.length === 0}
-            className="ml-auto shrink-0 text-right text-xs text-stone-700 hover:underline disabled:opacity-40"
+            className="shrink-0 text-xs text-stone-700 hover:underline disabled:opacity-40"
           >
             Study Flashcards
           </button>
+          {studyActions}
+          </div>
         </div>
       ) : null}
         <div className="mb-2">
