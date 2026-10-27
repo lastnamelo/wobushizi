@@ -132,10 +132,13 @@ export default function BankPage() {
     setExportMessage("Study list downloaded.");
   }
 
-  async function copyStudyCharacters() {
+  async function copyBankCharacters() {
+    const characters = [...new Set(
+      [...tabData.known, ...studyExportRows].map((row) => row.character)
+    )];
     try {
-      await navigator.clipboard.writeText(studyExportRows.map((row) => row.character).join(""));
-      setExportMessage(`${studyExportRows.length} characters copied.`);
+      await navigator.clipboard.writeText(characters.join("\n"));
+      setExportMessage(`${characters.length} known and study characters copied.`);
     } catch {
       setExportMessage("Could not copy. Please allow clipboard access and try again.");
     }
@@ -225,22 +228,22 @@ export default function BankPage() {
               defaultSortBy={activeTab === "study" ? "hsk" : "frequency_rank_asc"}
               helperText="Click any character to view definitions and more."
               hideHelperOnMobile
-              studyActions={activeTab === "study" ? (
+              studyActions={(
                 <>
+                  {activeTab === "study" ? (
                   <button type="button" onClick={exportStudyList} disabled={studyExportRows.length === 0}
                     className="hover:underline disabled:opacity-40">
                     Export study CSV
                   </button>
-                  <button type="button" onClick={copyStudyCharacters} disabled={studyExportRows.length === 0}
+                  ) : null}
+                  <button type="button" onClick={copyBankCharacters} disabled={tabData.known.length + tabData.study.length === 0}
                     className="hover:underline disabled:opacity-40">
                     Copy to clipboard
                   </button>
                 </>
-              ) : undefined}
+              )}
             />
-            {activeTab === "study" ? (
-              <p role="status" className="mt-1 text-center text-xs text-stone-600">{exportMessage}</p>
-            ) : null}
+            <p role="status" className="mt-1 text-center text-xs text-stone-600">{exportMessage}</p>
           </div>
 
           {message ? <p className="mt-3 text-sm text-rose-700">{message}</p> : null}

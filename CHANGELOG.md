@@ -2,6 +2,10 @@
 
 All notable project changes are tracked here.
 
+## 2026-10-27
+- Made Copy to clipboard available in both Known and Study banks.
+- Clipboard output now combines all known and study characters into one deduplicated list, one character per line.
+
 ## 2026-10-23
 - Added Study Bank CSV export with characters, primary/alternate pinyin, and definitions, with UTF-8 support for Excel.
 - Added Copy to clipboard for the full study list as a single block of characters.
