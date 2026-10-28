@@ -90,6 +90,35 @@ npm run dev
 npm run build
 ```
 
+## Troubleshooting Email Sign-In
+
+If a sign-in email opens the email prompt again, check the error displayed in the
+prompt. The app checks Supabase's redirect-initialization result as well as the
+current user, so an expired/used link no longer fails silently.
+
+In the Supabase dashboard:
+
+- In Authentication > URL Configuration, set Site URL to
+  `https://www.wobushizi.com`, the production site's canonical address. Add
+  `https://www.wobushizi.com` and `https://wobushizi.com` as Redirect URLs. The
+  exact origin passed by the app must be allowed. Add localhost origins
+  separately for development.
+- In Authentication > Email Templates, check both Confirm signup and Magic link.
+  The sign-in button must use `href="{{ .ConfirmationURL }}"`. A link using only
+  `{{ .SiteURL }}` or `{{ .RedirectTo }}` opens the site without verifying the user.
+- Check Authentication logs around the failed attempt. Delivery alone does not
+  confirm a successful login.
+
+Ask the user to request one fresh email, open its sign-in button once, and use the
+same browser where they want to use the app. Email security scanners can consume
+single-use links before the recipient opens them. If fresh links consistently
+report that they are expired, check the mail provider's link scanning or consider
+an email-code flow. Never request or share a live sign-in URL or its tokens when
+troubleshooting.
+
+References: [Supabase email templates](https://supabase.com/docs/guides/auth/auth-email-templates)
+and [redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
+
 ## Data Files
 
 - Main runtime dataset:

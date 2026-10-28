@@ -35,7 +35,9 @@ export function AuthGate() {
     setSentMsg(null);
     try {
       await signInWithEmail(email.trim());
-      setSentMsg("Magic link sent. Check your email.");
+      setSentMsg("Sign-in email sent. Open the sign-in link in the newest message. Each link works once.");
+    } catch {
+      // The auth hook displays the error in the form.
     } finally {
       setBusy(false);
     }
@@ -65,6 +67,8 @@ export function AuthGate() {
         <form onSubmit={onSubmit} className="mt-3">
           <input
             type="email"
+            required
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email for magic link"
@@ -78,9 +82,9 @@ export function AuthGate() {
             {busy ? "Sending..." : "Send magic link"}
           </button>
         </form>
-        {sentMsg ? <p className="mt-2 text-sm text-emerald-700">{sentMsg}</p> : null}
+        {sentMsg ? <p role="status" className="mt-2 text-sm text-emerald-700">{sentMsg}</p> : null}
         <p className="mt-2 text-xs text-stone-600">Tip: check spam/junk if the email doesn&apos;t show up.</p>
-        {error ? <p className="mt-2 text-sm text-rose-700">{error}</p> : null}
+        {error ? <p role="alert" className="mt-2 text-sm text-rose-700">{error}</p> : null}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
+import { formatAuthError } from "@/lib/authErrors";
 
 export function useSupabaseAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -16,29 +17,39 @@ export function useSupabaseAuth() {
     }
 
     let mounted = true;
+    const client = supabase;
 
-    supabase.auth
-      .getUser()
-      .then(({ data, error: userError }) => {
+    // Redirect failures are returned by initialize(), not by getUser().
+    client.auth
+      .initialize()
+      .then(async ({ error: redirectError }) => {
+        const { data, error: userError } = await client.auth.getUser();
         if (!mounted) return;
-        if (userError) {
-          if (!/auth session missing/i.test(userError.message)) {
-            setError(userError.message);
-          }
+        if (data.user) {
+          setError(null);
+        } else if (redirectError) {
+          setError(formatAuthError(redirectError));
+        } else if (userError && !/auth session missing/i.test(userError.message)) {
+          setError(formatAuthError(userError));
         }
         setUser(data.user ?? null);
         setLoading(false);
       })
-      .catch((err: Error) => {
+      .catch((err: unknown) => {
         if (!mounted) return;
-        setError(err.message);
+        setError(formatAuthError(err));
         setLoading(false);
       });
 
     const {
       data: { subscription }
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = client.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) return;
       setUser(session?.user ?? null);
+      if (session?.user) {
+        setError(null);
+        setLoading(false);
+      }
     });
 
     return () => {
@@ -54,16 +65,17 @@ export function useSupabaseAuth() {
       throw err;
     }
     setError(null);
-    const { error: signInError } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: typeof window !== "undefined" ? window.location.origin : undefined
-      }
-    });
-
-    if (signInError) {
-      setError(signInError.message);
-      throw signInError;
+    try {
+      const { error: signInError } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: typeof window !== "undefined" ? window.location.origin : undefined
+        }
+      });
+      if (signInError) throw signInError;
+    } catch (err) {
+      setError(formatAuthError(err));
+      throw err;
     }
   }
 
